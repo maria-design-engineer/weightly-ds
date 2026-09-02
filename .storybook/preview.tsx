@@ -1,5 +1,8 @@
 import type { Preview } from '@storybook/react-vite'
 
+// Слой значений библиотеки: витрина показывает компоненты на тех же токенах, что и продукт.
+import '../src/tokens/index.css'
+
 const preview: Preview = {
   parameters: {
     controls: {

@@ -1,0 +1,141 @@
+/*
+ * Select. Размеры и цвета — ui-kit/figma-components/select.md.
+ * Размеры совпадают с TextInput до числа: та же шкала высот, отступов и радиусов.
+ * Из Base UI приходит поведение выбора: клавиатура, чтение с экрана, закрытие списка.
+ */
+.w-select {
+  display: flex;
+  flex-direction: column;
+  /* Промежуток между полем и строкой ошибки — 4, в ките вписан числом. */
+  gap: 4px;
+}
+
+.w-select__trigger {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: var(--w-g-spacing-2);
+  width: 100%;
+  border: 1px solid var(--w-line-generic);
+  background: transparent;
+  color: var(--w-text-primary);
+  font: var(--w-style-text-body-1);
+  text-align: left;
+  cursor: pointer;
+}
+
+/* State=Hover — у Select красится и заливка тоже, у TextInput только обводка. */
+.w-select__trigger:hover:not([data-disabled]) {
+  background: var(--w-base-simple-hover);
+  border-color: var(--w-line-generic-hover);
+}
+
+/* State=Active — рамка Line/Generic Active. */
+.w-select__trigger[data-popup-open] {
+  border-color: var(--w-line-generic-active);
+}
+
+.w-select__trigger:focus-visible {
+  outline: var(--w-focus-ring-width) solid var(--w-focus-ring-color);
+  outline-offset: 1px;
+}
+
+.w-select__value {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* State=Suggest — подсказка вместо выбранного значения, цвет Text/Hint. */
+.w-select__value_empty {
+  color: var(--w-text-hint);
+}
+
+.w-select__counter {
+  flex: none;
+  color: var(--w-text-primary);
+}
+
+.w-select__icon {
+  display: inline-flex;
+  flex: none;
+  color: var(--w-text-secondary);
+}
+
+/* Size задаёт высоту, отступы и радиус. */
+.w-select_size_s .w-select__trigger { height: 28px; padding: 0 var(--w-g-spacing-2); border-radius: var(--w-s-radius); }
+.w-select_size_m .w-select__trigger { height: 34px; padding: 0 var(--w-g-spacing-3); border-radius: var(--w-m-radius); }
+.w-select_size_l .w-select__trigger { height: 42px; padding: 0 var(--w-g-spacing-4); border-radius: var(--w-l-radius); }
+.w-select_size_xl .w-select__trigger { height: 52px; padding: 0 var(--w-g-spacing-6); border-radius: var(--w-xl-radius); font: var(--w-style-text-body-2); }
+
+/* View=Clear — без рамки и заливки, боковых отступов нет. */
+.w-select_view_clear .w-select__trigger {
+  height: auto;
+  padding: 3px 0;
+  border-color: transparent;
+  border-radius: 0;
+}
+
+/* State=Disabled — заливка Base/Generic Accent Disabled, обводки нет. */
+.w-select__trigger[data-disabled] {
+  border-color: transparent;
+  background: var(--w-base-generic-accent-disabled);
+  color: var(--w-text-hint);
+  cursor: default;
+}
+
+.w-select__trigger[data-disabled] .w-select__counter {
+  color: var(--w-text-hint);
+}
+
+/* State=Error inline и Error outline — обводка Line/Danger. */
+.w-select_invalid .w-select__trigger {
+  border-color: var(--w-line-danger);
+}
+
+.w-select__error-text {
+  font: var(--w-style-text-body-1);
+  color: var(--w-text-danger);
+}
+
+/*
+ * Выпадающий список. В ките его нет: набор Select рисует только закрытую кнопку,
+ * а открытая часть, по профилю, собирается из Dropdown Menu или Popup — их продукт
+ * не берёт. Здесь список собран на токенах кита, строка возврата дизайну лежит
+ * под этапом 9а плана.
+ */
+.w-select__popup {
+  box-sizing: border-box;
+  min-width: var(--anchor-width);
+  padding: var(--w-g-spacing-1);
+  border-radius: var(--w-m-radius);
+  background: var(--w-base-float-float-bg);
+  box-shadow: var(--w-shadows-yc-select-shadow);
+  color: var(--w-text-primary);
+  font: var(--w-style-text-body-1);
+}
+
+.w-select__item {
+  display: flex;
+  align-items: center;
+  gap: var(--w-g-spacing-2);
+  height: 28px;
+  padding: 0 var(--w-g-spacing-2);
+  border-radius: var(--w-s-radius);
+  cursor: pointer;
+}
+
+.w-select__item[data-highlighted] {
+  background: var(--w-base-simple-hover);
+}
+
+.w-select__item[data-selected] {
+  color: var(--w-branding-text-brand-heavy);
+}
+
+.w-select__item-indicator {
+  display: inline-flex;
+  flex: none;
+  width: 16px;
+}

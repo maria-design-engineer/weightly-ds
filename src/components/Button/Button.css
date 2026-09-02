@@ -1,0 +1,111 @@
+/*
+ * Button. Размеры и цвета — ui-kit/figma-components/button.md.
+ * Поведение приходит из Base UI, вид собран здесь на токенах кита.
+ */
+.w-button {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  border: 0 solid transparent;
+  background: transparent;
+  color: var(--w-text-primary);
+  font: var(--w-style-text-body-1);
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.w-button:focus-visible {
+  outline: var(--w-focus-ring-width) solid var(--w-focus-ring-color);
+  outline-offset: 1px;
+}
+
+/* Size задаёт высоту, отступы, промежуток и радиус. */
+.w-button_size_xs { height: 24px; padding: 0 6px; gap: 4px; border-radius: var(--w-xs-radius); }
+.w-button_size_s { height: 28px; padding: 0 var(--w-g-spacing-2); gap: 4px; border-radius: var(--w-s-radius); }
+.w-button_size_m { height: 34px; padding: 0 var(--w-g-spacing-3); gap: var(--w-g-spacing-2); border-radius: var(--w-m-radius); }
+.w-button_size_l { height: 42px; padding: 0 var(--w-g-spacing-4); gap: var(--w-g-spacing-2); border-radius: var(--w-l-radius); }
+.w-button_size_xl { height: 52px; padding: 0 var(--w-g-spacing-6); gap: var(--w-g-spacing-3); border-radius: var(--w-xl-radius); font: var(--w-style-text-body-2); }
+
+/* Icon only=On — квадрат: у Size=M это 34 × 34. */
+.w-button_icon-only.w-button_size_xs { width: 24px; padding: 0; }
+.w-button_icon-only.w-button_size_s { width: 28px; padding: 0; }
+.w-button_icon-only.w-button_size_m { width: 34px; padding: 0; }
+.w-button_icon-only.w-button_size_l { width: 42px; padding: 0; }
+.w-button_icon-only.w-button_size_xl { width: 52px; padding: 0; }
+
+/* View задаёт заливку, обводку и цвет текста. */
+.w-button_view_secondary { background: var(--w-base-generic); }
+.w-button_view_secondary:hover:not(:disabled) { background: var(--w-base-generic-hover); }
+
+.w-button_view_primary-brand { background: var(--w-branding-base-brand); color: var(--w-text-light-primary); }
+.w-button_view_primary-brand:hover:not(:disabled) { background: var(--w-branding-base-brand-hover); }
+
+/* Primary — чёрная заливка Base/Dark, обводки нет. */
+.w-button_view_primary { background: var(--w-branding-base-dark); color: var(--w-text-light-primary); }
+.w-button_view_primary:hover:not(:disabled) { background: var(--w-branding-base-dark-hover); }
+
+.w-button_view_flat:hover:not(:disabled) { background: var(--w-base-generic); }
+
+.w-button_view_raised { background: var(--w-base-float-float-bg); box-shadow: var(--w-shadows-raised-button); }
+
+.w-button_view_normal-contrast { background: var(--w-base-light); color: var(--w-text-dark-primary); }
+.w-button_view_outlined-contrast { border-width: 1px; border-color: var(--w-line-light); color: var(--w-text-light-primary); }
+.w-button_view_flat-contrast { color: var(--w-text-light-primary); }
+
+/* Статусные виды: Outlined-* берут Line и Text своего статуса, Flat-* — только текст. */
+.w-button_view_outlined-info { border-width: 1px; border-color: var(--w-line-info); color: var(--w-text-info); }
+.w-button_view_outlined-success { border-width: 1px; border-color: var(--w-line-positive); color: var(--w-text-positive); }
+.w-button_view_outlined-warning { border-width: 1px; border-color: var(--w-line-warning); color: var(--w-text-warning); }
+.w-button_view_outlined-danger { border-width: 1px; border-color: var(--w-line-danger); color: var(--w-text-danger); }
+.w-button_view_outlined-utility { border-width: 1px; border-color: var(--w-line-utility); color: var(--w-text-utility); }
+.w-button_view_outlined-action { border-width: 1px; border-color: var(--w-branding-line-brand); color: var(--w-branding-text-brand); }
+
+.w-button_view_flat-info { color: var(--w-text-info); }
+.w-button_view_flat-success { color: var(--w-text-positive); }
+.w-button_view_flat-warning { color: var(--w-text-warning); }
+.w-button_view_flat-danger { color: var(--w-text-danger); }
+.w-button_view_flat-utility { color: var(--w-text-utility); }
+.w-button_view_flat-action { color: var(--w-branding-text-brand); }
+.w-button_view_flat-secondary { color: var(--w-text-secondary); }
+
+.w-button_view_flat-info:hover:not(:disabled),
+.w-button_view_flat-success:hover:not(:disabled),
+.w-button_view_flat-warning:hover:not(:disabled),
+.w-button_view_flat-danger:hover:not(:disabled),
+.w-button_view_flat-utility:hover:not(:disabled),
+.w-button_view_flat-action:hover:not(:disabled),
+.w-button_view_flat-secondary:hover:not(:disabled) { background: var(--w-base-generic); }
+
+/* State=Selected — заливка Base/Selection, текст Text/Brand Heavy. */
+.w-button_selected { background: var(--w-branding-base-selection); color: var(--w-branding-text-brand-heavy); }
+
+/* State=Disabled — нажатие не принимает, в обход клавиатурой не попадает. */
+.w-button[data-disabled] { color: var(--w-text-hint); cursor: default; }
+.w-button_view_primary-brand[data-disabled],
+.w-button_view_primary[data-disabled] { background: var(--w-base-generic); }
+
+/*
+ * State=Loading — в ките бегущая полоска задана тайловой картинкой, токена нет.
+ * Здесь она собрана полосами и движением.
+ */
+.w-button_loading::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(-45deg, var(--w-base-generic) 0 8px, transparent 8px 16px);
+  animation: w-button-loading 0.6s linear infinite;
+}
+
+@keyframes w-button-loading {
+  to { transform: translateX(22.6px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .w-button_loading::after { animation: none; }
+}
+
+/* Показ состояния Hover в витрине: карточка, а не пойманный курсор. */
+.w-button-hover-demo .w-button_view_secondary { background: var(--w-base-generic-hover); }

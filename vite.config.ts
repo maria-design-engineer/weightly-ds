@@ -15,7 +15,15 @@ export default defineConfig({
     },
     rollupOptions: {
       // React приходит из приложения, внутрь пакета не уезжает.
-      external: ['react', 'react-dom', 'react/jsx-runtime'],
+      // Base UI и иконотека — тоже: иначе одна и та же библиотека приедет дважды,
+      // в пакете и в приложении, и в них разойдётся состояние.
+      external: [
+        'react',
+        'react-dom',
+        'react/jsx-runtime',
+        /^@base-ui\/react/,
+        /^@gravity-ui\/icons/,
+      ],
     },
   },
 })

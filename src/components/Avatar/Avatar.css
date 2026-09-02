@@ -1,0 +1,72 @@
+/*
+ * Avatar. Размеры и цвета — ui-kit/figma-components/avatar.md.
+ * Из Base UI приходит поведение картинки: пока она грузится или не загрузилась,
+ * показывается запасное содержимое.
+ */
+.w-avatar {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex: none;
+  /* Круг при любом размере: в ките радиус вписан числом и всегда не меньше половины стороны. */
+  border-radius: 50%;
+  border: 0 solid transparent;
+  font: var(--w-style-header-subheader-1);
+}
+
+.w-avatar__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Size задаёт сторону круга. */
+.w-avatar_size_3xs { width: 16px; height: 16px; }
+.w-avatar_size_2xs { width: 20px; height: 20px; }
+.w-avatar_size_xs { width: 24px; height: 24px; }
+.w-avatar_size_s { width: 28px; height: 28px; }
+.w-avatar_size_m { width: 32px; height: 32px; }
+.w-avatar_size_l { width: 42px; height: 42px; }
+.w-avatar_size_xl { width: 50px; height: 50px; }
+
+/* Цвет задаёт пара View и Theme. */
+.w-avatar_view_filled.w-avatar_theme_brand {
+  background: var(--w-branding-base-brand);
+  color: var(--w-text-light-primary);
+}
+
+.w-avatar_view_filled.w-avatar_theme_normal {
+  background: var(--w-base-semantic-misc-light);
+  color: var(--w-text-misc);
+}
+
+.w-avatar_view_outlined.w-avatar_theme_brand {
+  border-width: 2px;
+  border-color: var(--w-branding-line-brand);
+  color: var(--w-branding-text-brand);
+}
+
+.w-avatar_view_outlined.w-avatar_theme_normal {
+  border-width: 2px;
+  border-color: var(--w-line-misc);
+  color: var(--w-text-misc);
+}
+
+/* Type=Image собран иначе: фон Base/Background, заливка темы на картинку не ложится. */
+.w-avatar_type_image {
+  background: var(--w-branding-base-background);
+}
+
+/*
+ * Custom border — кольцо поверх любого варианта: внутренний круг Base/Background 1,
+ * внешний Line/<тип> 2. В ките это отдельный набор .Custom border, в коде — проп.
+ */
+.w-avatar_border_misc { box-shadow: 0 0 0 1px var(--w-branding-base-background), 0 0 0 3px var(--w-line-misc); }
+.w-avatar_border_warning { box-shadow: 0 0 0 1px var(--w-branding-base-background), 0 0 0 3px var(--w-line-warning); }
+.w-avatar_border_danger { box-shadow: 0 0 0 1px var(--w-branding-base-background), 0 0 0 3px var(--w-line-danger); }
+.w-avatar_border_brand { box-shadow: 0 0 0 1px var(--w-branding-base-background), 0 0 0 3px var(--w-branding-line-brand); }
+.w-avatar_border_positive { box-shadow: 0 0 0 1px var(--w-branding-base-background), 0 0 0 3px var(--w-line-positive); }
+.w-avatar_border_utility { box-shadow: 0 0 0 1px var(--w-branding-base-background), 0 0 0 3px var(--w-line-utility); }
+.w-avatar_border_info { box-shadow: 0 0 0 1px var(--w-branding-base-background), 0 0 0 3px var(--w-line-info); }
