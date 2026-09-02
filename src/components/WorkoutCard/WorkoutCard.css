@@ -14,10 +14,16 @@
   box-shadow: var(--w-card-shadow-card-new);
 }
 
+/*
+ * Заголовок и подпись стоят одной колонкой рядом с плашкой: подпись выровнена
+ * по заголовку, а не по краю карточки. Снято обходом мастера Figma 03.09.2026.
+ */
 .w-workout-card__info {
   display: flex;
+  flex: 1;
   flex-direction: column;
   gap: var(--w-g-spacing-1);
+  min-width: 0;
 }
 
 .w-workout-card__title-row {
@@ -27,8 +33,6 @@
 }
 
 .w-workout-card__title {
-  flex: 1;
-  min-width: 0;
   font: var(--w-style-header-subheader-3);
   color: var(--w-text-primary);
 }

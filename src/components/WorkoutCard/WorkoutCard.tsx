@@ -19,13 +19,13 @@ export type WorkoutCardProps = {
 export function WorkoutCard({ content, caption, mark, trailing, actions }: WorkoutCardProps) {
   return (
     <div className="w-workout-card">
-      <div className="w-workout-card__info">
-        <div className="w-workout-card__title-row">
-          {mark}
+      <div className="w-workout-card__title-row">
+        {mark}
+        <span className="w-workout-card__info">
           <span className="w-workout-card__title">{content}</span>
-          {trailing}
-        </div>
-        {caption ? <span className="w-workout-card__caption">{caption}</span> : null}
+          {caption ? <span className="w-workout-card__caption">{caption}</span> : null}
+        </span>
+        {trailing}
       </div>
       {actions ? <div className="w-workout-card__actions">{actions}</div> : null}
     </div>
