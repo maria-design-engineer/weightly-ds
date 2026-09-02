@@ -25,14 +25,17 @@
   border-color: var(--w-line-generic-hover);
 }
 
-/* State=Active — рамка Line/Generic Active. Кольцо фокуса только с клавиатуры. */
-.w-text-input__box:focus-within {
-  border-color: var(--w-line-generic-active);
+/* State=Active у View=Normal — рамка Line/Focus. Правка дизайна 02.09.2026. */
+.w-text-input_view_normal .w-text-input__box:focus-within {
+  border-color: var(--w-line-focus);
 }
 
-.w-text-input__box:has(:focus-visible) {
-  outline: var(--w-focus-ring-width) solid var(--w-focus-ring-color);
-  outline-offset: 1px;
+/*
+ * У View=Clear рамки нет по замыслу: фокус рисуется подчёркиванием снизу,
+ * толщина 1, цвет Line/Focus. Устроено как Error inline, только оранжевым.
+ */
+.w-text-input_view_clear .w-text-input__box:focus-within {
+  box-shadow: inset 0 -1px 0 0 var(--w-line-focus);
 }
 
 .w-text-input__control {

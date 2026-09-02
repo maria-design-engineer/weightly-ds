@@ -2,7 +2,9 @@
  * Токены дизайн-системы. Этап 8 плана разработки.
  * Значения сняты из файла UI-kit через Figma MCP 02.09.2026 — обходом переменных,
  * не с картинки. Источник правды: файл WLgOtgGye3szrbYvamV0kv, коллекции
- * Color Styles (158 переменных, четыре режима), Typography (57), Spacings (12),
+ * Color Styles (159 переменных, четыре режима; 15 из них — Navigation/* чужой
+ * боковой шапки, в библиотеку не идут решением пользователя, остаётся 144),
+ * Typography (57), Spacings (12),
  * Border Radius (6). Приватная шкала Private Colors в код не едет: она reference-зона,
  * ссылки на неё разрешены до конечных значений.
  *
@@ -100,7 +102,7 @@
   --w-2xl-radius: 20px;
 }
 
-/* Цвета — коллекция Color Styles, режим Light, 159 переменных */
+/* Цвета — коллекция Color Styles, режим Light, 144 переменные */
 :root, [data-theme="light"] {
   --w-branding-base-background: #ffffff;
   --w-branding-base-brand: #fc5f2b;
@@ -222,21 +224,6 @@
   --w-effect-shadow-heavy: rgba(0, 0, 0, 0.5);
   --w-effect-fade: rgba(255, 255, 255, 0.3);
   --w-misc-scroll-corner: rgba(0, 0, 0, 0.1);
-  --w-navigation-gn-aside-header-decoration-collapsed-background-color: rgba(255, 255, 255, 0.8);
-  --w-navigation-gn-aside-header-decoration-expanded-background-color: rgba(255, 255, 255, 0.7);
-  --w-navigation-gn-aside-header-background-color: #f2f2f2;
-  --w-navigation-gn-aside-header-collapsed-background-color: #f2f2f2;
-  --w-navigation-gn-aside-header-expanded-background-color: #f2f2f2;
-  --w-navigation-gn-aside-header-divider-horizontal-color: rgba(0, 0, 0, 0.1);
-  --w-navigation-gn-aside-header-divider-vertical-color: rgba(0, 0, 0, 0.1);
-  --w-navigation-gn-aside-header-general-item-icon-color: #3f4652;
-  --w-navigation-gn-aside-header-item-icon-color: #3f4652;
-  --w-navigation-gn-aside-header-item-text-color: #3f4652;
-  --w-navigation-gn-aside-header-item-background-color-hover: rgba(107, 132, 153, 0.2);
-  --w-navigation-gn-aside-header-item-current-icon-color: rgba(0, 0, 0, 0.85);
-  --w-navigation-gn-aside-header-item-current-text-color: rgba(0, 0, 0, 0.85);
-  --w-navigation-gn-aside-header-item-current-background-color: #ffbe5c;
-  --w-navigation-gn-aside-header-item-current-background-color-hover: #e9ae56;
   --w-misc-scroll-handle: rgba(0, 0, 0, 0.1);
   --w-misc-scroll-handle-hover: rgba(0, 0, 0, 0.15);
   --w-misc-scroll-track: #ffffff;
@@ -263,7 +250,7 @@
   --w-accent-lime-60: rgba(210, 210, 70, 0.6);
 }
 
-/* Цвета — коллекция Color Styles, режим Dark, 159 переменных */
+/* Цвета — коллекция Color Styles, режим Dark, 144 переменные */
 [data-theme="dark"] {
   --w-branding-base-background: #221d22;
   --w-branding-base-brand: #fc5f2b;
@@ -385,21 +372,6 @@
   --w-effect-shadow-heavy: rgba(0, 0, 0, 0.5);
   --w-effect-fade: rgba(255, 255, 255, 0.25);
   --w-misc-scroll-corner: rgba(255, 255, 255, 0.15);
-  --w-navigation-gn-aside-header-decoration-collapsed-background-color: rgba(255, 255, 255, 0.1);
-  --w-navigation-gn-aside-header-decoration-expanded-background-color: rgba(255, 255, 255, 0.05);
-  --w-navigation-gn-aside-header-background-color: #221d22;
-  --w-navigation-gn-aside-header-collapsed-background-color: #221d22;
-  --w-navigation-gn-aside-header-expanded-background-color: #221d22;
-  --w-navigation-gn-aside-header-divider-horizontal-color: rgba(255, 255, 255, 0.15);
-  --w-navigation-gn-aside-header-divider-vertical-color: rgba(255, 255, 255, 0.15);
-  --w-navigation-gn-aside-header-general-item-icon-color: rgba(255, 255, 255, 0.85);
-  --w-navigation-gn-aside-header-item-icon-color: rgba(255, 255, 255, 0.85);
-  --w-navigation-gn-aside-header-item-text-color: rgba(255, 255, 255, 0.85);
-  --w-navigation-gn-aside-header-item-background-color-hover: #8099b0;
-  --w-navigation-gn-aside-header-item-current-icon-color: rgba(0, 0, 0, 0.85);
-  --w-navigation-gn-aside-header-item-current-text-color: rgba(0, 0, 0, 0.85);
-  --w-navigation-gn-aside-header-item-current-background-color: #ffbe5c;
-  --w-navigation-gn-aside-header-item-current-background-color-hover: #ffcb7d;
   --w-misc-scroll-handle: rgba(255, 255, 255, 0.15);
   --w-misc-scroll-handle-hover: rgba(255, 255, 255, 0.25);
   --w-misc-scroll-track: #221d22;
@@ -426,7 +398,7 @@
   --w-accent-lime-60: rgba(225, 225, 132, 0.6);
 }
 
-/* Цвета — коллекция Color Styles, режим Light HC, 159 переменных */
+/* Цвета — коллекция Color Styles, режим Light HC, 144 переменные */
 [data-theme="light-hc"] {
   --w-branding-base-background: #ffffff;
   --w-branding-base-brand: #fc5f2b;
@@ -548,21 +520,6 @@
   --w-effect-shadow-heavy: rgba(0, 0, 0, 0.6);
   --w-effect-fade: rgba(255, 255, 255, 0.3);
   --w-misc-scroll-corner: rgba(0, 0, 0, 0.1);
-  --w-navigation-gn-aside-header-decoration-collapsed-background-color: rgba(255, 255, 255, 0.8);
-  --w-navigation-gn-aside-header-decoration-expanded-background-color: rgba(255, 255, 255, 0.7);
-  --w-navigation-gn-aside-header-background-color: #e6e6e6;
-  --w-navigation-gn-aside-header-collapsed-background-color: #e6e6e6;
-  --w-navigation-gn-aside-header-expanded-background-color: #e6e6e6;
-  --w-navigation-gn-aside-header-divider-horizontal-color: rgba(0, 0, 0, 0.2);
-  --w-navigation-gn-aside-header-divider-vertical-color: rgba(0, 0, 0, 0.2);
-  --w-navigation-gn-aside-header-general-item-icon-color: #000000;
-  --w-navigation-gn-aside-header-item-icon-color: #000000;
-  --w-navigation-gn-aside-header-item-text-color: #000000;
-  --w-navigation-gn-aside-header-item-background-color-hover: rgba(107, 132, 153, 0.2);
-  --w-navigation-gn-aside-header-item-current-icon-color: #000000;
-  --w-navigation-gn-aside-header-item-current-text-color: #000000;
-  --w-navigation-gn-aside-header-item-current-background-color: #ffbe5c;
-  --w-navigation-gn-aside-header-item-current-background-color-hover: #e9ae56;
   --w-misc-scroll-handle: rgba(0, 0, 0, 0.1);
   --w-misc-scroll-handle-hover: rgba(0, 0, 0, 0.15);
   --w-misc-scroll-track: #ffffff;
@@ -589,7 +546,7 @@
   --w-accent-lime-60: rgba(210, 210, 70, 0.6);
 }
 
-/* Цвета — коллекция Color Styles, режим Dark HC, 159 переменных */
+/* Цвета — коллекция Color Styles, режим Dark HC, 144 переменные */
 [data-theme="dark-hc"] {
   --w-branding-base-background: #121112;
   --w-branding-base-brand: #fc5f2b;
@@ -711,21 +668,6 @@
   --w-effect-shadow-heavy: rgba(0, 0, 0, 0.4);
   --w-effect-fade: rgba(255, 255, 255, 0.25);
   --w-misc-scroll-corner: rgba(255, 255, 255, 0.15);
-  --w-navigation-gn-aside-header-decoration-collapsed-background-color: rgba(255, 255, 255, 0.1);
-  --w-navigation-gn-aside-header-decoration-expanded-background-color: rgba(255, 255, 255, 0.05);
-  --w-navigation-gn-aside-header-background-color: #121112;
-  --w-navigation-gn-aside-header-collapsed-background-color: #121112;
-  --w-navigation-gn-aside-header-expanded-background-color: #121112;
-  --w-navigation-gn-aside-header-divider-horizontal-color: rgba(255, 255, 255, 0.15);
-  --w-navigation-gn-aside-header-divider-vertical-color: rgba(255, 255, 255, 0.15);
-  --w-navigation-gn-aside-header-general-item-icon-color: #ffffff;
-  --w-navigation-gn-aside-header-item-icon-color: #ffffff;
-  --w-navigation-gn-aside-header-item-text-color: #ffffff;
-  --w-navigation-gn-aside-header-item-background-color-hover: #8099b0;
-  --w-navigation-gn-aside-header-item-current-icon-color: #000000;
-  --w-navigation-gn-aside-header-item-current-text-color: #000000;
-  --w-navigation-gn-aside-header-item-current-background-color: #ffbe5c;
-  --w-navigation-gn-aside-header-item-current-background-color-hover: #ffcb7d;
   --w-misc-scroll-handle: rgba(255, 255, 255, 0.15);
   --w-misc-scroll-handle-hover: rgba(255, 255, 255, 0.25);
   --w-misc-scroll-track: #121112;

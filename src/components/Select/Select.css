@@ -30,14 +30,18 @@
   border-color: var(--w-line-generic-hover);
 }
 
-/* State=Active — рамка Line/Generic Active. */
-.w-select__trigger[data-popup-open] {
-  border-color: var(--w-line-generic-active);
+/* State=Active у View=Normal — рамка Line/Focus. Правка дизайна 02.09.2026. */
+.w-select_view_normal .w-select__trigger[data-popup-open],
+.w-select_view_normal .w-select__trigger:focus-visible {
+  border-color: var(--w-line-focus);
+  outline: none;
 }
 
-.w-select__trigger:focus-visible {
-  outline: var(--w-focus-ring-width) solid var(--w-focus-ring-color);
-  outline-offset: 1px;
+/* У View=Clear рамки нет: фокус рисуется подчёркиванием снизу, Line/Focus. */
+.w-select_view_clear .w-select__trigger[data-popup-open],
+.w-select_view_clear .w-select__trigger:focus-visible {
+  box-shadow: inset 0 -1px 0 0 var(--w-line-focus);
+  outline: none;
 }
 
 .w-select__value {

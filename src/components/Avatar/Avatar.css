@@ -13,7 +13,6 @@
   /* Круг при любом размере: в ките радиус вписан числом и всегда не меньше половины стороны. */
   border-radius: 50%;
   border: 0 solid transparent;
-  font: var(--w-style-header-subheader-1);
 }
 
 .w-avatar__image {
@@ -22,14 +21,17 @@
   object-fit: cover;
 }
 
-/* Size задаёт сторону круга. */
-.w-avatar_size_3xs { width: 16px; height: 16px; }
-.w-avatar_size_2xs { width: 20px; height: 20px; }
-.w-avatar_size_xs { width: 24px; height: 24px; }
-.w-avatar_size_s { width: 28px; height: 28px; }
-.w-avatar_size_m { width: 32px; height: 32px; }
-.w-avatar_size_l { width: 42px; height: 42px; }
-.w-avatar_size_xl { width: 50px; height: 50px; }
+/*
+ * Size задаёт сторону круга и стиль инициалов. Стили сняты обходом мастеров
+ * Figma 02.09.2026: в профиле кита записан только размер M.
+ */
+.w-avatar_size_3xs { width: 16px; height: 16px; font: var(--w-style-text-caption-1); }
+.w-avatar_size_2xs { width: 20px; height: 20px; font: var(--w-style-text-caption-1); }
+.w-avatar_size_xs { width: 24px; height: 24px; font: var(--w-style-text-caption-1); }
+.w-avatar_size_s { width: 28px; height: 28px; font: var(--w-style-text-caption-2); }
+.w-avatar_size_m { width: 32px; height: 32px; font: var(--w-style-header-subheader-1); }
+.w-avatar_size_l { width: 42px; height: 42px; font: var(--w-style-header-subheader-1); }
+.w-avatar_size_xl { width: 50px; height: 50px; font: var(--w-style-header-subheader-2); }
 
 /* Цвет задаёт пара View и Theme. */
 .w-avatar_view_filled.w-avatar_theme_brand {
