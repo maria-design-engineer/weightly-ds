@@ -74,9 +74,17 @@
   color: var(--w-text-hint);
 }
 
-/* State=Error inline и Error outline — обводка Line/Danger. */
-.w-text-input_invalid .w-text-input__box {
+/*
+ * State=Error inline и Error outline. У View=Normal это рамка Line/Danger,
+ * у View=Clear — подчёркивание снизу, как и фокус: снято обходом мастеров
+ * Figma 02.09.2026, обводка у Clear стоит только снизу.
+ */
+.w-text-input_view_normal.w-text-input_invalid .w-text-input__box {
   border-color: var(--w-line-danger);
+}
+
+.w-text-input_view_clear.w-text-input_invalid .w-text-input__box {
+  box-shadow: inset 0 -1px 0 0 var(--w-line-danger);
 }
 
 .w-text-input__error-icon {
