@@ -1,0 +1,18 @@
+/*
+ * Custom / weight-wheel-item. Снято обходом мастеров Figma 03.09.2026:
+ * 69 × 40, промежуток 2, обе части на стиле Header/Display 2.
+ * State меняет только цвет: Text/Primary против Text/Hint.
+ * Заменяет прежние weight-value и weight-wheel-row — их дизайн выкинул.
+ */
+.w-weight-wheel-item {
+  display: inline-flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: var(--w-g-spacing-0-5);
+  min-width: 69px;
+  height: 40px;
+  font: var(--w-style-header-display-2);
+}
+
+.w-weight-wheel-item_state_active { color: var(--w-text-primary); }
+.w-weight-wheel-item_state_dim { color: var(--w-text-hint); }
