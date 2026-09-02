@@ -38,16 +38,12 @@
 
 /* View задаёт заливку, обводку и цвет текста. */
 .w-button_view_secondary { background: var(--w-base-generic); }
-.w-button_view_secondary:hover:not(:disabled) { background: var(--w-base-generic-hover); }
 
 .w-button_view_primary-brand { background: var(--w-branding-base-brand); color: var(--w-text-light-primary); }
-.w-button_view_primary-brand:hover:not(:disabled) { background: var(--w-branding-base-brand-hover); }
 
 /* Primary — чёрная заливка Base/Dark, обводки нет. */
 .w-button_view_primary { background: var(--w-branding-base-dark); color: var(--w-text-light-primary); }
-.w-button_view_primary:hover:not(:disabled) { background: var(--w-branding-base-dark-hover); }
 
-.w-button_view_flat:hover:not(:disabled) { background: var(--w-base-generic); }
 
 .w-button_view_raised { background: var(--w-base-float-float-bg); box-shadow: var(--w-shadows-raised-button); }
 
@@ -71,13 +67,6 @@
 .w-button_view_flat-action { color: var(--w-branding-text-brand); }
 .w-button_view_flat-secondary { color: var(--w-text-secondary); }
 
-.w-button_view_flat-info:hover:not(:disabled),
-.w-button_view_flat-success:hover:not(:disabled),
-.w-button_view_flat-warning:hover:not(:disabled),
-.w-button_view_flat-danger:hover:not(:disabled),
-.w-button_view_flat-utility:hover:not(:disabled),
-.w-button_view_flat-action:hover:not(:disabled),
-.w-button_view_flat-secondary:hover:not(:disabled) { background: var(--w-base-generic); }
 
 /* State=Selected — заливка Base/Selection, текст Text/Brand Heavy. */
 .w-button_selected { background: var(--w-branding-base-selection); color: var(--w-branding-text-brand-heavy); }
@@ -106,6 +95,37 @@
 @media (prefers-reduced-motion: reduce) {
   .w-button_loading::after { animation: none; }
 }
+
+/*
+ * State=Hover — заливка на каждый из 21 вида. Снято обходом мастеров Figma 02.09.2026:
+ * Size=M, State=Hover, Icon only=Off. В профиле кита записан только Secondary.
+ */
+.w-button_view_secondary:hover:not([data-disabled]) { background: var(--w-base-generic-hover); }
+.w-button_view_primary-brand:hover:not([data-disabled]) { background: var(--w-branding-base-brand-hover); }
+.w-button_view_primary:hover:not([data-disabled]) { background: var(--w-branding-base-dark-hover); }
+.w-button_view_raised:hover:not([data-disabled]) { background: var(--w-base-float-float-hover); }
+.w-button_view_normal-contrast:hover:not([data-disabled]) { background: var(--w-base-light-hover); }
+
+.w-button_view_outlined-contrast:hover:not([data-disabled]),
+.w-button_view_flat-contrast:hover:not([data-disabled]) { background: var(--w-base-light-simple-hover); }
+
+.w-button_view_flat:hover:not([data-disabled]),
+.w-button_view_flat-info:hover:not([data-disabled]),
+.w-button_view_flat-success:hover:not([data-disabled]),
+.w-button_view_flat-warning:hover:not([data-disabled]),
+.w-button_view_flat-danger:hover:not([data-disabled]),
+.w-button_view_flat-utility:hover:not([data-disabled]),
+.w-button_view_flat-action:hover:not([data-disabled]),
+.w-button_view_flat-secondary:hover:not([data-disabled]),
+.w-button_view_outlined-info:hover:not([data-disabled]),
+.w-button_view_outlined-success:hover:not([data-disabled]),
+.w-button_view_outlined-warning:hover:not([data-disabled]),
+.w-button_view_outlined-danger:hover:not([data-disabled]),
+.w-button_view_outlined-utility:hover:not([data-disabled]),
+.w-button_view_outlined-action:hover:not([data-disabled]) { background: var(--w-base-generic); }
+
+/* У Flat-secondary наведение меняет и текст: Text/Secondary становится Text/Primary. */
+.w-button_view_flat-secondary:hover:not([data-disabled]) { color: var(--w-text-primary); }
 
 /* Показ состояния Hover в витрине: карточка, а не пойманный курсор. */
 .w-button-hover-demo .w-button_view_secondary { background: var(--w-base-generic-hover); }
