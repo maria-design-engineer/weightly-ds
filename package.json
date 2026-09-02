@@ -1,0 +1,47 @@
+{
+  "name": "ds",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/ds.cjs",
+  "module": "./dist/ds.js",
+  "types": "./dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/ds.js",
+      "require": "./dist/ds.cjs"
+    }
+  },
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "scripts": {
+    "build": "tsc -b && vite build && tsc -p tsconfig.build.json",
+    "lint": "oxlint",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
+  },
+  "peerDependencies": {
+    "react": ">=19",
+    "react-dom": ">=19"
+  },
+  "devDependencies": {
+    "@storybook/addon-a11y": "10.6.0",
+    "@storybook/addon-docs": "10.6.0",
+    "@storybook/react-vite": "10.6.0",
+    "@types/node": "24.13.3",
+    "@types/react": "19.2.18",
+    "@types/react-dom": "19.2.5",
+    "@vitejs/plugin-react": "6.1.1",
+    "oxlint": "1.81.0",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "storybook": "10.6.0",
+    "typescript": "6.0.3",
+    "vite": "8.2.2"
+  }
+}

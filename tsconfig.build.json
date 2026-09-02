@@ -1,0 +1,16 @@
+{
+  "extends": "./tsconfig.app.json",
+  "compilerOptions": {
+    "noEmit": false,
+    "emitDeclarationOnly": true,
+    "rootDir": "./src",
+    "declaration": true,
+    "declarationMap": true,
+    "allowImportingTsExtensions": false,
+    "outDir": "./dist/types",
+    "composite": false,
+    "incremental": false
+  },
+  "include": ["src"],
+  "exclude": ["src/**/*.stories.tsx"]
+}
