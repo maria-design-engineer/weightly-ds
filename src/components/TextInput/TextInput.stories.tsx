@@ -18,6 +18,8 @@ const meta = {
     size: { control: 'select', options: TEXT_INPUT_SIZES },
     view: { control: 'select', options: TEXT_INPUT_VIEWS },
     errorPlacement: { control: 'inline-radio', options: ['inline', 'outline'] },
+    // Сообщение — содержимое, и панель по умолчанию предлагает объект: подменяем строкой.
+    errorMessage: { control: 'text' },
   },
   args: { ariaLabel: 'Вес штанги' },
 } satisfies Meta<typeof TextInput>

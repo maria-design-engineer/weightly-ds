@@ -24,6 +24,8 @@ const meta = {
     size: { control: 'select', options: SELECT_SIZES },
     view: { control: 'inline-radio', options: SELECT_VIEWS },
     errorPlacement: { control: 'inline-radio', options: ['inline', 'outline'] },
+    // Сообщение — содержимое, и панель по умолчанию предлагает объект: подменяем строкой.
+    errorMessage: { control: 'text' },
   },
   args: { items: EXERCISES, placeholder: 'Выберите упражнение', ariaLabel: 'Упражнение' },
 } satisfies Meta<typeof Select>

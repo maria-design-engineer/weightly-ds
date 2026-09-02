@@ -18,6 +18,8 @@ const meta = {
     size: { control: 'select', options: TEXT_AREA_SIZES },
     view: { control: 'inline-radio', options: TEXT_AREA_VIEWS },
     errorPlacement: { control: 'inline-radio', options: ['inline', 'outline'] },
+    // Сообщение — содержимое, и панель по умолчанию предлагает объект: подменяем строкой.
+    errorMessage: { control: 'text' },
   },
   args: { ariaLabel: 'Комментарий тренера' },
 } satisfies Meta<typeof TextArea>
