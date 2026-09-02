@@ -7,12 +7,18 @@ import { Cell, Row } from '../story-layout'
 import { LABEL_SIZES, LABEL_THEMES } from './constants'
 import { Label } from './Label'
 
+const PERSON_ICON = <Icon data={Person} size={14} />
+
 const meta = {
   title: 'Label',
   component: Label,
   argTypes: {
     size: { control: 'inline-radio', options: LABEL_SIZES },
     theme: { control: 'select', options: LABEL_THEMES },
+    content: { control: 'text' },
+    value: { control: 'text' },
+    icon: { control: 'boolean', mapping: { true: PERSON_ICON, false: undefined } },
+    endIcon: { control: 'boolean', mapping: { true: PERSON_ICON, false: undefined } },
   },
   args: { content: 'Разминка' },
 } satisfies Meta<typeof Label>
@@ -60,7 +66,7 @@ export const WithValue: Story = {
         <Label {...args} value=" · 5 подходов" />
       </Cell>
       <Cell label="Icon only" width={100}>
-        <Label {...args} content={undefined} icon={<Icon data={Person} size={14} />} />
+        <Label {...args} content={undefined} icon={PERSON_ICON} />
       </Cell>
     </Row>
   ),

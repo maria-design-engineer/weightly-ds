@@ -7,12 +7,18 @@ import { Cell, Row } from '../story-layout'
 import { Button } from './Button'
 import { BUTTON_SIZES, BUTTON_VIEWS } from './constants'
 
+const PLUS_ICON = <Icon data={Plus} size={16} />
+
 const meta = {
   title: 'Button',
   component: Button,
   argTypes: {
     view: { control: 'select', options: BUTTON_VIEWS },
     size: { control: 'select', options: BUTTON_SIZES },
+    // Содержимое панелью не задаётся: текст правится строкой, иконки — тумблером.
+    content: { control: 'text' },
+    startIcon: { control: 'boolean', mapping: { true: PLUS_ICON, false: undefined } },
+    endIcon: { control: 'boolean', mapping: { true: PLUS_ICON, false: undefined } },
   },
   args: { content: 'Запустить тренировку' },
 } satisfies Meta<typeof Button>
@@ -101,7 +107,7 @@ export const IconOnly: Story = {
             {...args}
             size={size}
             ariaLabel="Добавить подход"
-            startIcon={<Icon data={Plus} size={16} />}
+            startIcon={PLUS_ICON}
           />
         </Cell>
       ))}

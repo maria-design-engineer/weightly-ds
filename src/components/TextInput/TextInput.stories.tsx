@@ -1,8 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
+import { Magnifier } from '@gravity-ui/icons'
+
+import { Icon } from '../Icon/Icon'
 import { Cell, Row } from '../story-layout'
 import { TEXT_INPUT_SIZES, TEXT_INPUT_VIEWS } from './constants'
 import { TextInput } from './TextInput'
+
+const MAGNIFIER = <Icon data={Magnifier} size={16} />
 
 const meta = {
   title: 'TextInput',
@@ -20,6 +25,7 @@ const meta = {
     errorPlacement: { control: 'inline-radio', options: ['inline', 'outline'] },
     // Сообщение — содержимое, и панель по умолчанию предлагает объект: подменяем строкой.
     errorMessage: { control: 'text' },
+    startIcon: { control: 'boolean', mapping: { true: MAGNIFIER, false: undefined } },
   },
   args: { ariaLabel: 'Вес штанги' },
 } satisfies Meta<typeof TextInput>

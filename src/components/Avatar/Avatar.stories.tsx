@@ -7,6 +7,8 @@ import { Cell, Row } from '../story-layout'
 import { Avatar } from './Avatar'
 import { AVATAR_BORDER_COLORS, AVATAR_SIZES, AVATAR_THEMES, AVATAR_VIEWS } from './constants'
 
+const PERSON_ICON = <Icon data={Person} size={20} />
+
 const meta = {
   title: 'Avatar',
   component: Avatar,
@@ -15,6 +17,8 @@ const meta = {
     view: { control: 'inline-radio', options: AVATAR_VIEWS },
     theme: { control: 'inline-radio', options: AVATAR_THEMES },
     borderColor: { control: 'select', options: [undefined, ...AVATAR_BORDER_COLORS] },
+    text: { control: 'text' },
+    icon: { control: 'boolean', mapping: { true: PERSON_ICON, false: undefined } },
   },
   args: { text: 'МА' },
 } satisfies Meta<typeof Avatar>
@@ -66,7 +70,7 @@ export const Types: Story = {
         <Avatar size="l" text="МА" />
       </Cell>
       <Cell label="Type=Icon">
-        <Avatar size="l" icon={<Icon data={Person} size={20} />} />
+        <Avatar size="l" icon={PERSON_ICON} />
       </Cell>
       <Cell label="Type=Image">
         <Avatar
