@@ -120,6 +120,7 @@ export const COLOR_TOKENS: ColorToken[] = [
   { kit: 'Line/Danger', name: '--w-line-danger', values: ['rgba(255, 0, 61, 0.8)', 'rgba(229, 50, 93, 0.8)', 'rgba(255, 0, 61, 0.8)', '#e5325d'] },
   { kit: 'Line/Light', name: '--w-line-light', values: ['rgba(255, 255, 255, 0.5)', 'rgba(255, 255, 255, 0.5)', 'rgba(255, 255, 255, 0.5)', 'rgba(255, 255, 255, 0.5)'] },
   { kit: 'Line/Utility', name: '--w-line-utility', values: ['rgba(143, 82, 204, 0.8)', 'rgba(143, 82, 204, 0.8)', 'rgba(143, 82, 204, 0.8)', '#8f52cc'] },
+  { kit: 'Line/Focus', name: '--w-line-focus', values: ['#e6582a', '#fc6f40', '#e6582a', '#fc6f40'] },
   { kit: 'Effect/Veil', name: '--w-effect-veil', values: ['rgba(0, 0, 0, 0.25)', 'rgba(0, 0, 0, 0.6)', 'rgba(0, 0, 0, 0.45)', 'rgba(0, 0, 0, 0.7)'] },
   { kit: 'Effect/Shadow Light', name: '--w-effect-shadow-light', values: ['rgba(0, 0, 0, 0.05)', 'rgba(0, 0, 0, 0.2)', 'rgba(0, 0, 0, 0.1)', 'rgba(0, 0, 0, 0.2)'] },
   { kit: 'Effect/Shadow', name: '--w-effect-shadow', values: ['rgba(0, 0, 0, 0.15)', 'rgba(0, 0, 0, 0.2)', 'rgba(0, 0, 0, 0.3)', 'rgba(0, 0, 0, 0.2)'] },
