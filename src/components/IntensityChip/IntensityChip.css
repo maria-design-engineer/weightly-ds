@@ -21,11 +21,20 @@
   padding: var(--w-g-spacing-1);
 }
 
+/* Кегль числа зависит от размера: S — Header/Subheader 2, L — Header/Subheader 3. */
+.w-intensity-chip_size_s .w-intensity-chip__value {
+  font: var(--w-style-header-subheader-2);
+}
+
 .w-intensity-chip_size_l {
   min-width: 60px;
   min-height: 60px;
-  gap: var(--w-g-spacing-1);
+  gap: var(--w-g-spacing-0-5);
   padding: var(--w-g-spacing-2) var(--w-g-spacing-3);
+}
+
+.w-intensity-chip_size_l .w-intensity-chip__value {
+  font: var(--w-style-header-subheader-3);
 }
 
 /*
@@ -38,14 +47,15 @@
 }
 
 .w-intensity-chip__value {
-  font: var(--w-style-header-subheader-3);
   white-space: nowrap;
+  text-align: left;
 }
 
 .w-intensity-chip__caption {
   font: var(--w-style-text-body-1-short);
   color: var(--w-text-secondary);
   white-space: nowrap;
+  text-align: left;
 }
 
 .w-intensity-chip_band_neutral { background: var(--w-base-semantic-neutral-light); }
