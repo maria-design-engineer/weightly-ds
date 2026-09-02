@@ -1,0 +1,62 @@
+/*
+ * Стили дизайн-системы. Этап 8 плана разработки.
+ * Сняты из файла UI-kit через Figma MCP 02.09.2026: 21 текстовый стиль и 11 эффектов.
+ * Стиль в ките — это набор значений поверх токенов, поэтому здесь он собран
+ * составной переменной, а не отдельным классом: класс навязывает разметку.
+ *
+ * Заливки в код отдельно не едут: 155 стилей заливок показывают на переменные,
+ * и переменные уже лежат в tokens.css. Три стиля сетки в продукте не используются —
+ * разрешение одно, 360, колоночной сетки нет.
+ */
+
+:root {
+  /*
+   * Гарнитура с запасом: в ките Family/Sans это одно имя, в браузере нужна цепочка
+   * на случай, когда Golos Text не загрузилась.
+   */
+  --w-font-stack-sans: var(--w-family-sans), 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --w-font-stack-monospace: var(--w-family-monospace), 'SF Mono', Consolas, monospace;
+
+  /* Текстовые стили — Header, начертание SemiBold, вес Weight/Header */
+  --w-style-header-display-4: var(--w-weight-display) var(--w-header-display-4) / var(--w-header-display-4-line) var(--w-font-stack-sans);
+  --w-style-header-display-3: var(--w-weight-display) var(--w-header-display-3) / var(--w-header-display-3-line) var(--w-font-stack-sans);
+  --w-style-header-display-2: var(--w-weight-display) var(--w-header-display-2) / var(--w-header-display-2-line) var(--w-font-stack-sans);
+  --w-style-header-display-1: var(--w-weight-display) var(--w-header-display-1) / var(--w-header-display-1-line) var(--w-font-stack-sans);
+  --w-style-header-header-2: var(--w-weight-header) var(--w-header-header-2) / var(--w-header-header-2-line) var(--w-font-stack-sans);
+  --w-style-header-header-1: var(--w-weight-header) var(--w-header-header-1) / var(--w-header-header-1-line) var(--w-font-stack-sans);
+  --w-style-header-subheader-3: var(--w-weight-subheader) var(--w-header-subheader-3) / var(--w-header-subheader-3-line) var(--w-font-stack-sans);
+  --w-style-header-subheader-2: var(--w-weight-subheader) var(--w-header-subheader-2) / var(--w-header-subheader-2-line) var(--w-font-stack-sans);
+  --w-style-header-subheader-1: var(--w-weight-subheader) var(--w-header-subheader-1) / var(--w-header-subheader-1-line) var(--w-font-stack-sans);
+
+  /* Текстовые стили — Text, начертание Regular, вес Weight/Body */
+  --w-style-text-body-3: var(--w-weight-body) var(--w-body-body-3) / var(--w-body-body-3-line) var(--w-font-stack-sans);
+  --w-style-text-body-2: var(--w-weight-body) var(--w-body-body-2) / var(--w-body-body-2-line) var(--w-font-stack-sans);
+  --w-style-text-body-1: var(--w-weight-body) var(--w-body-body-1) / var(--w-body-body-1-line) var(--w-font-stack-sans);
+  --w-style-text-body-1-short: var(--w-weight-body) var(--w-body-body-1-short) / var(--w-body-body-1-short-line) var(--w-font-stack-sans);
+  --w-style-text-caption-2: var(--w-weight-caption) var(--w-body-caption-2) / var(--w-body-caption-2-line) var(--w-font-stack-sans);
+  --w-style-text-caption-1: var(--w-weight-caption) var(--w-body-caption-1) / var(--w-body-caption-1-line) var(--w-font-stack-sans);
+
+  /* Текстовые стили — Misc, Menlo. В продукте не используются. */
+  --w-style-misc-code-3: var(--w-weight-code) var(--w-misc-code-3) / var(--w-misc-code-3-line) var(--w-font-stack-monospace);
+  --w-style-misc-code-2: var(--w-weight-code) var(--w-misc-code-2) / var(--w-misc-code-2-line) var(--w-font-stack-monospace);
+  --w-style-misc-code-1: var(--w-weight-code) var(--w-misc-code-1) / var(--w-misc-code-1-line) var(--w-font-stack-monospace);
+  --w-style-misc-code-3-inline: var(--w-weight-code) var(--w-misc-code-3-inline) / var(--w-misc-code-3-inline-line) var(--w-font-stack-monospace);
+  --w-style-misc-code-2-inline: var(--w-weight-code) var(--w-misc-code-2-inline) / var(--w-misc-code-2-inline-line) var(--w-font-stack-monospace);
+  --w-style-misc-code-1-inline: var(--w-weight-code) var(--w-misc-code-1-inline) / var(--w-misc-code-1-inline-line) var(--w-font-stack-monospace);
+
+  /*
+   * Эффекты — 11 теней. Цвет тени в ките вписан значением и на переменные
+   * Effect/Shadow* не привязан; здесь он повторён как есть, строка ушла в дефекты кита.
+   */
+  --w-card-shadow-card-light-new: 1px 3px 13px rgba(0, 0, 0, 0.05), 0 1px 6px rgba(0, 0, 0, 0.05);
+  --w-card-shadow-card-new: 0 1px 5px rgba(0, 0, 0, 0.15);
+  --w-card-shadow-card-hover-new: 0 3px 10px rgba(0, 0, 0, 0.15);
+  --w-shadows-float-area-default: 0 1px 5px rgba(0, 0, 0, 0.15);
+  --w-shadows-float-area-hover: 0 3px 10px rgba(0, 0, 0, 0.15);
+  --w-shadows-modal: 0 2px 52px rgba(0, 0, 0, 0.14);
+  --w-shadows-toast: 0 0 15px rgba(0, 0, 0, 0.15), 0 0 2px rgba(0, 0, 0, 0.05);
+  --w-shadows-raised-button: 0 5px 6px rgba(0, 0, 0, 0.05);
+  --w-shadows-raised-button-stroke: 0 5px 6px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(0, 0, 0, 0.02);
+  --w-shadows-yc-select-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  --w-shadows-blue: 0 2px 4px #accbfc;
+}

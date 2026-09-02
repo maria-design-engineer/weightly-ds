@@ -14,7 +14,8 @@
       "types": "./dist/types/index.d.ts",
       "import": "./dist/ds.js",
       "require": "./dist/ds.cjs"
-    }
+    },
+    "./styles.css": "./dist/ds.css"
   },
   "sideEffects": [
     "**/*.css"
