@@ -14,10 +14,15 @@
   white-space: nowrap;
 }
 
-/* Size задаёт высоту, боковой отступ и радиус. Отступы в ките вписаны числом. */
-.w-label_size_xs { height: 20px; padding: 0 4px; gap: 0; border-radius: var(--w-xs-radius); }
-.w-label_size_s { height: 24px; padding: 0 5px; gap: 0; border-radius: var(--w-s-radius); }
-.w-label_size_m { height: 28px; padding: 0 6px; gap: 3px; border-radius: var(--w-m-radius); }
+/*
+ * Size задаёт высоту, боковой отступ и радиус. Отступ в ките сложен из двух:
+ * внешнего у самой плашки — 4, 5, 6 — и внутреннего у фрейма «Label+Value» — 5.
+ * Снято обходом мастеров Figma 02.09.2026: профиль называл только внешний,
+ * поэтому текст в первой сборке прилипал к краю.
+ */
+.w-label_size_xs { height: 20px; padding: 0 9px; gap: 4px; border-radius: var(--w-xs-radius); }
+.w-label_size_s { height: 24px; padding: 0 10px; gap: 4px; border-radius: var(--w-s-radius); }
+.w-label_size_m { height: 28px; padding: 0 11px; gap: 4px; border-radius: var(--w-m-radius); }
 
 /* Theme задаёт заливку и цвет текста парой. */
 .w-label_theme_normal { background: var(--w-base-semantic-misc-light); color: var(--w-text-misc-heavy); }
