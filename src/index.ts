@@ -57,9 +57,6 @@ export type {
 } from './components/Alert/constants'
 
 // Атомы — 12 своих компонентов, этап 10.
-export { BasePill } from './components/BasePill/BasePill'
-export type { BasePillProps } from './components/BasePill/BasePill'
-
 export { Divider } from './components/Divider/Divider'
 
 export { TableCell } from './components/TableCell/TableCell'
