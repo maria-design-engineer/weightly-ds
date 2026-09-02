@@ -30,11 +30,20 @@
   border-color: var(--w-line-generic-hover);
 }
 
-/* State=Active у View=Normal — рамка Line/Focus. Правка дизайна 02.09.2026. */
+/*
+ * State=Active у View=Normal — рамка Line/Focus, заливки нет.
+ * Заливка Base/Simple Hover живёт только в State=Hover, поэтому при открытом
+ * списке её надо снять: иначе наведение и активное состояние смешиваются.
+ */
 .w-select_view_normal .w-select__trigger[data-popup-open],
 .w-select_view_normal .w-select__trigger:focus-visible {
   border-color: var(--w-line-focus);
   outline: none;
+}
+
+.w-select__trigger[data-popup-open],
+.w-select__trigger[data-popup-open]:hover {
+  background: transparent;
 }
 
 /* У View=Clear рамки нет: фокус рисуется подчёркиванием снизу, Line/Focus. */
@@ -111,6 +120,8 @@
  */
 .w-select__popup {
   box-sizing: border-box;
+  /* Список получает фокус при открытии — синюю рамку браузера снимаем, в ките её нет. */
+  outline: none;
   min-width: var(--anchor-width);
   padding: var(--w-g-spacing-1);
   border-radius: var(--w-m-radius);
