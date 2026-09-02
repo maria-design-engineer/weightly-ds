@@ -20,7 +20,7 @@ export function Cell({
   children: ReactNode
 }) {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 8, width }}>
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 8, width }}>
       <span style={{ font: 'var(--w-style-text-caption-2)', color: 'var(--w-text-secondary)' }}>
         {label}
       </span>

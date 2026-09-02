@@ -7,6 +7,8 @@
   box-sizing: border-box;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
+  width: fit-content;
   border: 0 solid transparent;
   font: var(--w-style-text-body-1);
   white-space: nowrap;
