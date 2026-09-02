@@ -12,6 +12,8 @@
   padding: var(--w-g-spacing-1) var(--w-g-spacing-2);
   border: 1px solid var(--w-line-generic);
   border-radius: var(--w-s-radius);
+  /* Заливка чипа — Text/Light Primary, белая. Правка кита 02.09.2026. */
+  background: var(--w-text-light-primary);
   font: var(--w-style-text-body-1);
   color: var(--w-text-primary);
 }
@@ -25,6 +27,7 @@
   flex: none;
 }
 
+/* У выполненного подхода значок залитый: кружок Text/Positive с белой галкой. */
 .w-set-marker_state_done .w-set-marker__icon { color: var(--w-text-positive); }
 .w-set-marker_state_current .w-set-marker__icon,
 .w-set-marker_state_planned .w-set-marker__icon { color: var(--w-text-hint); }

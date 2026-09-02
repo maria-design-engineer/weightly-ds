@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
 
-import { CircleCheck, CircleDashed } from '@gravity-ui/icons'
+import { CircleCheckFill, CircleDashed } from '@gravity-ui/icons'
 
 import { Icon } from '../Icon/Icon'
 import type { SetMarkerState } from './constants'
@@ -18,7 +18,7 @@ export function SetMarker({ state = 'planned', content }: SetMarkerProps) {
   return (
     <span className={`w-set-marker w-set-marker_state_${state}`}>
       <span className="w-set-marker__icon">
-        <Icon data={state === 'done' ? CircleCheck : CircleDashed} size={16} />
+        <Icon data={state === 'done' ? CircleCheckFill : CircleDashed} size={16} />
       </span>
       {content}
     </span>
