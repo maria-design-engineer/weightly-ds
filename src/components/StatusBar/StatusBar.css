@@ -1,0 +1,29 @@
+/*
+ * Custom / status-bar. Снято обходом мастеров Figma 02.09.2026:
+ * 360 × 32, поля 0/24/8/24, время Header/Subheader 3, индикаторы 74 × 13.
+ * Индикаторы в ките нарисованы вектором; здесь они собраны фигурами на currentColor —
+ * строка в отклонениях этапа.
+ */
+.w-status-bar {
+  box-sizing: border-box;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  width: 360px;
+  height: 32px;
+  padding: 0 var(--w-g-spacing-6) var(--w-g-spacing-2);
+}
+
+.w-status-bar_tone_dark { color: var(--w-text-primary); }
+.w-status-bar_tone_light { color: var(--w-text-light-primary); }
+
+.w-status-bar__time {
+  font: var(--w-style-header-subheader-3);
+}
+
+.w-status-bar__indicators {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 13px;
+}

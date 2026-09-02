@@ -1,0 +1,30 @@
+/*
+ * Custom / set-marker. Снято обходом мастеров Figma 02.09.2026:
+ * 43 × 26, радиус 8, поля 4/8, промежуток 4, обводка 1.
+ * Текущий подход обведён Line/Brand, остальные — Line/Generic.
+ */
+.w-set-marker {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  gap: var(--w-g-spacing-1);
+  padding: var(--w-g-spacing-1) var(--w-g-spacing-2);
+  border: 1px solid var(--w-line-generic);
+  border-radius: var(--w-s-radius);
+  font: var(--w-style-text-body-1);
+  color: var(--w-text-primary);
+}
+
+.w-set-marker_state_current {
+  border-color: var(--w-branding-line-brand);
+}
+
+.w-set-marker__icon {
+  display: inline-flex;
+  flex: none;
+}
+
+.w-set-marker_state_done .w-set-marker__icon { color: var(--w-text-positive); }
+.w-set-marker_state_current .w-set-marker__icon,
+.w-set-marker_state_planned .w-set-marker__icon { color: var(--w-text-hint); }

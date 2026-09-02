@@ -1,0 +1,16 @@
+/*
+ * Custom / lift-mark. Значок 16 × 16, цвет задаёт состояние:
+ * done — Text/Positive, failed — Text/Danger, skipped — Text/Hint.
+ */
+.w-lift-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  flex: none;
+}
+
+.w-lift-mark_state_done { color: var(--w-text-positive); }
+.w-lift-mark_state_failed { color: var(--w-text-danger); }
+.w-lift-mark_state_skipped { color: var(--w-text-hint); }

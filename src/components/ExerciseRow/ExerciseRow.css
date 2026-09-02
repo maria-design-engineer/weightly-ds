@@ -1,0 +1,29 @@
+/*
+ * Custom / exercise-row. Снято обходом мастера Figma 02.09.2026:
+ * 328 × 48, радиус 16, поля 12, промежуток 8, заливка Base Float/Float.
+ */
+.w-exercise-row {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: var(--w-g-spacing-2);
+  padding: var(--w-g-spacing-3);
+  border-radius: var(--w-xl-radius);
+  background: var(--w-base-float-float-bg);
+}
+
+.w-exercise-row__text {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font: var(--w-style-text-body-1);
+  color: var(--w-text-primary);
+}
+
+.w-exercise-row__caption {
+  flex: none;
+  font: var(--w-style-text-body-2);
+  color: var(--w-text-secondary);
+}

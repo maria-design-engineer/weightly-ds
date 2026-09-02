@@ -1,0 +1,11 @@
+/*
+ * Custom / divider. Линия 1 на цвете Line/Generic. Своя, потому что у Gravity
+ * отдельного компонента нет: она рисует разделитель прямоугольником внутри Dialog.
+ */
+.w-divider {
+  width: 100%;
+  height: 1px;
+  border: 0;
+  margin: 0;
+  background: var(--w-line-generic);
+}

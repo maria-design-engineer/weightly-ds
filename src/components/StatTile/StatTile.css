@@ -1,0 +1,31 @@
+/*
+ * Custom / stat-tile. Снято обходом мастеров Figma 02.09.2026:
+ * 104 × 70, радиус 16, поля 12/8, промежуток 2, заливка Base Float/Float.
+ * Tone меняет только цвет числа: Text/Primary против Base/Brand.
+ */
+.w-stat-tile {
+  box-sizing: border-box;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--w-g-spacing-0-5);
+  width: 104px;
+  height: 70px;
+  padding: var(--w-g-spacing-3) var(--w-g-spacing-2);
+  border-radius: var(--w-xl-radius);
+  background: var(--w-base-float-float-bg);
+}
+
+.w-stat-tile__value {
+  font: var(--w-style-header-header-2);
+}
+
+.w-stat-tile_tone_plain .w-stat-tile__value { color: var(--w-text-primary); }
+.w-stat-tile_tone_brand .w-stat-tile__value { color: var(--w-branding-base-brand); }
+
+.w-stat-tile__caption {
+  font: var(--w-style-text-caption-2);
+  color: var(--w-text-secondary);
+  text-align: center;
+}
