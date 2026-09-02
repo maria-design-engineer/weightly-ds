@@ -34,7 +34,19 @@ export default meta
 
 type Story = StoryObj<typeof meta>
 
-export const Playground: Story = {}
+/** Кнопки и крестик приходят содержимым, панелью Controls их не включить: они здесь стоят сразу. */
+export const Playground: Story = {
+  args: {
+    icon: <Icon data={CircleInfo} size={18} />,
+    actions: (
+      <>
+        <Button view="secondary" size="s" content="Повторить" />
+        <Button view="flat" size="s" content="Отмена" />
+      </>
+    ),
+    onClose: () => {},
+  },
+}
 
 /** Ось Theme — 6 значений. Success красится токенами Positive. */
 export const Themes: Story = {
