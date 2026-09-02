@@ -72,6 +72,12 @@
   color: var(--w-text-primary);
 }
 
+.w-select__error-icon {
+  display: inline-flex;
+  flex: none;
+  color: var(--w-text-danger);
+}
+
 .w-select__icon {
   display: inline-flex;
   flex: none;

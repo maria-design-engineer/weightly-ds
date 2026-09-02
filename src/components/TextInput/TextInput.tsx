@@ -7,6 +7,7 @@ import { CircleExclamation } from '@gravity-ui/icons'
 import { Icon } from '../Icon/Icon'
 import type { TextInputSize, TextInputView } from './constants'
 import '../focus.css'
+import '../visually-hidden.css'
 import './TextInput.css'
 
 export type TextInputProps = {
@@ -76,13 +77,18 @@ export function TextInput({
           aria-label={ariaLabel}
         />
         {invalid && errorPlacement === 'inline' ? (
-          <span className="w-text-input__error-icon" title={String(errorMessage)}>
+          <span className="w-text-input__error-icon">
             <Icon data={CircleExclamation} size={16} />
           </span>
         ) : null}
       </div>
-      {invalid && errorPlacement === 'outline' ? (
-        <Field.Error className="w-text-input__error-text" match>
+      {invalid ? (
+        <Field.Error
+          className={
+            errorPlacement === 'outline' ? 'w-text-input__error-text' : 'w-visually-hidden'
+          }
+          match
+        >
           {errorMessage}
         </Field.Error>
       ) : null}

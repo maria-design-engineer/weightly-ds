@@ -21,7 +21,11 @@ export type ButtonProps = {
   disabled?: boolean
   /** Figma State=Loading */
   loading?: boolean
-  /** Figma State=Selected */
+  /**
+   * Figma State=Selected — это вид, а не режим «нажата/отжата»:
+   * заливка Base/Selection и текст Text/Brand Heavy. Роли переключателя
+   * компонент не берёт, `aria-pressed` не выставляется.
+   */
   selected?: boolean
   onClick?: MouseEventHandler<HTMLButtonElement>
   /** Подпись для чтения с экрана, когда кнопка несёт только иконку. */
@@ -60,11 +64,11 @@ export function Button({
   return (
     <BaseButton
       className={className}
+      // Загрузка не принимает второе нажатие: своё решение, в ките такого правила нет.
       disabled={disabled || loading}
       onClick={onClick}
       aria-label={ariaLabel}
       aria-busy={loading || undefined}
-      aria-pressed={selected}
     >
       {startIcon}
       {content}

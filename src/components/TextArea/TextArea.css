@@ -1,0 +1,90 @@
+/*
+ * TextArea. Размеры и цвета — ui-kit/figma-components/text-area.md.
+ * Высота поля одна на все размеры — 102, в ките вписана числом.
+ * Size меняет только отступы и радиус.
+ */
+.w-text-area {
+  display: flex;
+  flex-direction: column;
+  /* Промежуток между полем и строкой ошибки — 4, в ките вписан числом. */
+  gap: 4px;
+}
+
+.w-text-area__box {
+  box-sizing: border-box;
+  display: flex;
+  width: 100%;
+  height: 102px;
+  border: 1px solid var(--w-line-generic);
+  background: transparent;
+  color: var(--w-text-primary);
+  font: var(--w-style-text-body-1);
+}
+
+.w-text-area__box:hover:not(:has([data-disabled])) {
+  border-color: var(--w-line-generic-hover);
+}
+
+/*
+ * State=Active у View=Normal: рамка остаётся Line/Generic, снаружи кольцо
+ * Line/Focus — тот же приём, что у TextInput и Select.
+ */
+.w-text-area_view_normal .w-text-area__box:focus-within {
+  outline: 2px solid var(--w-line-focus);
+  outline-offset: 1px;
+}
+
+/* У View=Clear рамки нет: фокус рисуется подчёркиванием снизу. */
+.w-text-area_view_clear .w-text-area__box:focus-within {
+  box-shadow: inset 0 -1px 0 0 var(--w-line-focus);
+}
+
+.w-text-area__control {
+  width: 100%;
+  min-width: 0;
+  resize: none;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  outline: none;
+}
+
+/* State=Suggest — подсказка в пустом поле, цвет Text/Hint. */
+.w-text-area__control::placeholder {
+  color: var(--w-text-hint);
+}
+
+/* Size задаёт отступы и радиус, высота не меняется. */
+.w-text-area_size_s .w-text-area__box { padding: 5px var(--w-g-spacing-2); border-radius: var(--w-s-radius); }
+.w-text-area_size_m .w-text-area__box { padding: var(--w-g-spacing-2) var(--w-g-spacing-3); border-radius: var(--w-m-radius); }
+.w-text-area_size_l .w-text-area__box { padding: var(--w-g-spacing-3) var(--w-g-spacing-4); border-radius: var(--w-l-radius); }
+.w-text-area_size_xl .w-text-area__box { padding: var(--w-g-spacing-4) var(--w-g-spacing-6); border-radius: var(--w-xl-radius); }
+
+/* View=Clear — без рамки и заливки, боковых отступов нет, высота остаётся 102. */
+.w-text-area_view_clear .w-text-area__box {
+  padding: var(--w-g-spacing-2) 0;
+  border-color: transparent;
+  border-radius: 0;
+}
+
+/* State=Disabled — заливка Base/Generic Accent Disabled, обводки нет. */
+.w-text-area__box:has([data-disabled]) {
+  border-color: transparent;
+  background: var(--w-base-generic-accent-disabled);
+  color: var(--w-text-hint);
+}
+
+/* Ошибка: у Normal рамка Line/Danger, у Clear подчёркивание — как фокус, только красным. */
+.w-text-area_view_normal.w-text-area_invalid .w-text-area__box {
+  border-color: var(--w-line-danger);
+}
+
+.w-text-area_view_clear.w-text-area_invalid .w-text-area__box {
+  box-shadow: inset 0 -1px 0 0 var(--w-line-danger);
+}
+
+.w-text-area__error-text {
+  font: var(--w-style-text-body-1);
+  color: var(--w-text-danger);
+}

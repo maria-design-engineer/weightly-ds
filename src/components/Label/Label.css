@@ -1,0 +1,54 @@
+/*
+ * Label. Размеры и цвета — ui-kit/figma-components/label.md.
+ * Пары Base UI у компонента нет: это текст на токенах, поведения внутри нет.
+ * Имя темы и имя токена расходятся: тема Success красится токенами Positive.
+ */
+.w-label {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  border: 0 solid transparent;
+  font: var(--w-style-text-body-1);
+  white-space: nowrap;
+}
+
+/* Size задаёт высоту, боковой отступ и радиус. Отступы в ките вписаны числом. */
+.w-label_size_xs { height: 20px; padding: 0 4px; gap: 0; border-radius: var(--w-xs-radius); }
+.w-label_size_s { height: 24px; padding: 0 5px; gap: 0; border-radius: var(--w-s-radius); }
+.w-label_size_m { height: 28px; padding: 0 6px; gap: 3px; border-radius: var(--w-m-radius); }
+
+/* Theme задаёт заливку и цвет текста парой. */
+.w-label_theme_normal { background: var(--w-base-semantic-misc-light); color: var(--w-text-misc-heavy); }
+.w-label_theme_info { background: var(--w-base-semantic-info-light); color: var(--w-text-info-heavy); }
+.w-label_theme_success { background: var(--w-base-semantic-positive-light); color: var(--w-text-positive-heavy); }
+.w-label_theme_warning { background: var(--w-base-semantic-warning-light); color: var(--w-text-warning-heavy); }
+.w-label_theme_danger { background: var(--w-base-semantic-danger-light); color: var(--w-text-danger-heavy); }
+.w-label_theme_utility { background: var(--w-base-semantic-utility-light); color: var(--w-text-utility-heavy); }
+.w-label_theme_unknown { background: var(--w-base-generic); color: var(--w-text-complementary); }
+
+/* Clear — единственная тема с обводкой вместо заливки. */
+.w-label_theme_clear { border-width: 1px; border-color: var(--w-line-generic); color: var(--w-text-complementary); }
+
+/*
+ * Hover в ките — отдельная ось, а не значение State. Меняется только заливка
+ * на парный токен Light Hover; цвет текста остаётся. У Clear появляется заливка.
+ */
+.w-label_theme_normal:hover { background: var(--w-base-semantic-misc-light-hover); }
+.w-label_theme_info:hover { background: var(--w-base-semantic-info-light-hover); }
+.w-label_theme_success:hover { background: var(--w-base-semantic-positive-light-hover); }
+.w-label_theme_warning:hover { background: var(--w-base-semantic-warning-light-hover); }
+.w-label_theme_danger:hover { background: var(--w-base-semantic-danger-light-hover); }
+.w-label_theme_utility:hover { background: var(--w-base-semantic-utility-light-hover); }
+.w-label_theme_unknown:hover { background: var(--w-base-generic-hover); }
+.w-label_theme_clear:hover { background: var(--w-base-generic); }
+
+/* Разделитель между Key text и Value: промежуток в ките отрицательный у XS и S. */
+.w-label__value {
+  color: inherit;
+  opacity: 0.7;
+}
+
+.w-label__icon {
+  display: inline-flex;
+  flex: none;
+}

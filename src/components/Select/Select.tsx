@@ -1,11 +1,13 @@
 import type { ReactNode } from 'react'
+import { useId } from 'react'
 
 import { Select as BaseSelect } from '@base-ui/react/select'
-import { Check, ChevronDown } from '@gravity-ui/icons'
+import { Check, ChevronDown, CircleExclamation } from '@gravity-ui/icons'
 
 import { Icon } from '../Icon/Icon'
 import type { SelectItem, SelectSize, SelectView } from './constants'
 import '../focus.css'
+import '../visually-hidden.css'
 import './Select.css'
 
 export type SelectProps = {
@@ -52,6 +54,7 @@ export function Select({
   ariaLabel,
 }: SelectProps) {
   const invalid = Boolean(errorMessage)
+  const errorId = useId()
 
   const className = [
     'w-select',
@@ -73,7 +76,11 @@ export function Select({
         }}
         disabled={disabled}
       >
-        <BaseSelect.Trigger className="w-select__trigger" aria-label={ariaLabel}>
+        <BaseSelect.Trigger
+          className="w-select__trigger"
+          aria-label={ariaLabel}
+          aria-describedby={invalid ? errorId : undefined}
+        >
           <BaseSelect.Value className="w-select__value">
             {(selected: string | null) => {
               const item = items.find((candidate) => candidate.value === selected)
@@ -85,6 +92,11 @@ export function Select({
             }}
           </BaseSelect.Value>
           {counter === undefined ? null : <span className="w-select__counter">{counter}</span>}
+          {invalid && errorPlacement === 'inline' ? (
+            <span className="w-select__error-icon">
+              <Icon data={CircleExclamation} size={16} />
+            </span>
+          ) : null}
           <BaseSelect.Icon className="w-select__icon">
             <Icon data={ChevronDown} size={16} />
           </BaseSelect.Icon>
@@ -104,8 +116,13 @@ export function Select({
           </BaseSelect.Positioner>
         </BaseSelect.Portal>
       </BaseSelect.Root>
-      {invalid && errorPlacement === 'outline' ? (
-        <span className="w-select__error-text">{errorMessage}</span>
+      {invalid ? (
+        <span
+          id={errorId}
+          className={errorPlacement === 'outline' ? 'w-select__error-text' : 'w-visually-hidden'}
+        >
+          {errorMessage}
+        </span>
       ) : null}
     </div>
   )

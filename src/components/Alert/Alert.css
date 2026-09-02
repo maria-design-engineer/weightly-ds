@@ -1,0 +1,87 @@
+/*
+ * Alert. Размеры и цвета — ui-kit/figma-components/alert.md.
+ * Пары в Base UI нет: alert-dialog у неё это модальное окно, а у нас
+ * строка-предупреждение на странице. Поведения внутри нет.
+ * Имя темы и имя токена расходятся: тема Success красится токенами Positive.
+ */
+.w-alert {
+  box-sizing: border-box;
+  display: flex;
+  gap: var(--w-g-spacing-3);
+  padding: var(--w-g-spacing-4) var(--w-g-spacing-5);
+  border: 0 solid transparent;
+  color: var(--w-text-primary);
+  font: var(--w-style-text-body-2);
+}
+
+/* Corners=Rounded — радиус L radius; Squared — радиуса нет. */
+.w-alert_corners_rounded { border-radius: var(--w-l-radius); }
+.w-alert_corners_squared { border-radius: 0; }
+
+/* View=Filled — заливка по теме, обводки нет. */
+.w-alert_view_filled.w-alert_theme_normal { background: var(--w-base-semantic-misc-light); }
+.w-alert_view_filled.w-alert_theme_info { background: var(--w-base-semantic-info-light); }
+.w-alert_view_filled.w-alert_theme_success { background: var(--w-base-semantic-positive-light); }
+.w-alert_view_filled.w-alert_theme_warning { background: var(--w-base-semantic-warning-light); }
+.w-alert_view_filled.w-alert_theme_danger { background: var(--w-base-semantic-danger-light); }
+.w-alert_view_filled.w-alert_theme_utility { background: var(--w-base-semantic-utility-light); }
+
+/* View=Outlined — заливки нет, обводка 1 по теме. */
+.w-alert_view_outlined { border-width: 1px; }
+.w-alert_view_outlined.w-alert_theme_normal { border-color: var(--w-line-misc); }
+.w-alert_view_outlined.w-alert_theme_info { border-color: var(--w-line-info); }
+.w-alert_view_outlined.w-alert_theme_success { border-color: var(--w-line-positive); }
+.w-alert_view_outlined.w-alert_theme_warning { border-color: var(--w-line-warning); }
+.w-alert_view_outlined.w-alert_theme_danger { border-color: var(--w-line-danger); }
+.w-alert_view_outlined.w-alert_theme_utility { border-color: var(--w-line-utility); }
+
+/* Значок 18 — в ките вписан числом. */
+.w-alert__icon {
+  display: inline-flex;
+  flex: none;
+  width: 18px;
+  height: 18px;
+}
+
+.w-alert__content {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+}
+
+/* .Content, Buttons on the right — текст и кнопки в строку. */
+.w-alert__content_layout_buttons-on-the-right {
+  flex-direction: row;
+  align-items: center;
+  gap: var(--w-g-spacing-6);
+}
+
+/* .Content, Buttons at the bottom — кнопки под текстом. */
+.w-alert__content_layout_buttons-at-the-bottom {
+  flex-direction: column;
+  gap: var(--w-g-spacing-5);
+}
+
+.w-alert__text {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  /* Промежуток между заголовком и текстом — g-spacing-1. */
+  gap: var(--w-g-spacing-1);
+  min-width: 0;
+}
+
+.w-alert__title {
+  font: var(--w-style-header-subheader-2);
+}
+
+.w-alert__actions {
+  display: flex;
+  flex: none;
+  gap: var(--w-g-spacing-3);
+}
+
+.w-alert__close {
+  display: inline-flex;
+  flex: none;
+}
