@@ -1,5 +1,9 @@
 import type { ReactNode } from 'react'
 
+import { ChevronDown, ChevronUp, Comment } from '@gravity-ui/icons'
+
+import { Button } from '../Button/Button'
+import { Icon } from '../Icon/Icon'
 import type { CoachCommentBand, CoachCommentState } from './constants'
 import './CoachComment.css'
 
@@ -14,8 +18,8 @@ export type CoachCommentProps = {
   author?: ReactNode
   /** Figma Body — сам комментарий. */
   body?: ReactNode
-  /** Значок и кнопка в шапке: в ките это comment и Button. */
-  actions?: ReactNode
+  /** Что делает кнопка «свернуть». */
+  onToggle?: () => void
 }
 
 /** Комментарий тренера: шапка всегда видна, текст показывается в развёрнутом виде. */
@@ -25,7 +29,7 @@ export function CoachComment({
   content,
   author,
   body,
-  actions,
+  onToggle,
 }: CoachCommentProps) {
   const className = [
     'w-coach-comment',
@@ -36,8 +40,17 @@ export function CoachComment({
   return (
     <div className={className}>
       <div className="w-coach-comment__head">
+        <span className="w-coach-comment__icon">
+          <Icon data={Comment} size={16} />
+        </span>
         <span className="w-coach-comment__title">{content}</span>
-        {actions}
+        <Button
+          view="flat"
+          size="m"
+          ariaLabel={state === 'open' ? 'Свернуть' : 'Развернуть'}
+          startIcon={<Icon data={state === 'open' ? ChevronUp : ChevronDown} size={16} />}
+          onClick={onToggle}
+        />
       </div>
       {state === 'open' ? (
         <>

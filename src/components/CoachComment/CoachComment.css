@@ -28,7 +28,13 @@
 .w-coach-comment__title {
   flex: 1;
   min-width: 0;
-  font: var(--w-style-text-body-1);
+  font: var(--w-style-header-subheader-2);
+  color: var(--w-text-primary);
+}
+
+.w-coach-comment__icon {
+  display: inline-flex;
+  flex: none;
   color: var(--w-text-primary);
 }
 

@@ -1,8 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
-import { Comment } from '@gravity-ui/icons'
-
-import { Icon } from '../Icon/Icon'
 import { Cell, Row } from '../story-layout'
 import { CoachComment } from './CoachComment'
 import { COACH_COMMENT_BANDS, COACH_COMMENT_STATES } from './constants'
@@ -23,12 +20,12 @@ const meta = {
     content: { control: 'text' },
     author: { control: 'text' },
     body: { control: 'text' },
+    onToggle: { control: false },
   },
   args: {
     content: 'Комментарий тренера',
     author: 'Сергей Гаврилов',
     body: 'Сегодня надо сосредоточиться на технике.',
-    actions: <Icon data={Comment} size={16} />,
   },
 } satisfies Meta<typeof CoachComment>
 
