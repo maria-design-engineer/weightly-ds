@@ -25,3 +25,6 @@ dist-ssr
 
 *storybook.log
 storybook-static
+
+# Папка замера ветки пробы, этап 4 плана
+dist-measure-*

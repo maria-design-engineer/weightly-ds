@@ -1,0 +1,104 @@
+/*
+ * Custom / weight-wheel и Custom / weight-wheel-row.
+ * Размеры сняты из Figma 02.09.2026 — custom-components.md, «Размеры барабана».
+ * Числа промежутка, полей и радиуса в ките вписаны, а не сидят на переменных;
+ * здесь они взяты переменными: значения совпадают, строка ушла в дефекты кита.
+ */
+.w-weight-wheel {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: var(--g-spacing-2);
+  width: 328px;
+  height: 256px;
+  padding: var(--g-spacing-4) var(--g-spacing-3);
+  background: var(--g-color-base-background);
+  border-radius: 20px;
+}
+
+.w-weight-wheel__caption {
+  height: 16px;
+  font: var(--g-text-caption-2-font);
+  color: var(--g-color-text-hint);
+  text-align: center;
+}
+
+.w-weight-wheel__values {
+  position: relative;
+  width: 304px;
+  height: 200px;
+}
+
+.w-weight-wheel__scroll {
+  height: 100%;
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+  /* Две строки сверху и снизу, чтобы крайние значения вставали в середину. */
+  padding-block: 80px;
+  scrollbar-width: none;
+}
+
+.w-weight-wheel__scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.w-weight-wheel__scroll:focus-visible {
+  outline: 2px solid var(--g-color-line-focus);
+  outline-offset: 2px;
+}
+
+/* Растворение сверху и снизу — два прямоугольника 304 × 80 из кита. */
+.w-weight-wheel__fade {
+  position: absolute;
+  left: 0;
+  width: 304px;
+  height: 80px;
+  pointer-events: none;
+}
+
+.w-weight-wheel__fade_top {
+  top: 0;
+  background: linear-gradient(
+    to bottom,
+    var(--g-color-base-background),
+    rgba(255, 255, 255, 0)
+  );
+}
+
+.w-weight-wheel__fade_bottom {
+  bottom: 0;
+  background: linear-gradient(
+    to top,
+    var(--g-color-base-background),
+    rgba(255, 255, 255, 0)
+  );
+}
+
+.w-weight-wheel-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--g-spacing-8);
+  width: 304px;
+  height: 40px;
+  scroll-snap-align: center;
+  font: var(--g-text-display-2-font);
+  color: var(--g-color-text-hint);
+}
+
+.w-weight-wheel-row_selected {
+  color: var(--g-color-text-primary);
+}
+
+.w-weight-wheel-row__cell {
+  width: 136px;
+  text-align: center;
+}
+
+.w-weight-wheel-row__cell_whole {
+  text-align: right;
+}
+
+.w-weight-wheel-row__cell_fraction {
+  text-align: left;
+}

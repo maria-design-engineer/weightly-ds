@@ -1,0 +1,10 @@
+/*
+ * Custom / paranja — прямоугольник 360 × 780 на цвете Effects/Veil.
+ * Описание: docs/ui-docs/design-system/custom-components.md, «Навигация и панели».
+ * Свойств у компонента нет.
+ */
+.w-paranja {
+  width: 360px;
+  height: 780px;
+  background: var(--g-color-sfx-veil);
+}

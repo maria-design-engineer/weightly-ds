@@ -1,0 +1,34 @@
+/* Golos Text — гарнитура кита, токен Family/Sans. Веса 400, 500, 600. */
+@import url('https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&display=swap');
+
+/*
+ * Проба, ветка Gravity. Перекраска чужой темы под наш кит.
+ * Значения — docs/ui-docs/design-system/ui-kit/tokens.md, режим Light.
+ * Берётся только то, что нужно четырём узлам пробы: полная тема — этап 8.
+ */
+.probe-gravity {
+  /* Гарнитура: Family/Sans — Golos Text. У Gravity по умолчанию Inter. */
+  --g-font-family-sans: 'Golos Text', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+  /* Branding: бренд продукта оранжевый, ссылки и тёмная заливка — чёрные. */
+  --g-color-base-brand: #fc5f2b;
+  --g-color-base-brand-hover: #e6582a;
+  --g-color-base-selection: rgba(252, 95, 43, 0.3);
+  --g-color-base-selection-hover: rgba(252, 95, 43, 0.5);
+  --g-color-text-brand: #bb4b28;
+  --g-color-text-brand-heavy: #8f3e27;
+  --g-color-line-brand: #e6582a;
+
+  /* Base Dark — в Gravity переменной нет вовсе, заводим свою. */
+  --w-color-base-dark: #191919;
+  --w-color-base-dark-hover: #333333;
+
+  /* Border Radius: наша шкала, у Gravity другая (M 6 против нашего 10). */
+  --g-border-radius-xs: 6px;
+  --g-border-radius-s: 8px;
+  --g-border-radius-m: 10px;
+  --g-border-radius-l: 12px;
+  --g-border-radius-xl: 16px;
+
+  font-family: var(--g-font-family-sans);
+}
