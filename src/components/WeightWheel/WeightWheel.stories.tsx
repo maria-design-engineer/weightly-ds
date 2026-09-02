@@ -6,13 +6,11 @@ import { Cell, Row } from '../story-layout'
 import { WEIGHT_WHEEL_DIRECTIONS } from './constants'
 import { WeightWheel } from './WeightWheel'
 
-const VALUES = [
-  { whole: '60', fraction: '.0' },
-  { whole: '61', fraction: '.0' },
-  { whole: '61', fraction: '.5' },
-  { whole: '62', fraction: '.0' },
-  { whole: '62', fraction: '.5' },
-]
+/** Шкала веса: от 40 до 200 килограммов с шагом полкило. */
+const VALUES = Array.from({ length: 321 }, (_, index) => {
+  const value = 40 + index * 0.5
+  return { whole: String(Math.trunc(value)), fraction: value % 1 === 0 ? '.0' : '.5' }
+})
 
 const meta = {
   title: 'Custom/WeightWheel',
@@ -21,13 +19,13 @@ const meta = {
     direction: { control: 'inline-radio', options: WEIGHT_WHEEL_DIRECTIONS },
     onSelect: { control: false },
   },
-  args: { values: VALUES, selected: 2 },
+  args: { values: VALUES, selected: 43 },
 } satisfies Meta<typeof WeightWheel>
 
 export default meta
 type Story = StoryObj<typeof meta>
 
-/** Выбор ходит стрелками с клавиатуры и нажатием по значению. */
+/** Барабан крутится: колесом, пальцем и стрелками с клавиатуры. */
 export const Playground: Story = {
   render: function Render(args) {
     const [selected, setSelected] = useState(args.selected)
@@ -37,13 +35,15 @@ export const Playground: Story = {
 
 /** Ось Direction: столбик на экране ввода веса, лента на экране подхода. */
 export const Directions: Story = {
-  render: (args) => (
-    <Row>
-      {WEIGHT_WHEEL_DIRECTIONS.map((direction) => (
-        <Cell key={direction} label={direction} width={440}>
-          <WeightWheel {...args} direction={direction} />
-        </Cell>
-      ))}
-    </Row>
-  ),
+  render: function Render(args) {
+    return (
+      <Row>
+        {WEIGHT_WHEEL_DIRECTIONS.map((direction) => (
+          <Cell key={direction} label={direction} width={440}>
+            <WeightWheel {...args} direction={direction} />
+          </Cell>
+        ))}
+      </Row>
+    )
+  },
 }

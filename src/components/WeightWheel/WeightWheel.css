@@ -1,37 +1,64 @@
 /*
  * Custom / weight-wheel. Снято обходом мастеров Figma 03.09.2026:
- * пять значений, вертикально промежуток 4, горизонтально 16.
- * Ни рамки, ни фона, ни растворения по краям в ките больше нет.
+ * значение 69 × 40, вертикально промежуток 4, горизонтально 16.
+ * Барабан крутится: прокрутка с прилипанием, выбрано то значение,
+ * что встало в середину. Видно пять значений — столько же, сколько в ките.
  */
 .w-weight-wheel {
-  display: inline-flex;
-  align-items: center;
-  border: 0;
+  --w-weight-wheel-item-size: 40px;
+  --w-weight-wheel-gap: var(--w-g-spacing-1);
+  --w-weight-wheel-step: 44px;
+
+  display: flex;
+  overflow: auto;
+  margin: 0;
   padding: 0;
+  border: 0;
   background: none;
   list-style: none;
-  margin: 0;
+  scrollbar-width: none;
+  scroll-snap-type: y mandatory;
 }
 
-.w-weight-wheel_direction_vertical {
-  flex-direction: column;
-  gap: var(--w-g-spacing-1);
-}
-
-.w-weight-wheel_direction_horizontal {
-  flex-direction: row;
-  gap: var(--w-g-spacing-4);
-}
-
-.w-weight-wheel__option {
-  border: 0;
-  padding: 0;
-  background: none;
-  cursor: pointer;
+.w-weight-wheel::-webkit-scrollbar {
+  display: none;
 }
 
 .w-weight-wheel:focus-visible {
   outline: 2px solid var(--w-line-focus);
   outline-offset: 2px;
   border-radius: var(--w-s-radius);
+}
+
+/* Столбик: пять значений в высоту, по два сверху и снизу — чтобы крайние вставали в середину. */
+.w-weight-wheel_direction_vertical {
+  flex-direction: column;
+  gap: var(--w-weight-wheel-gap);
+  height: calc(var(--w-weight-wheel-step) * 5);
+  padding-block: calc(var(--w-weight-wheel-step) * 2);
+}
+
+/* Лента: то же самое, только вбок. */
+.w-weight-wheel_direction_horizontal {
+  --w-weight-wheel-item-size: 69px;
+  --w-weight-wheel-gap: var(--w-g-spacing-4);
+  --w-weight-wheel-step: 85px;
+
+  flex-direction: row;
+  align-items: center;
+  gap: var(--w-weight-wheel-gap);
+  width: calc(var(--w-weight-wheel-step) * 5);
+  padding-inline: calc(var(--w-weight-wheel-step) * 2);
+  scroll-snap-type: x mandatory;
+}
+
+.w-weight-wheel__option {
+  flex: none;
+  scroll-snap-align: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .w-weight-wheel {
+    scroll-behavior: auto;
+  }
 }

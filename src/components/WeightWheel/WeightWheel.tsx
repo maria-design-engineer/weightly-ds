@@ -1,8 +1,12 @@
 import type { KeyboardEvent } from 'react'
+import { useEffect, useRef } from 'react'
 
 import { WeightWheelItem } from '../WeightWheelItem/WeightWheelItem'
 import type { WeightWheelDirection } from './constants'
 import './WeightWheel.css'
+
+/** Шаг барабана: значение плюс промежуток. Вертикально 40 + 4, горизонтально 69 + 16. */
+const STEP = { vertical: 44, horizontal: 85 }
 
 export type WeightWheelValue = {
   /** Целая часть веса. */
@@ -14,19 +18,19 @@ export type WeightWheelValue = {
 export type WeightWheelProps = {
   /** Figma Direction — столбик на экране ввода, лента на экране подхода. */
   direction?: WeightWheelDirection
-  /** Значения барабана. В ките их пять, число в коде не зашито. */
+  /** Значения барабана. Крутится по ним, видно пять сразу. */
   values: WeightWheelValue[]
-  /** Номер выбранного значения. */
+  /** Номер выбранного значения — того, что стоит в середине. */
   selected: number
-  /** Что происходит при выборе. */
+  /** Что происходит, когда в середину встало другое значение. */
   onSelect?: (index: number) => void
   /** Подпись барабана для чтения с экрана. */
   ariaLabel?: string
 }
 
 /**
- * Барабан веса: пять значений, выбранное отличается цветом.
- * Ходит стрелками с клавиатуры и нажатием по значению.
+ * Барабан веса. Крутится прокруткой — колесом, пальцем или стрелками с клавиатуры;
+ * значение прилипает к середине, и выбрано то, что в ней стоит.
  */
 export function WeightWheel({
   direction = 'vertical',
@@ -35,10 +39,34 @@ export function WeightWheel({
   onSelect,
   ariaLabel = 'Вес штанги, килограммы',
 }: WeightWheelProps) {
-  const previousKey = direction === 'vertical' ? 'ArrowUp' : 'ArrowLeft'
-  const nextKey = direction === 'vertical' ? 'ArrowDown' : 'ArrowRight'
+  const listRef = useRef<HTMLUListElement>(null)
+  const step = STEP[direction]
+
+  useEffect(() => {
+    const node = listRef.current
+    if (!node) return
+    const offset = selected * step
+    const current = direction === 'vertical' ? node.scrollTop : node.scrollLeft
+    if (Math.round(current / step) !== selected) {
+      node.scrollTo({
+        top: direction === 'vertical' ? offset : 0,
+        left: direction === 'horizontal' ? offset : 0,
+        behavior: 'smooth',
+      })
+    }
+  }, [selected, step, direction])
+
+  function handleScroll() {
+    const node = listRef.current
+    if (!node) return
+    const position = direction === 'vertical' ? node.scrollTop : node.scrollLeft
+    const next = Math.min(Math.max(Math.round(position / step), 0), values.length - 1)
+    if (next !== selected) onSelect?.(next)
+  }
 
   function handleKeyDown(event: KeyboardEvent<HTMLUListElement>) {
+    const previousKey = direction === 'vertical' ? 'ArrowUp' : 'ArrowLeft'
+    const nextKey = direction === 'vertical' ? 'ArrowDown' : 'ArrowRight'
     if (event.key === previousKey && selected > 0) {
       event.preventDefault()
       onSelect?.(selected - 1)
@@ -52,26 +80,26 @@ export function WeightWheel({
   return (
     <ul
       className={`w-weight-wheel w-weight-wheel_direction_${direction}`}
+      ref={listRef}
       role="listbox"
       aria-label={ariaLabel}
       aria-orientation={direction}
       tabIndex={0}
+      onScroll={handleScroll}
       onKeyDown={handleKeyDown}
     >
       {values.map((value, index) => (
-        <li key={`${value.whole}-${value.fraction}`} role="option" aria-selected={index === selected}>
-          <button
-            className="w-weight-wheel__option"
-            type="button"
-            tabIndex={-1}
-            onClick={() => onSelect?.(index)}
-          >
-            <WeightWheelItem
-              state={index === selected ? 'active' : 'dim'}
-              whole={value.whole}
-              fraction={value.fraction}
-            />
-          </button>
+        <li
+          className="w-weight-wheel__option"
+          key={`${value.whole}-${value.fraction}`}
+          role="option"
+          aria-selected={index === selected}
+        >
+          <WeightWheelItem
+            state={index === selected ? 'active' : 'dim'}
+            whole={value.whole}
+            fraction={value.fraction}
+          />
         </li>
       ))}
     </ul>
