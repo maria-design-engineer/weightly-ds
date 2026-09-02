@@ -20,6 +20,7 @@ const meta = {
     errorPlacement: { control: 'inline-radio', options: ['inline', 'outline'] },
     // Сообщение — содержимое, и панель по умолчанию предлагает объект: подменяем строкой.
     errorMessage: { control: 'text' },
+    onValueChange: { control: false },
   },
   args: { ariaLabel: 'Комментарий тренера' },
 } satisfies Meta<typeof TextArea>

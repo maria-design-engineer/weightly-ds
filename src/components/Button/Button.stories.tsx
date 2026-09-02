@@ -19,6 +19,8 @@ const meta = {
     content: { control: 'text' },
     startIcon: { control: 'boolean', mapping: { true: PLUS_ICON, false: undefined } },
     endIcon: { control: 'boolean', mapping: { true: PLUS_ICON, false: undefined } },
+    // Обработчик приходит от приложения: панелью не задаётся, нажатия видно во вкладке Actions.
+    onClick: { control: false },
   },
   args: { content: 'Запустить тренировку' },
 } satisfies Meta<typeof Button>

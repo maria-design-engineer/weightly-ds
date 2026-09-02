@@ -25,6 +25,7 @@ const meta = {
     errorPlacement: { control: 'inline-radio', options: ['inline', 'outline'] },
     // Сообщение — содержимое, и панель по умолчанию предлагает объект: подменяем строкой.
     errorMessage: { control: 'text' },
+    onValueChange: { control: false },
     startIcon: { control: 'boolean', mapping: { true: MAGNIFIER, false: undefined } },
   },
   args: { ariaLabel: 'Вес штанги' },
