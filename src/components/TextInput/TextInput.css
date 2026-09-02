@@ -25,9 +25,15 @@
   border-color: var(--w-line-generic-hover);
 }
 
-/* State=Active у View=Normal — рамка Line/Focus. Правка дизайна 02.09.2026. */
+/*
+ * State=Active у View=Normal: рамка остаётся Line/Generic, снаружи появляется
+ * кольцо Line/Focus. В ките это отдельный слой «Focus ring» — прямоугольник
+ * с обводкой 2 и отступом 3 от края поля; в коде это outline с отступом 1.
+ * Снято обходом мастеров Figma 02.09.2026.
+ */
 .w-text-input_view_normal .w-text-input__box:focus-within {
-  border-color: var(--w-line-focus);
+  outline: 2px solid var(--w-line-focus);
+  outline-offset: 1px;
 }
 
 /*

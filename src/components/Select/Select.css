@@ -31,14 +31,15 @@
 }
 
 /*
- * State=Active у View=Normal — рамка Line/Focus, заливки нет.
+ * State=Active у View=Normal: рамка остаётся Line/Generic, снаружи кольцо Line/Focus —
+ * слой «Focus ring» в ките. Заливки в этом состоянии нет.
  * Заливка Base/Simple Hover живёт только в State=Hover, поэтому при открытом
  * списке её надо снять: иначе наведение и активное состояние смешиваются.
  */
 .w-select_view_normal .w-select__trigger[data-popup-open],
 .w-select_view_normal .w-select__trigger:focus-visible {
-  border-color: var(--w-line-focus);
-  outline: none;
+  outline: 2px solid var(--w-line-focus);
+  outline-offset: 1px;
 }
 
 .w-select__trigger[data-popup-open],

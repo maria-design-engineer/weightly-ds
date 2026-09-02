@@ -217,7 +217,7 @@
   --w-line-danger: rgba(255, 0, 61, 0.8);
   --w-line-light: rgba(255, 255, 255, 0.5);
   --w-line-utility: rgba(143, 82, 204, 0.8);
-  --w-line-focus: #e6582a;
+  --w-line-focus: #fd9f80;
   --w-effect-veil: rgba(0, 0, 0, 0.25);
   --w-effect-shadow-light: rgba(0, 0, 0, 0.05);
   --w-effect-shadow: rgba(0, 0, 0, 0.15);
@@ -365,7 +365,7 @@
   --w-line-danger: rgba(229, 50, 93, 0.8);
   --w-line-light: rgba(255, 255, 255, 0.5);
   --w-line-utility: rgba(143, 82, 204, 0.8);
-  --w-line-focus: #fc6f40;
+  --w-line-focus: #a54527;
   --w-effect-veil: rgba(0, 0, 0, 0.6);
   --w-effect-shadow-light: rgba(0, 0, 0, 0.2);
   --w-effect-shadow: rgba(0, 0, 0, 0.2);
@@ -513,7 +513,7 @@
   --w-line-danger: rgba(255, 0, 61, 0.8);
   --w-line-light: rgba(255, 255, 255, 0.5);
   --w-line-utility: rgba(143, 82, 204, 0.8);
-  --w-line-focus: #e6582a;
+  --w-line-focus: #fd9f80;
   --w-effect-veil: rgba(0, 0, 0, 0.45);
   --w-effect-shadow-light: rgba(0, 0, 0, 0.1);
   --w-effect-shadow: rgba(0, 0, 0, 0.3);
@@ -661,7 +661,7 @@
   --w-line-danger: #e5325d;
   --w-line-light: rgba(255, 255, 255, 0.5);
   --w-line-utility: #8f52cc;
-  --w-line-focus: #fc6f40;
+  --w-line-focus: #a54527;
   --w-effect-veil: rgba(0, 0, 0, 0.7);
   --w-effect-shadow-light: rgba(0, 0, 0, 0.2);
   --w-effect-shadow: rgba(0, 0, 0, 0.2);
