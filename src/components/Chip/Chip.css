@@ -1,0 +1,58 @@
+/*
+ * Custom / chip. Один компонент вместо прежних step-chip и intensity-chip —
+ * решение пользователя 03.09.2026. Снято обходом двенадцати мастеров Figma:
+ * S 52 × 52, поля 4, промежуток 2; L 60 × 60, поля 8/12, промежуток 4; радиус 12.
+ * Band задаёт заливку и цвет числа, State добавляет кольцо Base/Brand.
+ */
+.w-chip {
+  box-sizing: border-box;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  border-radius: var(--w-l-radius);
+}
+
+.w-chip_size_s {
+  min-width: 52px;
+  min-height: 52px;
+  gap: var(--w-g-spacing-0-5);
+  padding: var(--w-g-spacing-1);
+}
+
+.w-chip_size_l {
+  min-width: 60px;
+  min-height: 60px;
+  gap: var(--w-g-spacing-1);
+  padding: var(--w-g-spacing-2) var(--w-g-spacing-3);
+}
+
+/*
+ * Кольцо активного чипа: в ките это отдельный прямоугольник «Ring» с обводкой 1
+ * и отступом 3 от края. В коде — outline шириной 1 с отступом 2.
+ */
+.w-chip_state_active {
+  outline: 1px solid var(--w-branding-base-brand);
+  outline-offset: 2px;
+}
+
+.w-chip__value {
+  font: var(--w-style-header-subheader-3);
+  white-space: nowrap;
+}
+
+.w-chip__caption {
+  font: var(--w-style-text-body-1-short);
+  color: var(--w-text-secondary);
+  white-space: nowrap;
+}
+
+.w-chip_band_neutral { background: var(--w-base-semantic-neutral-light); }
+.w-chip_band_neutral .w-chip__value { color: var(--w-text-primary); }
+
+.w-chip_band_lime { background: var(--w-accent-lime-surface); }
+.w-chip_band_lime .w-chip__value { color: var(--w-accent-lime-text); }
+
+.w-chip_band_pink { background: var(--w-accent-pink-surface); }
+.w-chip_band_pink .w-chip__value { color: var(--w-accent-pink-text); }
