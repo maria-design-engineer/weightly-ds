@@ -18,7 +18,8 @@
   border: 1px solid var(--w-line-generic);
   background: transparent;
   color: var(--w-text-primary);
-  font: var(--w-style-text-body-1);
+  /* Текст поля — Header/Subheader 1, у XL Subheader 2. Снято обходом Figma 02.09.2026. */
+  font: var(--w-style-header-subheader-1);
 }
 
 .w-text-input__box:hover:not(:has([data-disabled])) {
@@ -63,7 +64,7 @@
 .w-text-input_size_s .w-text-input__box { height: 28px; padding: 0 var(--w-g-spacing-2); border-radius: var(--w-s-radius); }
 .w-text-input_size_m .w-text-input__box { height: 34px; padding: 0 var(--w-g-spacing-3); border-radius: var(--w-m-radius); }
 .w-text-input_size_l .w-text-input__box { height: 42px; padding: 0 var(--w-g-spacing-4); border-radius: var(--w-l-radius); }
-.w-text-input_size_xl .w-text-input__box { height: 52px; padding: 0 var(--w-g-spacing-6); border-radius: var(--w-xl-radius); font: var(--w-style-text-body-2); }
+.w-text-input_size_xl .w-text-input__box { height: 52px; padding: 0 var(--w-g-spacing-6); border-radius: var(--w-xl-radius); font: var(--w-style-header-subheader-2); }
 
 /* View=Clear — ни рамки, ни заливки, ни боковых отступов. */
 .w-text-input_view_clear .w-text-input__box {
