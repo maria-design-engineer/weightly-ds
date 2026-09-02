@@ -1,0 +1,27 @@
+/*
+ * Custom / paranja. Снято обходом мастера Figma 03.09.2026: прямоугольник во
+ * весь экран на `Effect/Veil`. Место карточки снято с наложений d1–d7 той же
+ * страницы: во всю ширину, прижата к низу паранджи.
+ */
+.w-paranja {
+  position: fixed;
+  inset: 0;
+  background: var(--w-effect-veil);
+}
+
+.w-paranja__sheet {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  /* Карточку рисует содержимое: у мастера паранджи своего вида нет. */
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+}
+
+.w-paranja__sheet:focus-visible {
+  outline: var(--w-focus-ring-width) solid var(--w-focus-ring-color);
+  outline-offset: 1px;
+}

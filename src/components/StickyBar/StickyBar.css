@@ -1,0 +1,25 @@
+/*
+ * Custom / sticky-bar. Снято обходом мастера Figma 03.09.2026:
+ * 360 × 84, поля 16, промежуток 8. Заливка — локальный градиент мастера, не
+ * стиль и не переменная: белый от прозрачного к 0.7 сверху вниз.
+ * Размытия у неё нет — оно только у sticky-bar-workout, решение пользователя.
+ * Кнопки внутри стоят на FILL — ширину делят поровну.
+ */
+.w-sticky-bar {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: var(--w-g-spacing-2);
+  width: 100%;
+  padding: var(--w-g-spacing-4);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.3) 7%,
+    rgba(255, 255, 255, 0.7) 19%
+  );
+}
+
+.w-sticky-bar > * {
+  flex: 1;
+}

@@ -1,0 +1,41 @@
+/*
+ * Custom / sticky-bar-workout. Снято обходом мастера Figma 03.09.2026:
+ * поля 16, радиус 12 сверху, заливка белая 0.7, размытие фона 17.
+ * Внутри ряд с промежутком 10 и раскладкой по краям, колонка действия 80
+ * шириной, промежуток 4, подпись Text/Caption 2 цветом Text/Hint на 0.3.
+ */
+.w-sticky-bar-workout {
+  box-sizing: border-box;
+  display: flex;
+  width: 100%;
+  padding: var(--w-g-spacing-4);
+  border-radius: var(--w-l-radius) var(--w-l-radius) 0 0;
+  background: rgba(255, 255, 255, 0.7);
+  /* Размытие фона стоит только здесь — решение пользователя 03.09.2026. */
+  backdrop-filter: blur(17px);
+}
+
+.w-sticky-bar-workout__row {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: space-between;
+  /* Промежуток 10 в ките задан числом: шага 10 в отступах нет. */
+  gap: 10px;
+}
+
+.w-sticky-bar-workout__action {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--w-g-spacing-1);
+  width: 80px;
+}
+
+.w-sticky-bar-workout__caption {
+  font: var(--w-style-text-caption-2);
+  /* В ките заливка подписи — Text/Hint, прозрачность 0.3 уже внутри токена. */
+  color: var(--w-text-hint);
+  text-align: center;
+}

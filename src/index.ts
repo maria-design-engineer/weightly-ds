@@ -148,5 +148,30 @@ export type { CoachCommentBand, CoachCommentState } from './components/CoachComm
 
 export { ExerciseCard } from './components/ExerciseCard/ExerciseCard'
 export type { ExerciseCardProps } from './components/ExerciseCard/ExerciseCard'
+export { EXERCISE_CARD_TYPES } from './components/ExerciseCard/constants'
+export type { ExerciseCardType } from './components/ExerciseCard/constants'
 
 export { Icon } from './components/Icon/Icon'
+
+// Организмы — 5 своих компонентов, этап 12.
+export { BottomBar } from './components/BottomBar/BottomBar'
+export { BOTTOM_BAR_TABS } from './components/BottomBar/defaults'
+export type { BottomBarProps, BottomBarTab } from './components/BottomBar/BottomBar'
+export { BOTTOM_BAR_SECTIONS } from './components/BottomBar/constants'
+export type { BottomBarSection } from './components/BottomBar/constants'
+
+export { StickyBar } from './components/StickyBar/StickyBar'
+export type { StickyBarProps } from './components/StickyBar/StickyBar'
+
+export { StickyBarWorkout } from './components/StickyBarWorkout/StickyBarWorkout'
+export { STICKY_BAR_WORKOUT_ACTIONS } from './components/StickyBarWorkout/defaults'
+export type {
+  StickyBarWorkoutAction,
+  StickyBarWorkoutProps,
+} from './components/StickyBarWorkout/StickyBarWorkout'
+
+export { Paranja } from './components/Paranja/Paranja'
+export type { ParanjaProps } from './components/Paranja/Paranja'
+
+export { BlockTabs } from './components/BlockTabs/BlockTabs'
+export type { BlockTabsProps } from './components/BlockTabs/BlockTabs'

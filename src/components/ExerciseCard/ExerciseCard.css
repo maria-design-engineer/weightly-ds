@@ -1,16 +1,51 @@
 /*
- * Custom / exercise-card. Снято обходом мастера Figma 03.09.2026:
- * 328 × 144, радиус 16, поля 12, промежуток 16, заливка Base Float/Float,
- * тень card-shadow/card (new). Ступени — ряд чипов размера S с промежутком 8.
+ * Custom / exercise-card. Пересснято обходом трёх мастеров Figma 03.09.2026,
+ * ось Type: plan, task, running. Общее — ширина 328, радиус 16, заливка
+ * Base Float/Float BG. Разное — поля, промежутки, тень и кегли:
+ *   plan     поля 12, промежуток 16, тень card (new), счётчик Text/Hint,
+ *            название Header/Subheader 2, ступени размера S
+ *   task     поля 16, промежуток 12, без тени, счётчик Text/Secondary,
+ *            название Header/Subheader 3, ступени размера L
+ *   running  поля 12, промежуток 8, тень card (new), название Text/Body 1
+ *            в одной строке со значком, ступени размера S с отметками
+ * Ряд ступеней в ките шире карточки на её правое поле и обрезан по краю —
+ * в коде это прокрутка вбок.
  */
 .w-exercise-card {
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  gap: var(--w-g-spacing-4);
-  padding: var(--w-g-spacing-3);
   border-radius: var(--w-xl-radius);
   background: var(--w-base-float-float-bg);
+}
+
+.w-exercise-card__info {
+  display: flex;
+  flex-direction: column;
+}
+
+.w-exercise-card_type_plan {
+  gap: var(--w-g-spacing-4);
+  padding: var(--w-g-spacing-3);
+  box-shadow: var(--w-card-shadow-card-new);
+}
+
+.w-exercise-card_type_plan .w-exercise-card__info {
+  gap: var(--w-g-spacing-4);
+}
+
+.w-exercise-card_type_task {
+  gap: var(--w-g-spacing-3);
+  padding: var(--w-g-spacing-4);
+}
+
+.w-exercise-card_type_task .w-exercise-card__info {
+  gap: var(--w-g-spacing-1);
+}
+
+.w-exercise-card_type_running {
+  gap: var(--w-g-spacing-2);
+  padding: var(--w-g-spacing-3);
   box-shadow: var(--w-card-shadow-card-new);
 }
 
@@ -24,13 +59,14 @@
   flex: 1;
   min-width: 0;
   font: var(--w-style-text-caption-2);
+}
+
+.w-exercise-card_type_plan .w-exercise-card__counter {
   color: var(--w-text-hint);
 }
 
-.w-exercise-card__hint {
-  display: inline-flex;
-  flex: none;
-  color: var(--w-text-hint);
+.w-exercise-card_type_task .w-exercise-card__counter {
+  color: var(--w-text-secondary);
 }
 
 .w-exercise-card__title {
@@ -38,7 +74,97 @@
   color: var(--w-text-primary);
 }
 
+.w-exercise-card_type_task .w-exercise-card__title {
+  font: var(--w-style-header-subheader-3);
+}
+
+/* У идущего упражнения название стоит в строке со значком и обрезается многоточием. */
+.w-exercise-card_type_running .w-exercise-card__title {
+  flex: 1;
+  min-width: 0;
+  font: var(--w-style-text-body-1);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.w-exercise-card__hint {
+  display: inline-flex;
+  flex: none;
+  border: 0;
+  padding: 0;
+  background: none;
+  color: var(--w-text-hint);
+  cursor: pointer;
+}
+
+/*
+ * Ступени прокручиваются вбок: ряд выходит на правое поле карточки и обрезан
+ * по её краю — так же, как в ките. Полосу прокрутки не показываем, жест
+ * остаётся пальцем и колесом.
+ */
 .w-exercise-card__steps {
   display: flex;
   gap: var(--w-g-spacing-2);
+  overflow-x: auto;
+  scrollbar-width: none;
+  /*
+   * Кольцо активного чипа лежит на 3 снаружи его края, а прокрутка режет всё,
+   * что вылезло за окно. Поля 3 со всех сторон дают кольцу место: по краям тоже,
+   * иначе режется кольцо первого чипа.
+   */
+  padding: 3px;
+  /* Мышкой ряд тянут перетаскиванием — курсор про это и говорит. */
+  cursor: grab;
+}
+
+.w-exercise-card__steps_dragging {
+  cursor: grabbing;
+  /* Пока тянут, текст в чипах не выделяется. */
+  user-select: none;
+}
+
+.w-exercise-card__steps::-webkit-scrollbar {
+  display: none;
+}
+
+.w-exercise-card_type_plan .w-exercise-card__steps,
+.w-exercise-card_type_running .w-exercise-card__steps {
+  /* У этих двух в ките полей нет — отрицательные отступы возвращают размер. */
+  margin-block: -3px;
+  margin-left: -3px;
+  margin-right: calc(-1 * var(--w-g-spacing-3) - 3px);
+}
+
+/*
+ * У задания дизайн добавил ряду поля 2 сверху и снизу — правка кита 03.09.2026,
+ * карточка стала выше на 4. Отсюда −1: 3 на кольцо минус 1, чтобы прибавка
+ * вышла ровно 2 с каждой стороны.
+ */
+.w-exercise-card_type_task .w-exercise-card__steps {
+  margin-block: -1px;
+  margin-left: -1px;
+  margin-right: calc(-1 * var(--w-g-spacing-4) - 1px);
+}
+
+/* Колонка идущего упражнения: чип и отметка подхода под ним, промежуток 2. */
+.w-exercise-card__step {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  gap: var(--w-g-spacing-0-5);
+  width: 52px;
+}
+
+/*
+ * И чип, и отметка занимают всю ширину колонки: в ките отметка стоит на FILL,
+ * а по своему содержимому она уже 52 не набирает и уезжает влево.
+ */
+.w-exercise-card__step > * {
+  width: 100%;
+}
+
+/* Чип в ряду не сжимается: ряд прокручивается, а не ужимается. */
+.w-exercise-card__steps > * {
+  flex: none;
 }

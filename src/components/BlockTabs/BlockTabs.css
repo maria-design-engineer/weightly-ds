@@ -1,0 +1,15 @@
+/*
+ * Custom / block-tabs. Снято обходом мастера Figma 03.09.2026:
+ * 328 × 34, поля 4 сверху и снизу, промежуток 2, вкладки делят ширину поровну.
+ */
+.w-block-tabs {
+  box-sizing: border-box;
+  display: flex;
+  gap: var(--w-g-spacing-0-5);
+  width: 100%;
+  padding: var(--w-g-spacing-1) 0;
+}
+
+.w-block-tabs > * {
+  flex: 1;
+}
