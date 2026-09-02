@@ -8,6 +8,15 @@ import { Cell, Row } from '../story-layout'
 import { Alert } from './Alert'
 import { ALERT_CORNERS, ALERT_LAYOUTS, ALERT_THEMES, ALERT_VIEWS } from './constants'
 
+const ALERT_ICON = <Icon data={CircleInfo} size={18} />
+
+const ACTIONS = (
+  <>
+    <Button view="secondary" size="s" content="Повторить" />
+    <Button view="flat" size="s" content="Отмена" />
+  </>
+)
+
 const meta = {
   title: 'Alert',
   component: Alert,
@@ -23,6 +32,11 @@ const meta = {
     view: { control: 'inline-radio', options: ALERT_VIEWS },
     corners: { control: 'inline-radio', options: ALERT_CORNERS },
     layout: { control: 'inline-radio', options: ALERT_LAYOUTS },
+    // Содержимое переключателем не задаётся, поэтому булев тумблер подменяет его целиком.
+    // В ките это ровно те же булевы свойства: Show buttons, Close button, Icon (optional).
+    actions: { control: 'boolean', mapping: { true: ACTIONS, false: undefined } },
+    onClose: { control: 'boolean', mapping: { true: () => {}, false: undefined } },
+    icon: { control: 'boolean', mapping: { true: ALERT_ICON, false: undefined } },
   },
   args: {
     title: 'Тренировка не сохранена',
@@ -34,18 +48,9 @@ export default meta
 
 type Story = StoryObj<typeof meta>
 
-/** Кнопки и крестик приходят содержимым, панелью Controls их не включить: они здесь стоят сразу. */
+/** Кнопки, значок и крестик включаются тумблерами `actions`, `icon` и `onClose`. */
 export const Playground: Story = {
-  args: {
-    icon: <Icon data={CircleInfo} size={18} />,
-    actions: (
-      <>
-        <Button view="secondary" size="s" content="Повторить" />
-        <Button view="flat" size="s" content="Отмена" />
-      </>
-    ),
-    onClose: () => {},
-  },
+  args: { icon: ALERT_ICON, actions: ACTIONS, onClose: () => {} },
 }
 
 /** Ось Theme — 6 значений. Success красится токенами Positive. */
@@ -96,13 +101,8 @@ export const Layouts: Story = {
           <Alert
             {...args}
             layout={layout}
-            icon={<Icon data={CircleInfo} size={18} />}
-            actions={
-              <>
-                <Button view="secondary" size="s" content="Повторить" />
-                <Button view="flat" size="s" content="Отмена" />
-              </>
-            }
+            icon={ALERT_ICON}
+            actions={ACTIONS}
             onClose={() => {}}
           />
         </Cell>
