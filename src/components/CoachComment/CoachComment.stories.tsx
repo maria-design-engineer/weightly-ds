@@ -20,12 +20,13 @@ const meta = {
     content: { control: 'text' },
     author: { control: 'text' },
     body: { control: 'text' },
-    onToggle: { control: false },
+    onToggle: { control: 'boolean', mapping: { true: () => {}, false: undefined } },
   },
   args: {
     content: 'Комментарий тренера',
     author: 'Сергей Гаврилов',
     body: 'Сегодня надо сосредоточиться на технике.',
+    onToggle: () => {},
   },
 } satisfies Meta<typeof CoachComment>
 
@@ -58,4 +59,9 @@ export const States: Story = {
       ))}
     </Row>
   ),
+}
+
+/** Без шеврона: комментарий, который не сворачивают. Тумблер onToggle выключен. */
+export const WithoutToggle: Story = {
+  args: { onToggle: undefined },
 }

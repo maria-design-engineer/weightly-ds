@@ -18,7 +18,10 @@ export type CoachCommentProps = {
   author?: ReactNode
   /** Figma Body — сам комментарий. */
   body?: ReactNode
-  /** Что делает кнопка «свернуть». */
+  /**
+   * Что делает кнопка «свернуть». Не передан — шеврона нет вовсе:
+   * комментарий, который не сворачивают.
+   */
   onToggle?: () => void
 }
 
@@ -44,13 +47,15 @@ export function CoachComment({
           <Icon data={Comment} size={16} />
         </span>
         <span className="w-coach-comment__title">{content}</span>
-        <Button
-          view="flat"
-          size="m"
-          ariaLabel={state === 'open' ? 'Свернуть' : 'Развернуть'}
-          startIcon={<Icon data={state === 'open' ? ChevronUp : ChevronDown} size={16} />}
-          onClick={onToggle}
-        />
+        {onToggle ? (
+          <Button
+            view="flat"
+            size="m"
+            ariaLabel={state === 'open' ? 'Свернуть' : 'Развернуть'}
+            startIcon={<Icon data={state === 'open' ? ChevronUp : ChevronDown} size={16} />}
+            onClick={onToggle}
+          />
+        ) : null}
       </div>
       {state === 'open' ? (
         <>
