@@ -1,0 +1,43 @@
+/*
+ * Custom / coach-comment. Снято обходом мастеров Figma 03.09.2026:
+ * радиус 12, промежуток 8; open — поля 16/12, closed — поля 4/12.
+ * Заливка — градиент свечения по полосе: Gradient/<Band> glow.
+ */
+.w-coach-comment {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: var(--w-g-spacing-2);
+  border-radius: var(--w-l-radius);
+}
+
+.w-coach-comment_state_open { padding: var(--w-g-spacing-4) var(--w-g-spacing-3); }
+.w-coach-comment_state_closed { padding: var(--w-g-spacing-1) var(--w-g-spacing-3); }
+
+.w-coach-comment_band_pink { background: var(--w-gradient-pink-glow); }
+.w-coach-comment_band_lime { background: var(--w-gradient-lime-glow); }
+.w-coach-comment_band_neutral { background: var(--w-gradient-neutral-glow); }
+
+.w-coach-comment__head {
+  display: flex;
+  align-items: center;
+  gap: var(--w-g-spacing-2);
+  min-height: 34px;
+}
+
+.w-coach-comment__title {
+  flex: 1;
+  min-width: 0;
+  font: var(--w-style-text-body-1);
+  color: var(--w-text-primary);
+}
+
+.w-coach-comment__author {
+  font: var(--w-style-text-body-1);
+  color: var(--w-text-hint);
+}
+
+.w-coach-comment__body {
+  font: var(--w-style-text-body-1);
+  color: var(--w-text-complementary);
+}

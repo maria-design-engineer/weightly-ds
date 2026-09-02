@@ -1,0 +1,15 @@
+/*
+ * Custom / field. Снято обходом мастера Figma 03.09.2026: промежуток 6,
+ * подпись Text/Body 1 на цвете Text/Secondary, под ней контрол.
+ * Подпись у нас всегда над полем — правило продукта, свойство Label кита не берётся.
+ */
+.w-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.w-field__label {
+  font: var(--w-style-text-body-1);
+  color: var(--w-text-secondary);
+}

@@ -1,0 +1,37 @@
+/*
+ * Custom / correspondence-row. Снято обходом мастера Figma 03.09.2026:
+ * 328 × 40, поля 8/12, промежуток 8. Плашка справа — радиус 6, поля 0/4,
+ * высота 20, заливка Base/Generic, текст Text/Caption 2.
+ * Прежний Custom / base-pill в библиотеку не вошёл — дубль, решение пользователя;
+ * плашка собрана здесь же.
+ */
+.w-correspondence-row {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: var(--w-g-spacing-2);
+  padding: var(--w-g-spacing-2) var(--w-g-spacing-3);
+}
+
+.w-correspondence-row__text {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font: var(--w-style-text-body-1);
+  color: var(--w-text-primary);
+}
+
+.w-correspondence-row__pill {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  flex: none;
+  height: 20px;
+  padding: 0 var(--w-g-spacing-1);
+  border-radius: var(--w-xs-radius);
+  background: var(--w-base-generic);
+  color: var(--w-text-primary);
+  font: var(--w-style-text-caption-2);
+}

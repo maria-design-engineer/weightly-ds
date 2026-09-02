@@ -1,0 +1,32 @@
+/*
+ * Custom / block-tab. Снято обходом мастеров Figma 03.09.2026:
+ * высота 26, промежуток 6, подпись Text/Caption 2, полоса 4 с радиусом 2.
+ * State красит и подпись, и полосу.
+ */
+.w-block-tab {
+  box-sizing: border-box;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 6px;
+  border: 0;
+  padding: 0;
+  background: none;
+  font: var(--w-style-text-caption-2);
+  text-align: center;
+  cursor: pointer;
+}
+
+.w-block-tab__bar {
+  height: 4px;
+  border-radius: 2px;
+}
+
+.w-block-tab_state_active { color: var(--w-branding-base-brand); }
+.w-block-tab_state_active .w-block-tab__bar { background: var(--w-branding-base-brand); }
+
+.w-block-tab_state_done { color: var(--w-text-primary); }
+.w-block-tab_state_done .w-block-tab__bar { background: var(--w-text-primary); }
+
+.w-block-tab_state_default { color: var(--w-text-hint); }
+.w-block-tab_state_default .w-block-tab__bar { background: var(--w-base-generic); }

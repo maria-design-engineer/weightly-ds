@@ -1,0 +1,9 @@
+/*
+ * Custom / lifts-cell. Снято обходом мастера Figma 03.09.2026:
+ * 112 × 16, промежуток 8, пять отметок подъёма по 16.
+ */
+.w-lifts-cell {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--w-g-spacing-2);
+}

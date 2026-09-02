@@ -1,0 +1,10 @@
+/*
+ * Custom / screen-header. Снято обходом мастера Figma 03.09.2026:
+ * высота 34, промежуток 8. Слева кнопка «назад» размера M со значком,
+ * рядом плашка с датой — экземпляр Label темы Unknown.
+ */
+.w-screen-header {
+  display: flex;
+  align-items: center;
+  gap: var(--w-g-spacing-2);
+}

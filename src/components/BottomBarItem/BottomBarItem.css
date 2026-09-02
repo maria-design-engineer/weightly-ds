@@ -1,0 +1,28 @@
+/*
+ * Custom / bottom-bar-item. Снято обходом мастеров Figma 03.09.2026:
+ * 104 × 52, поля 6/0, промежуток 4, значок 20, подпись Text/Caption 2.
+ * State красит значок и подпись: Base/Brand против Text/Primary.
+ */
+.w-bottom-bar-item {
+  box-sizing: border-box;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--w-g-spacing-1);
+  width: 104px;
+  padding: 6px 0;
+  border: 0;
+  background: none;
+  font: var(--w-style-text-caption-2);
+  cursor: pointer;
+}
+
+.w-bottom-bar-item_state_active { color: var(--w-branding-base-brand); }
+.w-bottom-bar-item_state_inactive { color: var(--w-text-primary); }
+
+.w-bottom-bar-item__icon {
+  display: inline-flex;
+  width: 20px;
+  height: 20px;
+}

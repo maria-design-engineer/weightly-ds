@@ -1,0 +1,52 @@
+/*
+ * Custom / settings-row. Снято обходом мастеров Figma 03.09.2026:
+ * 328 × 64, поля 12, промежуток 8, шеврон 16.
+ * Card=on добавляет радиус 16, заливку Base Float/Float и тень.
+ */
+.w-settings-row {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: var(--w-g-spacing-2);
+  width: 100%;
+  padding: var(--w-g-spacing-3);
+  border: 0;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+}
+
+.w-settings-row_card_on {
+  border-radius: var(--w-xl-radius);
+  background: var(--w-base-float-float-bg);
+  box-shadow: var(--w-card-shadow-card-new);
+}
+
+.w-settings-row__text {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--w-g-spacing-0-5);
+  min-width: 0;
+}
+
+.w-settings-row__title {
+  font: var(--w-style-header-subheader-2);
+  color: var(--w-text-primary);
+}
+
+.w-settings-row__caption {
+  font: var(--w-style-text-body-1);
+  color: var(--w-text-secondary);
+}
+
+.w-settings-row__chevron {
+  display: inline-flex;
+  flex: none;
+  color: var(--w-text-secondary);
+}
+
+.w-settings-row:focus-visible {
+  outline: 2px solid var(--w-line-focus);
+  outline-offset: 1px;
+}

@@ -1,0 +1,42 @@
+/*
+ * Custom / block-card. Снято обходом мастеров Figma 03.09.2026:
+ * 328 × 64, радиус 16, поля 12, промежуток 8, заливка Base Float/Float.
+ * Shadow=On добавляет тень card-shadow/card (new).
+ */
+.w-block-card {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: var(--w-g-spacing-2);
+  padding: var(--w-g-spacing-3);
+  border-radius: var(--w-xl-radius);
+  background: var(--w-base-float-float-bg);
+}
+
+.w-block-card_shadow_on {
+  box-shadow: var(--w-card-shadow-card-new);
+}
+
+.w-block-card__text {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--w-g-spacing-0-5);
+  min-width: 0;
+}
+
+.w-block-card__title {
+  font: var(--w-style-header-subheader-2);
+  color: var(--w-text-primary);
+}
+
+.w-block-card__caption {
+  font: var(--w-style-text-body-1);
+  color: var(--w-text-secondary);
+}
+
+.w-block-card__actions {
+  display: flex;
+  flex: none;
+  gap: var(--w-g-spacing-2);
+}

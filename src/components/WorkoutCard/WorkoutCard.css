@@ -1,0 +1,44 @@
+/*
+ * Custom / workout-card. Снято обходом мастера Figma 03.09.2026:
+ * 328 × 140, радиус 20, поля 16, промежуток 24, заливка Base Float/Float,
+ * тень card-shadow/card (new). Внутри — блок сведений и ряд кнопок.
+ */
+.w-workout-card {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: var(--w-g-spacing-6);
+  padding: var(--w-g-spacing-4);
+  border-radius: var(--w-2xl-radius);
+  background: var(--w-base-float-float-bg);
+  box-shadow: var(--w-card-shadow-card-new);
+}
+
+.w-workout-card__info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--w-g-spacing-1);
+}
+
+.w-workout-card__title-row {
+  display: flex;
+  align-items: center;
+  gap: var(--w-g-spacing-2);
+}
+
+.w-workout-card__title {
+  flex: 1;
+  min-width: 0;
+  font: var(--w-style-header-subheader-3);
+  color: var(--w-text-primary);
+}
+
+.w-workout-card__caption {
+  font: var(--w-style-text-body-1);
+  color: var(--w-text-secondary);
+}
+
+.w-workout-card__actions {
+  display: flex;
+  gap: var(--w-g-spacing-2);
+}

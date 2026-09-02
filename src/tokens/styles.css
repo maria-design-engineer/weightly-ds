@@ -61,4 +61,18 @@
   --w-shadows-raised-button-stroke: 0 5px 6px var(--w-effect-shadow-light), 0 0 0 1px rgba(0, 0, 0, 0.02);
   --w-shadows-yc-select-shadow: 0 8px 20px var(--w-effect-shadow);
   --w-shadows-blue: 0 2px 4px #accbfc;
+
+  /*
+   * Градиенты — 8 стилей заливки. Цвета в них вписаны значением: переменную
+   * в точку градиента Figma не пускает, строка стоит в дефектах кита.
+   * Здесь повторены как есть, снято из styles.md и обходом стилей 03.09.2026.
+   */
+  --w-gradient-pink-glow: radial-gradient(circle, rgba(239, 109, 215, 0.5), rgba(239, 109, 215, 0.3), rgba(239, 109, 215, 0.05));
+  --w-gradient-green-glow: radial-gradient(circle, rgba(69, 211, 164, 0.5), rgba(69, 211, 164, 0.3), rgba(69, 211, 164, 0.05));
+  --w-gradient-lime-glow: radial-gradient(circle, rgba(210, 210, 70, 0.5), rgba(210, 210, 70, 0.3), rgba(210, 210, 70, 0.05));
+  --w-gradient-brand-glow: radial-gradient(circle, rgba(252, 95, 43, 0.5), rgba(252, 95, 43, 0.3), rgba(252, 95, 43, 0.05));
+  --w-gradient-neutral-glow: radial-gradient(circle, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.01));
+  --w-gradient-green-to-lime: linear-gradient(90deg, rgba(69, 211, 164, 0.45), rgba(210, 210, 70, 0.45));
+  --w-gradient-lime-to-pink: linear-gradient(90deg, rgba(210, 210, 70, 0.45), rgba(239, 109, 215, 0.45));
+  --w-gradient-pink-to-brand: linear-gradient(90deg, rgba(239, 109, 215, 0.45), rgba(252, 95, 43, 0.45));
 }
