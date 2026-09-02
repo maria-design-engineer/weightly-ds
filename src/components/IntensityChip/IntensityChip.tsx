@@ -1,15 +1,15 @@
 import type { ReactNode } from 'react'
 
-import type { ChipBand, ChipSize, ChipState } from './constants'
-import './Chip.css'
+import type { IntensityChipBand, IntensityChipSize, IntensityChipState } from './constants'
+import './IntensityChip.css'
 
-export type ChipProps = {
+export type IntensityChipProps = {
   /** Figma Size — 52 или 60. */
-  size?: ChipSize
+  size?: IntensityChipSize
   /** Figma State — активный чип обведён кольцом Base/Brand. */
-  state?: ChipState
+  state?: IntensityChipState
   /** Figma Band — полоса интенсивности: neutral до 70 процентов, lime с 70, pink с 90. */
-  band?: ChipBand
+  band?: IntensityChipBand
   /** Figma Text — процент от максимума. */
   content?: ReactNode
   /** Figma Caption — подходы и повторы. */
@@ -20,24 +20,24 @@ export type ChipProps = {
  * Чип задания: процент и раскладка подходов. Один компонент на две прежние роли —
  * ступень задания и полосу интенсивности; решение пользователя 03.09.2026.
  */
-export function Chip({
+export function IntensityChip({
   size = 's',
   state = 'default',
   band = 'neutral',
   content,
   caption,
-}: ChipProps) {
+}: IntensityChipProps) {
   const className = [
-    'w-chip',
-    `w-chip_size_${size}`,
-    `w-chip_state_${state}`,
-    `w-chip_band_${band}`,
+    'w-intensity-chip',
+    `w-intensity-chip_size_${size}`,
+    `w-intensity-chip_state_${state}`,
+    `w-intensity-chip_band_${band}`,
   ].join(' ')
 
   return (
     <div className={className}>
-      <span className="w-chip__value">{content}</span>
-      {caption ? <span className="w-chip__caption">{caption}</span> : null}
+      <span className="w-intensity-chip__value">{content}</span>
+      {caption ? <span className="w-intensity-chip__caption">{caption}</span> : null}
     </div>
   )
 }
