@@ -1,0 +1,82 @@
+/*
+ * Поле ввода ветки Base UI: поведение и связка подписи с полем из библиотеки,
+ * вид свой. Размеры и цвета — ui-kit/figma-components/text-input.md, режим Light.
+ */
+.w-text-input {
+  display: flex;
+  flex-direction: column;
+  /* Промежуток между полем и строкой ошибки — 4, в ките вписан числом. */
+  gap: 4px;
+}
+
+.w-text-input__box {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: var(--w-spacing-2);
+  width: 100%;
+  border: 1px solid var(--w-color-line-generic);
+  background: transparent;
+  color: var(--w-color-text-primary);
+  font: var(--w-weight-body) var(--w-text-body-1);
+}
+
+.w-text-input__box:hover:not(:has([data-disabled])) {
+  border-color: var(--w-color-line-generic-hover);
+}
+
+.w-text-input__box:focus-within {
+  border-color: var(--w-color-line-generic-active);
+  outline: 2px solid var(--w-color-line-focus);
+  outline-offset: 1px;
+}
+
+.w-text-input__control {
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  outline: none;
+}
+
+.w-text-input__control::placeholder {
+  color: var(--w-color-text-hint);
+}
+
+/* Размеры — Size задаёт высоту, отступы и радиус. */
+.w-text-input_size_s .w-text-input__box  { height: 28px; padding: 0 var(--w-spacing-2); border-radius: var(--w-radius-s); }
+.w-text-input_size_m .w-text-input__box  { height: 34px; padding: 0 var(--w-spacing-3); border-radius: var(--w-radius-m); }
+.w-text-input_size_l .w-text-input__box  { height: 42px; padding: 0 var(--w-spacing-4); border-radius: var(--w-radius-l); }
+.w-text-input_size_xl .w-text-input__box { height: 52px; padding: 0 var(--w-spacing-6); border-radius: var(--w-radius-xl); font: var(--w-weight-body) var(--w-text-body-2); }
+
+/* View=Clear — ни рамки, ни заливки, ни боковых отступов. */
+.w-text-input_view_clear .w-text-input__box {
+  height: auto;
+  padding: 3px 0;
+  border-color: transparent;
+  border-radius: 0;
+}
+
+/* State=Disabled — заливка Base/Generic Accent Disabled, обводки нет. */
+.w-text-input__box:has([data-disabled]) {
+  border-color: transparent;
+  background: var(--w-color-base-generic-accent-disabled);
+  color: var(--w-color-text-hint);
+}
+
+/* State=Error inline и Error outline — обводка Line/Danger. */
+.w-text-input_invalid .w-text-input__box {
+  border-color: var(--w-color-line-danger);
+}
+
+.w-text-input__error-icon {
+  flex: none;
+  color: var(--w-color-text-danger);
+}
+
+.w-text-input__error-text {
+  font: var(--w-weight-body) var(--w-text-body-1);
+  color: var(--w-color-text-danger);
+}
