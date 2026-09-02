@@ -6,5 +6,8 @@
 .w-screen-header {
   display: flex;
   align-items: center;
+  /* Кнопка прижата к левому краю экрана, дата — к правому. */
+  justify-content: space-between;
   gap: var(--w-g-spacing-2);
+  width: 100%;
 }
