@@ -29,7 +29,8 @@
   align-items: center;
   flex: none;
   height: 20px;
-  padding: 0 var(--w-g-spacing-1);
+  /* Отступ сложен из двух, как у Label: внешний 4 и внутренний 5. */
+  padding: 0 9px;
   border-radius: var(--w-xs-radius);
   background: var(--w-base-generic);
   color: var(--w-text-primary);
