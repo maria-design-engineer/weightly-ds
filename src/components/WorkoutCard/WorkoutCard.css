@@ -42,3 +42,8 @@
   display: flex;
   gap: var(--w-g-spacing-2);
 }
+
+/* Кнопки равной ширины: в ките обе по 144 при поле 296. */
+.w-workout-card__actions > * {
+  flex: 1;
+}

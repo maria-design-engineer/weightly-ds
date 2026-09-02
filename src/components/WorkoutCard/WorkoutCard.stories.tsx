@@ -1,13 +1,26 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
+import { ChevronRight, ChevronsRight, Play } from '@gravity-ui/icons'
+
 import { Button } from '../Button/Button'
+import { Icon } from '../Icon/Icon'
 import { Label } from '../Label/Label'
 import { WorkoutCard } from './WorkoutCard'
 
 const ACTIONS = (
   <>
-    <Button view="secondary" size="l" content="Посмотреть" />
-    <Button view="primary-brand" size="l" content="Запустить тренировку" />
+    <Button
+      view="flat"
+      size="l"
+      content="Пропустить"
+      endIcon={<Icon data={ChevronsRight} size={16} />}
+    />
+    <Button
+      view="primary-brand"
+      size="l"
+      content="Начать"
+      endIcon={<Icon data={Play} size={16} />}
+    />
   </>
 )
 
@@ -27,9 +40,17 @@ const meta = {
     actions: { control: 'boolean', mapping: { true: ACTIONS, false: undefined } },
   },
   args: {
-    content: 'Тренировка на сегодня',
-    caption: 'КПШ 63 · вес 2 840 кг',
-    mark: <Label size="s" theme="normal" content="92%" />,
+    content: 'Сегодня · утро',
+    caption: '63 КПШ · 5 упражнений',
+    mark: <Label size="s" theme="danger" content="90%" />,
+    trailing: (
+      <Button
+        view="flat-secondary"
+        size="s"
+        ariaLabel="Открыть тренировку"
+        startIcon={<Icon data={ChevronRight} size={16} />}
+      />
+    ),
     actions: ACTIONS,
   },
 } satisfies Meta<typeof WorkoutCard>
