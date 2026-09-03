@@ -4,6 +4,7 @@ import { useId } from 'react'
 import { Select as BaseSelect } from '@base-ui/react/select'
 import { Check, ChevronDown, CircleExclamation } from '@gravity-ui/icons'
 
+import { useFieldLabelId } from '../Field/context'
 import { Icon } from '../Icon/Icon'
 import type { SelectItem, SelectSize, SelectView } from './constants'
 import '../focus.css'
@@ -55,6 +56,17 @@ export function Select({
 }: SelectProps) {
   const invalid = Boolean(errorMessage)
   const errorId = useId()
+  const valueId = useId()
+  const ownLabelId = useId()
+  /*
+   * Имя кнопки собирается из подписи и выбранного значения: у роли combobox
+   * `aria-label` вытесняет содержимое, и значение переставало объявляться —
+   * находка 4 ревью этапа 14. Подпись берётся из `Field`, а когда его нет —
+   * из `ariaLabel`, спрятанного рядом.
+   */
+  const fieldLabelId = useFieldLabelId()
+  const labelId = fieldLabelId ?? (ariaLabel ? ownLabelId : undefined)
+  const labelledBy = labelId ? `${labelId} ${valueId}` : undefined
 
   const className = [
     'w-select',
@@ -78,10 +90,15 @@ export function Select({
       >
         <BaseSelect.Trigger
           className="w-select__trigger"
-          aria-label={ariaLabel}
+          aria-labelledby={labelledBy}
           aria-describedby={invalid ? errorId : undefined}
         >
-          <BaseSelect.Value className="w-select__value">
+          {!fieldLabelId && ariaLabel ? (
+            <span className="w-visually-hidden" id={ownLabelId}>
+              {ariaLabel}
+            </span>
+          ) : null}
+          <BaseSelect.Value className="w-select__value" id={valueId}>
             {(selected: string | null) => {
               const item = items.find((candidate) => candidate.value === selected)
               return item ? (

@@ -20,13 +20,19 @@ export type ScreenHeaderProps = {
 export function ScreenHeader({ content, onBack, backLabel = 'Назад' }: ScreenHeaderProps) {
   return (
     <div className="w-screen-header">
-      <Button
-        view="secondary"
-        size="m"
-        ariaLabel={backLabel}
-        startIcon={<Icon data={ChevronLeft} size={16} />}
-        onClick={onBack}
-      />
+      {/*
+       * Кнопки нет, когда возвращаться некуда: иначе в обходе с клавиатуры
+       * появляется остановка, которая ничего не делает. Находка 11 ревью этапа 14.
+       */}
+      {onBack ? (
+        <Button
+          view="secondary"
+          size="m"
+          ariaLabel={backLabel}
+          startIcon={<Icon data={ChevronLeft} size={16} />}
+          onClick={onBack}
+        />
+      ) : null}
       <Label size="m" theme="unknown" content={content} />
     </div>
   )

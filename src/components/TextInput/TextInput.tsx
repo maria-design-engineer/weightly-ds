@@ -4,6 +4,7 @@ import { Field } from '@base-ui/react/field'
 import { Input } from '@base-ui/react/input'
 import { CircleExclamation } from '@gravity-ui/icons'
 
+import { useFieldLabelId } from '../Field/context'
 import { Icon } from '../Icon/Icon'
 import type { TextInputSize, TextInputView } from './constants'
 import '../focus.css'
@@ -54,6 +55,8 @@ export function TextInput({
   ariaLabel,
 }: TextInputProps) {
   const invalid = Boolean(errorMessage)
+  /* Стоит внутри `Field` — имя контролу даёт его подпись, а не второй ariaLabel. */
+  const fieldLabelId = useFieldLabelId()
 
   const className = [
     'w-text-input',
@@ -74,7 +77,8 @@ export function TextInput({
           defaultValue={defaultValue}
           onValueChange={onValueChange}
           placeholder={placeholder}
-          aria-label={ariaLabel}
+          aria-label={fieldLabelId ? undefined : ariaLabel}
+          aria-labelledby={fieldLabelId}
         />
         {invalid && errorPlacement === 'inline' ? (
           <span className="w-text-input__error-icon">

@@ -48,7 +48,13 @@ export function Button({
   onClick,
   ariaLabel,
 }: ButtonProps) {
-  const iconOnly = content === undefined && (Boolean(startIcon) || Boolean(endIcon))
+  /*
+   * Содержимого нет — это и `undefined`, и `null`, и `false`, и пустая строка:
+   * `content={условие && 'текст'}` давало `false`, и кнопка получала отступы
+   * под текст вместо квадрата. Находка 3 ревью этапа 14.
+   */
+  const hasContent = content !== undefined && content !== null && content !== false && content !== ''
+  const iconOnly = !hasContent && (Boolean(startIcon) || Boolean(endIcon))
 
   const className = [
     'w-button',

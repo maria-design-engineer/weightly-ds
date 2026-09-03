@@ -623,7 +623,7 @@ function Molecules() {
         <Axis name="Подпись и контрол">
           <Item label="field" width={240}>
             <Field label="Вес штанги">
-              <TextInput placeholder="75" ariaLabel="Вес штанги" />
+              <TextInput placeholder="75" />
             </Field>
           </Item>
         </Axis>

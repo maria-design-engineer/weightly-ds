@@ -52,9 +52,18 @@ export function Avatar({
     .join(' ')
 
   return (
-    <BaseAvatar.Root className={className}>
+    <BaseAvatar.Root
+      className={className}
+      /* Инициалы и значок сами имени не дают — его несёт `alt`, если он передан. */
+      aria-label={imageUrl ? undefined : alt}
+      role={!imageUrl && alt ? 'img' : undefined}
+    >
       {imageUrl ? (
-        <BaseAvatar.Image className="w-avatar__image" src={imageUrl} alt={alt} />
+        /*
+         * Без подписи картинка объявляется оформлением, а не адресом файла:
+         * пустой alt — это «читать нечего». Находка 1 ревью этапа 14.
+         */
+        <BaseAvatar.Image className="w-avatar__image" src={imageUrl} alt={alt ?? ''} />
       ) : null}
       <BaseAvatar.Fallback>{icon ?? text}</BaseAvatar.Fallback>
     </BaseAvatar.Root>

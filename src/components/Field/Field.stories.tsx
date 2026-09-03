@@ -19,15 +19,19 @@ const SIZES = ['s', 'm', 'l', 'xl'] as const
 type ControlName = (typeof CONTROLS)[number]
 type ControlSize = (typeof SIZES)[number]
 
-/** Подмена Control: какой контрол стоит внутри поля и какого он размера. */
-function control(name: ControlName, size: ControlSize, label: string) {
+/*
+ * Подмена Control: какой контрол стоит внутри поля и какого он размера.
+ * Вторых `ariaLabel` здесь нет: имя контролу даёт подпись поля — правка
+ * находки 5 ревью этапа 14.
+ */
+function control(name: ControlName, size: ControlSize) {
   if (name === 'Select') {
-    return <Select size={size} items={EXERCISES} defaultValue="snatch" ariaLabel={label} />
+    return <Select size={size} items={EXERCISES} defaultValue="snatch" />
   }
   if (name === 'TextArea') {
-    return <TextArea size={size} defaultValue="Держи спину прямее" ariaLabel={label} />
+    return <TextArea size={size} defaultValue="Держи спину прямее" />
   }
-  return <TextInput size={size} defaultValue="102,5" ariaLabel={label} />
+  return <TextInput size={size} defaultValue="102,5" />
 }
 
 type FieldStoryArgs = {
@@ -53,7 +57,7 @@ const meta: Meta<FieldStoryArgs> = {
   },
   args: { label: 'Вес штанги', control: 'TextInput', size: 'xl' },
   render: ({ label, control: name, size }) => (
-    <Field label={label}>{control(name, size, label)}</Field>
+    <Field label={label}>{control(name, size)}</Field>
   ),
 }
 
@@ -69,7 +73,7 @@ export const Controls: Story = {
     <Row>
       {CONTROLS.map((name) => (
         <Cell key={name} label={`Control = ${name}`} width={328}>
-          <Field label="Вес штанги">{control(name, 'xl', 'Вес штанги')}</Field>
+          <Field label="Вес штанги">{control(name, 'xl')}</Field>
         </Cell>
       ))}
     </Row>
@@ -82,7 +86,7 @@ export const Sizes: Story = {
     <Row>
       {SIZES.map((size) => (
         <Cell key={size} label={size} width={328}>
-          <Field label="Вес штанги">{control('TextInput', size, 'Вес штанги')}</Field>
+          <Field label="Вес штанги">{control('TextInput', size)}</Field>
         </Cell>
       ))}
     </Row>

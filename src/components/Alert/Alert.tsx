@@ -55,7 +55,15 @@ export function Alert({
   ].join(' ')
 
   return (
-    <div className={className} role="status">
+    <div
+      className={className}
+      /*
+       * Опасное и предупреждающее читается немедленно, остальное — в порядке
+       * очереди. Раньше роль стояла строкой для всех шести тем, и `danger`
+       * читался вежливо. Находка 2 ревью этапа 14.
+       */
+      role={theme === 'danger' || theme === 'warning' ? 'alert' : 'status'}
+    >
       {icon ? <span className="w-alert__icon">{icon}</span> : null}
       <div className={`w-alert__content w-alert__content_layout_${layout}`}>
         <div className="w-alert__text">

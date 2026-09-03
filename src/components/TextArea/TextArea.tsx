@@ -5,6 +5,7 @@ import { Field } from '@base-ui/react/field'
 import type { TextAreaSize, TextAreaView } from './constants'
 import '../focus.css'
 import '../visually-hidden.css'
+import { useFieldLabelId } from '../Field/context'
 import './TextArea.css'
 
 export type TextAreaProps = {
@@ -46,6 +47,8 @@ export function TextArea({
   ariaLabel,
 }: TextAreaProps) {
   const invalid = Boolean(errorMessage)
+  /* Стоит внутри `Field` — имя контролу даёт его подпись, а не второй ariaLabel. */
+  const fieldLabelId = useFieldLabelId()
 
   const className = [
     'w-text-area',
@@ -66,7 +69,8 @@ export function TextArea({
           defaultValue={defaultValue}
           onValueChange={(next: string) => onValueChange?.(next)}
           placeholder={placeholder}
-          aria-label={ariaLabel}
+          aria-label={fieldLabelId ? undefined : ariaLabel}
+          aria-labelledby={fieldLabelId}
         />
       </div>
       {invalid ? (

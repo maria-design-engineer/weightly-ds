@@ -1,5 +1,5 @@
 import type { PointerEvent as ReactPointerEvent, ReactNode } from 'react'
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 
 import { CircleQuestion } from '@gravity-ui/icons'
 
@@ -39,6 +39,15 @@ export function ExerciseCard({
   hintLabel = 'Как выполнять',
 }: ExerciseCardProps) {
   const stepsRef = useRef<HTMLDivElement>(null)
+  /* Отписка от текущего перетаскивания: держим её здесь, чтобы снять и при уходе с экрана. */
+  const stopDragRef = useRef<(() => void) | null>(null)
+
+  /*
+   * Слушатели снимаются не только по `pointerup`, но и по `pointercancel`, и при
+   * размонтировании: отпустил за краем окна или ушёл с экрана посреди движения —
+   * лента ехала за мышью без нажатой кнопки. Находка 9 ревью этапа 14.
+   */
+  useEffect(() => () => stopDragRef.current?.(), [])
 
   /**
    * Пальцем и тачпадом ряд прокручивается сам; мышкой — только перетаскиванием,
@@ -48,6 +57,8 @@ export function ExerciseCard({
     const node = stepsRef.current
     if (!node || event.pointerType !== 'mouse') return
 
+    stopDragRef.current?.()
+
     const startX = event.clientX
     const startScroll = node.scrollLeft
 
@@ -55,15 +66,19 @@ export function ExerciseCard({
       node!.scrollLeft = startScroll - (moveEvent.clientX - startX)
     }
 
-    function handleUp() {
+    function stop() {
       node!.classList.remove('w-exercise-card__steps_dragging')
       document.removeEventListener('pointermove', handleMove)
-      document.removeEventListener('pointerup', handleUp)
+      document.removeEventListener('pointerup', stop)
+      document.removeEventListener('pointercancel', stop)
+      stopDragRef.current = null
     }
 
     node.classList.add('w-exercise-card__steps_dragging')
     document.addEventListener('pointermove', handleMove)
-    document.addEventListener('pointerup', handleUp)
+    document.addEventListener('pointerup', stop)
+    document.addEventListener('pointercancel', stop)
+    stopDragRef.current = stop
   }
 
   const hint = onHint ? (

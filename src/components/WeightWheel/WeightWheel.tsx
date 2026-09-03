@@ -22,6 +22,11 @@ function options(node: HTMLElement) {
   return Array.from(node.querySelectorAll('.w-weight-wheel__option'))
 }
 
+/** Человек выключил движение в системе — прокручиваем без анимации. */
+function prefersReducedMotion() {
+  return typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
+}
+
 export type WeightWheelValue = {
   /** Целая часть веса. */
   whole: string
@@ -63,23 +68,69 @@ export function WeightWheel({
   const [ownSelected, setOwnSelected] = useState(selected)
   const current = onSelect ? selected : ownSelected
 
+  /*
+   * Проп ведёт барабан и без `onSelect`: до правки состояние заполнялось один
+   * раз и с пропом больше не сверялось — находка 6 ревью этапа 14.
+   * Правится прямо в отрисовке, а не эффектом: так React советует чинить
+   * состояние, зависящее от пропа, — лишнего круга отрисовки не будет.
+   */
+  const [lastSelected, setLastSelected] = useState(selected)
+  if (lastSelected !== selected) {
+    setLastSelected(selected)
+    setOwnSelected(selected)
+  }
+
   useEffect(() => {
     const node = listRef.current
     if (!node) return
-    const option = options(node)[current]
-    if (!option) return
-    const shift = offsetFromCenter(node, option, direction)
-    /* Меньше пикселя — считаем, что значение уже стоит в середине. */
-    if (Math.abs(shift) < 1) {
+
+    function place() {
+      const wheel = listRef.current
+      if (!wheel) return
+      const option = options(wheel)[current]
+      if (!option) return
+      /*
+       * Нулевой размер — значит замерять нечего: барабан скрыт или ещё не
+       * разложен. Первую постановку не засчитываем, иначе она застревает
+       * навсегда и после подмены гарнитуры середина уезжает — находка 7.
+       */
+      const size = direction === 'vertical' ? wheel.clientHeight : wheel.clientWidth
+      if (size === 0) return
+
+      const shift = offsetFromCenter(wheel, option, direction)
+      /* Меньше пикселя — считаем, что значение уже стоит в середине. */
+      if (Math.abs(shift) >= 1) {
+        wheel.scrollBy({
+          top: direction === 'vertical' ? shift : 0,
+          left: direction === 'horizontal' ? shift : 0,
+          /* Движение выключается вместе с системной настройкой — находка 8. */
+          behavior: placed.current && !prefersReducedMotion() ? 'smooth' : 'auto',
+        })
+      }
       placed.current = true
-      return
     }
-    node.scrollBy({
-      top: direction === 'vertical' ? shift : 0,
-      left: direction === 'horizontal' ? shift : 0,
-      behavior: placed.current ? 'smooth' : 'auto',
+
+    place()
+
+    /*
+     * Ставим заново, когда доехал шрифт: ширина значений меняется, а размер
+     * самого барабана — нет, поэтому одного наблюдателя мало.
+     */
+    let alive = true
+    document.fonts?.ready.then(() => {
+      if (alive) place()
     })
-    placed.current = true
+
+    /* Размер меняется, когда переложилась страница или значение стало шире. */
+    const observer = new ResizeObserver(() => place())
+    observer.observe(node)
+    const option = options(node)[current]
+    if (option) observer.observe(option)
+
+    return () => {
+      alive = false
+      observer.disconnect()
+    }
   }, [current, direction, values])
 
   function handleScroll() {

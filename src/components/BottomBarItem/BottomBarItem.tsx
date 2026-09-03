@@ -36,7 +36,12 @@ export function BottomBarItem({
 
   if (href) {
     return (
-      <a className={className} href={href} aria-current={state === 'active' ? 'page' : undefined}>
+      <a
+        className={className}
+        href={href}
+        onClick={onClick}
+        aria-current={state === 'active' ? 'page' : undefined}
+      >
         {content}
       </a>
     )
