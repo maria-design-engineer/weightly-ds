@@ -4,7 +4,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite'
 import { ChevronRight, CircleInfo, Person, Play, Plus } from '@gravity-ui/icons'
 
 import { Alert } from './components/Alert/Alert'
-import { ALERT_CORNERS, ALERT_LAYOUTS, ALERT_THEMES, ALERT_VIEWS } from './components/Alert/constants'
+import { ALERT_CORNERS, ALERT_THEMES, ALERT_VIEWS } from './components/Alert/constants'
 import { Avatar } from './components/Avatar/Avatar'
 import {
   AVATAR_BORDER_COLORS,
@@ -186,7 +186,7 @@ function Item({ label, width, children }: { label: string; width?: number; child
 
 function Base() {
   return (
-    <Layer title="Базовый слой — 8 компонентов">
+    <Layer title="Базовый слой — 7 компонентов и иконотека">
       <Component kit="Button" code="Button">
         <Axis name="View · 21">
           {BUTTON_VIEWS.map((view) => (
@@ -404,18 +404,15 @@ function Base() {
             </Item>
           ))}
         </Axis>
-        <Axis name="Layout · 2">
-          {ALERT_LAYOUTS.map((layout) => (
-            <Item key={layout} label={layout} width={280}>
-              <Alert
-                layout={layout}
-                title="Тренировка не сохранена"
-                message="Нет связи с сервером"
-                icon={<Icon data={CircleInfo} size={18} />}
-                actions={<Button view="outlined-info" size="s" content="Повторить" />}
-              />
-            </Item>
-          ))}
+        <Axis name="Со значком и кнопкой">
+          <Item label="filled" width={280}>
+            <Alert
+              title="Тренировка не сохранена"
+              message="Нет связи с сервером"
+              icon={<Icon data={CircleInfo} size={18} />}
+              actions={<Button view="outlined-info" size="s" content="Повторить" />}
+            />
+          </Item>
         </Axis>
       </Component>
 
@@ -453,7 +450,7 @@ function Atoms() {
         </Axis>
       </Component>
 
-      <Component kit="Custom / chip" code="IntensityChip">
+      <Component kit="Custom / intensity-chip" code="IntensityChip">
         <Axis name="Size · 2">
           {INTENSITY_CHIP_SIZES.map((size) => (
             <Item key={size} label={size}>
@@ -614,7 +611,7 @@ function Molecules() {
       <Component kit="Custom / screen-header" code="ScreenHeader">
         <Axis name="Свойств нет">
           <Item label="screen-header" width={328}>
-            <ScreenHeader content="12 марта" onBack={() => {}} />
+            <ScreenHeader content="12 марта" onClose={() => {}} />
           </Item>
         </Axis>
       </Component>

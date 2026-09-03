@@ -6,7 +6,7 @@ import { Button } from '../Button/Button'
 import { Icon } from '../Icon/Icon'
 import { Cell, Row } from '../story-layout'
 import { Alert } from './Alert'
-import { ALERT_CORNERS, ALERT_LAYOUTS, ALERT_THEMES, ALERT_VIEWS } from './constants'
+import { ALERT_CORNERS, ALERT_THEMES, ALERT_VIEWS } from './constants'
 
 const ALERT_ICON = <Icon data={CircleInfo} size={18} />
 
@@ -31,7 +31,6 @@ const meta = {
     theme: { control: 'select', options: ALERT_THEMES },
     view: { control: 'inline-radio', options: ALERT_VIEWS },
     corners: { control: 'inline-radio', options: ALERT_CORNERS },
-    layout: { control: 'inline-radio', options: ALERT_LAYOUTS },
     // Содержимое переключателем не задаётся, поэтому булев тумблер подменяет его целиком.
     // В ките это ровно те же булевы свойства: Show buttons, Close button, Icon (optional).
     actions: { control: 'boolean', mapping: { true: ACTIONS, false: undefined } },
@@ -92,21 +91,3 @@ export const Corners: Story = {
   ),
 }
 
-/** Layout внутреннего .Content: кнопки справа или под текстом. */
-export const Layouts: Story = {
-  render: (args) => (
-    <Row>
-      {ALERT_LAYOUTS.map((layout) => (
-        <Cell key={layout} label={layout} width={487}>
-          <Alert
-            {...args}
-            layout={layout}
-            icon={ALERT_ICON}
-            actions={ACTIONS}
-            onClose={() => {}}
-          />
-        </Cell>
-      ))}
-    </Row>
-  ),
-}

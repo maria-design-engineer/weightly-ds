@@ -45,13 +45,11 @@ export { Alert } from './components/Alert/Alert'
 export type { AlertProps } from './components/Alert/Alert'
 export {
   ALERT_CORNERS,
-  ALERT_LAYOUTS,
   ALERT_THEMES,
   ALERT_VIEWS,
 } from './components/Alert/constants'
 export type {
   AlertCorners,
-  AlertLayout,
   AlertTheme,
   AlertView,
 } from './components/Alert/constants'

@@ -236,7 +236,7 @@ function SetScreen() {
         <StatusBar tone="dark" time="9:41" />
 
         <div style={{ padding: '0 16px' }}>
-          <ScreenHeader content="Сегодня · утро" onBack={() => {}} />
+          <ScreenHeader content="Сегодня · утро" onClose={() => {}} />
         </div>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '0 16px' }}>
@@ -374,7 +374,7 @@ function ReviewScreen() {
           padding: '64px 16px 104px',
         }}
       >
-        <ScreenHeader content="Сегодня · утро" onBack={() => {}} />
+        <ScreenHeader content="Сегодня · утро" onClose={() => {}} />
 
         <CoachComment
           band="pink"

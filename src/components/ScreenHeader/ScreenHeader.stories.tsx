@@ -12,7 +12,7 @@ const meta = {
       </div>
     ),
   ],
-  argTypes: { content: { control: 'text' }, onBack: { control: false } },
+  argTypes: { content: { control: 'text' }, onClose: { control: false } },
   args: { content: '12 мая, понедельник' },
 } satisfies Meta<typeof ScreenHeader>
 

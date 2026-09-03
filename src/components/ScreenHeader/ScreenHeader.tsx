@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
 
-import { ChevronLeft } from '@gravity-ui/icons'
+import { Xmark } from '@gravity-ui/icons'
 
 import { Button } from '../Button/Button'
 import { Icon } from '../Icon/Icon'
@@ -10,27 +10,31 @@ import './ScreenHeader.css'
 export type ScreenHeaderProps = {
   /** Figma Text — дата тренировки. */
   content?: ReactNode
-  /** Что делает кнопка «назад». */
-  onBack?: () => void
+  /** Что делает кнопка закрытия. Не передана — кнопки нет. */
+  onClose?: () => void
   /** Подпись кнопки для чтения с экрана. */
-  backLabel?: string
+  closeLabel?: string
 }
 
-/** Шапка экрана: кнопка «назад» и дата рядом с ней. */
-export function ScreenHeader({ content, onBack, backLabel = 'Назад' }: ScreenHeaderProps) {
+/**
+ * Шапка экрана: кнопка закрытия и дата рядом с ней. Значок — `xmark`:
+ * кнопка закрывает экран прохождения, а не возвращает на шаг назад.
+ * Правка кита 03.09.2026, перенесена приёмкой релиза 0.1.0.
+ */
+export function ScreenHeader({ content, onClose, closeLabel = 'Закрыть' }: ScreenHeaderProps) {
   return (
     <div className="w-screen-header">
       {/*
        * Кнопки нет, когда возвращаться некуда: иначе в обходе с клавиатуры
        * появляется остановка, которая ничего не делает. Находка 11 ревью этапа 14.
        */}
-      {onBack ? (
+      {onClose ? (
         <Button
           view="secondary"
           size="m"
-          ariaLabel={backLabel}
-          startIcon={<Icon data={ChevronLeft} size={16} />}
-          onClick={onBack}
+          ariaLabel={closeLabel}
+          startIcon={<Icon data={Xmark} size={16} />}
+          onClick={onClose}
         />
       ) : null}
       <Label size="m" theme="unknown" content={content} />

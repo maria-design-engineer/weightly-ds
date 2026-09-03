@@ -4,7 +4,7 @@ import { Xmark } from '@gravity-ui/icons'
 
 import { Button } from '../Button/Button'
 import { Icon } from '../Icon/Icon'
-import type { AlertCorners, AlertLayout, AlertTheme, AlertView } from './constants'
+import type { AlertCorners, AlertTheme, AlertView } from './constants'
 import './Alert.css'
 
 export type AlertProps = {
@@ -15,7 +15,6 @@ export type AlertProps = {
   /** Figma Corners */
   corners?: AlertCorners
   /** Figma Layout у внутреннего .Content — где стоят кнопки. */
-  layout?: AlertLayout
   /** Figma ↳ Title text */
   title?: ReactNode
   /** Figma Content text */
@@ -39,7 +38,6 @@ export function Alert({
   theme = 'normal',
   view = 'filled',
   corners = 'rounded',
-  layout = 'buttons-at-the-bottom',
   title,
   message,
   icon,
@@ -65,7 +63,7 @@ export function Alert({
       role={theme === 'danger' || theme === 'warning' ? 'alert' : 'status'}
     >
       {icon ? <span className="w-alert__icon">{icon}</span> : null}
-      <div className={`w-alert__content w-alert__content_layout_${layout}`}>
+      <div className="w-alert__content">
         <div className="w-alert__text">
           {title ? <span className="w-alert__title">{title}</span> : null}
           {message}
