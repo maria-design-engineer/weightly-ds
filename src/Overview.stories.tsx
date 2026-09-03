@@ -405,7 +405,7 @@ function Base() {
           ))}
         </Axis>
         <Axis name="Со значком и кнопкой">
-          <Item label="filled" width={280}>
+          <Item label="icon + actions" width={280}>
             <Alert
               title="Тренировка не сохранена"
               message="Нет связи с сервером"

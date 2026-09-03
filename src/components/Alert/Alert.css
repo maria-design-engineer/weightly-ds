@@ -44,19 +44,16 @@
   height: 18px;
 }
 
-.w-alert__content {
-  display: flex;
-  flex: 1;
-  min-width: 0;
-}
-
 /*
  * Кнопки всегда под текстом: оси Layout в ките нет, проп убран приёмкой
  * релиза 0.1.0 — строка 4 этапа 15.
  */
 .w-alert__content {
+  display: flex;
+  flex: 1;
   flex-direction: column;
   gap: var(--w-g-spacing-5);
+  min-width: 0;
 }
 
 .w-alert__text {

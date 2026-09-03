@@ -14,7 +14,6 @@ export type AlertProps = {
   view?: AlertView
   /** Figma Corners */
   corners?: AlertCorners
-  /** Figma Layout у внутреннего .Content — где стоят кнопки. */
   /** Figma ↳ Title text */
   title?: ReactNode
   /** Figma Content text */
