@@ -5,6 +5,8 @@
  */
 .w-block-card {
   box-sizing: border-box;
+  /* Карточка тянется на ширину экрана: свою ширину задаёт место, где стоит. */
+  width: 100%;
   display: flex;
   align-items: center;
   gap: var(--w-g-spacing-2);

@@ -39,7 +39,7 @@ export function Alert({
   theme = 'normal',
   view = 'filled',
   corners = 'rounded',
-  layout = 'buttons-on-the-right',
+  layout = 'buttons-at-the-bottom',
   title,
   message,
   icon,

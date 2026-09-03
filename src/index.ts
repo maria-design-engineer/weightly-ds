@@ -146,6 +146,9 @@ export type { CoachCommentProps } from './components/CoachComment/CoachComment'
 export { COACH_COMMENT_BANDS, COACH_COMMENT_STATES } from './components/CoachComment/constants'
 export type { CoachCommentBand, CoachCommentState } from './components/CoachComment/constants'
 
+export { StepCell } from './components/StepCell/StepCell'
+export type { StepCellProps } from './components/StepCell/StepCell'
+
 export { ExerciseCard } from './components/ExerciseCard/ExerciseCard'
 export type { ExerciseCardProps } from './components/ExerciseCard/ExerciseCard'
 export { EXERCISE_CARD_TYPES } from './components/ExerciseCard/constants'

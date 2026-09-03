@@ -5,6 +5,8 @@
  */
 .w-coach-comment {
   box-sizing: border-box;
+  /* Карточка тянется на ширину экрана: свою ширину задаёт место, где стоит. */
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: var(--w-g-spacing-2);

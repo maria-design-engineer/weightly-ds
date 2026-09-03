@@ -7,6 +7,8 @@
   box-sizing: border-box;
   display: inline-flex;
   align-items: center;
+  /* Когда отметку растягивают на ширину колонки, значок и номер стоят по центру. */
+  justify-content: center;
   width: fit-content;
   gap: var(--w-g-spacing-1);
   padding: var(--w-g-spacing-1) var(--w-g-spacing-2);

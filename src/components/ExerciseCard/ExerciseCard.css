@@ -13,6 +13,8 @@
  */
 .w-exercise-card {
   box-sizing: border-box;
+  /* Карточка тянется на ширину экрана: свою ширину задаёт место, где стоит. */
+  width: 100%;
   display: flex;
   flex-direction: column;
   border-radius: var(--w-xl-radius);
@@ -25,13 +27,13 @@
 }
 
 .w-exercise-card_type_plan {
-  gap: var(--w-g-spacing-4);
+  gap: var(--w-g-spacing-3);
   padding: var(--w-g-spacing-3);
   box-shadow: var(--w-card-shadow-card-new);
 }
 
 .w-exercise-card_type_plan .w-exercise-card__info {
-  gap: var(--w-g-spacing-4);
+  gap: var(--w-g-spacing-1);
 }
 
 .w-exercise-card_type_task {
@@ -44,7 +46,7 @@
 }
 
 .w-exercise-card_type_running {
-  gap: var(--w-g-spacing-2);
+  gap: var(--w-g-spacing-3);
   padding: var(--w-g-spacing-3);
   box-shadow: var(--w-card-shadow-card-new);
 }
@@ -70,19 +72,30 @@
 }
 
 .w-exercise-card__title {
-  font: var(--w-style-header-subheader-2);
+  /* Название — Header/Subheader 1 у плана и идущего, Subheader 3 у задания. */
+  font: var(--w-style-header-subheader-1);
   color: var(--w-text-primary);
 }
 
 .w-exercise-card_type_task .w-exercise-card__title {
   font: var(--w-style-header-subheader-3);
+  /*
+   * Название держит ровно три строки: высота 72 — это 3 × 24, строка стиля
+   * Header/Subheader 3. Правка кита 03.09.2026: карточка не должна прыгать,
+   * когда название длиннее или короче. Лишнее прячется многоточием.
+   */
+  display: -webkit-box;
+  height: 72px;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
 }
 
 /* У идущего упражнения название стоит в строке со значком и обрезается многоточием. */
 .w-exercise-card_type_running .w-exercise-card__title {
   flex: 1;
   min-width: 0;
-  font: var(--w-style-text-body-1);
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -91,6 +104,8 @@
 .w-exercise-card__hint {
   display: inline-flex;
   flex: none;
+  /* Значок прижат к правому краю, даже когда счётчика рядом нет. */
+  margin-left: auto;
   border: 0;
   padding: 0;
   background: none;
@@ -130,10 +145,11 @@
 
 .w-exercise-card_type_plan .w-exercise-card__steps,
 .w-exercise-card_type_running .w-exercise-card__steps {
-  /* У этих двух в ките полей нет — отрицательные отступы возвращают размер. */
-  margin-block: -3px;
-  margin-left: -3px;
-  margin-right: calc(-1 * var(--w-g-spacing-3) - 3px);
+  /*
+   * В ките ряд стоит по полю карточки и обрезан по нему же — за поле он не
+   * выходит. Отрицательные отступы только возвращают место, взятое под кольцо.
+   */
+  margin: -3px;
 }
 
 /*
@@ -145,23 +161,6 @@
   margin-block: -1px;
   margin-left: -1px;
   margin-right: calc(-1 * var(--w-g-spacing-4) - 1px);
-}
-
-/* Колонка идущего упражнения: чип и отметка подхода под ним, промежуток 2. */
-.w-exercise-card__step {
-  display: flex;
-  flex: none;
-  flex-direction: column;
-  gap: var(--w-g-spacing-0-5);
-  width: 52px;
-}
-
-/*
- * И чип, и отметка занимают всю ширину колонки: в ките отметка стоит на FILL,
- * а по своему содержимому она уже 52 не набирает и уезжает влево.
- */
-.w-exercise-card__step > * {
-  width: 100%;
 }
 
 /* Чип в ряду не сжимается: ряд прокручивается, а не ужимается. */

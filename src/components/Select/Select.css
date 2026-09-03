@@ -19,8 +19,8 @@
   border: 1px solid var(--w-line-generic);
   background: transparent;
   color: var(--w-text-primary);
-  /* Текст значения — Header/Subheader 1, у XL Subheader 2, как у TextInput. */
-  font: var(--w-style-header-subheader-1);
+  /* Текст значения — Text/Body 1, у XL Text/Body 2, как у TextInput. Пересснято 03.09.2026. */
+  font: var(--w-style-text-body-1);
   text-align: left;
   cursor: pointer;
 }
@@ -88,7 +88,7 @@
 .w-select_size_s .w-select__trigger { height: 28px; padding: 0 var(--w-g-spacing-2); border-radius: var(--w-s-radius); }
 .w-select_size_m .w-select__trigger { height: 34px; padding: 0 var(--w-g-spacing-3); border-radius: var(--w-m-radius); }
 .w-select_size_l .w-select__trigger { height: 42px; padding: 0 var(--w-g-spacing-4); border-radius: var(--w-l-radius); }
-.w-select_size_xl .w-select__trigger { height: 52px; padding: 0 var(--w-g-spacing-6); border-radius: var(--w-xl-radius); font: var(--w-style-header-subheader-2); }
+.w-select_size_xl .w-select__trigger { height: 52px; padding: 0 var(--w-g-spacing-6); border-radius: var(--w-xl-radius); font: var(--w-style-text-body-2); }
 
 /* View=Clear — без рамки и заливки, боковых отступов нет. */
 .w-select_view_clear .w-select__trigger {

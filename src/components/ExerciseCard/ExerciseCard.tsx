@@ -75,14 +75,17 @@ export function ExerciseCard({
   return (
     <div className={`w-exercise-card w-exercise-card_type_${type}`}>
       <div className="w-exercise-card__info">
-        <div className="w-exercise-card__head">
-          {type === 'running' ? (
-            <span className="w-exercise-card__title">{content}</span>
-          ) : (
-            caption && <span className="w-exercise-card__counter">{caption}</span>
-          )}
-          {hint}
-        </div>
+        {/* Шапки нет вовсе, когда нечего в неё положить: в ките при Counter=false её тоже нет. */}
+        {type === 'running' || caption || hint ? (
+          <div className="w-exercise-card__head">
+            {type === 'running' ? (
+              <span className="w-exercise-card__title">{content}</span>
+            ) : (
+              caption && <span className="w-exercise-card__counter">{caption}</span>
+            )}
+            {hint}
+          </div>
+        ) : null}
         {type === 'running' ? null : <span className="w-exercise-card__title">{content}</span>}
       </div>
       {steps ? (

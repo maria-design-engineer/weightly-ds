@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 import { IntensityChip } from '../IntensityChip/IntensityChip'
-import { SetMarker } from '../SetMarker/SetMarker'
+import { StepCell } from '../StepCell/StepCell'
 import { Cell, Row } from '../story-layout'
 import { ExerciseCard } from './ExerciseCard'
 import { EXERCISE_CARD_TYPES } from './constants'
@@ -32,34 +32,15 @@ const STEPS_L = (
   </>
 )
 
-/** Колонка идущего упражнения: чип и отметка подхода под ним. */
-function StepWithMarker({
-  percent,
-  caption,
-  band,
-  number,
-}: {
-  percent: string
-  caption: string
-  band: 'neutral' | 'lime' | 'pink'
-  number: string
-}) {
-  return (
-    <div className="w-exercise-card__step">
-      <IntensityChip band={band} content={percent} caption={caption} />
-      <SetMarker state="done" content={number} />
-    </div>
-  )
-}
-
+/** Ступени идущего упражнения — компонент `StepCell`, он же `Custom / step-cell`. */
 const STEPS_RUNNING = (
   <>
-    <StepWithMarker percent="50%" caption="3 × 1" band="neutral" number="1" />
-    <StepWithMarker percent="60%" caption="3 × 1" band="neutral" number="2" />
-    <StepWithMarker percent="70%" caption="2 × 3" band="lime" number="3" />
-    <StepWithMarker percent="70%" caption="2 × 3" band="lime" number="3" />
-    <StepWithMarker percent="70%" caption="2 × 3" band="lime" number="3" />
-    <StepWithMarker percent="90%" caption="1 × 1" band="pink" number="4" />
+    <StepCell band="neutral" content="50%" caption="3 × 1" markerState="done" markerContent="1" />
+    <StepCell band="neutral" content="60%" caption="3 × 1" markerState="done" markerContent="2" />
+    <StepCell band="lime" content="70%" caption="2 × 3" markerState="done" markerContent="3" />
+    <StepCell band="lime" chipState="active" content="70%" caption="2 × 3" markerState="current" markerContent="4" />
+    <StepCell band="lime" content="70%" caption="2 × 3" markerState="planned" markerContent="5" />
+    <StepCell band="pink" content="90%" caption="1 × 1" markerState="planned" markerContent="6" />
   </>
 )
 

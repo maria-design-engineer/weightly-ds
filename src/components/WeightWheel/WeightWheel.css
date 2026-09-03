@@ -58,7 +58,8 @@
   align-items: center;
   gap: var(--w-weight-wheel-gap);
   width: calc(var(--w-weight-wheel-step) * 5 - var(--w-weight-wheel-gap));
-  height: var(--w-weight-wheel-item-size);
+  /* Значение и в ленте высотой 40: 69 — это его ширина, а не высота. */
+  height: 40px;
   scroll-snap-type: x mandatory;
 }
 

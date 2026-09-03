@@ -10,8 +10,9 @@
   gap: var(--w-g-spacing-3);
   padding: var(--w-g-spacing-4) var(--w-g-spacing-5);
   border: 0 solid transparent;
-  color: var(--w-text-primary);
-  font: var(--w-style-text-body-2);
+  /* Текст сообщения — Text/Body 1 цветом Text/Complementary. Пересснято 03.09.2026. */
+  color: var(--w-text-complementary);
+  font: var(--w-style-text-body-1);
 }
 
 /* Corners=Rounded — радиус L radius; Squared — радиуса нет. */
@@ -72,6 +73,8 @@
 }
 
 .w-alert__title {
+  /* Заголовок — Header/Subheader 2 цветом Text/Primary, темнее сообщения. */
+  color: var(--w-text-primary);
   font: var(--w-style-header-subheader-2);
 }
 

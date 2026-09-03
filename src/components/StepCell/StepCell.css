@@ -1,0 +1,23 @@
+/*
+ * Custom / step-cell. Снято обходом мастера Figma 03.09.2026:
+ * 52 × 76 — чип 46, промежуток 4, отметка подхода 26.
+ * Обе части занимают всю ширину колонки: у отметки своя ширина по
+ * содержимому меньше 52, и без этого она уезжает влево.
+ */
+.w-step-cell {
+  box-sizing: border-box;
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  gap: var(--w-g-spacing-1);
+  width: 52px;
+}
+
+.w-step-cell > * {
+  width: 100%;
+}
+
+.w-step-cell > .w-set-marker {
+  box-sizing: border-box;
+  width: 100%;
+}
