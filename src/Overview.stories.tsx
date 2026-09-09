@@ -67,6 +67,23 @@ import { WorkoutCard } from './components/WorkoutCard/WorkoutCard'
 import { WEIGHT_WHEEL_DIRECTIONS } from './components/WeightWheel/constants'
 import { WeightWheelItem } from './components/WeightWheelItem/WeightWheelItem'
 import { WEIGHT_WHEEL_ITEM_STATES } from './components/WeightWheelItem/constants'
+import { ExerciseBullets } from './components/ExerciseBullets/ExerciseBullets'
+import { EXERCISE_BULLETS_VIEWS } from './components/ExerciseBullets/constants'
+import { LiftCounter } from './components/LiftCounter/LiftCounter'
+import { LiftCounters } from './components/LiftCounters/LiftCounters'
+import { Loader } from './components/Loader/Loader'
+import { LOADER_SIZES } from './components/Loader/constants'
+import { MoodScale } from './components/MoodScale/MoodScale'
+import { MOOD_SCALE_STATES } from './components/MoodScale/constants'
+import { MoodTrack } from './components/MoodTrack/MoodTrack'
+import { Picture } from './components/Picture/Picture'
+import { PICTURE_TYPES } from './components/Picture/constants'
+import { SetPanel } from './components/SetPanel/SetPanel'
+import { Skeleton } from './components/Skeleton/Skeleton'
+import { Spin } from './components/Spin/Spin'
+import { SPIN_SIZES } from './components/Spin/constants'
+import { WeightField } from './components/WeightField/WeightField'
+import { WEIGHT_FIELD_STATES } from './components/WeightField/constants'
 import { MONO_FONT } from './components/story-layout'
 import './tokens/index.css'
 
@@ -185,7 +202,7 @@ function Item({ label, width, children }: { label: string; width?: number; child
 
 function Base() {
   return (
-    <Layer title="Базовый слой — 7 компонентов и иконотека">
+    <Layer title="Базовый слой — 10 компонентов и иконотека">
       <Component kit="Button" code="Button">
         <Axis name="View · 21">
           {BUTTON_VIEWS.map((view) => (
@@ -415,6 +432,50 @@ function Base() {
         </Axis>
       </Component>
 
+      <Component kit="Loader" code="Loader">
+        <Axis name="Size · 3">
+          {LOADER_SIZES.map((size) => (
+            <Item key={size} label={size} width={80}>
+              <Loader size={size} />
+            </Item>
+          ))}
+        </Axis>
+      </Component>
+
+      <Component kit="Spin" code="Spin">
+        <Axis name="Size · 5">
+          {SPIN_SIZES.map((size) => (
+            <Item key={size} label={size} width={80}>
+              <Spin size={size} />
+            </Item>
+          ))}
+        </Axis>
+      </Component>
+
+      <Component kit="Skeleton" code="Skeleton">
+        <Axis name="Type · 4">
+          <Item label="User" width={120}>
+            <Skeleton width={28} height={28} round />
+          </Item>
+          <Item label="Block" width={200}>
+            <Skeleton />
+          </Item>
+          <Item label="Multilines" width={200}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 16, width: '100%' }}>
+              <Skeleton />
+              <Skeleton />
+              <Skeleton />
+            </div>
+          </Item>
+          <Item label="User + block" width={220}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+              <Skeleton width={28} height={28} round />
+              <Skeleton width={160} />
+            </div>
+          </Item>
+        </Axis>
+      </Component>
+
       <Component kit="Иконотека Gravity" code="Icon">
         <Axis name="Размер">
           {[14, 16, 20, 24].map((size) => (
@@ -431,7 +492,7 @@ function Base() {
 function Atoms() {
   return (
     <Layer title="Атомы — 11 компонентов">
-      <Component kit="Custom / divider" code="Divider">
+      <Component kit="Product / divider" code="Divider">
         <Axis name="Свойств нет">
           <Item label="divider" width={280}>
             <Divider />
@@ -439,7 +500,7 @@ function Atoms() {
         </Axis>
       </Component>
 
-      <Component kit="Custom / table-cell" code="TableCell">
+      <Component kit="Product / table-cell" code="TableCell">
         <Axis name="Tone · 3">
           {TABLE_CELL_TONES.map((tone) => (
             <Item key={tone} label={tone}>
@@ -449,7 +510,7 @@ function Atoms() {
         </Axis>
       </Component>
 
-      <Component kit="Custom / intensity-chip" code="IntensityChip">
+      <Component kit="Product / intensity-chip" code="IntensityChip">
         <Axis name="Size · 2">
           {INTENSITY_CHIP_SIZES.map((size) => (
             <Item key={size} label={size}>
@@ -473,7 +534,7 @@ function Atoms() {
         </Axis>
       </Component>
 
-      <Component kit="Custom / lift-mark" code="LiftMark">
+      <Component kit="Product / lift-mark" code="LiftMark">
         <Axis name="State · 3">
           {LIFT_MARK_STATES.map((state) => (
             <Item key={state} label={state}>
@@ -483,7 +544,7 @@ function Atoms() {
         </Axis>
       </Component>
 
-      <Component kit="Custom / set-marker" code="SetMarker">
+      <Component kit="Product / set-marker" code="SetMarker">
         <Axis name="State · 3">
           {SET_MARKER_STATES.map((state) => (
             <Item key={state} label={state}>
@@ -494,7 +555,7 @@ function Atoms() {
       </Component>
 
 
-      <Component kit="Custom / exercise-row" code="ExerciseRow">
+      <Component kit="Product / exercise-row" code="ExerciseRow">
         <Axis name="Свойств нет">
           <Item label="exercise-row" width={328}>
             <ExerciseRow content="Рывок классический" caption="3 × 3" />
@@ -502,7 +563,7 @@ function Atoms() {
         </Axis>
       </Component>
 
-      <Component kit="Custom / stat-tile" code="StatTile">
+      <Component kit="Product / stat-tile" code="StatTile">
         <Axis name="Tone · 2">
           {STAT_TILE_TONES.map((tone) => (
             <Item key={tone} label={tone}>
@@ -512,7 +573,7 @@ function Atoms() {
         </Axis>
       </Component>
 
-      <Component kit="Custom / weight-wheel-item" code="WeightWheelItem">
+      <Component kit="Product / weight-wheel-item" code="WeightWheelItem">
         <Axis name="State · 2">
           {WEIGHT_WHEEL_ITEM_STATES.map((state) => (
             <Item key={state} label={state}>
@@ -522,7 +583,7 @@ function Atoms() {
         </Axis>
       </Component>
 
-      <Component kit="Custom / step-cell" code="StepCell">
+      <Component kit="Product / step-cell" code="StepCell">
         <Axis name="Состояние отметки">
           {SET_MARKER_STATES.map((state) => (
             <Item key={state} label={state}>
@@ -539,13 +600,24 @@ function Atoms() {
         </Axis>
       </Component>
 
-      <Component kit="Custom / lifts-cell" code="LiftsCell">
+      <Component kit="Product / lifts-cell" code="LiftsCell">
         <Axis name="Список отметок">
           <Item label="done, failed, skipped">
             <LiftsCell lifts={['done', 'failed', 'skipped']} />
           </Item>
         </Axis>
       </Component>
+
+      <Component kit="Product / picture" code="Picture">
+        <Axis name="Type · 2">
+          {PICTURE_TYPES.map((type) => (
+            <Item key={type} label={type} width={80}>
+              <Picture type={type} />
+            </Item>
+          ))}
+        </Axis>
+      </Component>
+
     </Layer>
   )
 }
@@ -577,8 +649,8 @@ const RUNNING_STEPS = (
 
 function Molecules() {
   return (
-    <Layer title="Молекулы — 12 компонентов">
-      <Component kit="Custom / bottom-bar-item" code="BottomBarItem">
+    <Layer title="Молекулы — 16 компонентов">
+      <Component kit="Product / bottom-bar-item" code="BottomBarItem">
         <Axis name="State · 2">
           {BOTTOM_BAR_ITEM_STATES.map((state) => (
             <Item key={state} label={state}>
@@ -588,7 +660,7 @@ function Molecules() {
         </Axis>
       </Component>
 
-      <Component kit="Custom / block-tab" code="BlockTab">
+      <Component kit="Product / block-tab" code="BlockTab">
         <Axis name="State · 3">
           {BLOCK_TAB_STATES.map((state) => (
             <Item key={state} label={state} width={100}>
@@ -598,7 +670,7 @@ function Molecules() {
         </Axis>
       </Component>
 
-      <Component kit="Custom / screen-header" code="ScreenHeader">
+      <Component kit="Product / screen-header" code="ScreenHeader">
         <Axis name="Свойств нет">
           <Item label="screen-header" width={328}>
             <ScreenHeader content="12 марта" onClose={() => {}} />
@@ -606,7 +678,7 @@ function Molecules() {
         </Axis>
       </Component>
 
-      <Component kit="Custom / field" code="Field">
+      <Component kit="Product / field" code="Field">
         <Axis name="Подпись и контрол">
           <Item label="field" width={240}>
             <Field label="Вес штанги">
@@ -616,7 +688,7 @@ function Molecules() {
         </Axis>
       </Component>
 
-      <Component kit="Custom / history-row" code="HistoryRow">
+      <Component kit="Product / history-row" code="HistoryRow">
         <Axis name="Свойств нет">
           <Item label="history-row" width={328}>
             <HistoryRow
@@ -628,7 +700,7 @@ function Molecules() {
         </Axis>
       </Component>
 
-      <Component kit="Custom / settings-row" code="SettingsRow">
+      <Component kit="Product / settings-row" code="SettingsRow">
         <Axis name="Card · 2">
           {SETTINGS_ROW_CARDS.map((card) => (
             <Item key={card} label={card} width={328}>
@@ -638,7 +710,7 @@ function Molecules() {
         </Axis>
       </Component>
 
-      <Component kit="Custom / correspondence-row" code="CorrespondenceRow">
+      <Component kit="Product / correspondence-row" code="CorrespondenceRow">
         <Axis name="Свойств нет">
           <Item label="correspondence-row" width={328}>
             <CorrespondenceRow content="Рывок классический" pill="Рывок" />
@@ -646,7 +718,7 @@ function Molecules() {
         </Axis>
       </Component>
 
-      <Component kit="Custom / block-card" code="BlockCard">
+      <Component kit="Product / block-card" code="BlockCard">
         <Axis name="Shadow · 2">
           {BLOCK_CARD_SHADOWS.map((shadow) => (
             <Item key={shadow} label={shadow} width={328}>
@@ -661,7 +733,7 @@ function Molecules() {
         </Axis>
       </Component>
 
-      <Component kit="Custom / workout-card" code="WorkoutCard">
+      <Component kit="Product / workout-card" code="WorkoutCard">
         <Axis name="Свойств нет">
           <Item label="workout-card" width={328}>
             <WorkoutCardSample />
@@ -669,7 +741,7 @@ function Molecules() {
         </Axis>
       </Component>
 
-      <Component kit="Custom / coach-comment" code="CoachComment">
+      <Component kit="Product / coach-comment" code="CoachComment">
         <Axis name="Band · 3">
           {COACH_COMMENT_BANDS.map((band) => (
             <Item key={band} label={band} width={328}>
@@ -698,7 +770,7 @@ function Molecules() {
         </Axis>
       </Component>
 
-      <Component kit="Custom / exercise-card" code="ExerciseCard">
+      <Component kit="Product / exercise-card" code="ExerciseCard">
         <Axis name="Type · 3">
           {EXERCISE_CARD_TYPES.map((type) => (
             <Item key={type} label={type} width={328}>
@@ -714,7 +786,7 @@ function Molecules() {
         </Axis>
       </Component>
 
-      <Component kit="Custom / weight-wheel" code="WeightWheel">
+      <Component kit="Product / weight-wheel" code="WeightWheel">
         <Axis name="Direction · 2">
           {WEIGHT_WHEEL_DIRECTIONS.map((direction) => (
             <Item key={direction} label={direction} width={direction === 'vertical' ? 136 : 340}>
@@ -728,6 +800,51 @@ function Molecules() {
           ))}
         </Axis>
       </Component>
+
+      <Component kit="Product / exercise-bullets" code="ExerciseBullets">
+        <Axis name="View · 3">
+          {EXERCISE_BULLETS_VIEWS.map((view) => (
+            <Item key={view} label={view} width={328}>
+              <ExerciseBullets view={view} content="Приседания со штангой · на груди" />
+            </Item>
+          ))}
+        </Axis>
+      </Component>
+
+      <Component kit="Product / mood-track" code="MoodTrack">
+        <Axis name="Положение ручки">
+          {[0, 2, 4].map((value) => (
+            <Item key={value} label={`деление ${value}`} width={258}>
+              <MoodTrack value={value} />
+            </Item>
+          ))}
+        </Axis>
+      </Component>
+
+      <Component kit="Product / lift-counter" code="LiftCounter">
+        <Axis name="Свойств нет">
+          <Item label="lift-counter" width={140}>
+            <LiftCounter content={2} />
+          </Item>
+        </Axis>
+      </Component>
+
+      <Component kit="Product / weight-field" code="WeightField">
+        <Axis name="State · 3">
+          {WEIGHT_FIELD_STATES.map((state) => (
+            <Item key={state} label={state} width={328}>
+              <WeightField
+                state={state}
+                values={WHEEL_VALUES}
+                selected={43}
+                errorText="Вес не задан"
+                ariaLabel="Вес подхода"
+              />
+            </Item>
+          ))}
+        </Axis>
+      </Component>
+
     </Layer>
   )
 }
@@ -752,8 +869,8 @@ function WorkoutCardSample() {
 
 function Organisms() {
   return (
-    <Layer title="Организмы — 5 компонентов">
-      <Component kit="Custom / bottom-bar" code="BottomBar">
+    <Layer title="Организмы — 9 компонентов">
+      <Component kit="Product / bottom-bar" code="BottomBar">
         <Axis name="Active · 3">
           {BOTTOM_BAR_SECTIONS.map((section) => (
             <Item key={section} label={section} width={328}>
@@ -763,7 +880,7 @@ function Organisms() {
         </Axis>
       </Component>
 
-      <Component kit="Custom / sticky-bar" code="StickyBar">
+      <Component kit="Product / sticky-bar" code="StickyBar">
         <Axis name="Свойств нет">
           <Item label="sticky-bar" width={360}>
             <StickyBar>
@@ -774,7 +891,7 @@ function Organisms() {
         </Axis>
       </Component>
 
-      <Component kit="Custom / sticky-bar-workout" code="StickyBarWorkout">
+      <Component kit="Product / sticky-bar-workout" code="StickyBarWorkout">
         <Axis name="Свойств нет">
           <Item label="sticky-bar-workout" width={360}>
             <StickyBarWorkout />
@@ -782,7 +899,7 @@ function Organisms() {
         </Axis>
       </Component>
 
-      <Component kit="Custom / block-tabs" code="BlockTabs">
+      <Component kit="Product / block-tabs" code="BlockTabs">
         <Axis name="Свойств нет">
           <Item label="block-tabs" width={328}>
             <BlockTabs>
@@ -795,14 +912,123 @@ function Organisms() {
         </Axis>
       </Component>
 
-      <Component kit="Custom / paranja" code="Paranja">
+      <Component kit="Product / paranja" code="Paranja">
         <Axis name="Свойств нет">
           <Item label="открыта" width={360}>
             <ParanjaSample />
           </Item>
         </Axis>
       </Component>
+      <Component kit="Product / mood-scale" code="MoodScale">
+        <Axis name="State · 3">
+          {MOOD_SCALE_STATES.map((state) => (
+            <Item key={state} label={state} width={328}>
+              <MoodScale
+                state={state}
+                title="Физическое состояние"
+                caption="Как самочувствие, как энергия"
+              />
+            </Item>
+          ))}
+        </Axis>
+      </Component>
+
+      <Component kit="Product / lift-counters" code="LiftCounters">
+        <Axis name="Свойств нет">
+          <Item label="два движения" width={328}>
+            <LiftCounters>
+              <LiftCounter content={2} />
+              <LiftCounter content={3} />
+            </LiftCounters>
+          </Item>
+        </Axis>
+      </Component>
+
+      <Component kit="Product / set-panel" code="SetPanel">
+        <Axis name="State · 2">
+          <Item label="default" width={360}>
+            <SetPanel
+              title="Подход"
+              caption="50% от 123 кг"
+              liftsTitle="Подъёмы"
+              markers={
+                <>
+                  <SetMarker state="current" content="1" />
+                  <SetMarker state="planned" content="2" />
+                  <SetMarker state="planned" content="3" />
+                </>
+              }
+              onAddSet={() => {}}
+              wheel={
+                <WeightWheel
+                  direction="horizontal"
+                  values={WHEEL_VALUES}
+                  selected={43}
+                  ariaLabel="Вес подхода"
+                />
+              }
+              lifts={
+                <LiftCounters>
+                  <LiftCounter content={2} />
+                  <LiftCounter content={3} />
+                </LiftCounters>
+              }
+            />
+          </Item>
+          <Item label="empty" width={360}>
+            <SetPanel
+              state="empty"
+              emptyTitle="Подходов пока нет"
+              emptyCaption="Появятся, когда добавишь интенсивность"
+              emptyAction={<Button view="normal-contrast" size="m" content="Добавить" />}
+            />
+          </Item>
+        </Axis>
+      </Component>
+
+      <Component kit="Product / drawer" code="Drawer">
+        <Axis name="Actions · 2">
+          <Item label="шторка открывается в своей истории" width={360}>
+            <DrawerSample />
+          </Item>
+        </Axis>
+      </Component>
+
     </Layer>
+  )
+}
+
+/**
+ * Шторка тоже уходит в портал, поэтому на обзорной странице показана её панель
+ * без наложения: раскладка кнопок видна, а поведение проверяется в своей истории.
+ */
+function DrawerSample() {
+  return (
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 16,
+        width: 360,
+        padding: 16,
+        borderRadius: '16px 16px 0 0',
+        background: 'var(--w-base-float-float-bg)',
+        boxShadow: 'var(--w-card-shadow-card-new)',
+      }}
+    >
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+        <span style={{ font: 'var(--w-style-header-header-2)', color: 'var(--w-text-primary)' }}>
+          Заголовок шторки
+        </span>
+        <span style={{ font: 'var(--w-style-text-body-3)', color: 'var(--w-text-secondary)' }}>
+          Подпись под заголовком
+        </span>
+      </div>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+        <Button view="primary" size="xl" content="Сохранить" />
+        <Button view="secondary" size="xl" content="Отмена" />
+      </div>
+    </div>
   )
 }
 
