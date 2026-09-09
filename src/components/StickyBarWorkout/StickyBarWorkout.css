@@ -14,14 +14,23 @@
   padding: var(--w-g-spacing-4);
   border-radius: var(--w-l-radius) var(--w-l-radius) 0 0;
   /*
-   * Первым идёт заливка кита: где color-mix не поддержан, объявление ниже
-   * отбрасывается целиком, и без запасного панель осталась бы прозрачной.
-   * Находка 2 ревью этапа 8.
+   * Запасное — плотный фон экрана. Каскадом это не решается: объявление
+   * с var() проходит разбор, выигрывает каскад и падает уже при вычислении,
+   * а background откатывается к своему начальному — к прозрачному. Поэтому
+   * полупрозрачный вариант вынесен в @supports: он проверяется при разборе.
+   * Заливка кита Base/Light Hover в запасные не годится — она белая во всех
+   * четырёх режимах и вернула бы светлую панель с белыми подписями.
+   * Находка подэтапа 8г.
    */
-  background: var(--w-base-light-hover);
-  background: color-mix(in srgb, var(--w-branding-base-background) 70%, transparent);
+  background: var(--w-branding-base-background);
   /* Размытие фона стоит только здесь — решение пользователя 03.09.2026. */
   backdrop-filter: blur(17px);
+}
+
+@supports (background: color-mix(in srgb, red 50%, transparent)) {
+  .w-sticky-bar-workout {
+    background: color-mix(in srgb, var(--w-branding-base-background) 70%, transparent);
+  }
 }
 
 .w-sticky-bar-workout__row {

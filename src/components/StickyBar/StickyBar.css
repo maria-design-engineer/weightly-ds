@@ -17,20 +17,30 @@
   gap: var(--w-g-spacing-2);
   width: 100%;
   padding: var(--w-g-spacing-4);
-  /* Запасное — градиент кита, белым числом: без него панель пропадает там,
-     где color-mix не поддержан. Находка 2 ревью этапа 8. */
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0.3) 7%,
-    rgba(255, 255, 255, 0.7) 19%
-  );
+  /*
+   * Запасное — тот же переход, но к плотному фону экрана: без color-mix
+   * полупрозрачных ступеней не собрать. Каскадом это не решается: объявление
+   * с var() проходит разбор, выигрывает каскад и падает уже при вычислении,
+   * а background откатывается не к строке выше, а к своему начальному —
+   * к прозрачному. Поэтому дальше @supports, он проверяется при разборе.
+   * Находка подэтапа 8г.
+   */
   background: linear-gradient(
     180deg,
     transparent 0%,
-    color-mix(in srgb, var(--w-branding-base-background) 30%, transparent) 7%,
-    color-mix(in srgb, var(--w-branding-base-background) 70%, transparent) 19%
+    var(--w-branding-base-background) 19%
   );
+}
+
+@supports (background: color-mix(in srgb, red 50%, transparent)) {
+  .w-sticky-bar {
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      color-mix(in srgb, var(--w-branding-base-background) 30%, transparent) 7%,
+      color-mix(in srgb, var(--w-branding-base-background) 70%, transparent) 19%
+    );
+  }
 }
 
 .w-sticky-bar > * {
