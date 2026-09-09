@@ -15,7 +15,7 @@ type Story = StoryObj<typeof meta>
 
 export const Playground: Story = { args: { type: 'empty-badge' } }
 
-/** Ось Type: пунктирный круг под пустое состояние и часы под время. */
+/** Ось Type: лицо в пунктирном круге под пустое состояние и часы под время. */
 export const Types: Story = {
   render: () => (
     <Row>
