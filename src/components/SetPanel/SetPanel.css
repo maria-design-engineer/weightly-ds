@@ -9,7 +9,14 @@
   flex-direction: column;
   gap: 16px;
   width: 100%;
+  /*
+   * Высота у обоих состояний одна — 403: панель прижата к низу экрана, и она
+   * не должна прыгать, когда подходов ещё нет. Верхние углы скруглены на 20,
+   * нижних скруглений нет — панель уходит за нижний край.
+   */
+  min-height: 403px;
   padding: 16px;
+  border-radius: var(--w-2xl-radius) var(--w-2xl-radius) 0 0;
   background: var(--w-base-simple-hover-solid);
 }
 
