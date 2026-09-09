@@ -34,7 +34,7 @@ function Sheet({ onClose }: { onClose: () => void }) {
         background: 'var(--w-base-float-float-bg)',
       }}
     >
-      <span style={{ font: 'var(--w-style-header-header-2)' }}>Заголовок наложения</span>
+      <span style={{ font: 'var(--w-style-header-header-1)' }}>Заголовок наложения</span>
       <Button view="primary" size="xl" content="Закрыть" onClick={onClose} />
     </div>
   )

@@ -11,7 +11,7 @@
   gap: var(--w-g-spacing-0-5);
   min-width: 69px;
   height: 40px;
-  font: var(--w-style-header-display-2);
+  font: var(--w-style-header-display-3);
 }
 
 .w-weight-wheel-item_state_active { color: var(--w-text-primary); }

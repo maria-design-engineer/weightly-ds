@@ -60,7 +60,7 @@
 .w-exercise-card__counter {
   flex: 1;
   min-width: 0;
-  font: var(--w-style-text-caption-2);
+  font: var(--w-style-text-caption-1);
 }
 
 .w-exercise-card_type_plan .w-exercise-card__counter {
@@ -73,12 +73,12 @@
 
 .w-exercise-card__title {
   /* Название — Header/Subheader 1 у плана и идущего, Subheader 3 у задания. */
-  font: var(--w-style-header-subheader-1);
+  font: var(--w-style-header-subheader-3);
   color: var(--w-text-primary);
 }
 
 .w-exercise-card_type_task .w-exercise-card__title {
-  font: var(--w-style-header-subheader-3);
+  font: var(--w-style-header-subheader-1);
   /*
    * Название держит ровно три строки: высота 72 — это 3 × 24, строка стиля
    * Header/Subheader 3. Правка кита 03.09.2026: карточка не должна прыгать,

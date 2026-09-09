@@ -12,6 +12,7 @@ import {
   WEIGHT_TOKENS,
   type ValueToken,
 } from './tokens.data'
+import { MONO_FONT } from '../components/story-layout'
 import './index.css'
 
 /** Атрибут режима на обёртке: плашка красится тем же CSS, что и продукт. */
@@ -66,7 +67,7 @@ function Name({ kit, name }: { kit: string; name: string }) {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 2, width: 340, flex: 'none' }}>
       <span style={{ font: 'var(--w-style-text-body-1)' }}>{kit}</span>
-      <span style={{ font: 'var(--w-style-misc-code-1)', color: 'var(--w-text-secondary)' }}>
+      <span style={{ font: MONO_FONT, color: 'var(--w-text-secondary)' }}>
         {name}
       </span>
     </div>
@@ -88,7 +89,7 @@ function ValueRows({ tokens, sample }: { tokens: ValueToken[]; sample?: (t: Valu
           }}
         >
           <Name kit={token.kit} name={token.name} />
-          <span style={{ font: 'var(--w-style-misc-code-1)', width: 160, flex: 'none' }}>
+          <span style={{ font: MONO_FONT, width: 160, flex: 'none' }}>
             {token.value}
           </span>
           {sample ? sample(token) : null}
@@ -161,7 +162,7 @@ export const Colors: Story = {
                   background: `var(${token.name})`,
                 }}
               />
-              <span style={{ font: 'var(--w-style-misc-code-1)' }}>{token.values[index]}</span>
+              <span style={{ font: MONO_FONT }}>{token.values[index]}</span>
             </div>
           ))}
         </div>

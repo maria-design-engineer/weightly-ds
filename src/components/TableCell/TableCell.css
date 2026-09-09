@@ -8,7 +8,7 @@
   align-items: center;
   height: 40px;
   padding: 0 var(--w-g-spacing-2);
-  font: var(--w-style-text-body-1);
+  font: var(--w-style-text-body-3);
 }
 
 .w-table-cell_tone_primary { color: var(--w-text-primary); }

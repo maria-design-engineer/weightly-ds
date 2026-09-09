@@ -20,14 +20,14 @@
 }
 
 .w-stat-tile__value {
-  font: var(--w-style-header-header-2);
+  font: var(--w-style-header-header-1);
 }
 
 .w-stat-tile_tone_plain .w-stat-tile__value { color: var(--w-text-primary); }
 .w-stat-tile_tone_brand .w-stat-tile__value { color: var(--w-branding-base-brand); }
 
 .w-stat-tile__caption {
-  font: var(--w-style-text-caption-2);
+  font: var(--w-style-text-caption-1);
   color: var(--w-text-secondary);
   text-align: center;
 }

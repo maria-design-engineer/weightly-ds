@@ -23,7 +23,7 @@
    * 03.09.2026: Subheader в мастере стоит у подписи «Label:», а не у текста,
    * и в первой сборке она уехала на само поле — текст выходил жирным.
    */
-  font: var(--w-style-text-body-1);
+  font: var(--w-style-text-body-3);
 }
 
 .w-text-input__box:hover:not(:has([data-disabled])) {
@@ -105,6 +105,6 @@
 }
 
 .w-text-input__error-text {
-  font: var(--w-style-text-body-1);
+  font: var(--w-style-text-body-3);
   color: var(--w-text-danger);
 }

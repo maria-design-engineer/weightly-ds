@@ -69,6 +69,7 @@ import { WorkoutCard } from './components/WorkoutCard/WorkoutCard'
 import { WEIGHT_WHEEL_DIRECTIONS } from './components/WeightWheel/constants'
 import { WeightWheelItem } from './components/WeightWheelItem/WeightWheelItem'
 import { WEIGHT_WHEEL_ITEM_STATES } from './components/WeightWheelItem/constants'
+import { MONO_FONT } from './components/story-layout'
 import './tokens/index.css'
 
 /*
@@ -104,7 +105,7 @@ function Page({ title, children }: { title: string; children: ReactNode }) {
         color: 'var(--w-text-primary)',
       }}
     >
-      <h2 style={{ margin: 0, font: 'var(--w-style-header-header-1)' }}>{title}</h2>
+      <h2 style={{ margin: 0, font: 'var(--w-style-header-header-2)' }}>{title}</h2>
       {children}
     </div>
   )
@@ -119,7 +120,7 @@ function Layer({ title, children }: { title: string; children: ReactNode }) {
           margin: 0,
           paddingBottom: 8,
           borderBottom: '1px solid var(--w-line-generic)',
-          font: 'var(--w-style-header-subheader-3)',
+          font: 'var(--w-style-header-subheader-1)',
         }}
       >
         {title}
@@ -135,7 +136,7 @@ function Component({ kit, code, children }: { kit: string; code: string; childre
     <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
       <div style={{ display: 'flex', alignItems: 'baseline', gap: 8 }}>
         <span style={{ font: 'var(--w-style-header-subheader-2)' }}>{kit}</span>
-        <span style={{ font: 'var(--w-style-misc-code-1)', color: 'var(--w-text-secondary)' }}>
+        <span style={{ font: MONO_FONT, color: 'var(--w-text-secondary)' }}>
           {code}
         </span>
       </div>
@@ -153,7 +154,7 @@ function Axis({ name, children }: { name: string; children: ReactNode }) {
           flex: 'none',
           width: 160,
           paddingTop: 4,
-          font: 'var(--w-style-text-caption-2)',
+          font: 'var(--w-style-text-caption-1)',
           color: 'var(--w-text-secondary)',
         }}
       >
@@ -178,7 +179,7 @@ function Item({ label, width, children }: { label: string; width?: number; child
         width,
       }}
     >
-      <span style={{ font: 'var(--w-style-misc-code-1)', color: 'var(--w-text-hint)' }}>{label}</span>
+      <span style={{ font: MONO_FONT, color: 'var(--w-text-hint)' }}>{label}</span>
       {children}
     </div>
   )
@@ -831,7 +832,7 @@ function ParanjaSample() {
         borderRadius: 'var(--w-l-radius)',
         background: 'var(--w-effect-veil)',
         color: 'var(--w-text-light-primary)',
-        font: 'var(--w-style-text-caption-2)',
+        font: 'var(--w-style-text-caption-1)',
       }}
     >
       Effect/Veil · карточка наложения ложится сюда

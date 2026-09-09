@@ -25,12 +25,12 @@
  * Size задаёт сторону круга и стиль инициалов. Стили сняты обходом мастеров
  * Figma 02.09.2026: в профиле кита записан только размер M.
  */
-.w-avatar_size_3xs { width: 16px; height: 16px; font: var(--w-style-text-caption-1); }
-.w-avatar_size_2xs { width: 20px; height: 20px; font: var(--w-style-text-caption-1); }
-.w-avatar_size_xs { width: 24px; height: 24px; font: var(--w-style-text-caption-1); }
-.w-avatar_size_s { width: 28px; height: 28px; font: var(--w-style-text-caption-2); }
-.w-avatar_size_m { width: 32px; height: 32px; font: var(--w-style-header-subheader-1); }
-.w-avatar_size_l { width: 42px; height: 42px; font: var(--w-style-header-subheader-1); }
+.w-avatar_size_3xs { width: 16px; height: 16px; font: var(--w-style-text-caption-2); }
+.w-avatar_size_2xs { width: 20px; height: 20px; font: var(--w-style-text-caption-2); }
+.w-avatar_size_xs { width: 24px; height: 24px; font: var(--w-style-text-caption-2); }
+.w-avatar_size_s { width: 28px; height: 28px; font: var(--w-style-text-caption-1); }
+.w-avatar_size_m { width: 32px; height: 32px; font: var(--w-style-header-subheader-3); }
+.w-avatar_size_l { width: 42px; height: 42px; font: var(--w-style-header-subheader-3); }
 .w-avatar_size_xl { width: 50px; height: 50px; font: var(--w-style-header-subheader-2); }
 
 /* Цвет задаёт пара View и Theme. */

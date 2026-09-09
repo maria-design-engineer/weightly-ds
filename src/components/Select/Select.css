@@ -20,7 +20,7 @@
   background: transparent;
   color: var(--w-text-primary);
   /* Текст значения — Text/Body 1, у XL Text/Body 2, как у TextInput. Пересснято 03.09.2026. */
-  font: var(--w-style-text-body-1);
+  font: var(--w-style-text-body-3);
   text-align: left;
   cursor: pointer;
 }
@@ -116,7 +116,7 @@
 }
 
 .w-select__error-text {
-  font: var(--w-style-text-body-1);
+  font: var(--w-style-text-body-3);
   color: var(--w-text-danger);
 }
 
@@ -136,7 +136,7 @@
   background: var(--w-base-float-float-bg);
   box-shadow: var(--w-shadows-yc-select-shadow);
   color: var(--w-text-primary);
-  font: var(--w-style-text-body-1);
+  font: var(--w-style-text-body-3);
 }
 
 .w-select__item {

@@ -22,7 +22,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  font: var(--w-style-text-body-1);
+  font: var(--w-style-text-body-3);
   color: var(--w-text-primary);
 }
 

@@ -1,6 +1,6 @@
 /*
  * Стили дизайн-системы. Этап 8 плана разработки.
- * Сняты из файла UI-kit через Figma MCP 02.09.2026: 21 текстовый стиль и 11 эффектов.
+ * Сняты из файла UI-kit через Figma MCP 02.09.2026, пересняты 09.09.2026 под релиз 2: 15 текстовых стилей и 11 эффектов.
  * Стиль в ките — это набор значений поверх токенов, поэтому здесь он собран
  * составной переменной, а не отдельным классом: класс навязывает разметку.
  *
@@ -15,34 +15,25 @@
    * на случай, когда Golos Text не загрузилась.
    */
   --w-font-stack-sans: var(--w-family-sans), 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  --w-font-stack-monospace: var(--w-family-monospace), 'SF Mono', Consolas, monospace;
 
-  /* Текстовые стили — Header, начертание SemiBold, вес Weight/Header */
-  --w-style-header-display-4: var(--w-weight-display) var(--w-header-display-4) / var(--w-header-display-4-line) var(--w-font-stack-sans);
-  --w-style-header-display-3: var(--w-weight-display) var(--w-header-display-3) / var(--w-header-display-3-line) var(--w-font-stack-sans);
-  --w-style-header-display-2: var(--w-weight-display) var(--w-header-display-2) / var(--w-header-display-2-line) var(--w-font-stack-sans);
+  /* Текстовые стили — Header, начертание SemiBold, вес Weight/Header. Номер идёт от крупного к мелкому — релиз 2 */
   --w-style-header-display-1: var(--w-weight-display) var(--w-header-display-1) / var(--w-header-display-1-line) var(--w-font-stack-sans);
-  --w-style-header-header-2: var(--w-weight-header) var(--w-header-header-2) / var(--w-header-header-2-line) var(--w-font-stack-sans);
+  --w-style-header-display-2: var(--w-weight-display) var(--w-header-display-2) / var(--w-header-display-2-line) var(--w-font-stack-sans);
+  --w-style-header-display-3: var(--w-weight-display) var(--w-header-display-3) / var(--w-header-display-3-line) var(--w-font-stack-sans);
+  --w-style-header-display-4: var(--w-weight-display) var(--w-header-display-4) / var(--w-header-display-4-line) var(--w-font-stack-sans);
   --w-style-header-header-1: var(--w-weight-header) var(--w-header-header-1) / var(--w-header-header-1-line) var(--w-font-stack-sans);
-  --w-style-header-subheader-3: var(--w-weight-subheader) var(--w-header-subheader-3) / var(--w-header-subheader-3-line) var(--w-font-stack-sans);
-  --w-style-header-subheader-2: var(--w-weight-subheader) var(--w-header-subheader-2) / var(--w-header-subheader-2-line) var(--w-font-stack-sans);
+  --w-style-header-header-2: var(--w-weight-header) var(--w-header-header-2) / var(--w-header-header-2-line) var(--w-font-stack-sans);
   --w-style-header-subheader-1: var(--w-weight-subheader) var(--w-header-subheader-1) / var(--w-header-subheader-1-line) var(--w-font-stack-sans);
+  --w-style-header-subheader-2: var(--w-weight-subheader) var(--w-header-subheader-2) / var(--w-header-subheader-2-line) var(--w-font-stack-sans);
+  --w-style-header-subheader-3: var(--w-weight-subheader) var(--w-header-subheader-3) / var(--w-header-subheader-3-line) var(--w-font-stack-sans);
 
   /* Текстовые стили — Text, начертание Regular, вес Weight/Body */
-  --w-style-text-body-3: var(--w-weight-body) var(--w-body-body-3) / var(--w-body-body-3-line) var(--w-font-stack-sans);
-  --w-style-text-body-2: var(--w-weight-body) var(--w-body-body-2) / var(--w-body-body-2-line) var(--w-font-stack-sans);
   --w-style-text-body-1: var(--w-weight-body) var(--w-body-body-1) / var(--w-body-body-1-line) var(--w-font-stack-sans);
-  --w-style-text-body-1-short: var(--w-weight-body) var(--w-body-body-1-short) / var(--w-body-body-1-short-line) var(--w-font-stack-sans);
-  --w-style-text-caption-2: var(--w-weight-caption) var(--w-body-caption-2) / var(--w-body-caption-2-line) var(--w-font-stack-sans);
+  --w-style-text-body-2: var(--w-weight-body) var(--w-body-body-2) / var(--w-body-body-2-line) var(--w-font-stack-sans);
+  --w-style-text-body-3: var(--w-weight-body) var(--w-body-body-3) / var(--w-body-body-3-line) var(--w-font-stack-sans);
+  --w-style-text-body-3-short: var(--w-weight-body) var(--w-body-body-3-short) / var(--w-body-body-3-short-line) var(--w-font-stack-sans);
   --w-style-text-caption-1: var(--w-weight-caption) var(--w-body-caption-1) / var(--w-body-caption-1-line) var(--w-font-stack-sans);
-
-  /* Текстовые стили — Misc, Menlo. В продукте не используются. */
-  --w-style-misc-code-3: var(--w-weight-code) var(--w-misc-code-3) / var(--w-misc-code-3-line) var(--w-font-stack-monospace);
-  --w-style-misc-code-2: var(--w-weight-code) var(--w-misc-code-2) / var(--w-misc-code-2-line) var(--w-font-stack-monospace);
-  --w-style-misc-code-1: var(--w-weight-code) var(--w-misc-code-1) / var(--w-misc-code-1-line) var(--w-font-stack-monospace);
-  --w-style-misc-code-3-inline: var(--w-weight-code) var(--w-misc-code-3-inline) / var(--w-misc-code-3-inline-line) var(--w-font-stack-monospace);
-  --w-style-misc-code-2-inline: var(--w-weight-code) var(--w-misc-code-2-inline) / var(--w-misc-code-2-inline-line) var(--w-font-stack-monospace);
-  --w-style-misc-code-1-inline: var(--w-weight-code) var(--w-misc-code-1-inline) / var(--w-misc-code-1-inline-line) var(--w-font-stack-monospace);
+  --w-style-text-caption-2: var(--w-weight-caption) var(--w-body-caption-2) / var(--w-body-caption-2-line) var(--w-font-stack-sans);
 
   /*
    * Эффекты — 11 теней. Цвет тени привязан к переменным `Effect/Shadow Light`

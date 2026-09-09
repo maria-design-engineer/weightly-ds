@@ -35,7 +35,7 @@
 }
 
 .w-intensity-chip_size_l .w-intensity-chip__value {
-  font: var(--w-style-header-subheader-3);
+  font: var(--w-style-header-subheader-1);
 }
 
 /*
@@ -53,7 +53,7 @@
 }
 
 .w-intensity-chip__caption {
-  font: var(--w-style-text-body-1-short);
+  font: var(--w-style-text-body-3-short);
   color: var(--w-text-secondary);
   white-space: nowrap;
   text-align: left;

@@ -297,7 +297,7 @@ function SetScreen() {
                 <span
                   style={{
                     alignSelf: 'stretch',
-                    font: 'var(--w-style-text-caption-2)',
+                    font: 'var(--w-style-text-caption-1)',
                     color: 'var(--w-text-secondary)',
                     textAlign: 'center',
                   }}
@@ -317,7 +317,7 @@ function SetScreen() {
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
               <span
                 style={{
-                  font: 'var(--w-style-text-caption-2)',
+                  font: 'var(--w-style-text-caption-1)',
                   color: 'var(--w-text-secondary)',
                   textAlign: 'center',
                 }}
@@ -343,7 +343,7 @@ function SetScreen() {
                   ariaLabel="Меньше подъёмов"
                   onClick={() => setLifts((count) => Math.max(count - 1, 0))}
                 />
-                <span style={{ font: 'var(--w-style-header-header-2)' }}>{lifts}</span>
+                <span style={{ font: 'var(--w-style-header-header-1)' }}>{lifts}</span>
                 <Button
                   view="secondary"
                   size="l"

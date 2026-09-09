@@ -21,7 +21,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  font: var(--w-style-text-body-1);
+  font: var(--w-style-text-body-3);
   color: var(--w-text-primary);
 }
 
@@ -36,5 +36,5 @@
   border-radius: var(--w-xs-radius);
   background: var(--w-base-generic);
   color: var(--w-text-primary);
-  font: var(--w-style-text-caption-2);
+  font: var(--w-style-text-caption-1);
 }

@@ -4,29 +4,23 @@ import type { Meta, StoryObj } from '@storybook/react-vite'
 
 import './index.css'
 
-/** 21 текстовый стиль кита. Имя стиля — как в Figma, значение приходит переменной. */
+/** 15 текстовых стилей кита. Имя стиля — как в Figma, значение приходит переменной. Релиз 2: номер идёт от крупного к мелкому, семейство Misc/Code убрано. */
 const TEXT_STYLES = [
-  'Header/Display 4',
-  'Header/Display 3',
-  'Header/Display 2',
   'Header/Display 1',
-  'Header/Header 2',
+  'Header/Display 2',
+  'Header/Display 3',
+  'Header/Display 4',
   'Header/Header 1',
-  'Header/Subheader 3',
-  'Header/Subheader 2',
+  'Header/Header 2',
   'Header/Subheader 1',
-  'Text/Body 3',
-  'Text/Body 2',
+  'Header/Subheader 2',
+  'Header/Subheader 3',
   'Text/Body 1',
-  'Text/Body 1 Short',
-  'Text/Caption 2',
+  'Text/Body 2',
+  'Text/Body 3',
+  'Text/Body 3 Short',
   'Text/Caption 1',
-  'Misc/Code 3',
-  'Misc/Code 2',
-  'Misc/Code 1',
-  'Misc/Code 3 Inline',
-  'Misc/Code 2 Inline',
-  'Misc/Code 1 Inline',
+  'Text/Caption 2',
 ]
 
 function styleVar(name: string) {
@@ -68,7 +62,7 @@ export const Font: Story = {
         ['Weight/Header — 600', 'var(--w-weight-header)'],
       ].map(([label, weight]) => (
         <div key={label} style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
-          <span style={{ font: 'var(--w-style-text-caption-2)', color: 'var(--w-text-secondary)' }}>
+          <span style={{ font: 'var(--w-style-text-caption-1)', color: 'var(--w-text-secondary)' }}>
             {label}
           </span>
           <span
@@ -87,13 +81,13 @@ export const Font: Story = {
   ),
 }
 
-/** Все 21 текстовый стиль подряд, подписаны именами из кита. */
+/** Все 15 текстовых стилей подряд, подписаны именами из кита. */
 export const TextStyles: Story = {
   render: () => (
     <Sheet>
       {TEXT_STYLES.map((name) => (
         <div key={name} style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
-          <span style={{ font: 'var(--w-style-text-caption-2)', color: 'var(--w-text-secondary)' }}>
+          <span style={{ font: 'var(--w-style-text-caption-1)', color: 'var(--w-text-secondary)' }}>
             {name}
           </span>
           <span style={{ font: styleVar(name) }}>Подход 3 из 5 — 102,5 кг</span>
