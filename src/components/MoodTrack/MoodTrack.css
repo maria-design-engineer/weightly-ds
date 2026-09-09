@@ -4,6 +4,7 @@
  * подписи Text/Caption 1 цветом Text/Hint. Ручка — Button Primary XS 24 × 24.
  */
 .w-mood-track {
+  position: relative;
   box-sizing: border-box;
   display: flex;
   align-items: center;
@@ -26,4 +27,14 @@
 .w-mood-track__mark {
   font: var(--w-style-text-caption-1);
   color: var(--w-text-hint);
+}
+
+/*
+ * Ручка лежит поверх делений: доля ширины минус её собственная ширина, чтобы
+ * на крайних значениях она встала вплотную к краю дорожки, а не выехала за него.
+ */
+.w-mood-track__handle {
+  position: absolute;
+  top: 4px;
+  display: inline-flex;
 }

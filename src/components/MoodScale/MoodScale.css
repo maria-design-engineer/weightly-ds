@@ -48,12 +48,15 @@
   cursor: pointer;
 }
 
+/* На своём краю кнопка красится, и значок внутри берёт цвет того же статуса. */
 .w-mood-scale__side_low {
   background: var(--w-base-semantic-danger-light);
+  color: var(--w-text-danger);
 }
 
 .w-mood-scale__side_high {
   background: var(--w-base-semantic-positive-light);
+  color: var(--w-text-positive);
 }
 
 .w-mood-scale__side:focus-visible {
