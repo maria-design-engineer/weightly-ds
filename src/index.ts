@@ -186,6 +186,16 @@ export type { LiftCounterProps } from './components/LiftCounter/LiftCounter'
 export { LiftCounters } from './components/LiftCounters/LiftCounters'
 export type { LiftCountersProps } from './components/LiftCounters/LiftCounters'
 
+export { WeightField } from './components/WeightField/WeightField'
+export type { WeightFieldProps } from './components/WeightField/WeightField'
+export { WEIGHT_FIELD_STATES } from './components/WeightField/constants'
+export type { WeightFieldState } from './components/WeightField/constants'
+
+export { SetPanel } from './components/SetPanel/SetPanel'
+export type { SetPanelProps } from './components/SetPanel/SetPanel'
+export { SET_PANEL_STATES } from './components/SetPanel/constants'
+export type { SetPanelState } from './components/SetPanel/constants'
+
 // Организмы — 5 своих компонентов, этап 12.
 export { BottomBar } from './components/BottomBar/BottomBar'
 export { BOTTOM_BAR_TABS } from './components/BottomBar/defaults'

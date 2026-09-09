@@ -1,0 +1,66 @@
+/*
+ * Product / weight-field. Снято из профиля кита: поле 328 × 216, радиус 12,
+ * обводка 1, заливка Base Float/Float. Внутри барабан и два растворения по 44
+ * сверху и снизу. Кольцо фокуса — 2 снаружи с отступом 1, радиус на 3 больше.
+ * Строка ошибки Text/Body 3 на Text/Danger добавляет полю 18 в высоту.
+ */
+.w-weight-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+}
+
+.w-weight-field__box {
+  position: relative;
+  box-sizing: border-box;
+  height: 216px;
+  overflow: hidden;
+  border: 1px solid var(--w-line-generic);
+  border-radius: var(--w-l-radius);
+  background: var(--w-base-float-float-bg);
+}
+
+.w-weight-field__box > .w-weight-wheel {
+  height: 100%;
+}
+
+.w-weight-field__box_state_active {
+  outline: var(--w-focus-ring-width) solid var(--w-focus-ring-color);
+  outline-offset: 1px;
+}
+
+.w-weight-field__box_state_error {
+  border-color: var(--w-line-danger);
+}
+
+.w-weight-field__fade {
+  position: absolute;
+  right: 0;
+  left: 0;
+  height: 44px;
+  pointer-events: none;
+}
+
+.w-weight-field__fade_top {
+  top: 0;
+  background: linear-gradient(
+    to bottom,
+    var(--w-base-float-float-bg),
+    transparent
+  );
+}
+
+.w-weight-field__fade_bottom {
+  bottom: 0;
+  background: linear-gradient(
+    to top,
+    var(--w-base-float-float-bg),
+    transparent
+  );
+}
+
+.w-weight-field__error {
+  font: var(--w-style-text-body-3);
+  color: var(--w-text-danger);
+}

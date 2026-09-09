@@ -1,0 +1,110 @@
+/*
+ * Product / set-panel. Снято обходом мастеров кита 09.09.2026: панель 360,
+ * поля 16, промежуток между блоками 12 — релиз 2 уменьшил его с 16, поля панели
+ * остались 16. Заливка Base/Simple Hover Solid.
+ */
+.w-set-panel {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  padding: 16px;
+  background: var(--w-base-simple-hover-solid);
+}
+
+.w-set-panel__block {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.w-set-panel__title {
+  font: var(--w-style-header-subheader-2);
+  color: var(--w-text-primary);
+}
+
+/* Ряд отметок с кнопкой «плюс» в конце. Пять отметок и кнопка шире экрана не выходят. */
+.w-set-panel__markers {
+  display: flex;
+  gap: 8px;
+}
+
+.w-set-panel__caption-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  min-height: 24px;
+}
+
+.w-set-panel__caption {
+  font: var(--w-style-text-caption-1);
+  color: var(--w-text-secondary);
+}
+
+/*
+ * Рамка барабана: 68 в высоту, радиус XL, заливка Base Float/Float,
+ * поля 12 сверху и по бокам, 16 снизу. Растворение по краям — по 72,
+ * барабан внутри едет целиком.
+ */
+.w-set-panel__wheel {
+  position: relative;
+  box-sizing: border-box;
+  height: 68px;
+  overflow: hidden;
+  padding: 12px 12px 16px;
+  border-radius: var(--w-xl-radius);
+  background: var(--w-base-float-float-bg);
+}
+
+.w-set-panel__wheel::before,
+.w-set-panel__wheel::after {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 72px;
+  content: '';
+  pointer-events: none;
+}
+
+.w-set-panel__wheel::before {
+  left: 0;
+  background: linear-gradient(to right, var(--w-base-float-float-bg), transparent);
+}
+
+.w-set-panel__wheel::after {
+  right: 0;
+  background: linear-gradient(to left, var(--w-base-float-float-bg), transparent);
+}
+
+.w-set-panel__lifts-title {
+  font: var(--w-style-text-caption-1);
+  color: var(--w-text-secondary);
+}
+
+/* Пустое состояние: значок, два текста и кнопка по центру, поля 32 сверху и снизу. */
+.w-set-panel__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 32px 0;
+  text-align: center;
+}
+
+.w-set-panel__empty-text {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.w-set-panel__empty-title {
+  font: var(--w-style-header-subheader-2);
+  color: var(--w-text-primary);
+}
+
+.w-set-panel__empty-caption {
+  font: var(--w-style-text-body-3);
+  color: var(--w-text-secondary);
+}
