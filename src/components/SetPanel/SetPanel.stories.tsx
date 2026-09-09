@@ -1,6 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
+import { Plus } from '@gravity-ui/icons'
+
 import { Button } from '../Button/Button'
+import { Icon } from '../Icon/Icon'
 import { LiftCounter } from '../LiftCounter/LiftCounter'
 import { LiftCounters } from '../LiftCounters/LiftCounters'
 import { SetMarker } from '../SetMarker/SetMarker'
@@ -60,7 +63,7 @@ export const Default: Story = {
     state: 'default',
     markers: MARKERS,
     onAddSet: () => {},
-    maxButton: <Button view="flat-danger" size="xs" content="Внести максимум" />,
+    maxButton: <Button view="flat-danger" size="xs" startIcon={<Icon data={Plus} />} content="Максимум" />,
     wheel: <WeightWheel direction="horizontal" values={VALUES} selected={43} ariaLabel="Вес подхода" />,
     lifts: (
       <LiftCounters>

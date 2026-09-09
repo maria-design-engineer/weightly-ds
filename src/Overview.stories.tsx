@@ -949,6 +949,14 @@ function Organisms() {
                 </>
               }
               onAddSet={() => {}}
+              maxButton={
+                <Button
+                  view="flat-danger"
+                  size="xs"
+                  startIcon={<Icon data={Plus} />}
+                  content="Максимум"
+                />
+              }
               wheel={
                 <WeightWheel
                   direction="horizontal"
