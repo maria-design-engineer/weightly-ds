@@ -37,6 +37,8 @@
  */
 .w-weight-wheel_direction_vertical {
   flex-direction: column;
+  /* Значения стоят по середине окна: в ките барабан 74 внутри поля 328. */
+  align-items: center;
   gap: var(--w-weight-wheel-gap);
   height: calc(var(--w-weight-wheel-step) * 5 - var(--w-weight-wheel-gap));
 }
