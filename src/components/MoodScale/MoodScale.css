@@ -1,0 +1,62 @@
+/*
+ * Product / mood-scale. Снято из профиля кита: блок 328 в ширину, промежуток 6,
+ * шапка с промежутком 2 — Header/Subheader 3 и Text/Caption 1, шкала 32 в высоту
+ * с промежутком 10. Боковая кнопка 28 × 28, радиус S, заливка Base/Generic;
+ * на краю она берёт Danger Light слева и Positive Light справа.
+ */
+.w-mood-scale {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+}
+
+.w-mood-scale__head {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.w-mood-scale__title {
+  font: var(--w-style-header-subheader-3);
+  color: var(--w-text-primary);
+}
+
+.w-mood-scale__caption {
+  font: var(--w-style-text-caption-1);
+  color: var(--w-text-hint);
+}
+
+.w-mood-scale__row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.w-mood-scale__side {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--w-s-radius);
+  background: var(--w-base-generic);
+  color: var(--w-text-primary);
+  cursor: pointer;
+}
+
+.w-mood-scale__side_low {
+  background: var(--w-base-semantic-danger-light);
+}
+
+.w-mood-scale__side_high {
+  background: var(--w-base-semantic-positive-light);
+}
+
+.w-mood-scale__side:focus-visible {
+  outline: var(--w-focus-ring-width) solid var(--w-focus-ring-color);
+  outline-offset: 1px;
+}

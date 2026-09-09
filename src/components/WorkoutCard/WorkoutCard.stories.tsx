@@ -25,7 +25,7 @@ const ACTIONS = (
 )
 
 const meta = {
-  title: 'Custom/WorkoutCard',
+  title: 'Product components/WorkoutCard',
   component: WorkoutCard,
   decorators: [
     (Story) => (

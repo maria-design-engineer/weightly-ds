@@ -53,7 +53,7 @@ const TITLE_BY_TYPE = {
 }
 
 const meta = {
-  title: 'Custom/ExerciseCard',
+  title: 'Product components/ExerciseCard',
   component: ExerciseCard,
   decorators: [
     (Story) => (

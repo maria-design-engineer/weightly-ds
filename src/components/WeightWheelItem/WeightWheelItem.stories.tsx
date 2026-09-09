@@ -5,7 +5,7 @@ import { WEIGHT_WHEEL_ITEM_STATES } from './constants'
 import { WeightWheelItem } from './WeightWheelItem'
 
 const meta = {
-  title: 'Custom/WeightWheelItem',
+  title: 'Product components/WeightWheelItem',
   component: WeightWheelItem,
   argTypes: {
     state: { control: 'inline-radio', options: WEIGHT_WHEEL_ITEM_STATES },

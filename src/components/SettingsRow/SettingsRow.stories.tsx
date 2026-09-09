@@ -5,7 +5,7 @@ import { SETTINGS_ROW_CARDS } from './constants'
 import { SettingsRow } from './SettingsRow'
 
 const meta = {
-  title: 'Custom/SettingsRow',
+  title: 'Product components/SettingsRow',
   component: SettingsRow,
   argTypes: {
     card: { control: 'inline-radio', options: SETTINGS_ROW_CARDS },

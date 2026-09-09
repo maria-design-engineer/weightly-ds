@@ -5,7 +5,7 @@ import { BottomBar } from './BottomBar'
 import { BOTTOM_BAR_SECTIONS } from './constants'
 
 const meta = {
-  title: 'Custom/BottomBar',
+  title: 'Product components/BottomBar',
   component: BottomBar,
   argTypes: {
     active: { control: 'inline-radio', options: BOTTOM_BAR_SECTIONS },

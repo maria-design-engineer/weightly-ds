@@ -4,7 +4,7 @@ import { Button } from '../Button/Button'
 import { StickyBar } from './StickyBar'
 
 const meta = {
-  title: 'Custom/StickyBar',
+  title: 'Product components/StickyBar',
   component: StickyBar,
   argTypes: { children: { control: false } },
   args: {

@@ -5,7 +5,7 @@ import { CoachComment } from './CoachComment'
 import { COACH_COMMENT_BANDS, COACH_COMMENT_STATES } from './constants'
 
 const meta = {
-  title: 'Custom/CoachComment',
+  title: 'Product components/CoachComment',
   component: CoachComment,
   decorators: [
     (Story) => (

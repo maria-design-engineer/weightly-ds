@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite'
 import { ExerciseRow } from './ExerciseRow'
 
 const meta = {
-  title: 'Custom/ExerciseRow',
+  title: 'Product components/ExerciseRow',
   component: ExerciseRow,
   decorators: [
     (Story) => (

@@ -5,7 +5,7 @@ import { TEXT_AREA_SIZES, TEXT_AREA_VIEWS } from './constants'
 import { TextArea } from './TextArea'
 
 const meta = {
-  title: 'TextArea',
+  title: 'Components/TextArea',
   component: TextArea,
   decorators: [
     (Story) => (

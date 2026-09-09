@@ -11,7 +11,7 @@ const EXERCISES = [
 ]
 
 const meta = {
-  title: 'Select',
+  title: 'Base UI/Select',
   component: Select,
   decorators: [
     (Story) => (

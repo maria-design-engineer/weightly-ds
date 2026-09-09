@@ -4,7 +4,7 @@ import { Label } from '../Label/Label'
 import { HistoryRow } from './HistoryRow'
 
 const meta = {
-  title: 'Custom/HistoryRow',
+  title: 'Product components/HistoryRow',
   component: HistoryRow,
   decorators: [
     (Story) => (

@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite'
 import { ScreenHeader } from './ScreenHeader'
 
 const meta = {
-  title: 'Custom/ScreenHeader',
+  title: 'Product components/ScreenHeader',
   component: ScreenHeader,
   decorators: [
     (Story) => (

@@ -5,7 +5,7 @@ import { IntensityChip } from './IntensityChip'
 import { INTENSITY_CHIP_BANDS, INTENSITY_CHIP_SIZES, INTENSITY_CHIP_STATES } from './constants'
 
 const meta = {
-  title: 'Custom/IntensityChip',
+  title: 'Product components/IntensityChip',
   component: IntensityChip,
   argTypes: {
     size: { control: 'inline-radio', options: INTENSITY_CHIP_SIZES },

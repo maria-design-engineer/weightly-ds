@@ -18,7 +18,7 @@ const ACTIONS = (
 )
 
 const meta = {
-  title: 'Alert',
+  title: 'Components/Alert',
   component: Alert,
   decorators: [
     (Story) => (

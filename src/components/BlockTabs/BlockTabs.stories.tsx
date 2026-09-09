@@ -4,7 +4,7 @@ import { BlockTab } from '../BlockTab/BlockTab'
 import { BlockTabs } from './BlockTabs'
 
 const meta = {
-  title: 'Custom/BlockTabs',
+  title: 'Product components/BlockTabs',
   component: BlockTabs,
   argTypes: { children: { control: false } },
   args: {

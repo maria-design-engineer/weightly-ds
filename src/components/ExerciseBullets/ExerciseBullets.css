@@ -1,0 +1,38 @@
+/*
+ * Product / exercise-bullets. Снято обходом мастеров кита 09.09.2026:
+ * строка 328 в ширину, промежуток 4, буллит — точка 3 на Branding/Base Brand
+ * в рамке 7, текст Text/Primary. Ось меняет только стиль текста.
+ */
+.w-exercise-bullets {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  width: 100%;
+  color: var(--w-text-primary);
+}
+
+.w-exercise-bullets__bullet {
+  flex: none;
+  align-self: center;
+  width: 3px;
+  height: 3px;
+  margin: 0 2px;
+  border-radius: 50%;
+  background: var(--w-branding-base-brand);
+}
+
+.w-exercise-bullets__text {
+  min-width: 0;
+}
+
+.w-exercise-bullets_view_collapsed .w-exercise-bullets__text {
+  font: var(--w-style-header-subheader-2);
+}
+
+.w-exercise-bullets_view_plan .w-exercise-bullets__text {
+  font: var(--w-style-header-subheader-3);
+}
+
+.w-exercise-bullets_view_expanded .w-exercise-bullets__text {
+  font: var(--w-style-text-body-3);
+}

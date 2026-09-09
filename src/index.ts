@@ -161,6 +161,31 @@ export type { ExerciseCardType } from './components/ExerciseCard/constants'
 
 export { Icon } from './components/Icon/Icon'
 
+export { Picture } from './components/Picture/Picture'
+export type { PictureProps } from './components/Picture/Picture'
+export { PICTURE_TYPES } from './components/Picture/constants'
+export type { PictureType } from './components/Picture/constants'
+
+export { ExerciseBullets } from './components/ExerciseBullets/ExerciseBullets'
+export type { ExerciseBulletsProps } from './components/ExerciseBullets/ExerciseBullets'
+export { EXERCISE_BULLETS_VIEWS } from './components/ExerciseBullets/constants'
+export type { ExerciseBulletsView } from './components/ExerciseBullets/constants'
+
+export { MoodTrack } from './components/MoodTrack/MoodTrack'
+export type { MoodTrackProps } from './components/MoodTrack/MoodTrack'
+export { MOOD_TRACK_MARKS } from './components/MoodTrack/constants'
+
+export { MoodScale } from './components/MoodScale/MoodScale'
+export type { MoodScaleProps } from './components/MoodScale/MoodScale'
+export { MOOD_SCALE_STATES } from './components/MoodScale/constants'
+export type { MoodScaleState } from './components/MoodScale/constants'
+
+export { LiftCounter } from './components/LiftCounter/LiftCounter'
+export type { LiftCounterProps } from './components/LiftCounter/LiftCounter'
+
+export { LiftCounters } from './components/LiftCounters/LiftCounters'
+export type { LiftCountersProps } from './components/LiftCounters/LiftCounters'
+
 // Организмы — 5 своих компонентов, этап 12.
 export { BottomBar } from './components/BottomBar/BottomBar'
 export { BOTTOM_BAR_TABS } from './components/BottomBar/defaults'

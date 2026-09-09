@@ -10,7 +10,7 @@ import { AVATAR_BORDER_COLORS, AVATAR_SIZES, AVATAR_THEMES, AVATAR_VIEWS } from 
 const PERSON_ICON = <Icon data={Person} size={20} />
 
 const meta = {
-  title: 'Avatar',
+  title: 'Base UI/Avatar',
   component: Avatar,
   argTypes: {
     size: { control: 'select', options: AVATAR_SIZES },

@@ -10,7 +10,7 @@ import { BOTTOM_BAR_ITEM_STATES } from './constants'
 const ICON = <Icon data={ListCheck} size={20} />
 
 const meta = {
-  title: 'Custom/BottomBarItem',
+  title: 'Product components/BottomBarItem',
   component: BottomBarItem,
   argTypes: {
     state: { control: 'inline-radio', options: BOTTOM_BAR_ITEM_STATES },

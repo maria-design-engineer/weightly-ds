@@ -28,7 +28,7 @@ function toLifts(args: LiftsStoryArgs): LiftMarkState[] {
 const option = { control: 'inline-radio', options: OPTIONS } as const
 
 const meta: Meta<LiftsStoryArgs> = {
-  title: 'Custom/LiftsCell',
+  title: 'Product components/LiftsCell',
   component: LiftsCell as unknown as React.ComponentType<LiftsStoryArgs>,
   argTypes: { lift1: option, lift2: option, lift3: option, lift4: option, lift5: option },
   args: { lift1: 'done', lift2: 'done', lift3: 'failed', lift4: 'skipped', lift5: 'нет' },

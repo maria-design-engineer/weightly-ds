@@ -5,7 +5,7 @@ import { BlockTab } from './BlockTab'
 import { BLOCK_TAB_STATES } from './constants'
 
 const meta = {
-  title: 'Custom/BlockTab',
+  title: 'Product components/BlockTab',
   component: BlockTab,
   argTypes: {
     state: { control: 'inline-radio', options: BLOCK_TAB_STATES },

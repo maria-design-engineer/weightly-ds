@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite'
 import { CorrespondenceRow } from './CorrespondenceRow'
 
 const meta = {
-  title: 'Custom/CorrespondenceRow',
+  title: 'Product components/CorrespondenceRow',
   component: CorrespondenceRow,
   decorators: [
     (Story) => (

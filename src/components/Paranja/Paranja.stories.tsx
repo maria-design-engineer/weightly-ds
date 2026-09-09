@@ -9,7 +9,7 @@ import type { ParanjaProps } from './Paranja'
 import { Paranja } from './Paranja'
 
 const meta = {
-  title: 'Custom/Paranja',
+  title: 'Product components/Paranja',
   component: Paranja,
   argTypes: {
     type: { control: 'inline-radio', options: PARANJA_TYPES },

@@ -5,7 +5,7 @@ import { TABLE_CELL_TONES } from './constants'
 import { TableCell } from './TableCell'
 
 const meta = {
-  title: 'Custom/TableCell',
+  title: 'Product components/TableCell',
   component: TableCell,
   argTypes: {
     tone: { control: 'inline-radio', options: TABLE_CELL_TONES },

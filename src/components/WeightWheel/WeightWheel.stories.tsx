@@ -13,7 +13,7 @@ const VALUES = Array.from({ length: 321 }, (_, index) => {
 })
 
 const meta = {
-  title: 'Custom/WeightWheel',
+  title: 'Product components/WeightWheel',
   component: WeightWheel,
   argTypes: {
     direction: { control: 'inline-radio', options: WEIGHT_WHEEL_DIRECTIONS },

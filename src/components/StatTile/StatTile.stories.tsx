@@ -5,7 +5,7 @@ import { STAT_TILE_TONES } from './constants'
 import { StatTile } from './StatTile'
 
 const meta = {
-  title: 'Custom/StatTile',
+  title: 'Product components/StatTile',
   component: StatTile,
   argTypes: {
     tone: { control: 'inline-radio', options: STAT_TILE_TONES },

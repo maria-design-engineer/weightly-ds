@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite'
 import { StickyBarWorkout } from './StickyBarWorkout'
 
 const meta = {
-  title: 'Custom/StickyBarWorkout',
+  title: 'Product components/StickyBarWorkout',
   component: StickyBarWorkout,
   argTypes: { actions: { control: false } },
   decorators: [

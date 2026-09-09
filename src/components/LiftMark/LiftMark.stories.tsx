@@ -5,7 +5,7 @@ import { LIFT_MARK_STATES } from './constants'
 import { LiftMark } from './LiftMark'
 
 const meta = {
-  title: 'Custom/LiftMark',
+  title: 'Product components/LiftMark',
   component: LiftMark,
   argTypes: { state: { control: 'inline-radio', options: LIFT_MARK_STATES } },
 } satisfies Meta<typeof LiftMark>

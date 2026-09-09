@@ -10,7 +10,7 @@ import { Label } from './Label'
 const PERSON_ICON = <Icon data={Person} size={14} />
 
 const meta = {
-  title: 'Label',
+  title: 'Components/Label',
   component: Label,
   argTypes: {
     size: { control: 'inline-radio', options: LABEL_SIZES },

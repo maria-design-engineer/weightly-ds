@@ -41,7 +41,7 @@ type FieldStoryArgs = {
 }
 
 const meta: Meta<FieldStoryArgs> = {
-  title: 'Custom/Field',
+  title: 'Product components/Field',
   component: Field as unknown as React.ComponentType<FieldStoryArgs>,
   decorators: [
     (Story) => (

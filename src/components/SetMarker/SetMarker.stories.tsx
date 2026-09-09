@@ -5,7 +5,7 @@ import { SET_MARKER_STATES } from './constants'
 import { SetMarker } from './SetMarker'
 
 const meta = {
-  title: 'Custom/SetMarker',
+  title: 'Product components/SetMarker',
   component: SetMarker,
   argTypes: {
     state: { control: 'inline-radio', options: SET_MARKER_STATES },

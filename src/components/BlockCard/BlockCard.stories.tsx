@@ -13,7 +13,7 @@ const ACTIONS = (
 )
 
 const meta = {
-  title: 'Custom/BlockCard',
+  title: 'Product components/BlockCard',
   component: BlockCard,
   argTypes: {
     shadow: { control: 'inline-radio', options: BLOCK_CARD_SHADOWS },

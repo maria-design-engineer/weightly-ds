@@ -10,7 +10,7 @@ import { BUTTON_SIZES, BUTTON_VIEWS } from './constants'
 const PLUS_ICON = <Icon data={Plus} size={16} />
 
 const meta = {
-  title: 'Button',
+  title: 'Base UI/Button',
   component: Button,
   argTypes: {
     view: { control: 'select', options: BUTTON_VIEWS },

@@ -10,7 +10,7 @@ import { TextInput } from './TextInput'
 const MAGNIFIER = <Icon data={Magnifier} size={16} />
 
 const meta = {
-  title: 'TextInput',
+  title: 'Base UI/TextInput',
   component: TextInput,
   decorators: [
     (Story) => (

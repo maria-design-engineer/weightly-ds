@@ -1,0 +1,20 @@
+/*
+ * Product / lift-counters. Ряд 328 × 50, промежуток 16, до четырёх счётчиков
+ * по 140. Четыре в строку шире экрана — ряд прокручивается вбок, как ряд
+ * ступеней в карточке упражнения.
+ */
+.w-lift-counters {
+  display: flex;
+  gap: 16px;
+  width: 100%;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.w-lift-counters::-webkit-scrollbar {
+  display: none;
+}
+
+.w-lift-counters > * {
+  flex: none;
+}

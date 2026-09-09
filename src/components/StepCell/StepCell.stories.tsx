@@ -6,7 +6,7 @@ import { Cell, Row } from '../story-layout'
 import { StepCell } from './StepCell'
 
 const meta = {
-  title: 'Custom/StepCell',
+  title: 'Product components/StepCell',
   component: StepCell,
   argTypes: {
     content: { control: 'text' },
