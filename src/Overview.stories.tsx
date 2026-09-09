@@ -1022,6 +1022,21 @@ function DrawerSample() {
           Подпись под заголовком
         </span>
       </div>
+      {/* Слот содержимого: в ките на его месте стоит непубликуемый .Product / drawer-slot. */}
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          height: 118,
+          borderRadius: 'var(--w-l-radius)',
+          background: 'var(--w-base-generic)',
+          font: 'var(--w-style-text-body-3)',
+          color: 'var(--w-text-secondary)',
+        }}
+      >
+        Содержимое шторки
+      </div>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
         <Button view="primary" size="xl" content="Сохранить" />
         <Button view="secondary" size="xl" content="Отмена" />
