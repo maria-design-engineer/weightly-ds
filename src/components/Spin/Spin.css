@@ -10,7 +10,7 @@
   border-radius: 50%;
   background: conic-gradient(from 22deg, var(--w-branding-line-brand) 0 150deg, transparent 150deg);
   mask: radial-gradient(farthest-side, transparent calc(100% - 2px), #000 calc(100% - 2px));
-  animation: w-spin-turn 900ms linear infinite;
+  animation: w-spin-turn 500ms linear infinite;
 }
 
 @keyframes w-spin-turn {

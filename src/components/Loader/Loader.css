@@ -19,16 +19,16 @@
    * а на следующем значения сдвигаются на одну вправо. Три шага — три трети
    * цикла; сдвиг задан задержкой, отрицательной, чтобы движение шло сразу.
    */
-  animation: w-loader-run 900ms steps(1, end) infinite;
+  animation: w-loader-run 600ms steps(1, end) infinite;
 }
 
 .w-loader__bar:nth-child(2) {
   height: var(--w-loader-middle);
-  animation-delay: -600ms;
+  animation-delay: -400ms;
 }
 
 .w-loader__bar:nth-child(3) {
-  animation-delay: -300ms;
+  animation-delay: -200ms;
 }
 
 @keyframes w-loader-run {

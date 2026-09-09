@@ -20,7 +20,7 @@
   );
   background-size: 200% 100%;
   background-repeat: no-repeat;
-  animation: w-skeleton-wave 1200ms linear infinite;
+  animation: w-skeleton-wave 800ms linear infinite;
 }
 
 .w-skeleton_round {
