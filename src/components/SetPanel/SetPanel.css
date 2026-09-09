@@ -19,7 +19,9 @@
   gap: 12px;
 }
 
+/* Заголовки блоков и подпись процента стоят по середине панели. */
 .w-set-panel__title {
+  text-align: center;
   font: var(--w-style-header-subheader-2);
   color: var(--w-text-primary);
 }
@@ -34,12 +36,21 @@
   gap: 8px;
 }
 
+/*
+ * Строка над барабаном: кнопка максимума слева, процент от максимума ровно по
+ * середине панели. Три колонки, а не space-between: иначе подпись сдвигается
+ * настолько, насколько широка кнопка.
+ */
 .w-set-panel__caption-row {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  justify-content: space-between;
   gap: 8px;
   min-height: 24px;
+}
+
+.w-set-panel__caption-row > :first-child {
+  justify-self: start;
 }
 
 /* Счётчики подъёмов тоже стоят по середине панели. */
@@ -88,6 +99,7 @@
 }
 
 .w-set-panel__lifts-title {
+  text-align: center;
   font: var(--w-style-text-caption-1);
   color: var(--w-text-secondary);
 }
