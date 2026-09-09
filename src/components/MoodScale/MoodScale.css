@@ -44,19 +44,24 @@
   border: 0;
   border-radius: var(--w-s-radius);
   background: var(--w-base-generic);
-  color: var(--w-text-primary);
+  /* Значок обычной кнопки серый, а не чёрный — так на макете. */
+  color: var(--w-text-secondary);
   cursor: pointer;
 }
 
-/* На своём краю кнопка красится, и значок внутри берёт цвет того же статуса. */
+/*
+ * На своём краю кнопка красится: заливка Base Semantic/… Light, значок внутри —
+ * Text/… Heavy. Снято с мастеров Button Outlined-danger и Outlined-success
+ * в состоянии Selected — именно они стоят в ките по краям шкалы.
+ */
 .w-mood-scale__side_low {
   background: var(--w-base-semantic-danger-light);
-  color: var(--w-text-danger);
+  color: var(--w-text-danger-heavy);
 }
 
 .w-mood-scale__side_high {
   background: var(--w-base-semantic-positive-light);
-  color: var(--w-text-positive);
+  color: var(--w-text-positive-heavy);
 }
 
 .w-mood-scale__side:focus-visible {

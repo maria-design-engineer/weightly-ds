@@ -1,10 +1,11 @@
 /*
- * Product / mood-track. Снято обходом мастера кита 09.09.2026: дорожка 258 × 32,
- * поля 4, промежуток 8, радиус S, заливка Base/Generic. Пять делений по 44,
- * подписи Text/Caption 1 цветом Text/Hint. Ручка — Button Primary XS 24 × 24.
+ * Product / mood-track. Снято обходом мастера и трёх положений кита 09.09.2026:
+ * дорожка 252 × 32, поля 4, промежуток 8, радиус S, заливка Base/Generic.
+ * Внутри три слота по 76: крайние прижимают содержимое к своей стороне,
+ * средний ставит по центру. Подписи Text/Caption 1 цветом Text/Hint,
+ * у них ещё поля 4 по бокам — к самому краю дорожки текст не прилипает.
  */
 .w-mood-track {
-  position: relative;
   box-sizing: border-box;
   display: flex;
   align-items: center;
@@ -16,25 +17,27 @@
   background: var(--w-base-generic);
 }
 
-.w-mood-track__cell {
+.w-mood-track__slot {
   display: flex;
   flex: 1;
   align-items: center;
-  justify-content: center;
   min-width: 0;
 }
 
-.w-mood-track__mark {
-  font: var(--w-style-text-caption-1);
-  color: var(--w-text-hint);
+.w-mood-track__slot_0 {
+  justify-content: flex-start;
 }
 
-/*
- * Ручка лежит поверх делений: доля ширины минус её собственная ширина, чтобы
- * на крайних значениях она встала вплотную к краю дорожки, а не выехала за него.
- */
-.w-mood-track__handle {
-  position: absolute;
-  top: 4px;
-  display: inline-flex;
+.w-mood-track__slot_1 {
+  justify-content: center;
+}
+
+.w-mood-track__slot_2 {
+  justify-content: flex-end;
+}
+
+.w-mood-track__mark {
+  padding: 0 4px;
+  font: var(--w-style-text-caption-1);
+  color: var(--w-text-hint);
 }

@@ -6,39 +6,38 @@ import { MOOD_TRACK_MARKS } from './constants'
 import './MoodTrack.css'
 
 export type MoodTrackProps = {
-  /** Положение ручки: деление от 0 до 4. По умолчанию среднее. */
+  /** Слот ручки: 0 слева, 1 в середине, 2 справа. */
   value?: number
   /** Подпись ручки для чтения с экрана. */
   handleLabel?: string
 }
 
 /**
- * Дорожка оценки: пять делений с подписями и ручка между ними.
+ * Дорожка оценки: три слота по 76 и ручка в одном из них.
  * Отдельно не ставится — идёт внутри `Product / mood-scale`.
- * Ручка — экземпляр `Button`: вид берётся у кита, поведение задаёт родитель.
  *
- * Ручка лежит поверх делений и едет по ним долей ширины: на крайних значениях
- * она встаёт вплотную к краю дорожки, а подписи при этом никуда не деваются.
+ * Слот с ручкой свою подпись не показывает, две другие показывают: сдвинули
+ * ручку влево — слева подписи нет, а «норм» и «супер» на месте. Ручка внутри
+ * слота прижата к его краю, но не к краю дорожки: у той поля 4.
+ * Ручка — экземпляр `Button`: вид берётся у кита, поведение задаёт родитель.
  */
-export function MoodTrack({ value = 2, handleLabel = 'Оценка' }: MoodTrackProps) {
-  const last = MOOD_TRACK_MARKS.length - 1
-  const position = Math.min(Math.max(value, 0), last) / last
-
+export function MoodTrack({ value = 1, handleLabel = 'Оценка' }: MoodTrackProps) {
   return (
     <div className="w-mood-track">
       {MOOD_TRACK_MARKS.map((mark, index) => (
-        <span className="w-mood-track__cell" key={index}>
-          <span className="w-mood-track__mark">{mark}</span>
+        <span className={`w-mood-track__slot w-mood-track__slot_${index}`} key={mark}>
+          {index === value ? (
+            <Button
+              view="primary"
+              size="xs"
+              startIcon={<Icon data={ChevronsExpandHorizontal} size={12} />}
+              ariaLabel={handleLabel}
+            />
+          ) : (
+            <span className="w-mood-track__mark">{mark}</span>
+          )}
         </span>
       ))}
-      <span className="w-mood-track__handle" style={{ left: `calc(${position * 100}% - ${position * 24}px)` }}>
-        <Button
-          view="primary"
-          size="xs"
-          startIcon={<Icon data={ChevronsExpandHorizontal} size={12} />}
-          ariaLabel={handleLabel}
-        />
-      </span>
     </div>
   )
 }

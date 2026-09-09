@@ -7,8 +7,8 @@ import { MoodTrack } from '../MoodTrack/MoodTrack'
 import type { MoodScaleState } from './constants'
 import './MoodScale.css'
 
-/** Положение ручки на дорожке: пять делений, крайние и среднее. */
-const TRACK_POSITION = { low: 0, mid: 2, high: 4 }
+/** Слот ручки на дорожке: три слота, по слоту на оценку. */
+const TRACK_POSITION = { low: 0, mid: 1, high: 2 }
 
 export type MoodScaleProps = {
   /** Figma State — низкая, средняя или высокая оценка. */

@@ -812,9 +812,9 @@ function Molecules() {
       </Component>
 
       <Component kit="Product / mood-track" code="MoodTrack">
-        <Axis name="Положение ручки">
-          {[0, 2, 4].map((value) => (
-            <Item key={value} label={`деление ${value}`} width={258}>
+        <Axis name="Слот ручки · 3">
+          {[0, 1, 2].map((value) => (
+            <Item key={value} label={`слот ${value}`} width={258}>
               <MoodTrack value={value} />
             </Item>
           ))}
