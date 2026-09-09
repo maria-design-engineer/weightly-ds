@@ -48,7 +48,13 @@
   height: calc(var(--w-weight-wheel-step) * 2 - var(--w-weight-wheel-gap));
 }
 
-/* Лента: то же самое, только вбок. */
+/*
+ * Лента: то же самое, только вбок. Ширину лента берёт по месту, где стоит:
+ * в ките окно 409 — пять значений, — но внутри панели подхода оно уже, и лента
+ * должна ужиматься вместе с ним. Распорки по краям поэтому считаются от окна,
+ * а не шагами: половина окна минус половина значения. Без них крайние значения
+ * до середины не доезжают, и выбранное стоит не по центру.
+ */
 .w-weight-wheel_direction_horizontal {
   --w-weight-wheel-item-size: 69px;
   --w-weight-wheel-gap: var(--w-g-spacing-4);
@@ -57,7 +63,8 @@
   flex-direction: row;
   align-items: center;
   gap: var(--w-weight-wheel-gap);
-  width: calc(var(--w-weight-wheel-step) * 5 - var(--w-weight-wheel-gap));
+  width: 100%;
+  max-width: calc(var(--w-weight-wheel-step) * 5 - var(--w-weight-wheel-gap));
   /* Значение и в ленте высотой 40: 69 — это его ширина, а не высота. */
   height: 40px;
   scroll-snap-type: x mandatory;
@@ -67,7 +74,7 @@
 .w-weight-wheel_direction_horizontal::after {
   content: '';
   flex: none;
-  width: calc(var(--w-weight-wheel-step) * 2 - var(--w-weight-wheel-gap));
+  width: calc(50% - var(--w-weight-wheel-item-size) / 2);
 }
 
 .w-weight-wheel__option {

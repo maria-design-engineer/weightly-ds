@@ -18,3 +18,15 @@
 .w-lift-counters > * {
   flex: none;
 }
+
+/*
+ * Когда счётчиков мало, ряд стоит по середине; когда их четыре и ряд шире окна,
+ * прокрутка начинается от левого края — margin: auto этому не мешает.
+ */
+.w-lift-counters > :first-child {
+  margin-left: auto;
+}
+
+.w-lift-counters > :last-child {
+  margin-right: auto;
+}

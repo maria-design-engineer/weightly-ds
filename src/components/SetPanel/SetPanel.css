@@ -24,9 +24,13 @@
   color: var(--w-text-primary);
 }
 
-/* Ряд отметок с кнопкой «плюс» в конце. Пять отметок и кнопка шире экрана не выходят. */
+/*
+ * Ряд отметок с кнопкой «плюс» в конце. Отметок бывает от одной до пяти,
+ * и ряд стоит по середине панели, а не прижат к левому краю.
+ */
 .w-set-panel__markers {
   display: flex;
+  justify-content: center;
   gap: 8px;
 }
 
@@ -36,6 +40,11 @@
   justify-content: space-between;
   gap: 8px;
   min-height: 24px;
+}
+
+/* Счётчики подъёмов тоже стоят по середине панели. */
+.w-set-panel__block > .w-lift-counters {
+  justify-content: center;
 }
 
 .w-set-panel__caption {

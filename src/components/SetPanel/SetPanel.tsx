@@ -92,8 +92,9 @@ export function SetPanel({
         </div>
         {caption || maxButton ? (
           <div className="w-set-panel__caption-row">
-            <span className="w-set-panel__caption">{caption}</span>
+            {/* Кнопка максимума стоит слева, процент от максимума — справа. */}
             {maxButton}
+            <span className="w-set-panel__caption">{caption}</span>
           </div>
         ) : null}
         {wheel ? <div className="w-set-panel__wheel">{wheel}</div> : null}
