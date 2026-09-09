@@ -68,3 +68,46 @@
   outline: var(--w-focus-ring-width) solid var(--w-focus-ring-color);
   outline-offset: 1px;
 }
+
+/*
+ * Дорожка оценки: 252 × 32, поля 4, промежуток 8, радиус S, заливка Base/Generic.
+ * Внутри три слота по 76 — крайние прижимают содержимое к своей стороне, средний
+ * ставит по центру. Подписи Text/Caption 1 цветом Text/Hint с полями 4 по бокам.
+ * Релиз 2 свёл дорожку в шкалу: отдельным компонентом кита её больше нет.
+ */
+.w-mood-scale__track {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  height: 32px;
+  padding: 4px;
+  border-radius: var(--w-s-radius);
+  background: var(--w-base-generic);
+}
+
+.w-mood-scale__slot {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  min-width: 0;
+}
+
+.w-mood-scale__slot_0 {
+  justify-content: flex-start;
+}
+
+.w-mood-scale__slot_1 {
+  justify-content: center;
+}
+
+.w-mood-scale__slot_2 {
+  justify-content: flex-end;
+}
+
+.w-mood-scale__mark {
+  padding: 0 4px;
+  font: var(--w-style-text-caption-1);
+  color: var(--w-text-hint);
+}

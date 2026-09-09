@@ -171,13 +171,9 @@ export type { ExerciseBulletsProps } from './components/ExerciseBullets/Exercise
 export { EXERCISE_BULLETS_VIEWS } from './components/ExerciseBullets/constants'
 export type { ExerciseBulletsView } from './components/ExerciseBullets/constants'
 
-export { MoodTrack } from './components/MoodTrack/MoodTrack'
-export type { MoodTrackProps } from './components/MoodTrack/MoodTrack'
-export { MOOD_TRACK_MARKS } from './components/MoodTrack/constants'
-
 export { MoodScale } from './components/MoodScale/MoodScale'
 export type { MoodScaleProps } from './components/MoodScale/MoodScale'
-export { MOOD_SCALE_STATES } from './components/MoodScale/constants'
+export { MOOD_SCALE_STATES, MOOD_TRACK_MARKS } from './components/MoodScale/constants'
 export type { MoodScaleState } from './components/MoodScale/constants'
 
 export { LiftCounter } from './components/LiftCounter/LiftCounter'

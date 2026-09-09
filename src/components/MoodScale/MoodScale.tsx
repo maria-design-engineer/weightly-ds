@@ -3,8 +3,8 @@ import type { ReactNode } from 'react'
 import { FaceSad, FaceSmile } from '@gravity-ui/icons'
 
 import { Icon } from '../Icon/Icon'
-import { MoodTrack } from '../MoodTrack/MoodTrack'
 import type { MoodScaleState } from './constants'
+import { MoodTrack } from './track'
 import './MoodScale.css'
 
 /** Слот ручки на дорожке: три слота, по слоту на оценку. */
@@ -50,7 +50,7 @@ export function MoodScale({
         >
           <Icon data={FaceSad} />
         </button>
-        <MoodTrack value={TRACK_POSITION[state]} />
+        <MoodTrack value={TRACK_POSITION[state]} handleLabel="Оценка" />
         <button
           type="button"
           className={`w-mood-scale__side${state === 'high' ? ' w-mood-scale__side_high' : ''}`}

@@ -75,7 +75,6 @@ import { Loader } from './components/Loader/Loader'
 import { LOADER_SIZES } from './components/Loader/constants'
 import { MoodScale } from './components/MoodScale/MoodScale'
 import { MOOD_SCALE_STATES } from './components/MoodScale/constants'
-import { MoodTrack } from './components/MoodTrack/MoodTrack'
 import { Picture } from './components/Picture/Picture'
 import { PICTURE_TYPES } from './components/Picture/constants'
 import { SetPanel } from './components/SetPanel/SetPanel'
@@ -649,7 +648,7 @@ const RUNNING_STEPS = (
 
 function Molecules() {
   return (
-    <Layer title="Молекулы — 16 компонентов">
+    <Layer title="Молекулы — 15 компонентов">
       <Component kit="Product / bottom-bar-item" code="BottomBarItem">
         <Axis name="State · 2">
           {BOTTOM_BAR_ITEM_STATES.map((state) => (
@@ -811,15 +810,6 @@ function Molecules() {
         </Axis>
       </Component>
 
-      <Component kit="Product / mood-track" code="MoodTrack">
-        <Axis name="Слот ручки · 3">
-          {[0, 1, 2].map((value) => (
-            <Item key={value} label={`слот ${value}`} width={258}>
-              <MoodTrack value={value} />
-            </Item>
-          ))}
-        </Axis>
-      </Component>
 
       <Component kit="Product / lift-counter" code="LiftCounter">
         <Axis name="Свойств нет">
