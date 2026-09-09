@@ -26,8 +26,9 @@
   color: var(--w-text-primary);
 }
 
+/* Подпись состава — Text/Body 3: релиз 2 перевёл её с 15 на 13. */
 .w-exercise-row__caption {
   flex: none;
-  font: var(--w-style-text-body-2);
+  font: var(--w-style-text-body-3);
   color: var(--w-text-secondary);
 }

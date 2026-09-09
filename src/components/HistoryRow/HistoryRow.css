@@ -33,3 +33,13 @@
   font: var(--w-style-text-body-3);
   color: var(--w-text-secondary);
 }
+
+/*
+ * Значок «без сети» 14 × 14 между текстом и чипом: тренировка записана на
+ * устройстве и ещё не выгружена. Свойство Offline заведено релизом 2.
+ */
+.w-history-row__offline {
+  display: inline-flex;
+  flex: none;
+  color: var(--w-text-secondary);
+}

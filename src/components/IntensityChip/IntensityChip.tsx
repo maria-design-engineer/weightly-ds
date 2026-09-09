@@ -1,12 +1,16 @@
 import type { ReactNode } from 'react'
 
+import { Check } from '@gravity-ui/icons'
+
+import { Icon } from '../Icon/Icon'
+
 import type { IntensityChipBand, IntensityChipSize, IntensityChipState } from './constants'
 import './IntensityChip.css'
 
 export type IntensityChipProps = {
   /** Figma Size — 52 или 60. */
   size?: IntensityChipSize
-  /** Figma State — активный чип обведён кольцом Base/Brand. */
+  /** Figma State — активный обведён кольцом Base/Brand, у сделанного стоит галка. */
   state?: IntensityChipState
   /** Figma Band — полоса интенсивности: neutral до 70 процентов, lime с 70, pink с 90. */
   band?: IntensityChipBand
@@ -36,7 +40,14 @@ export function IntensityChip({
 
   return (
     <div className={className}>
-      <span className="w-intensity-chip__value">{content}</span>
+      <span className="w-intensity-chip__value">
+        {content}
+        {state === 'done' ? (
+          <span className="w-intensity-chip__done">
+            <Icon data={Check} size={16} />
+          </span>
+        ) : null}
+      </span>
       {caption ? <span className="w-intensity-chip__caption">{caption}</span> : null}
     </div>
   )

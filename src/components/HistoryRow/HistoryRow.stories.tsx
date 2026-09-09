@@ -26,3 +26,11 @@ type Story = StoryObj<typeof meta>
 
 /** Плашка справа приходит содержимым: в ките это экземпляр Label. */
 export const Playground: Story = {}
+
+/**
+ * Свойство Offline: значок «без сети» между текстом и плашкой — тренировка
+ * записана на устройстве и ещё не выгружена. Заведено релизом 2.
+ */
+export const Offline: Story = {
+  args: { offline: true },
+}

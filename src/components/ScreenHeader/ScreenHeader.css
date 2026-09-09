@@ -11,3 +11,18 @@
   gap: var(--w-g-spacing-2);
   width: 100%;
 }
+
+/*
+ * Блок справа: значок «без сети» и плашка даты, промежуток 3 — снято из кита,
+ * свойство Offline заведено релизом 2.
+ */
+.w-screen-header__mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.w-screen-header__offline {
+  display: inline-flex;
+  color: var(--w-text-secondary);
+}

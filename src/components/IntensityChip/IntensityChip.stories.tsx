@@ -48,7 +48,10 @@ export const Sizes: Story = {
   ),
 }
 
-/** Ось State: у активного вокруг чипа кольцо Base/Brand. */
+/**
+ * Ось State: у активного вокруг чипа кольцо Base/Brand, у сделанного — галка
+ * Text/Positive рядом с процентом. Значение `done` завёл релиз 2.
+ */
 export const States: Story = {
   render: (args) => (
     <Row>
@@ -61,7 +64,7 @@ export const States: Story = {
   ),
 }
 
-/** Все двенадцать сочетаний осей — так они лежат в ките. */
+/** Все восемнадцать сочетаний осей — так они лежат в ките после релиза 2. */
 export const All: Story = {
   render: (args) => (
     <Row>

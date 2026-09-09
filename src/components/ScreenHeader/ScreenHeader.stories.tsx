@@ -21,3 +21,8 @@ type Story = StoryObj<typeof meta>
 
 /** Кнопка «назад» и дата рядом. Свойство одно — текст даты. */
 export const Playground: Story = {}
+
+/** Свойство Offline: значок «без сети» слева от даты. Заведено релизом 2. */
+export const Offline: Story = {
+  args: { offline: true },
+}

@@ -47,6 +47,13 @@
   outline-offset: 2px;
 }
 
+/* У сделанной ступени рядом с процентом стоит галка — правка релиза 2. */
+.w-intensity-chip__done {
+  display: inline-flex;
+  vertical-align: middle;
+  color: var(--w-text-positive);
+}
+
 .w-intensity-chip__value {
   white-space: nowrap;
   text-align: left;
