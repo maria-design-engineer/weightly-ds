@@ -72,11 +72,18 @@
   scroll-snap-type: x mandatory;
 }
 
+/*
+ * Промежуток вычитается, как и в столбике: между распоркой и первым значением
+ * стоит тот же gap, и без вычитания на концах ленты оставался пустой ход
+ * шириной 16 с каждой стороны. Находка 4 ревью этапа 8.
+ */
 .w-weight-wheel_direction_horizontal::before,
 .w-weight-wheel_direction_horizontal::after {
   content: '';
   flex: none;
-  width: calc(50% - var(--w-weight-wheel-item-size) / 2);
+  width: calc(
+    50% - var(--w-weight-wheel-item-size) / 2 - var(--w-weight-wheel-gap)
+  );
 }
 
 .w-weight-wheel__option {

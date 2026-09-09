@@ -50,7 +50,7 @@
  */
 .w-set-panel__caption-row {
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
   align-items: center;
   gap: 8px;
   min-height: 24px;
@@ -60,10 +60,12 @@
   justify-self: start;
 }
 
-/* Счётчики подъёмов тоже стоят по середине панели. */
-.w-set-panel__block > .w-lift-counters {
-  justify-content: center;
-}
+/*
+ * Ряд счётчиков центрируется сам: в LiftCounters.css на крайних детях стоят
+ * авто-поля. Правило justify-content здесь ломало ровно тот случай, ради
+ * которого они написаны, — у переполненного ряда левый край уезжал за окно
+ * и прокруткой не доставался. Находка 1 ревью этапа 8.
+ */
 
 .w-set-panel__caption {
   font: var(--w-style-text-caption-1);
