@@ -1,0 +1,118 @@
+/*
+ * Product / drawer. Снято обходом мастеров кита 09.09.2026: панель 360, поля 16,
+ * промежуток между блоками 16, верхние скругления 16, заливка Base Float/Float,
+ * тень card-shadow/card (new). Высота по содержимому: 340 при кнопках столбиком,
+ * 280 при кнопках в строку — это следствие раскладки, а не заданное число.
+ */
+.w-drawer__backdrop {
+  position: fixed;
+  inset: 0;
+  background: var(--w-effect-veil);
+  /*
+   * Затемнение уходит вместе со свайпом: Base UI ведёт --drawer-swipe-progress
+   * от 0 до 1, пока панель тянут вниз.
+   */
+  opacity: calc(1 - var(--drawer-swipe-progress, 0));
+  transition: opacity 300ms ease-out;
+}
+
+.w-drawer__backdrop[data-starting-style],
+.w-drawer__backdrop[data-ending-style] {
+  opacity: 0;
+}
+
+.w-drawer__viewport {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.w-drawer {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 360px;
+  max-width: 100%;
+  padding: 16px;
+  border-radius: 16px 16px 0 0;
+  background: var(--w-base-float-float-bg);
+  box-shadow: var(--w-card-shadow-card-new);
+  /* Шторка едет за пальцем, пока её тянут вниз. */
+  transform: translateY(var(--drawer-swipe-movement-y, 0));
+  transition: transform 300ms ease-out;
+}
+
+.w-drawer[data-swiping] {
+  transition-duration: 0s;
+}
+
+/* Выезд снизу: панель приходит от края экрана, а не вырастает из ничего. */
+.w-drawer[data-starting-style],
+.w-drawer[data-ending-style] {
+  transform: translateY(100%);
+}
+
+.w-drawer:focus-visible {
+  outline: var(--w-focus-ring-width) solid var(--w-focus-ring-color);
+  outline-offset: -2px;
+}
+
+.w-drawer__head {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.w-drawer__title {
+  margin: 0;
+  font: var(--w-style-header-header-2);
+  color: var(--w-text-primary);
+}
+
+.w-drawer__caption {
+  margin: 0;
+  font: var(--w-style-text-body-3);
+  color: var(--w-text-secondary);
+}
+
+.w-drawer__divider {
+  width: 100%;
+  height: 1px;
+  margin: 0;
+  border: 0;
+  background: var(--w-line-generic);
+}
+
+.w-drawer__actions {
+  display: flex;
+  gap: 8px;
+}
+
+.w-drawer__actions_column {
+  flex-direction: column;
+}
+
+/* В строку кнопки делят ширину поровну — по 160 при поле 16 и промежутке 8. */
+.w-drawer__actions_row > * {
+  flex: 1;
+  min-width: 0;
+}
+
+/*
+ * Уменьшенное движение: выезд снимаем, шторка появляется прозрачностью —
+ * видно, что она пришла, но ничто по экрану не едет.
+ */
+@media (prefers-reduced-motion: reduce) {
+  .w-drawer {
+    transition: opacity 150ms ease-out;
+  }
+
+  .w-drawer[data-starting-style],
+  .w-drawer[data-ending-style] {
+    transform: none;
+    opacity: 0;
+  }
+}

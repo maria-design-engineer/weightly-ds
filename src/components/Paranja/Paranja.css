@@ -1,12 +1,20 @@
 /*
- * Custom / paranja. Снято обходом мастера Figma 03.09.2026: прямоугольник во
- * весь экран на `Effect/Veil`. Место карточки снято с наложений d1–d7 той же
- * страницы: во всю ширину, прижата к низу паранджи.
+ * Product / paranja. Снято обходом мастеров Figma 03.09.2026, ось Type добавлена
+ * релизом 2: прямоугольник во весь экран, заливка приходит осью.
+ * Место карточки снято с наложений d1–d7 той же страницы: во всю ширину,
+ * прижата к низу паранджи.
  */
 .w-paranja {
   position: fixed;
   inset: 0;
+}
+
+.w-paranja_type_drawer {
   background: var(--w-effect-veil);
+}
+
+.w-paranja_type_info {
+  background: var(--w-effect-shadow);
 }
 
 .w-paranja__sheet {

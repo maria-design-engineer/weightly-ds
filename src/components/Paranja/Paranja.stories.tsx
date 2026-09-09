@@ -3,6 +3,8 @@ import { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 import { Button } from '../Button/Button'
+import { Cell, Row } from '../story-layout'
+import { PARANJA_TYPES } from './constants'
 import type { ParanjaProps } from './Paranja'
 import { Paranja } from './Paranja'
 
@@ -10,6 +12,7 @@ const meta = {
   title: 'Custom/Paranja',
   component: Paranja,
   argTypes: {
+    type: { control: 'inline-radio', options: PARANJA_TYPES },
     open: { control: 'boolean' },
     children: { control: false },
     onOpenChange: { control: false },
@@ -61,14 +64,24 @@ export const Playground: Story = {
   render: (args) => <ParanjaDemo {...args} />,
 }
 
-/** Само затемнение, открытое сразу: видно цвет `Effect/Veil`. */
-export const Veil: Story = {
-  args: { open: true },
-  render: (args) => (
-    <div style={{ height: 400 }}>
-      <Paranja {...args}>
-        <Sheet onClose={() => {}} />
-      </Paranja>
-    </div>
+/**
+ * Ось Type: под шторкой затемнение `Effect/Veil`, под информационным окном
+ * `Effect/Shadow` — оно светлее. Наложения показаны в рамке экрана, чтобы обе
+ * заливки было видно рядом.
+ */
+export const Types: Story = {
+  render: () => (
+    <Row>
+      {PARANJA_TYPES.map((type) => (
+        <Cell key={type} label={type} width={200}>
+          <div style={{ position: 'relative', width: 200, height: 300, overflow: 'hidden', borderRadius: 16, background: 'var(--w-branding-base-background)' }}>
+            <div style={{ padding: 16, font: 'var(--w-style-text-body-3)', color: 'var(--w-text-primary)' }}>
+              Экран под наложением
+            </div>
+            <div style={{ position: 'absolute', inset: 0, background: type === 'drawer' ? 'var(--w-effect-veil)' : 'var(--w-effect-shadow)' }} />
+          </div>
+        </Cell>
+      ))}
+    </Row>
   ),
 }

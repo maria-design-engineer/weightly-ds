@@ -178,8 +178,15 @@ export type {
   StickyBarWorkoutProps,
 } from './components/StickyBarWorkout/StickyBarWorkout'
 
+export { Drawer } from './components/Drawer/Drawer'
+export type { DrawerProps } from './components/Drawer/Drawer'
+export { DRAWER_ACTIONS } from './components/Drawer/constants'
+export type { DrawerActions } from './components/Drawer/constants'
+
 export { Paranja } from './components/Paranja/Paranja'
 export type { ParanjaProps } from './components/Paranja/Paranja'
+export { PARANJA_TYPES } from './components/Paranja/constants'
+export type { ParanjaType } from './components/Paranja/constants'
 
 export { BlockTabs } from './components/BlockTabs/BlockTabs'
 export type { BlockTabsProps } from './components/BlockTabs/BlockTabs'
