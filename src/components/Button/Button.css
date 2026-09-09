@@ -41,8 +41,14 @@
 
 .w-button_view_primary-brand { background: var(--w-branding-base-brand); color: var(--w-text-light-primary); }
 
-/* Primary — чёрная заливка Base/Dark, обводки нет. */
-.w-button_view_primary { background: var(--w-branding-base-dark); color: var(--w-text-light-primary); }
+/*
+ * Primary — заливка Base/Dark, обводки нет. Текст Text/Inverted Primary:
+ * в светлых режимах он белый на чёрном, в тёмных — тёмный на светлом.
+ * Text/Light Primary белый во всех четырёх, и в тёмной теме кнопка выходила
+ * белым по белому. Дефект кита, решение записано в его «Дефектах»;
+ * в самом ките ещё не починен — там 50 мастеров.
+ */
+.w-button_view_primary { background: var(--w-branding-base-dark); color: var(--w-text-inverted-primary); }
 
 
 /* Raised: релиз 2 добавил к тени обводку Base/Generic внутрь. */
