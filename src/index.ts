@@ -53,6 +53,18 @@ export type {
   AlertTheme,
   AlertView,
 } from './components/Alert/constants'
+export { Loader } from './components/Loader/Loader'
+export type { LoaderProps } from './components/Loader/Loader'
+export { LOADER_SIZES } from './components/Loader/constants'
+export type { LoaderSize } from './components/Loader/constants'
+
+export { Skeleton } from './components/Skeleton/Skeleton'
+export type { SkeletonProps } from './components/Skeleton/Skeleton'
+
+export { Spin } from './components/Spin/Spin'
+export type { SpinProps } from './components/Spin/Spin'
+export { SPIN_SIZES } from './components/Spin/constants'
+export type { SpinSize } from './components/Spin/constants'
 
 // Атомы — 12 своих компонентов, этап 10.
 export { Divider } from './components/Divider/Divider'
@@ -86,11 +98,6 @@ export { WeightWheel } from './components/WeightWheel/WeightWheel'
 export type { WeightWheelProps, WeightWheelValue } from './components/WeightWheel/WeightWheel'
 export { WEIGHT_WHEEL_DIRECTIONS } from './components/WeightWheel/constants'
 export type { WeightWheelDirection } from './components/WeightWheel/constants'
-
-export { StatusBar } from './components/StatusBar/StatusBar'
-export type { StatusBarProps } from './components/StatusBar/StatusBar'
-export { STATUS_BAR_TONES } from './components/StatusBar/constants'
-export type { StatusBarTone } from './components/StatusBar/constants'
 
 export { ExerciseRow } from './components/ExerciseRow/ExerciseRow'
 export type { ExerciseRowProps } from './components/ExerciseRow/ExerciseRow'

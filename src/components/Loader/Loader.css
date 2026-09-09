@@ -1,0 +1,70 @@
+/*
+ * Loader. Три полоски на Base/Brand: крайние ниже, средняя во всю высоту.
+ * Размеры сняты из кита — полоска 5/7/9, промежуток равен ширине полоски,
+ * весь загрузчик 25 × 20, 35 × 28, 45 × 36.
+ */
+.w-loader {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--w-loader-bar);
+  height: var(--w-loader-height);
+}
+
+.w-loader__bar {
+  width: var(--w-loader-bar);
+  height: var(--w-loader-side);
+  background: var(--w-branding-base-brand);
+  /*
+   * Бегущая подсветка: на каждом шаге кита полоски держат 1, 0.5 и 0.15,
+   * а на следующем значения сдвигаются на одну вправо. Три шага — три трети
+   * цикла; сдвиг задан задержкой, отрицательной, чтобы движение шло сразу.
+   */
+  animation: w-loader-run 900ms steps(1, end) infinite;
+}
+
+.w-loader__bar:nth-child(2) {
+  height: var(--w-loader-middle);
+  animation-delay: -600ms;
+}
+
+.w-loader__bar:nth-child(3) {
+  animation-delay: -300ms;
+}
+
+@keyframes w-loader-run {
+  0% { opacity: 1; }
+  33.333% { opacity: 0.5; }
+  66.666% { opacity: 0.15; }
+}
+
+.w-loader_size_s {
+  --w-loader-bar: 5px;
+  --w-loader-side: 14px;
+  --w-loader-middle: 20px;
+  --w-loader-height: 20px;
+}
+
+.w-loader_size_m {
+  --w-loader-bar: 7px;
+  --w-loader-side: 18px;
+  --w-loader-middle: 28px;
+  --w-loader-height: 28px;
+}
+
+.w-loader_size_l {
+  --w-loader-bar: 9px;
+  --w-loader-side: 24px;
+  --w-loader-middle: 36px;
+  --w-loader-height: 36px;
+}
+
+/*
+ * Уменьшенное движение: бег подсветки убираем, но не гасим совсем —
+ * ровная половинная прозрачность оставляет видимым, что идёт ожидание.
+ */
+@media (prefers-reduced-motion: reduce) {
+  .w-loader__bar {
+    animation: none;
+    opacity: 0.5;
+  }
+}

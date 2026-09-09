@@ -1,0 +1,44 @@
+/*
+ * Skeleton. Заглушка на Base/Generic, радиус 8 — как в ките; у круглой
+ * стоит 60 при стороне 28, то есть «скруглить до предела».
+ */
+.w-skeleton {
+  display: block;
+  width: 100%;
+  border-radius: 8px;
+  background-color: var(--w-base-generic);
+  /*
+   * Мерцание: в ките это набор `.animation` из четырёх шагов — по заглушке
+   * едет полоса Base/Generic Medium. Здесь она собрана градиентом, который
+   * проходит слева направо; ширина полосы взята из кадра, половина заглушки.
+   */
+  background-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--w-base-generic-medium) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  background-repeat: no-repeat;
+  animation: w-skeleton-wave 1200ms linear infinite;
+}
+
+.w-skeleton_round {
+  border-radius: 50%;
+}
+
+@keyframes w-skeleton-wave {
+  from { background-position: -100% 0; }
+  to { background-position: 100% 0; }
+}
+
+/*
+ * Уменьшенное движение: волну убираем, заглушка остаётся серой плашкой —
+ * место содержимого видно и без бега.
+ */
+@media (prefers-reduced-motion: reduce) {
+  .w-skeleton {
+    background-image: none;
+    animation: none;
+  }
+}

@@ -1,0 +1,34 @@
+/*
+ * Spin. В ките кольцо нарисовано дугой эллипса: разрыв сверху, видимая часть
+ * 150 градусов, толщина 2 при любом размере, цвет Line/Brand. Здесь дуга собрана
+ * коническим градиентом, а маска вырезает середину — обводкой такую дугу не задать.
+ */
+.w-spin {
+  display: inline-block;
+  width: var(--w-spin-side);
+  height: var(--w-spin-side);
+  border-radius: 50%;
+  background: conic-gradient(from 22deg, var(--w-branding-line-brand) 0 150deg, transparent 150deg);
+  mask: radial-gradient(farthest-side, transparent calc(100% - 2px), #000 calc(100% - 2px));
+  animation: w-spin-turn 900ms linear infinite;
+}
+
+@keyframes w-spin-turn {
+  to { transform: rotate(1turn); }
+}
+
+.w-spin_size_xs { --w-spin-side: 16px; }
+.w-spin_size_s { --w-spin-side: 24px; }
+.w-spin_size_m { --w-spin-side: 28px; }
+.w-spin_size_l { --w-spin-side: 32px; }
+.w-spin_size_xl { --w-spin-side: 36px; }
+
+/*
+ * Уменьшенное движение: вращение снимаем, кольцо остаётся на месте —
+ * видно, что ожидание идёт, но по экрану ничего не бежит.
+ */
+@media (prefers-reduced-motion: reduce) {
+  .w-spin {
+    animation: none;
+  }
+}

@@ -53,9 +53,7 @@ import { SettingsRow } from './components/SettingsRow/SettingsRow'
 import { SETTINGS_ROW_CARDS } from './components/SettingsRow/constants'
 import { StatTile } from './components/StatTile/StatTile'
 import { STAT_TILE_TONES } from './components/StatTile/constants'
-import { StatusBar } from './components/StatusBar/StatusBar'
 import { StepCell } from './components/StepCell/StepCell'
-import { STATUS_BAR_TONES } from './components/StatusBar/constants'
 import { StickyBar } from './components/StickyBar/StickyBar'
 import { StickyBarWorkout } from './components/StickyBarWorkout/StickyBarWorkout'
 import { TableCell } from './components/TableCell/TableCell'
@@ -495,15 +493,6 @@ function Atoms() {
         </Axis>
       </Component>
 
-      <Component kit="Custom / status-bar" code="StatusBar">
-        <Axis name="Tone · 2">
-          {STATUS_BAR_TONES.map((tone) => (
-            <Item key={tone} label={tone} width={360}>
-              <StatusBar tone={tone} time="9:41" />
-            </Item>
-          ))}
-        </Axis>
-      </Component>
 
       <Component kit="Custom / exercise-row" code="ExerciseRow">
         <Axis name="Свойств нет">

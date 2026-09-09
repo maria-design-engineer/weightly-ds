@@ -23,7 +23,6 @@ import { Icon } from './components/Icon/Icon'
 import { IntensityChip } from './components/IntensityChip/IntensityChip'
 import { ScreenHeader } from './components/ScreenHeader/ScreenHeader'
 import { SetMarker } from './components/SetMarker/SetMarker'
-import { StatusBar } from './components/StatusBar/StatusBar'
 import { StickyBarWorkout } from './components/StickyBarWorkout/StickyBarWorkout'
 import { WeightWheel } from './components/WeightWheel/WeightWheel'
 import './tokens/index.css'
@@ -233,8 +232,6 @@ function SetScreen() {
   return (
     <Screen height={781} bar={<StickyBarWorkout actions={WORKOUT_ACTIONS} />}>
       <div style={{ display: 'flex', flex: 'none', flexDirection: 'column', gap: 16, paddingTop: 16 }}>
-        <StatusBar tone="dark" time="9:41" />
-
         <div style={{ padding: '0 16px' }}>
           <ScreenHeader content="Сегодня · утро" onClose={() => {}} />
         </div>
@@ -361,11 +358,6 @@ function SetScreen() {
 function ReviewScreen() {
   return (
     <Screen height={781} scroll bar={<StickyBarWorkout actions={REVIEW_ACTIONS} />}>
-      {/* Системная панель стоит в 16 от верха экрана — как в макете, а не вплотную. */}
-      <div style={{ position: 'absolute', top: 16, right: 0, left: 0 }}>
-        <StatusBar tone="dark" time="9:41" />
-      </div>
-
       <div
         style={{
           display: 'flex',
