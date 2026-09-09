@@ -1,6 +1,7 @@
 /*
- * Custom / set-marker. Снято обходом мастеров Figma 02.09.2026:
- * 43 × 26, радиус 8, поля 4/8, промежуток 4, обводка 1.
+ * Product / set-marker. Снято обходом мастеров Figma 09.09.2026 под релиз 2:
+ * 43 × 34, радиус 8, поля 8 со всех сторон, промежуток 4, обводка 1.
+ * Было 43 × 26 с полями 4/8 — релиз 2 отметку вырастил.
  * Текущий подход обведён Line/Brand, остальные — Line/Generic.
  */
 .w-set-marker {
@@ -11,11 +12,11 @@
   justify-content: center;
   width: fit-content;
   gap: var(--w-g-spacing-1);
-  padding: var(--w-g-spacing-1) var(--w-g-spacing-2);
+  padding: var(--w-g-spacing-2);
   border: 1px solid var(--w-line-generic);
   border-radius: var(--w-s-radius);
-  /* Заливка чипа — Text/Light Primary, белая. Правка кита 02.09.2026. */
-  background: var(--w-text-light-primary);
+  /* Заливка Base/Background: в тёмной теме она темнеет вместе с экраном. */
+  background: var(--w-branding-base-background);
   font: var(--w-style-text-body-3);
   color: var(--w-text-primary);
 }
@@ -29,7 +30,9 @@
   flex: none;
 }
 
-/* У выполненного подхода значок залитый: кружок Text/Positive с белой галкой. */
+/* Цвет значка несёт состояние: галка зелёная, крест красный, тире серое. */
 .w-set-marker_state_done .w-set-marker__icon { color: var(--w-text-positive); }
 .w-set-marker_state_current .w-set-marker__icon,
 .w-set-marker_state_planned .w-set-marker__icon { color: var(--w-text-hint); }
+.w-set-marker_state_skipped .w-set-marker__icon { color: var(--w-text-secondary); }
+.w-set-marker_state_failed .w-set-marker__icon { color: var(--w-text-danger); }

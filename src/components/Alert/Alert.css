@@ -20,15 +20,15 @@
 .w-alert_corners_squared { border-radius: 0; }
 
 /* View=Filled — заливка по теме, обводки нет. */
-.w-alert_view_filled.w-alert_theme_normal { background: var(--w-base-semantic-misc-light); }
-.w-alert_view_filled.w-alert_theme_info { background: var(--w-base-semantic-info-light); }
-.w-alert_view_filled.w-alert_theme_success { background: var(--w-base-semantic-positive-light); }
-.w-alert_view_filled.w-alert_theme_warning { background: var(--w-base-semantic-warning-light); }
-.w-alert_view_filled.w-alert_theme_danger { background: var(--w-base-semantic-danger-light); }
-.w-alert_view_filled.w-alert_theme_utility { background: var(--w-base-semantic-utility-light); }
+.w-alert_view_filled.w-alert_theme_normal { background: var(--w-base-semantic-misc-light-solid); }
+.w-alert_view_filled.w-alert_theme_info { background: var(--w-base-semantic-info-light-solid); }
+.w-alert_view_filled.w-alert_theme_success { background: var(--w-base-semantic-positive-light-solid); }
+.w-alert_view_filled.w-alert_theme_warning { background: var(--w-base-semantic-warning-light-solid); }
+.w-alert_view_filled.w-alert_theme_danger { background: var(--w-base-semantic-danger-light-solid); }
+.w-alert_view_filled.w-alert_theme_utility { background: var(--w-base-semantic-utility-light-solid); }
 
 /* View=Outlined — заливки нет, обводка 1 по теме. */
-.w-alert_view_outlined { border-width: 1px; }
+.w-alert_view_outlined { border-width: 2px; }
 .w-alert_view_outlined.w-alert_theme_normal { border-color: var(--w-line-misc); }
 .w-alert_view_outlined.w-alert_theme_info { border-color: var(--w-line-info); }
 .w-alert_view_outlined.w-alert_theme_success { border-color: var(--w-line-positive); }

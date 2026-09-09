@@ -49,7 +49,9 @@
   box-shadow: inset 0 -1px 0 0 var(--w-line-focus);
 }
 
+/* Каретка на фокусе — Text/Primary, правка релиза 2. */
 .w-text-input__control {
+  caret-color: var(--w-text-primary);
   width: 100%;
   min-width: 0;
   border: 0;

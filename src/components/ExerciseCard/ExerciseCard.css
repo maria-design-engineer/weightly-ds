@@ -1,6 +1,7 @@
 /*
- * Custom / exercise-card. Пересснято обходом трёх мастеров Figma 03.09.2026,
- * ось Type: plan, task, running. Общее — ширина 328, радиус 16, заливка
+ * Product / exercise-card. Пересснято обходом мастеров Figma 03.09.2026,
+ * оси релиза 2: Type — plan, task, running; View — collapsed, expanded;
+ * State — default, drag. Общее — ширина 328, радиус 16, заливка
  * Base Float/Float BG. Разное — поля, промежутки, тень и кегли:
  *   plan     поля 12, промежуток 16, тень card (new), счётчик Text/Hint,
  *            название Header/Subheader 2, ступени размера S
@@ -51,6 +52,19 @@
   box-shadow: var(--w-card-shadow-card-new);
 }
 
+/*
+ * State=drag: карточку тянут — заливка светлеет до Base Float/Float Hover,
+ * тень сменяется на card-hover (new). У задания тени нет и в этом состоянии.
+ */
+.w-exercise-card_state_drag {
+  background: var(--w-base-float-float-hover);
+}
+
+.w-exercise-card_state_drag.w-exercise-card_type_plan,
+.w-exercise-card_state_drag.w-exercise-card_type_running {
+  box-shadow: var(--w-card-shadow-card-hover-new);
+}
+
 .w-exercise-card__head {
   display: flex;
   align-items: center;
@@ -72,7 +86,7 @@
 }
 
 .w-exercise-card__title {
-  /* Название — Header/Subheader 1 у плана и идущего, Subheader 3 у задания. */
+  /* Название — Header/Subheader 3 у плана и идущего, Subheader 1 у задания. Номера релиза 2. */
   font: var(--w-style-header-subheader-3);
   color: var(--w-text-primary);
 }
@@ -92,13 +106,19 @@
   line-clamp: 3;
 }
 
-/* У идущего упражнения название стоит в строке со значком и обрезается многоточием. */
+/*
+ * У идущего упражнения название стоит в строке со значком. Релиз 2 снял обрезку
+ * у plan и running: длинное название переносится, карточка растёт.
+ */
 .w-exercise-card_type_running .w-exercise-card__title {
   flex: 1;
   min-width: 0;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+}
+
+/* Список движений идёт столбиком: название собрано из строк, а не из одной. */
+.w-exercise-card__title {
+  display: flex;
+  flex-direction: column;
 }
 
 .w-exercise-card__hint {
@@ -158,6 +178,8 @@
  * вышла ровно 2 с каждой стороны.
  */
 .w-exercise-card_type_task .w-exercise-card__steps {
+  /* Шаг между чипами у задания — 12: релиз 2 уменьшил его с 16. */
+  gap: var(--w-g-spacing-3);
   margin-block: -1px;
   margin-left: -1px;
   margin-right: calc(-1 * var(--w-g-spacing-4) - 1px);

@@ -4,7 +4,8 @@ import { IntensityChip } from '../IntensityChip/IntensityChip'
 import { StepCell } from '../StepCell/StepCell'
 import { Cell, Row } from '../story-layout'
 import { ExerciseCard } from './ExerciseCard'
-import { EXERCISE_CARD_TYPES } from './constants'
+import { ExerciseBullets } from '../ExerciseBullets/ExerciseBullets'
+import { EXERCISE_CARD_STATES, EXERCISE_CARD_TYPES, EXERCISE_CARD_VIEWS } from './constants'
 
 /*
  * Шесть ступеней: в карточку влезает пять, шестая уезжает за край — ряд
@@ -64,6 +65,9 @@ const meta = {
   ],
   argTypes: {
     type: { control: 'inline-radio', options: EXERCISE_CARD_TYPES },
+    view: { control: 'inline-radio', options: EXERCISE_CARD_VIEWS },
+    state: { control: 'inline-radio', options: EXERCISE_CARD_STATES },
+    bullets: { control: false },
     content: { control: 'text' },
     caption: { control: 'text' },
     steps: { control: false },
@@ -107,6 +111,53 @@ export const Types: Story = {
             type={type}
             content={TITLE_BY_TYPE[type]}
             steps={STEPS_BY_TYPE[type]}
+          />
+        </Cell>
+      ))}
+    </Row>
+  ),
+}
+
+/**
+ * Список движений вместо названия строкой: в ките его набирают булевыми
+ * `Bullets` и `Move 2`…`Move 4`, в коде он приходит слотом. Ось View меняет
+ * размер набора — `collapsed` крупнее `expanded`.
+ */
+export const Bullets: Story = {
+  render: (args) => (
+    <Row>
+      {EXERCISE_CARD_VIEWS.map((view) => (
+        <Cell key={view} label={view} width={328}>
+          <ExerciseCard
+            {...args}
+            type="task"
+            view={view}
+            steps={STEPS_BY_TYPE.task}
+            bullets={
+              <>
+                <ExerciseBullets view={view} content="Приседания со штангой · на груди" />
+                <ExerciseBullets view={view} content="Толчок от груди" />
+              </>
+            }
+          />
+        </Cell>
+      ))}
+    </Row>
+  ),
+}
+
+/** Ось State: карточку тянут — заливка светлеет, тень становится глубже. */
+export const Drag: Story = {
+  render: (args) => (
+    <Row>
+      {EXERCISE_CARD_STATES.map((state) => (
+        <Cell key={state} label={state} width={328}>
+          <ExerciseCard
+            {...args}
+            type="plan"
+            state={state}
+            content={TITLE_BY_TYPE.plan}
+            steps={STEPS_BY_TYPE.plan}
           />
         </Cell>
       ))}

@@ -45,7 +45,13 @@
 .w-button_view_primary { background: var(--w-branding-base-dark); color: var(--w-text-light-primary); }
 
 
-.w-button_view_raised { background: var(--w-base-float-float-bg); box-shadow: var(--w-shadows-raised-button); }
+/* Raised: релиз 2 добавил к тени обводку Base/Generic внутрь. */
+.w-button_view_raised {
+  border-width: 1px;
+  border-color: var(--w-base-generic);
+  background: var(--w-base-float-float-bg);
+  box-shadow: var(--w-shadows-raised-button);
+}
 
 .w-button_view_normal-contrast { background: var(--w-base-light); color: var(--w-text-dark-primary); }
 .w-button_view_outlined-contrast { border-width: 1px; border-color: var(--w-line-light); color: var(--w-text-light-primary); }
@@ -69,7 +75,11 @@
 
 
 /* State=Selected — заливка Base/Selection, текст Text/Brand Heavy. */
-.w-button_selected { background: var(--w-branding-base-selection); color: var(--w-branding-text-brand-heavy); }
+/*
+ * Selected: релиз 2 перевёл текст с Text/Brand Heavy на Text/Inverted Primary —
+ * контраст был 1,74, стал 12,63.
+ */
+.w-button_selected { background: var(--w-branding-base-selection); color: var(--w-text-inverted-primary); }
 
 /* State=Disabled — нажатие не принимает, в обход клавиатурой не попадает. */
 .w-button[data-disabled] { color: var(--w-text-hint); cursor: default; }

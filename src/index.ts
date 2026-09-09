@@ -156,8 +156,8 @@ export type { StepCellProps } from './components/StepCell/StepCell'
 
 export { ExerciseCard } from './components/ExerciseCard/ExerciseCard'
 export type { ExerciseCardProps } from './components/ExerciseCard/ExerciseCard'
-export { EXERCISE_CARD_TYPES } from './components/ExerciseCard/constants'
-export type { ExerciseCardType } from './components/ExerciseCard/constants'
+export { EXERCISE_CARD_STATES, EXERCISE_CARD_TYPES, EXERCISE_CARD_VIEWS } from './components/ExerciseCard/constants'
+export type { ExerciseCardState, ExerciseCardType, ExerciseCardView } from './components/ExerciseCard/constants'
 
 export { Icon } from './components/Icon/Icon'
 

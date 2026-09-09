@@ -4,14 +4,24 @@ import { useEffect, useRef } from 'react'
 import { CircleQuestion } from '@gravity-ui/icons'
 
 import { Icon } from '../Icon/Icon'
-import type { ExerciseCardType } from './constants'
+import type { ExerciseCardState, ExerciseCardType, ExerciseCardView } from './constants'
 import './ExerciseCard.css'
 
 export type ExerciseCardProps = {
   /** Figma Type — план, задание или идущее упражнение. */
   type?: ExerciseCardType
-  /** Figma Text — название упражнения. */
+  /** Figma View — размер набора у списка движений. Заведена релизом 2. */
+  view?: ExerciseCardView
+  /** Figma State — обычная карточка или та, которую тянут. */
+  state?: ExerciseCardState
+  /** Figma Text, Single title — название упражнения одной строкой. */
   content?: ReactNode
+  /**
+   * Список движений — `Product / exercise-bullets`. В ките его набирают булевыми
+   * `Bullets` и `Move 2`…`Move 4`; во фронт такие свойства не едут, вместо них
+   * список. Передан — название собирается из движений, а не строкой.
+   */
+  bullets?: ReactNode
   /** Figma Caption — счётчик «упражнение 2 из 5». Figma Counter включает его. */
   caption?: ReactNode
   /**
@@ -32,7 +42,10 @@ export type ExerciseCardProps = {
  */
 export function ExerciseCard({
   type = 'plan',
+  view = 'collapsed',
+  state = 'default',
   content,
+  bullets,
   caption,
   steps,
   onHint,
@@ -88,20 +101,24 @@ export function ExerciseCard({
   ) : null
 
   return (
-    <div className={`w-exercise-card w-exercise-card_type_${type}`}>
+    <div
+      className={`w-exercise-card w-exercise-card_type_${type} w-exercise-card_view_${view} w-exercise-card_state_${state}`}
+    >
       <div className="w-exercise-card__info">
         {/* Шапки нет вовсе, когда нечего в неё положить: в ките при Counter=false её тоже нет. */}
         {type === 'running' || caption || hint ? (
           <div className="w-exercise-card__head">
             {type === 'running' ? (
-              <span className="w-exercise-card__title">{content}</span>
+              <span className="w-exercise-card__title">{bullets ?? content}</span>
             ) : (
               caption && <span className="w-exercise-card__counter">{caption}</span>
             )}
             {hint}
           </div>
         ) : null}
-        {type === 'running' ? null : <span className="w-exercise-card__title">{content}</span>}
+        {type === 'running' ? null : (
+          <span className="w-exercise-card__title">{bullets ?? content}</span>
+        )}
       </div>
       {steps ? (
         <div className="w-exercise-card__steps" ref={stepsRef} onPointerDown={handlePointerDown}>
