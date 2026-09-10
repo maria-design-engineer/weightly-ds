@@ -105,20 +105,17 @@ export function ExerciseCard({
       className={`w-exercise-card w-exercise-card_type_${type} w-exercise-card_view_${view} w-exercise-card_state_${state}`}
     >
       <div className="w-exercise-card__info">
-        {/* Шапки нет вовсе, когда нечего в неё положить: в ките при Counter=false её тоже нет. */}
-        {type === 'running' || caption || hint ? (
-          <div className="w-exercise-card__head">
-            {type === 'running' ? (
-              <span className="w-exercise-card__title">{bullets ?? content}</span>
-            ) : (
-              caption && <span className="w-exercise-card__counter">{caption}</span>
-            )}
-            {hint}
-          </div>
-        ) : null}
-        {type === 'running' ? null : (
+        {/*
+         * Шапка кита горизонтальная: значок подсказки слева, за ним название,
+         * следом счётчик — он в мастере скрыт и включается булевым `Counter`.
+         * Переснято 10.09.2026: раньше значок стоял в строке счётчика,
+         * над названием, и на карточке без счётчика висел сам по себе.
+         */}
+        <div className="w-exercise-card__head">
+          {hint}
           <span className="w-exercise-card__title">{bullets ?? content}</span>
-        )}
+          {caption ? <span className="w-exercise-card__counter">{caption}</span> : null}
+        </div>
       </div>
       {steps ? (
         <div className="w-exercise-card__steps" ref={stepsRef} onPointerDown={handlePointerDown}>

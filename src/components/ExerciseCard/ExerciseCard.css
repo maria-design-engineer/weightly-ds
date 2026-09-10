@@ -67,13 +67,18 @@
 
 .w-exercise-card__head {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: var(--w-g-spacing-2);
 }
 
-.w-exercise-card__counter {
+/* Название занимает строку целиком, значок и счётчик прижаты к краям. */
+.w-exercise-card__head .w-exercise-card__title {
   flex: 1;
   min-width: 0;
+}
+
+.w-exercise-card__counter {
+  flex: none;
   font: var(--w-style-text-caption-1);
 }
 
