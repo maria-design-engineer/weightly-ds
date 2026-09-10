@@ -35,6 +35,17 @@ export type TextInputProps = {
   startIcon?: ReactNode
   /** Подпись поля стоит над полем, в Custom / field: свойство Label кита не берётся. */
   ariaLabel?: string
+  /**
+   * Имя поля в форме. Осью кита не является: без него значение не уезжает
+   * в `FormData`, и контрол в форме бесполезен.
+   */
+  name?: string
+  /** Тип ввода: почта, пароль или обычный текст. Тоже не ось, а свойство платформы. */
+  type?: 'text' | 'email' | 'password' | 'tel' | 'url'
+  /** Подсказка браузеру, чем заполнять. */
+  autoComplete?: string
+  /** Поле обязательно. Проверку всё равно ведёт сервер — это подсказка браузеру. */
+  required?: boolean
 }
 
 /**
@@ -53,6 +64,10 @@ export function TextInput({
   errorPlacement = 'outline',
   startIcon,
   ariaLabel,
+  name,
+  type,
+  autoComplete,
+  required,
 }: TextInputProps) {
   const invalid = Boolean(errorMessage)
   /* Стоит внутри `Field` — имя контролу даёт его подпись, а не второй ariaLabel. */
@@ -73,6 +88,10 @@ export function TextInput({
         {startIcon}
         <Input
           className="w-text-input__control"
+          name={name}
+          type={type}
+          autoComplete={autoComplete}
+          required={required}
           value={value}
           defaultValue={defaultValue}
           onValueChange={onValueChange}

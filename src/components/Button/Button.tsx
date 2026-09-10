@@ -30,6 +30,12 @@ export type ButtonProps = {
   onClick?: MouseEventHandler<HTMLButtonElement>
   /** Подпись для чтения с экрана, когда кнопка несёт только иконку. */
   ariaLabel?: string
+  /**
+   * Тип кнопки в форме. Осью кита не является: по умолчанию браузер считает
+   * кнопку внутри формы отправляющей, и кнопке «назад» рядом с формой
+   * нужно сказать `button`, иначе она форму отправит.
+   */
+  type?: 'button' | 'submit' | 'reset'
 }
 
 /**
@@ -47,6 +53,7 @@ export function Button({
   selected,
   onClick,
   ariaLabel,
+  type,
 }: ButtonProps) {
   /*
    * Содержимого нет — это и `undefined`, и `null`, и `false`, и пустая строка:
@@ -70,6 +77,7 @@ export function Button({
   return (
     <BaseButton
       className={className}
+      type={type}
       // Загрузка не принимает второе нажатие: своё решение, в ките такого правила нет.
       disabled={disabled || loading}
       onClick={onClick}
