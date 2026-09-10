@@ -2,6 +2,10 @@
  * Custom / coach-comment. Снято обходом мастеров Figma 03.09.2026:
  * радиус 12, промежуток 8; open — поля 16/12, closed — поля 4/12.
  * Заливка — градиент свечения по полосе: Gradient/<Band> glow.
+ *
+ * State=scroll переснят 10.09.2026: поля те же, что у open, но текст ограничен
+ * по высоте и прокручивается — в ките это карточка 328 × 208 с обрезкой
+ * содержимого и полосой прокрутки вдоль текста высотой 108.
  */
 .w-coach-comment {
   box-sizing: border-box;
@@ -13,7 +17,8 @@
   border-radius: var(--w-l-radius);
 }
 
-.w-coach-comment_state_open { padding: var(--w-g-spacing-4) var(--w-g-spacing-3); }
+.w-coach-comment_state_open,
+.w-coach-comment_state_scroll { padding: var(--w-g-spacing-4) var(--w-g-spacing-3); }
 .w-coach-comment_state_closed { padding: var(--w-g-spacing-1) var(--w-g-spacing-3); }
 
 .w-coach-comment_band_pink { background: var(--w-gradient-pink-glow); }
@@ -48,4 +53,15 @@
 .w-coach-comment__body {
   font: var(--w-style-text-body-3);
   color: var(--w-text-complementary);
+}
+
+/*
+ * Текст длиннее шести строк прокручивается внутри карточки, а не растит её:
+ * 108 — высота текста в ките, шесть строк Text/Body 3. Короткий комментарий
+ * предела не достаёт, и карточка остаётся низкой сама.
+ */
+.w-coach-comment_state_scroll .w-coach-comment__body {
+  max-height: 108px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
 }
