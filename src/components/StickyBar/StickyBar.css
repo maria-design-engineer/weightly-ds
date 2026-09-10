@@ -7,7 +7,9 @@
  * а фон экрана в тёмных режимах не белый. С белым числом панель оставалась
  * светлой в тёмной теме, и белые подписи на ней пропадали. Кит этого ещё
  * не знает — тёмная тема на макетах не проверялась.
- * Размытия у неё нет — оно только у sticky-bar-workout, решение пользователя.
+ * Размытие фона 17 — как у sticky-bar-workout: 10.09.2026 в ките оно стоит
+ * у обеих панелей, и решение пользователя от 03.09.2026 «размытие только
+ * у панели прохождения» этим отменено.
  * Кнопки внутри стоят на FILL — ширину делят поровну.
  */
 .w-sticky-bar {
@@ -28,8 +30,9 @@
   background: linear-gradient(
     180deg,
     transparent 0%,
-    var(--w-branding-base-background) 19%
+    var(--w-branding-base-background) 19.42%
   );
+  backdrop-filter: blur(17px);
 }
 
 @supports (background: color-mix(in srgb, red 50%, transparent)) {
@@ -37,8 +40,8 @@
     background: linear-gradient(
       180deg,
       transparent 0%,
-      color-mix(in srgb, var(--w-branding-base-background) 30%, transparent) 7%,
-      color-mix(in srgb, var(--w-branding-base-background) 70%, transparent) 19%
+      color-mix(in srgb, var(--w-branding-base-background) 30%, transparent) 6.68%,
+      color-mix(in srgb, var(--w-branding-base-background) 70%, transparent) 19.42%
     );
   }
 }

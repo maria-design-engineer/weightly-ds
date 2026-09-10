@@ -28,3 +28,11 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Playground: Story = {}
+
+/**
+ * Булево кита `Right button = false`: правой кнопки нет. Пропом это не является —
+ * кнопка просто не передана, и оставшаяся занимает всю ширину.
+ */
+export const OneButton: Story = {
+  args: { children: <Button view="primary" size="xl" content="Одна кнопка" /> },
+}
