@@ -1,6 +1,7 @@
 /*
  * Custom / coach-comment. Снято обходом мастеров Figma 03.09.2026:
- * радиус 12, промежуток 8; open — поля 16/12, closed — поля 4/12.
+ * радиус 12, промежуток 8. Поля переснято 10.09.2026: 12 со всех сторон
+ * у всех трёх состояний — раньше у развёрнутого было 16 сверху и снизу.
  * Заливка — градиент свечения по полосе: Gradient/<Band> glow.
  *
  * State=scroll переснят 10.09.2026: поля те же, что у open, но текст ограничен
@@ -17,9 +18,8 @@
   border-radius: var(--w-l-radius);
 }
 
-.w-coach-comment_state_open,
-.w-coach-comment_state_scroll { padding: var(--w-g-spacing-4) var(--w-g-spacing-3); }
-.w-coach-comment_state_closed { padding: var(--w-g-spacing-1) var(--w-g-spacing-3); }
+/* Поля одинаковые во всех состояниях: свёрнутый и развёрнутый не прыгают. */
+.w-coach-comment { padding: var(--w-g-spacing-3); }
 
 .w-coach-comment_band_pink { background: var(--w-gradient-pink-glow); }
 .w-coach-comment_band_lime { background: var(--w-gradient-lime-glow); }
@@ -29,7 +29,7 @@
   display: flex;
   align-items: center;
   gap: var(--w-g-spacing-2);
-  min-height: 34px;
+  min-height: 24px;
 }
 
 .w-coach-comment__title {
