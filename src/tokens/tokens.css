@@ -107,8 +107,8 @@
   --w-text-hint: rgba(0, 0, 0, 0.3);
   --w-text-info: #348bdc;
   --w-text-info-heavy: #3072b3;
-  --w-text-danger: #c02328;
-  --w-text-danger-heavy: #9e1c20;
+  --w-text-danger: #b22228;
+  --w-text-danger-heavy: #962027;
   --w-text-warning: #bd8e4b;
   --w-text-warning-heavy: #bd5c0a;
   --w-text-positive: #30aa6e;
@@ -174,11 +174,11 @@
   --w-base-semantic-neutral-heavy-hover: rgba(0, 0, 0, 0.55);
   --w-base-semantic-danger-light: rgba(229, 72, 77, 0.15);
   --w-base-semantic-danger-light-hover: rgba(229, 72, 77, 0.3);
-  --w-base-semantic-danger-light-solid: #ffd9e2;
+  --w-base-semantic-danger-light-solid: #f6dedf;
   --w-base-semantic-danger-medium: rgba(229, 72, 77, 0.3);
   --w-base-semantic-danger-medium-hover: rgba(229, 72, 77, 0.5);
-  --w-base-semantic-danger-heavy: #c02328;
-  --w-base-semantic-danger-heavy-hover: #9e1c20;
+  --w-base-semantic-danger-heavy: #b22228;
+  --w-base-semantic-danger-heavy-hover: #962027;
   --w-base-semantic-misc-light: rgba(107, 132, 153, 0.15);
   --w-base-semantic-misc-light-hover: rgba(107, 132, 153, 0.3);
   --w-base-semantic-misc-light-solid: #e9edf0;
