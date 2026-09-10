@@ -40,6 +40,13 @@ export function CoachComment({
     `w-coach-comment_state_${state}`,
   ].join(' ')
 
+  /*
+   * Развёрнутых состояний два: `open` и `scroll`. Отличаются они только тем,
+   * ограничен ли текст по высоте, — сам текст показывают оба. Свёрнут один
+   * `closed`, там видна шапка.
+   */
+  const expanded = state !== 'closed'
+
   return (
     <div className={className}>
       <div className="w-coach-comment__head">
@@ -51,13 +58,13 @@ export function CoachComment({
           <Button
             view="flat"
             size="m"
-            ariaLabel={state === 'open' ? 'Свернуть' : 'Развернуть'}
-            startIcon={<Icon data={state === 'open' ? ChevronUp : ChevronDown} size={16} />}
+            ariaLabel={expanded ? 'Свернуть' : 'Развернуть'}
+            startIcon={<Icon data={expanded ? ChevronUp : ChevronDown} size={16} />}
             onClick={onToggle}
           />
         ) : null}
       </div>
-      {state === 'open' ? (
+      {expanded ? (
         <>
           {author ? <span className="w-coach-comment__author">{author}</span> : null}
           {body ? <span className="w-coach-comment__body">{body}</span> : null}
