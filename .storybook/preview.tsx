@@ -2,6 +2,8 @@ import type { Preview } from '@storybook/react-vite'
 
 // Слой значений библиотеки: витрина показывает компоненты на тех же токенах, что и продукт.
 import '../src/tokens/index.css'
+// Рамка экрана витрины — то, что в продукте объявляет приложение.
+import './preview.css'
 
 const preview: Preview = {
   parameters: {
