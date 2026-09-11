@@ -62,6 +62,14 @@ export function WeightWheel({
   /* Первая постановка — сразу, без прокрутки: выбранное значение обязано стоять в середине. */
   const placed = useRef(false)
   /*
+   * Человек крутит барабан прямо сейчас. Пока крутит, программная доводка молчит:
+   * иначе она дерётся с инерцией браузера и швыряет ленту в край — на прогоне
+   * 11.09.2026 быстрый рывок сбрасывал вес в ноль. Признак снимается, когда
+   * прокрутка утихла.
+   */
+  const scrolling = useRef(false)
+  const settle = useRef<ReturnType<typeof setTimeout> | null>(null)
+  /*
    * Без `onSelect` барабан ведёт выбор сам: иначе чёрное значение остаётся на
    * месте, а лента уезжает — в середине оказывается серое.
    */
@@ -94,6 +102,8 @@ export function WeightWheel({
     function place(instant = false) {
       const wheel = listRef.current
       if (!wheel) return
+      /* Человек крутит — не мешаем: он сам остановится там, где хотел. */
+      if (scrolling.current) return
       const option = options(wheel)[current]
       if (!option) return
       /*
@@ -137,21 +147,48 @@ export function WeightWheel({
     return () => {
       alive = false
       observer.disconnect()
+      /* Ждать окончания прокрутки после ухода компонента некому и незачем. */
+      if (settle.current) clearTimeout(settle.current)
     }
   }, [current, direction, values])
+
+  /**
+   * Какое значение стоит в середине. Считается по шагу ленты, а не перебором всех
+   * значений: у своего веса их две тысячи, и мерить каждое на каждое событие
+   * прокрутки — это тысячи замеров на кадр. Шаг берётся у самой разметки:
+   * расстояние между первым и последним, делённое на число промежутков.
+   */
+  function currentFromScroll(node: HTMLUListElement): number {
+    const list = options(node)
+    if (list.length < 2) return 0
+    const first = list[0] as HTMLElement
+    const last = list[list.length - 1] as HTMLElement
+    const vertical = direction === 'vertical'
+    const span = vertical ? last.offsetTop - first.offsetTop : last.offsetLeft - first.offsetLeft
+    const step = span / (list.length - 1)
+    if (step <= 0) return current
+
+    const centre = vertical
+      ? node.scrollTop + node.clientHeight / 2
+      : node.scrollLeft + node.clientWidth / 2
+    const size = vertical ? first.offsetHeight : first.offsetWidth
+    const start = (vertical ? first.offsetTop : first.offsetLeft) + size / 2
+    const index = Math.round((centre - start) / step)
+    return Math.min(Math.max(index, 0), list.length - 1)
+  }
 
   function handleScroll() {
     const node = listRef.current
     if (!node) return
-    let next = current
-    let nearest = Infinity
-    options(node).forEach((option, index) => {
-      const distance = Math.abs(offsetFromCenter(node, option, direction))
-      if (distance < nearest) {
-        nearest = distance
-        next = index
-      }
-    })
+
+    scrolling.current = true
+    if (settle.current) clearTimeout(settle.current)
+    /* Прокрутка считается законченной, когда событий не было 120 мс. */
+    settle.current = setTimeout(() => {
+      scrolling.current = false
+    }, 120)
+
+    const next = currentFromScroll(node)
     if (next === current) return
     setOwnSelected(next)
     onSelect?.(next)
