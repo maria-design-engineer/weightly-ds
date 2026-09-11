@@ -23,10 +23,11 @@
   white-space: nowrap;
 }
 
-/* Значок берёт цвет числа — своей заливки в ките у него нет. */
+/* Значок стоит на своей заливке Text/Hint — цвет числа на него не идёт. */
 .w-intensity-chip-xs__icon {
   display: inline-flex;
   flex: none;
+  color: var(--w-text-hint);
 }
 
 .w-intensity-chip-xs_band_neutral {
