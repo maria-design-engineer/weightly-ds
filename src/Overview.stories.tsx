@@ -39,6 +39,11 @@ import {
   INTENSITY_CHIP_SIZES,
   INTENSITY_CHIP_STATES,
 } from './components/IntensityChip/constants'
+import { IntensityChipXs } from './components/IntensityChipXs/IntensityChipXs'
+import {
+  INTENSITY_CHIP_XS_BANDS,
+  INTENSITY_CHIP_XS_SIZES,
+} from './components/IntensityChipXs/constants'
 import { Label } from './components/Label/Label'
 import { LABEL_SIZES, LABEL_THEMES } from './components/Label/constants'
 import { LiftMark } from './components/LiftMark/LiftMark'
@@ -528,6 +533,30 @@ function Atoms() {
           {INTENSITY_CHIP_BANDS.map((band) => (
             <Item key={band} label={band}>
               <IntensityChip band={band} content="75%" caption="2 × 2" />
+            </Item>
+          ))}
+        </Axis>
+      </Component>
+
+      <Component kit="Product / intensity-chip-xs" code="IntensityChipXs">
+        <Axis name="Size · 2">
+          {INTENSITY_CHIP_XS_SIZES.map((size) => (
+            <Item key={size} label={size}>
+              <IntensityChipXs size={size} content="75%" />
+            </Item>
+          ))}
+        </Axis>
+        <Axis name="Band · 3">
+          {INTENSITY_CHIP_XS_BANDS.map((band) => (
+            <Item key={band} label={band}>
+              <IntensityChipXs band={band} content="75%" />
+            </Item>
+          ))}
+        </Axis>
+        <Axis name="Icon · 2">
+          {[false, true].map((icon) => (
+            <Item key={String(icon)} label={icon ? 'on' : 'off'}>
+              <IntensityChipXs icon={icon} content="75%" />
             </Item>
           ))}
         </Axis>
