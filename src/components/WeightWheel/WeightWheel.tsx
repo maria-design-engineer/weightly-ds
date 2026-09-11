@@ -84,7 +84,14 @@ export function WeightWheel({
     const node = listRef.current
     if (!node) return
 
-    function place() {
+    /**
+     * `instant` — поправка, а не движение: барабан переставляют не потому, что человек
+     * выбрал другое значение, а потому что под ним переложилась разметка — доехала
+     * гарнитура или поменялся размер. Плавная прокрутка в этом случае читается как
+     * дёрганье: числа стоят чуть ниже середины и подъезжают вверх сами собой.
+     * Найдено на прогоне 11.09.2026, экран своего веса.
+     */
+    function place(instant = false) {
       const wheel = listRef.current
       if (!wheel) return
       const option = options(wheel)[current]
@@ -104,7 +111,7 @@ export function WeightWheel({
           top: direction === 'vertical' ? shift : 0,
           left: direction === 'horizontal' ? shift : 0,
           /* Движение выключается вместе с системной настройкой — находка 8. */
-          behavior: placed.current && !prefersReducedMotion() ? 'smooth' : 'auto',
+          behavior: placed.current && !instant && !prefersReducedMotion() ? 'smooth' : 'auto',
         })
       }
       placed.current = true
@@ -118,11 +125,11 @@ export function WeightWheel({
      */
     let alive = true
     document.fonts?.ready.then(() => {
-      if (alive) place()
+      if (alive) place(true)
     })
 
     /* Размер меняется, когда переложилась страница или значение стало шире. */
-    const observer = new ResizeObserver(() => place())
+    const observer = new ResizeObserver(() => place(true))
     observer.observe(node)
     const option = options(node)[current]
     if (option) observer.observe(option)
