@@ -4,7 +4,7 @@ import { CircleQuestion } from '@gravity-ui/icons'
 
 import { Icon } from '../Icon/Icon'
 
-import type { IntensityChipXsBand } from './constants'
+import type { IntensityChipXsBand, IntensityChipXsSize } from './constants'
 import './IntensityChipXs.css'
 
 export type IntensityChipXsProps = {
@@ -12,6 +12,8 @@ export type IntensityChipXsProps = {
   band?: IntensityChipXsBand
   /** Процент от максимума — в ките это текстовый слой «%». */
   content?: ReactNode
+  /** Figma Size — рост плашки: S 24, M 28. Отличаются только поля. */
+  size?: IntensityChipXsSize
   /** Figma Icon — значок подсказки справа от числа. По умолчанию его нет. */
   icon?: boolean
 }
@@ -24,8 +26,17 @@ export type IntensityChipXsProps = {
  * Значок подсказки в ките ничего не делает — это булево свойство показа.
  * Понадобится нажатие — заводим обработчик отдельно, по кадру, где он появится.
  */
-export function IntensityChipXs({ band = 'neutral', content, icon = false }: IntensityChipXsProps) {
-  const className = ['w-intensity-chip-xs', `w-intensity-chip-xs_band_${band}`].join(' ')
+export function IntensityChipXs({
+  band = 'neutral',
+  size = 's',
+  content,
+  icon = false,
+}: IntensityChipXsProps) {
+  const className = [
+    'w-intensity-chip-xs',
+    `w-intensity-chip-xs_band_${band}`,
+    `w-intensity-chip-xs_size_${size}`,
+  ].join(' ')
 
   return (
     <span className={className}>

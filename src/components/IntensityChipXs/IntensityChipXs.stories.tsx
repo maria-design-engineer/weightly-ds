@@ -2,13 +2,14 @@ import type { Meta, StoryObj } from '@storybook/react-vite'
 
 import { Cell, Row } from '../story-layout'
 import { IntensityChipXs } from './IntensityChipXs'
-import { INTENSITY_CHIP_XS_BANDS } from './constants'
+import { INTENSITY_CHIP_XS_BANDS, INTENSITY_CHIP_XS_SIZES } from './constants'
 
 const meta = {
   title: 'Product components/IntensityChipXs',
   component: IntensityChipXs,
   argTypes: {
     band: { control: 'inline-radio', options: INTENSITY_CHIP_XS_BANDS },
+    size: { control: 'inline-radio', options: INTENSITY_CHIP_XS_SIZES },
     content: { control: 'text' },
     icon: { control: 'boolean' },
   },
@@ -40,6 +41,19 @@ export const WithIcon: Story = {
       {INTENSITY_CHIP_XS_BANDS.map((band) => (
         <Cell key={band} label={band} width={100}>
           <IntensityChipXs {...args} band={band} icon />
+        </Cell>
+      ))}
+    </Row>
+  ),
+}
+
+/** Ось Size: S ростом 24 — в карточке, M ростом 28 — в строке со временем тренировки. */
+export const Sizes: Story = {
+  render: (args) => (
+    <Row>
+      {INTENSITY_CHIP_XS_SIZES.map((size) => (
+        <Cell key={size} label={size} width={100}>
+          <IntensityChipXs {...args} size={size} />
         </Cell>
       ))}
     </Row>

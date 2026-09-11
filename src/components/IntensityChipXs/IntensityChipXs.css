@@ -1,9 +1,8 @@
 /*
- * Product / intensity-chip-xs. Снято обходом мастера Figma 11.09.2026:
- * ряд 24 в высоту, поля 3 сверху и снизу, 8 по бокам, промежуток 4,
- * радиус 8 (S radius). Число — Text/Body 3, значок подсказки 14.
- *
- * Поле 3 стоит числом: шага 3 в отступах кита нет, ближайшие — 2 и 4.
+ * Product / intensity-chip-xs. Снято обходом мастера Figma 11.09.2026,
+ * переснято тем же днём, когда в ките появилась ось Size: S — ряд 24 в высоту,
+ * поля 3 и 8; M — ряд 28, поля 5 и 10. Промежуток 4 и радиус 8 (S radius)
+ * у обоих. Число — Text/Body 3, значок подсказки 14.
  * Band задаёт заливку и цвет числа — те же три пары, что у большого
  * `IntensityChip`, и берутся они из тех же переменных.
  */
@@ -13,10 +12,23 @@
   align-items: center;
   gap: var(--w-g-spacing-1);
   width: fit-content;
-  min-height: 24px;
-  padding: 3px var(--w-g-spacing-2);
   border-radius: var(--w-s-radius);
   font: var(--w-style-text-body-3);
+}
+
+/*
+ * Размеры отличаются только полями и ростом: радиус, промежуток и стиль числа
+ * у обоих общие. Поля стоят числом — шагов 3, 5 и 10 в отступах кита нет,
+ * ближайшие 2, 4 и 8.
+ */
+.w-intensity-chip-xs_size_s {
+  min-height: 24px;
+  padding: 3px var(--w-g-spacing-2);
+}
+
+.w-intensity-chip-xs_size_m {
+  min-height: 28px;
+  padding: 5px 10px;
 }
 
 .w-intensity-chip-xs__value {

@@ -97,8 +97,8 @@ export type { IntensityChipBand, IntensityChipSize, IntensityChipState } from '.
 
 export { IntensityChipXs } from './components/IntensityChipXs/IntensityChipXs'
 export type { IntensityChipXsProps } from './components/IntensityChipXs/IntensityChipXs'
-export { INTENSITY_CHIP_XS_BANDS } from './components/IntensityChipXs/constants'
-export type { IntensityChipXsBand } from './components/IntensityChipXs/constants'
+export { INTENSITY_CHIP_XS_BANDS, INTENSITY_CHIP_XS_SIZES } from './components/IntensityChipXs/constants'
+export type { IntensityChipXsBand, IntensityChipXsSize } from './components/IntensityChipXs/constants'
 
 export { LiftMark } from './components/LiftMark/LiftMark'
 export type { LiftMarkProps } from './components/LiftMark/LiftMark'
