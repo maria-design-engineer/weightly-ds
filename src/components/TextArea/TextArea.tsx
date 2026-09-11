@@ -25,6 +25,11 @@ export type TextAreaProps = {
   errorMessage?: ReactNode
   /** Figma State=Error inline | Error outline. */
   errorPlacement?: 'inline' | 'outline'
+  /**
+   * Figma Additional — строка под полем справа. У нас это счётчик знаков:
+   * «103/1000», кадр `4б` сценария «Прохождение тренировки».
+   */
+  additional?: ReactNode
   /** Подпись стоит над полем, в Custom / field. */
   ariaLabel?: string
 }
@@ -44,6 +49,7 @@ export function TextArea({
   disabled,
   errorMessage,
   errorPlacement = 'outline',
+  additional,
   ariaLabel,
 }: TextAreaProps) {
   const invalid = Boolean(errorMessage)
@@ -80,6 +86,15 @@ export function TextArea({
         >
           {errorMessage}
         </Field.Error>
+      ) : null}
+      {/*
+        Строка под полем справа. Счётчик знаков сам себя не читает вслух: он
+        подсказка глазами, а предел поле держит и без него — `aria-hidden`.
+      */}
+      {additional ? (
+        <span className="w-text-area__additional" aria-hidden="true">
+          {additional}
+        </span>
       ) : null}
     </Field.Root>
   )

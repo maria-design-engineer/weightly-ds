@@ -90,3 +90,13 @@
   font: var(--w-style-text-body-3);
   color: var(--w-text-danger);
 }
+
+/*
+ * Additional — строка под полем справа, в ките Text/Body 3 на Text/Secondary.
+ * У нас это счётчик знаков. Промежуток до поля 4, как у строки ошибки.
+ */
+.w-text-area__additional {
+  font: var(--w-style-text-body-3);
+  color: var(--w-text-secondary);
+  text-align: right;
+}
