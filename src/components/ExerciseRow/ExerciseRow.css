@@ -1,34 +1,60 @@
 /*
- * Custom / exercise-row. Снято обходом мастера Figma 02.09.2026:
- * 328 × 48, радиус 16, поля 12, промежуток 8, заливка Base Float/Float.
+ * Product / exercise-row. Снято обходом мастера Figma 02.09.2026, переснято
+ * 11.09.2026, когда мастер расширили под упражнения ОФП: 328 в ширину, радиус 16,
+ * поля 12, промежуток 4, заливка Base Float/Float, тень card-shadow/card (new).
+ *
+ * Четыре части, и три из них необязательные: название с составом в одну строку,
+ * вторая строка состава и комментарий. Состав записи у ОФП разный — требование
+ * спеки 5, кадр `5а`.
  */
 .w-exercise-row {
   box-sizing: border-box;
   /* Карточка тянется на ширину экрана: свою ширину задаёт место, где стоит. */
   width: 100%;
   display: flex;
-  align-items: center;
-  gap: var(--w-g-spacing-2);
+  flex-direction: column;
+  gap: var(--w-g-spacing-1);
   padding: var(--w-g-spacing-3);
   border-radius: var(--w-xl-radius);
   background: var(--w-base-float-float-bg);
-  /* Тень card-shadow/card (new) — снято обходом мастеров 02.09.2026. */
   box-shadow: var(--w-card-shadow-card-new);
 }
 
+/* Название и состав стоят в одну строку: состав прижат вправо, промежуток 8. */
+.w-exercise-row__line {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--w-g-spacing-2);
+}
+
+/*
+ * Название переносится, а не обрезается: у ОФП оно бывает длинным — «Удержание
+ * ягодичного мостика с подъёмом одной ноги», кадр `5а`, и в мастере оно в две строки.
+ */
 .w-exercise-row__text {
   flex: 1;
   min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  font: var(--w-style-text-body-3);
+  font: var(--w-style-header-subheader-3);
   color: var(--w-text-primary);
 }
 
-/* Подпись состава — Text/Body 3: релиз 2 перевёл её с 15 на 13. */
 .w-exercise-row__caption {
   flex: none;
+  font: var(--w-style-text-body-2);
+  color: var(--w-text-secondary);
+}
+
+/*
+ * Вторая строка состава — время. В мастере её заливка стоит числом, а не стилем;
+ * прозрачность у неё та же, что у Text/Secondary, поэтому берётся он. Расхождение
+ * названо UI Designer 11.09.2026.
+ */
+.w-exercise-row__value {
+  font: var(--w-style-text-body-2);
+  color: var(--w-text-secondary);
+}
+
+.w-exercise-row__comment {
   font: var(--w-style-text-body-3);
   color: var(--w-text-secondary);
 }
