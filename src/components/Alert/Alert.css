@@ -15,8 +15,12 @@
   font: var(--w-style-text-body-3);
 }
 
-/* Corners=Rounded — радиус L radius; Squared — радиуса нет. */
-.w-alert_corners_rounded { border-radius: var(--w-l-radius); }
+/*
+ * Corners=Rounded — радиус XL radius; Squared — радиуса нет.
+ * Правка кита 11.09.2026: у всех двадцати четырёх вариантов скругление
+ * привязано к `XL radius` (16), было `L radius` (12).
+ */
+.w-alert_corners_rounded { border-radius: var(--w-xl-radius); }
 .w-alert_corners_squared { border-radius: 0; }
 
 /* View=Filled — заливка по теме, обводки нет. */
