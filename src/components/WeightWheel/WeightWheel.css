@@ -65,8 +65,13 @@
   flex-direction: row;
   align-items: center;
   gap: var(--w-weight-wheel-gap);
-  width: 100%;
-  max-width: calc(var(--w-weight-wheel-step) * 5 - var(--w-weight-wheel-gap));
+  /*
+   * Ширина ровно в пять значений и не ужимается: место, где стоит лента, бывает
+   * уже неё — тогда лента выступает за края окна, и там её гасит растворение.
+   * Тянущаяся ширина сжимала шаг, и в окно влезало три значения.
+   */
+  flex: none;
+  width: calc(var(--w-weight-wheel-step) * 5 - var(--w-weight-wheel-gap));
   /* Значение и в ленте высотой 40: 69 — это его ширина, а не высота. */
   height: 40px;
   scroll-snap-type: x mandatory;

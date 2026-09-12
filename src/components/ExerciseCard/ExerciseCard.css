@@ -43,7 +43,16 @@
 }
 
 .w-exercise-card_type_task .w-exercise-card__info {
-  gap: var(--w-g-spacing-1);
+  gap: var(--w-g-spacing-2);
+}
+
+/*
+ * Разделитель под строкой счётчика — `Product / divider` в мастере задания.
+ * Своей разметки он не требует: линия шириной в карточку.
+ */
+.w-exercise-card__rule {
+  height: 1px;
+  background: var(--w-line-generic);
 }
 
 .w-exercise-card_type_running {
@@ -153,6 +162,8 @@
  */
 .w-exercise-card__steps {
   display: flex;
+  /* Ступени разной высоты — чип с подписью выше кнопки «+»: держим их по середине. */
+  align-items: center;
   gap: var(--w-g-spacing-2);
   overflow-x: auto;
   scrollbar-width: none;

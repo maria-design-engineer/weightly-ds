@@ -105,17 +105,33 @@ export function ExerciseCard({
       className={`w-exercise-card w-exercise-card_type_${type} w-exercise-card_view_${view} w-exercise-card_state_${state}`}
     >
       <div className="w-exercise-card__info">
-        {/*
-         * Шапка кита горизонтальная: значок подсказки слева, за ним название,
-         * следом счётчик — он в мастере скрыт и включается булевым `Counter`.
-         * Переснято 10.09.2026: раньше значок стоял в строке счётчика,
-         * над названием, и на карточке без счётчика висел сам по себе.
-         */}
-        <div className="w-exercise-card__head">
-          {hint}
-          <span className="w-exercise-card__title">{bullets ?? content}</span>
-          {caption ? <span className="w-exercise-card__counter">{caption}</span> : null}
-        </div>
+        {type === 'task' ? (
+          /*
+           * У задания шапка стоит столбиком — обход мастера `Type=task` 12.09.2026:
+           * сперва строка со значком подсказки и счётчиком, под ней разделитель,
+           * и только потом название. У плана и идущего всё это одной строкой.
+           */
+          <>
+            <div className="w-exercise-card__head">
+              {hint}
+              {caption ? <span className="w-exercise-card__counter">{caption}</span> : null}
+            </div>
+            <span className="w-exercise-card__rule" />
+            <span className="w-exercise-card__title">{bullets ?? content}</span>
+          </>
+        ) : (
+          /*
+           * Шапка кита горизонтальная: значок подсказки слева, за ним название,
+           * следом счётчик — он в мастере скрыт и включается булевым `Counter`.
+           * Переснято 10.09.2026: раньше значок стоял в строке счётчика,
+           * над названием, и на карточке без счётчика висел сам по себе.
+           */
+          <div className="w-exercise-card__head">
+            {hint}
+            <span className="w-exercise-card__title">{bullets ?? content}</span>
+            {caption ? <span className="w-exercise-card__counter">{caption}</span> : null}
+          </div>
+        )}
       </div>
       {steps ? (
         <div className="w-exercise-card__steps" ref={stepsRef} onPointerDown={handlePointerDown}>

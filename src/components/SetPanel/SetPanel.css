@@ -80,6 +80,15 @@
 .w-set-panel__wheel {
   position: relative;
   box-sizing: border-box;
+  /*
+   * Лента шире окна и стоит в нём по середине — в ките барабан 421 внутри
+   * окна 328 и выступает за оба края, где его гасят растворения. Ужимать ленту
+   * под окно нельзя: шаг сожмётся, в окно влезет три значения вместо пяти,
+   * и выбранное уедет из середины. Находка приёмки 12.09.2026.
+   */
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: 68px;
   overflow: hidden;
   padding: 12px 12px 16px;
