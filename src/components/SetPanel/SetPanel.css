@@ -106,14 +106,29 @@
   pointer-events: none;
 }
 
+/*
+ * У самого края растворение непрозрачно, и только потом истаивает: лента шире окна,
+ * и без плотной кромки из-под градиента выглядывал край крайнего значения — полоска
+ * в пиксель у скругления. Находка приёмки 12.09.2026.
+ */
 .w-set-panel__wheel::before {
   left: 0;
-  background: linear-gradient(to right, var(--w-base-float-float-bg), transparent);
+  background: linear-gradient(
+    to right,
+    var(--w-base-float-float-bg) 0,
+    var(--w-base-float-float-bg) var(--w-g-spacing-6),
+    transparent 100%
+  );
 }
 
 .w-set-panel__wheel::after {
   right: 0;
-  background: linear-gradient(to left, var(--w-base-float-float-bg), transparent);
+  background: linear-gradient(
+    to left,
+    var(--w-base-float-float-bg) 0,
+    var(--w-base-float-float-bg) var(--w-g-spacing-6),
+    transparent 100%
+  );
 }
 
 .w-set-panel__lifts-title {

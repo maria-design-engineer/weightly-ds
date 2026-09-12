@@ -153,39 +153,43 @@ export function WeightWheel({
   }, [current, direction, values])
 
   /**
-   * Какое значение стоит в середине. Считается по шагу ленты, а не перебором всех
-   * значений: у своего веса их две тысячи, и мерить каждое на каждое событие
-   * прокрутки — это тысячи замеров на кадр. Шаг берётся у самой разметки:
-   * расстояние между первым и последним, делённое на число промежутков.
+   * Какое значение стоит в середине. Ищем двоичным поиском по самой разметке,
+   * а не считаем шагом: значения разной ширины — «0.0» уже, чем «17.5», — и шаг
+   * между ними непостоянный. Средний шаг давал ошибку, которая копилась от начала
+   * шкалы: в середине стояло одно значение, чёрным было соседнее, а на быстрой
+   * прокрутке чёрное пропадало с экрана вовсе. Находка приёмки 12.09.2026.
+   *
+   * Перебирать все нельзя: у своего веса их две тысячи, и мерить каждое на каждое
+   * событие прокрутки — тысячи замеров на кадр. Двоичный поиск берёт одиннадцать.
    */
   function currentFromScroll(node: HTMLUListElement): number {
-    const list = options(node)
-    if (list.length < 2) return 0
+    const list = options(node) as HTMLElement[]
+    if (list.length === 0) return 0
     const vertical = direction === 'vertical'
 
-    /*
-     * Меряем от самой ленты, а не в координатах `offsetLeft`: те отсчитываются
-     * от ближайшего позиционированного предка, и когда лента стоит в окне со
-     * сдвигом — а в панели подхода она шире окна и центрирована в нём, — сдвиг
-     * прибавляется к одной величине и не прибавляется к другой. Выходило полшага
-     * ошибки: в середине стояло одно значение, а чёрным было соседнее.
-     * Находка приёмки 12.09.2026.
-     */
-    const wheel = node.getBoundingClientRect()
-    const first = (list[0] as HTMLElement).getBoundingClientRect()
-    const last = (list[list.length - 1] as HTMLElement).getBoundingClientRect()
+    /* Середина окна в тех же координатах, в каких лежат сами значения. */
+    const target = vertical
+      ? node.offsetTop + node.clientTop + node.scrollTop + node.clientHeight / 2
+      : node.offsetLeft + node.clientLeft + node.scrollLeft + node.clientWidth / 2
 
-    const span = vertical ? last.top - first.top : last.left - first.left
-    const step = span / (list.length - 1)
-    if (step <= 0) return current
+    const middleOf = (item: HTMLElement) =>
+      vertical ? item.offsetTop + item.offsetHeight / 2 : item.offsetLeft + item.offsetWidth / 2
 
-    /* Где сейчас середина окна и где середина первого значения — в одних координатах. */
-    const centre = vertical ? wheel.height / 2 : wheel.width / 2
-    const start = vertical
-      ? first.top + first.height / 2 - wheel.top
-      : first.left + first.width / 2 - wheel.left
-    const index = Math.round((centre - start) / step)
-    return Math.min(Math.max(index, 0), list.length - 1)
+    let low = 0
+    let high = list.length - 1
+    while (low < high) {
+      const middle = (low + high) >> 1
+      if (middleOf(list[middle]!) < target) low = middle + 1
+      else high = middle
+    }
+
+    /* Ближайшим бывает и предыдущее: двоичный поиск останавливается на первом за серединой. */
+    if (low > 0) {
+      const here = Math.abs(middleOf(list[low]!) - target)
+      const before = Math.abs(middleOf(list[low - 1]!) - target)
+      if (before <= here) return low - 1
+    }
+    return low
   }
 
   function handleScroll() {
