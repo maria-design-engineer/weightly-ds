@@ -15,6 +15,13 @@ export type LiftCounterProps = {
   onIncrease?: () => void
   /** Что считаем — уходит в подписи кнопок для чтения с экрана. */
   label?: string
+  /**
+   * Готовые подписи кнопок для чтения с экрана. Нужны там, где продукт диктует
+   * их целиком: на экране подхода это «Убрать подъём» и «Добавить подъём» —
+   * `content-guide/accessibility.md`. Не переданы — подпись собирается из `label`.
+   */
+  decreaseLabel?: string
+  increaseLabel?: string
 }
 
 /**
@@ -26,6 +33,8 @@ export function LiftCounter({
   onDecrease,
   onIncrease,
   label = 'подъёмы',
+  decreaseLabel,
+  increaseLabel,
 }: LiftCounterProps) {
   return (
     <div className="w-lift-counter">
@@ -34,7 +43,7 @@ export function LiftCounter({
           view="secondary"
           size="l"
           startIcon={<Icon data={Minus} />}
-          ariaLabel={`Убавить ${label}`}
+          ariaLabel={decreaseLabel ?? `Убавить ${label}`}
           onClick={onDecrease}
         />
         <span className="w-lift-counter__value">{content}</span>
@@ -42,7 +51,7 @@ export function LiftCounter({
           view="secondary"
           size="l"
           startIcon={<Icon data={Plus} />}
-          ariaLabel={`Прибавить ${label}`}
+          ariaLabel={increaseLabel ?? `Прибавить ${label}`}
           onClick={onIncrease}
         />
       </div>
