@@ -15,6 +15,7 @@ const meta = {
   argTypes: {
     content: { control: 'text' },
     caption: { control: 'text' },
+    movement: { control: 'text' },
     value: { control: 'text' },
     comment: { control: 'text' },
   },
@@ -47,6 +48,13 @@ export const Forms: Story = {
         comment="Держи таз ровно, не заваливайся вбок. Если поясница тянет — опусти ниже и сделай меньше повторов, но не бросай подход на середине."
       />
       <ExerciseRow comment="Потянуть заднюю поверхность бедра, как в прошлый раз" />
+      <ExerciseRow
+        content="Приседания с гантелью"
+        caption="3 × 12 · 8 кг"
+        movement="Приседания со штангой"
+        value="40 с"
+        comment="Спина прямая, колени наружу. Прислонись спиной к стене и держи колени под 90° по 30 секунд, три подхода"
+      />
     </div>
   ),
 }

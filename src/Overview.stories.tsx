@@ -584,7 +584,7 @@ function Atoms() {
 
 
       <Component kit="Product / exercise-row" code="ExerciseRow">
-        <Axis name="Части · 4">
+        <Axis name="Части · 5">
           <Item label="название и состав" width={328}>
             <ExerciseRow content="Рывок классический" caption="3 × 3" />
           </Item>
@@ -600,6 +600,13 @@ function Atoms() {
           </Item>
           <Item label="только комментарий" width={328}>
             <ExerciseRow comment="Потянуть заднюю поверхность бедра, как в прошлый раз" />
+          </Item>
+          <Item label="с движением" width={328}>
+            <ExerciseRow
+              content="Приседания с гантелью"
+              caption="3 × 12 · 8 кг"
+              movement="Приседания со штангой"
+            />
           </Item>
         </Axis>
       </Component>

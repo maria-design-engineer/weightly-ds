@@ -7,6 +7,11 @@ export type ExerciseRowProps = {
   content?: ReactNode
   /** Figma Caption — состав справа от названия: подходы, повторы и вес. */
   caption?: ReactNode
+  /**
+   * Figma Movement text — движение из справочника, строкой под названием.
+   * У упражнения ОФП оно необязательное: «Приседания со штангой».
+   */
+  movement?: ReactNode
   /** Figma Value text — вторая строка состава, например время. Показывается под названием. */
   value?: ReactNode
   /** Figma Comment text — комментарий тренера к упражнению, последней строкой. */
@@ -19,9 +24,10 @@ export type ExerciseRowProps = {
  * требование спеки 5, кадр `5а` сценария «Прохождение тренировки».
  *
  * Мастер расширен 11.09.2026: до этого строка несла только название и одну подпись,
- * и строки с разным составом дизайн собирал руками.
+ * и строки с разным составом дизайн собирал руками. Тем же днём добавлена строка
+ * движения: у упражнения ОФП оно приходит из справочника и стоит под названием.
  */
-export function ExerciseRow({ content, caption, value, comment }: ExerciseRowProps) {
+export function ExerciseRow({ content, caption, movement, value, comment }: ExerciseRowProps) {
   return (
     <div className="w-exercise-row">
       {content || caption ? (
@@ -30,6 +36,7 @@ export function ExerciseRow({ content, caption, value, comment }: ExerciseRowPro
           {caption ? <span className="w-exercise-row__caption">{caption}</span> : null}
         </div>
       ) : null}
+      {movement ? <span className="w-exercise-row__movement">{movement}</span> : null}
       {value ? <span className="w-exercise-row__value">{value}</span> : null}
       {comment ? <span className="w-exercise-row__comment">{comment}</span> : null}
     </div>
