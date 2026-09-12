@@ -82,6 +82,63 @@
   --w-g-spacing-10: 40px;
 
   /* Радиусы — коллекция Border Radius, 6 переменных */
+
+  /*
+   * Градиенты — стили кита `Gradient/*`, сняты обходом 12.09.2026. Пять свечений
+   * радиальные, три перехода линейные. Матрицу Figma в CSS дословно не перенести:
+   * берём эллипс от верхней середины — так свечение ложится, как на макетах итога.
+   */
+  --w-gradient-pink-glow: radial-gradient(
+    ellipse 120% 90% at 50% 0%,
+    rgb(239 109 215 / 50%) 0%,
+    rgb(239 109 215 / 30%) 24%,
+    rgb(239 109 215 / 5%) 75%,
+    transparent 100%
+  );
+  --w-gradient-green-glow: radial-gradient(
+    ellipse 120% 90% at 50% 0%,
+    rgb(69 211 164 / 50%) 0%,
+    rgb(69 211 164 / 30%) 24%,
+    rgb(69 211 164 / 5%) 75%,
+    transparent 100%
+  );
+  --w-gradient-lime-glow: radial-gradient(
+    ellipse 120% 90% at 50% 0%,
+    rgb(210 210 70 / 50%) 0%,
+    rgb(210 210 70 / 30%) 24%,
+    rgb(210 210 70 / 5%) 75%,
+    transparent 100%
+  );
+  --w-gradient-brand-glow: radial-gradient(
+    ellipse 120% 90% at 50% 0%,
+    rgb(252 95 43 / 50%) 0%,
+    rgb(252 95 43 / 30%) 24%,
+    rgb(252 95 43 / 5%) 75%,
+    transparent 100%
+  );
+  --w-gradient-neutral-glow: radial-gradient(
+    ellipse 120% 90% at 50% 0%,
+    rgb(0 0 0 / 10%) 0%,
+    rgb(0 0 0 / 6%) 24%,
+    rgb(0 0 0 / 1%) 75%,
+    transparent 100%
+  );
+  --w-gradient-green-to-lime: linear-gradient(
+    to right,
+    rgb(69 211 164 / 45%),
+    rgb(210 210 70 / 45%)
+  );
+  --w-gradient-lime-to-pink: linear-gradient(
+    to right,
+    rgb(210 210 70 / 45%),
+    rgb(239 109 215 / 45%)
+  );
+  --w-gradient-pink-to-brand: linear-gradient(
+    to right,
+    rgb(239 109 215 / 45%),
+    rgb(252 95 43 / 45%)
+  );
+
   --w-xs-radius: 6px;
   --w-s-radius: 8px;
   --w-m-radius: 10px;

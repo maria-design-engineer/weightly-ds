@@ -21,6 +21,13 @@ export type MoodScaleProps = {
   onLow?: () => void
   /** Поставить высокую оценку. */
   onHigh?: () => void
+  /**
+   * Подписи трёх положений. У кита свои — «ну так · норм · супер», — но продукт
+   * ставит свои: у каждой шкалы концы называются по-своему.
+   */
+  marks?: readonly string[]
+  /** Выбрали положение по метке. */
+  onPick?: (index: number) => void
 }
 
 /**
@@ -33,6 +40,8 @@ export function MoodScale({
   caption,
   onLow,
   onHigh,
+  marks,
+  onPick,
 }: MoodScaleProps) {
   return (
     <div className="w-mood-scale">
@@ -50,7 +59,12 @@ export function MoodScale({
         >
           <Icon data={FaceSad} />
         </button>
-        <MoodTrack value={TRACK_POSITION[state]} handleLabel="Оценка" />
+        <MoodTrack
+          value={TRACK_POSITION[state]}
+          handleLabel="Оценка"
+          marks={marks}
+          onPick={onPick}
+        />
         <button
           type="button"
           className={`w-mood-scale__side${state === 'high' ? ' w-mood-scale__side_high' : ''}`}
