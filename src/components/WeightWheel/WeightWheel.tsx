@@ -161,18 +161,29 @@ export function WeightWheel({
   function currentFromScroll(node: HTMLUListElement): number {
     const list = options(node)
     if (list.length < 2) return 0
-    const first = list[0] as HTMLElement
-    const last = list[list.length - 1] as HTMLElement
     const vertical = direction === 'vertical'
-    const span = vertical ? last.offsetTop - first.offsetTop : last.offsetLeft - first.offsetLeft
+
+    /*
+     * Меряем от самой ленты, а не в координатах `offsetLeft`: те отсчитываются
+     * от ближайшего позиционированного предка, и когда лента стоит в окне со
+     * сдвигом — а в панели подхода она шире окна и центрирована в нём, — сдвиг
+     * прибавляется к одной величине и не прибавляется к другой. Выходило полшага
+     * ошибки: в середине стояло одно значение, а чёрным было соседнее.
+     * Находка приёмки 12.09.2026.
+     */
+    const wheel = node.getBoundingClientRect()
+    const first = (list[0] as HTMLElement).getBoundingClientRect()
+    const last = (list[list.length - 1] as HTMLElement).getBoundingClientRect()
+
+    const span = vertical ? last.top - first.top : last.left - first.left
     const step = span / (list.length - 1)
     if (step <= 0) return current
 
-    const centre = vertical
-      ? node.scrollTop + node.clientHeight / 2
-      : node.scrollLeft + node.clientWidth / 2
-    const size = vertical ? first.offsetHeight : first.offsetWidth
-    const start = (vertical ? first.offsetTop : first.offsetLeft) + size / 2
+    /* Где сейчас середина окна и где середина первого значения — в одних координатах. */
+    const centre = vertical ? wheel.height / 2 : wheel.width / 2
+    const start = vertical
+      ? first.top + first.height / 2 - wheel.top
+      : first.left + first.width / 2 - wheel.left
     const index = Math.round((centre - start) / step)
     return Math.min(Math.max(index, 0), list.length - 1)
   }

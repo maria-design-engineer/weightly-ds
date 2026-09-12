@@ -1,5 +1,5 @@
 import type { PointerEvent as ReactPointerEvent, ReactNode } from 'react'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 import { CircleQuestion } from '@gravity-ui/icons'
 
@@ -52,6 +52,27 @@ export function ExerciseCard({
   hintLabel = 'Как выполнять',
 }: ExerciseCardProps) {
   const stepsRef = useRef<HTMLDivElement>(null)
+  const titleRef = useRef<HTMLSpanElement>(null)
+  /*
+   * Название влезло не целиком. У задания оно держит ровно три строки, и лишнее
+   * прячется многоточием; по линии обрезки в мастере стоит разделитель. Влезло —
+   * разделителя нет. Спросить об этом можно только саму разметку: сколько строк
+   * займёт текст, заранее не знает никто.
+   */
+  const [clipped, setClipped] = useState(false)
+
+  useEffect(() => {
+    const node = titleRef.current
+    if (!node) return
+
+    const check = () => setClipped(node.scrollHeight > node.clientHeight + 1)
+    check()
+    /* Ширина меняется вместе с экраном, а высота — когда доедет гарнитура. */
+    const observer = new ResizeObserver(check)
+    observer.observe(node)
+    return () => observer.disconnect()
+  }, [content, bullets, type])
+
   /* Отписка от текущего перетаскивания: держим её здесь, чтобы снять и при уходе с экрана. */
   const stopDragRef = useRef<(() => void) | null>(null)
 
@@ -108,16 +129,23 @@ export function ExerciseCard({
         {type === 'task' ? (
           /*
            * У задания шапка стоит столбиком — обход мастера `Type=task` 12.09.2026:
-           * сперва строка со значком подсказки и счётчиком, под ней разделитель,
-           * и только потом название. У плана и идущего всё это одной строкой.
+           * строка со значком подсказки и счётчиком, под ней название. У плана
+           * и идущего всё это идёт одной строкой.
            */
           <>
             <div className="w-exercise-card__head">
               {hint}
               {caption ? <span className="w-exercise-card__counter">{caption}</span> : null}
             </div>
-            <span className="w-exercise-card__rule" />
-            <span className="w-exercise-card__title">{bullets ?? content}</span>
+            <span className="w-exercise-card__title" ref={titleRef}>
+              {bullets ?? content}
+            </span>
+            {/*
+             * Разделитель снизу — знак того, что название влезло не целиком:
+             * в мастере он лежит по линии обрезки. Название помещается — линии нет.
+             * Гайд `Custom / exercise-card`, заметка фронту.
+             */}
+            {clipped ? <span className="w-exercise-card__rule" /> : null}
           </>
         ) : (
           /*
