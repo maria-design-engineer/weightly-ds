@@ -601,11 +601,11 @@ function Atoms() {
           <Item label="только комментарий" width={328}>
             <ExerciseRow comment="Потянуть заднюю поверхность бедра, как в прошлый раз" />
           </Item>
-          <Item label="с движением" width={328}>
+          <Item label="с основой" width={328}>
             <ExerciseRow
               content="Приседания с гантелью"
               caption="3 × 12 · 8 кг"
-              movement="Приседания со штангой"
+              basis="Приседания со штангой"
             />
           </Item>
         </Axis>

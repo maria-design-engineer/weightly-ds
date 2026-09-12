@@ -15,7 +15,7 @@ const meta = {
   argTypes: {
     content: { control: 'text' },
     caption: { control: 'text' },
-    movement: { control: 'text' },
+    basis: { control: 'text' },
     value: { control: 'text' },
     comment: { control: 'text' },
   },
@@ -51,7 +51,7 @@ export const Forms: Story = {
       <ExerciseRow
         content="Приседания с гантелью"
         caption="3 × 12 · 8 кг"
-        movement="Приседания со штангой"
+        basis="Приседания со штангой"
         value="40 с"
         comment="Спина прямая, колени наружу. Прислонись спиной к стене и держи колени под 90° по 30 секунд, три подхода"
       />

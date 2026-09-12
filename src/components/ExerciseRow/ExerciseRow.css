@@ -2,9 +2,11 @@
  * Product / exercise-row. Снято обходом мастера Figma 02.09.2026, переснято
  * 11.09.2026, когда мастер расширили под упражнения ОФП: 328 в ширину, радиус 16,
  * поля 12, промежуток 4, заливка Base Float/Float, тень card-shadow/card (new).
+ * Шрифты пересняты 12.09.2026: состав справа стал Header/Subheader 3, основа
+ * и время — Text/Body 3.
  *
- * Четыре части, и три из них необязательные: название с составом в одну строку,
- * вторая строка состава и комментарий. Состав записи у ОФП разный — требование
+ * Пять частей, и четыре из них необязательные: название с составом в одну строку,
+ * основа движения, вторая строка состава и комментарий. Состав записи у ОФП разный — требование
  * спеки 5, кадр `5а`.
  */
 .w-exercise-row {
@@ -40,16 +42,16 @@
 
 .w-exercise-row__caption {
   flex: none;
-  font: var(--w-style-text-body-2);
+  font: var(--w-style-header-subheader-3);
   color: var(--w-text-secondary);
 }
 
 /*
- * Движение из справочника — строка под названием, тем же стилем, что состав.
- * Заливка в мастере стоит числом; прозрачность совпадает с Text/Secondary.
+ * Основа движения — строка под названием. Заливка в мастере стоит числом;
+ * прозрачность совпадает с Text/Secondary.
  */
-.w-exercise-row__movement {
-  font: var(--w-style-text-body-2);
+.w-exercise-row__basis {
+  font: var(--w-style-text-body-3);
   color: var(--w-text-secondary);
 }
 
@@ -59,7 +61,7 @@
  * названо UI Designer 11.09.2026.
  */
 .w-exercise-row__value {
-  font: var(--w-style-text-body-2);
+  font: var(--w-style-text-body-3);
   color: var(--w-text-secondary);
 }
 
