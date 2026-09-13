@@ -4,7 +4,7 @@ import { Xmark } from '@gravity-ui/icons'
 
 import { Button } from '../Button/Button'
 import { Icon } from '../Icon/Icon'
-import type { AlertCorners, AlertTheme, AlertView } from './constants'
+import type { AlertCorners, AlertLayout, AlertTheme, AlertView } from './constants'
 import './Alert.css'
 
 export type AlertProps = {
@@ -22,6 +22,8 @@ export type AlertProps = {
   icon?: ReactNode
   /** Figma Show buttons, Button 2, Button 3 */
   actions?: ReactNode
+  /** Figma Layout — кнопки столбиком во всю ширину или в строку поровну. */
+  layout?: AlertLayout
   /** Figma Close button — крестик справа. */
   onClose?: () => void
   /** Подпись крестика для чтения с экрана. */
@@ -44,6 +46,7 @@ export function Alert({
   message,
   icon,
   actions,
+  layout = 'column',
   onClose,
   closeLabel = 'Закрыть',
 }: AlertProps) {
@@ -70,7 +73,9 @@ export function Alert({
           {title ? <span className="w-alert__title">{title}</span> : null}
           {message}
         </div>
-        {actions ? <div className="w-alert__actions">{actions}</div> : null}
+        {actions ? (
+          <div className={`w-alert__actions w-alert__actions_${layout}`}>{actions}</div>
+        ) : null}
       </div>
       {onClose ? (
         <span className="w-alert__close">
