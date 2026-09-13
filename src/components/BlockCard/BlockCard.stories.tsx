@@ -1,15 +1,24 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
+import { ChevronDown } from '@gravity-ui/icons'
+
 import { Button } from '../Button/Button'
+import { Icon } from '../Icon/Icon'
 import { Cell, Row } from '../story-layout'
 import { BlockCard } from './BlockCard'
 import { BLOCK_CARD_FILLS } from './constants'
 
+/*
+ * Кнопка карточки блока — один шеврон значком, без подписи: правка кита
+ * 13.09.2026. Вид `flat-action` — значок красится брендовым.
+ */
 const ACTIONS = (
-  <>
-    <Button view="secondary" size="s" content="Открыть" />
-    <Button view="flat" size="s" content="Пропустить" />
-  </>
+  <Button
+    view="flat-action"
+    size="s"
+    startIcon={<Icon data={ChevronDown} size={12} />}
+    ariaLabel="Раскрыть блок"
+  />
 )
 
 const meta = {
@@ -37,8 +46,8 @@ export const Playground: Story = {
   ],
 }
 
-/** Ось Shadow: карточка с тенью и без неё. */
-export const Shadows: Story = {
+/** Ось Fill: карточка с заливкой и без неё. */
+export const Fills: Story = {
   render: (args) => (
     <Row>
       {BLOCK_CARD_FILLS.map((fill) => (

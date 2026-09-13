@@ -2,6 +2,10 @@
  * Custom / workout-card. Снято обходом мастера Figma 03.09.2026:
  * 328 × 140, радиус 20, поля 16, промежуток 24, заливка Base Float/Float,
  * тень card-shadow/card (new). Внутри — блок сведений и ряд кнопок.
+ *
+ * Правка кита 13.09.2026, ось `Actions`: плитой карточка выглядит только с кнопками.
+ * Без них — плоская строка: ни заливки, ни тени; в списке такие строки разделяет
+ * линия, а не воздух между плитами.
  */
 .w-workout-card {
   box-sizing: border-box;
@@ -12,6 +16,9 @@
   gap: var(--w-g-spacing-6);
   padding: var(--w-g-spacing-4);
   border-radius: var(--w-2xl-radius);
+}
+
+.w-workout-card_actions_on {
   background: var(--w-base-float-float-bg);
   box-shadow: var(--w-card-shadow-card-new);
 }

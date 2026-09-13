@@ -50,12 +50,14 @@
 .w-alert_view_outlined.w-alert_theme_danger { border-color: var(--w-line-danger); }
 .w-alert_view_outlined.w-alert_theme_utility { border-color: var(--w-line-utility); }
 
-/* Значок 18 — в ките вписан числом. */
+/*
+ * Значок 18 — в ките вписан числом. Вокруг него место: 8 сверху и снизу, 4 по бокам,
+ * рамка 26 × 34. Правка кита 13.09.2026 — до неё значок стоял вплотную.
+ */
 .w-alert__icon {
   display: inline-flex;
   flex: none;
-  width: 18px;
-  height: 18px;
+  padding: var(--w-g-spacing-2) var(--w-g-spacing-1);
 }
 
 /*

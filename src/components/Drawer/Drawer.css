@@ -43,7 +43,8 @@
   width: 100%;
   max-width: var(--w-drawer-max-width);
   padding: 16px;
-  border-radius: 16px 16px 0 0;
+  /* Верхние углы 20 — `2XL radius`, правка кита 13.09.2026; было 16. Низ у пола. */
+  border-radius: var(--w-2xl-radius) var(--w-2xl-radius) 0 0;
   background: var(--w-base-float-float-bg);
   box-shadow: var(--w-card-shadow-card-new);
   /* Шторка едет за пальцем, пока её тянут вниз. */

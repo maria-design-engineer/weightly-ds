@@ -18,7 +18,7 @@ export type WorkoutCardProps = {
 /** Карточка тренировки на рабочем столе: сведения и ряд действий. */
 export function WorkoutCard({ content, caption, mark, trailing, actions }: WorkoutCardProps) {
   return (
-    <div className="w-workout-card">
+    <div className={`w-workout-card${actions ? ' w-workout-card_actions_on' : ''}`}>
       <div className="w-workout-card__title-row">
         {mark}
         <span className="w-workout-card__info">

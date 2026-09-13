@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react'
 
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import { ChevronRight, CircleInfo, Person, Play, Plus } from '@gravity-ui/icons'
+import { ChevronDown, ChevronRight, CircleInfo, Person, Play, Plus } from '@gravity-ui/icons'
 
 import { Alert } from './components/Alert/Alert'
 import { ALERT_CORNERS, ALERT_THEMES, ALERT_VIEWS } from './components/Alert/constants'
@@ -774,7 +774,14 @@ function Molecules() {
                 fill={fill}
                 content="Разминка"
                 caption="4 упражнения"
-                actions={<Button view="flat-action" size="s" content="Открыть" />}
+                actions={
+                  <Button
+                    view="flat-action"
+                    size="s"
+                    startIcon={<Icon data={ChevronDown} size={12} />}
+                    ariaLabel="Раскрыть блок"
+                  />
+                }
               />
             </Item>
           ))}

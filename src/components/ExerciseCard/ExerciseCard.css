@@ -27,10 +27,10 @@
   flex-direction: column;
 }
 
+/* Тени у карточки нет — правка кита 13.09.2026, до неё стояла card-shadow/card (new). */
 .w-exercise-card_type_plan {
   gap: var(--w-g-spacing-3);
   padding: var(--w-g-spacing-3);
-  box-shadow: var(--w-card-shadow-card-new);
 }
 
 .w-exercise-card_type_plan .w-exercise-card__info {
@@ -58,20 +58,14 @@
 .w-exercise-card_type_running {
   gap: var(--w-g-spacing-3);
   padding: var(--w-g-spacing-3);
-  box-shadow: var(--w-card-shadow-card-new);
 }
 
 /*
- * State=drag: карточку тянут — заливка светлеет до Base Float/Float Hover,
- * тень сменяется на card-hover (new). У задания тени нет и в этом состоянии.
+ * State=drag: карточку тянут — заливка светлеет до Base Float/Float Hover.
+ * Теней у карточки нет ни в одном состоянии — правка кита 13.09.2026.
  */
 .w-exercise-card_state_drag {
   background: var(--w-base-float-float-hover);
-}
-
-.w-exercise-card_state_drag.w-exercise-card_type_plan,
-.w-exercise-card_state_drag.w-exercise-card_type_running {
-  box-shadow: var(--w-card-shadow-card-hover-new);
 }
 
 /*
