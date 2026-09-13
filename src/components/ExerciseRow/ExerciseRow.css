@@ -1,8 +1,8 @@
 /*
  * Product / exercise-row. Снято обходом мастера Figma 02.09.2026, переснято
  * 11.09.2026, когда мастер расширили под упражнения ОФП: 328 в ширину, радиус 16,
- * поля 12, промежуток 4, заливка Base Float/Float. Тени нет — правка кита
- * 13.09.2026, до неё стояла card-shadow/card (new).
+ * поля 16, промежуток 4, заливка Base Float/Float. Тени нет, поля выросли с 12
+ * до 16 — правки кита 13.09.2026.
  * Шрифты пересняты 12.09.2026: состав справа стал Header/Subheader 3, основа
  * и время — Text/Body 3.
  *
@@ -17,7 +17,7 @@
   display: flex;
   flex-direction: column;
   gap: var(--w-g-spacing-1);
-  padding: var(--w-g-spacing-3);
+  padding: var(--w-g-spacing-4);
   border-radius: var(--w-xl-radius);
   background: var(--w-base-float-float-bg);
 }
