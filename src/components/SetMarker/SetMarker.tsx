@@ -19,16 +19,26 @@ export type SetMarkerProps = {
   state?: SetMarkerState
   /** Figma Text — номер подхода. */
   content?: ReactNode
+  /** Нажали на отметку. Не передан — отметка только показывает. */
+  onPick?: () => void
+  /** Подпись нажатия для чтения с экрана. */
+  pickLabel?: string
 }
 
 /** Отметка подхода: значок и номер. */
-export function SetMarker({ state = 'planned', content }: SetMarkerProps) {
+export function SetMarker({ state = 'planned', content, onPick, pickLabel }: SetMarkerProps) {
+  /* Нажимаемая отметка — кнопка: её берут и с клавиатуры. Показывающая остаётся `span`. */
+  const Tag = onPick ? 'button' : 'span'
+
   return (
-    <span className={`w-set-marker w-set-marker_state_${state}`}>
+    <Tag
+      className={`w-set-marker w-set-marker_state_${state}`}
+      {...(onPick ? { type: 'button' as const, onClick: onPick, 'aria-label': pickLabel } : {})}
+    >
       <span className="w-set-marker__icon">
         <Icon data={ICONS[state]} size={16} />
       </span>
       {content}
-    </span>
+    </Tag>
   )
 }

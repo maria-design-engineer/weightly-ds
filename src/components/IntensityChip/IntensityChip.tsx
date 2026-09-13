@@ -18,6 +18,13 @@ export type IntensityChipProps = {
   content?: ReactNode
   /** Figma Caption — подходы и повторы. */
   caption?: ReactNode
+  /**
+   * Нажали на чип. Не передан — чип только показывает: так он стоит в списках,
+   * где выбирать нечего.
+   */
+  onPick?: () => void
+  /** Подпись нажатия для чтения с экрана. */
+  pickLabel?: string
 }
 
 /**
@@ -30,6 +37,8 @@ export function IntensityChip({
   band = 'neutral',
   content,
   caption,
+  onPick,
+  pickLabel,
 }: IntensityChipProps) {
   const className = [
     'w-intensity-chip',
@@ -38,8 +47,17 @@ export function IntensityChip({
     `w-intensity-chip_band_${band}`,
   ].join(' ')
 
+  /*
+   * Нажимаемый чип — кнопка, а не `div` с обработчиком: иначе он не берётся
+   * с клавиатуры и не читается как действие. Показывающий остаётся `div`.
+   */
+  const Tag = onPick ? 'button' : 'div'
+
   return (
-    <div className={className}>
+    <Tag
+      className={className}
+      {...(onPick ? { type: 'button' as const, onClick: onPick, 'aria-label': pickLabel } : {})}
+    >
       <span className="w-intensity-chip__value">
         {content}
         {state === 'done' ? (
@@ -49,6 +67,6 @@ export function IntensityChip({
         ) : null}
       </span>
       {caption ? <span className="w-intensity-chip__caption">{caption}</span> : null}
-    </div>
+    </Tag>
   )
 }

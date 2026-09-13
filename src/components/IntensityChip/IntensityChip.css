@@ -5,6 +5,10 @@
  * Пересснято 03.09.2026 после правки кита: высоты и боковые поля другие.
  * Band задаёт заливку и цвет числа, State добавляет кольцо Base/Brand.
  */
+/*
+ * Нажимаемый чип приходит кнопкой — браузерных умолчаний у неё быть не должно:
+ * поля, рамка и шрифт задаются здесь, а не приходят от браузера.
+ */
 .w-intensity-chip {
   box-sizing: border-box;
   display: inline-flex;
@@ -12,7 +16,17 @@
   align-items: center;
   justify-content: center;
   width: fit-content;
+  margin: 0;
+  border: 0;
   border-radius: var(--w-l-radius);
+  font: inherit;
+  text-align: inherit;
+}
+
+/* Нажимаемые — курсор про это и говорит. */
+button.w-intensity-chip,
+button.w-set-marker {
+  cursor: pointer;
 }
 
 .w-intensity-chip_size_s {

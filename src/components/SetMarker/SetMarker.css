@@ -18,6 +18,10 @@
   /* Заливка Base/Background: в тёмной теме она темнеет вместе с экраном. */
   background: var(--w-branding-base-background);
   font: var(--w-style-text-body-3);
+  /* Нажимаемая отметка — кнопка, и браузерных умолчаний у неё быть не должно. */
+  margin: 0;
+  text-align: inherit;
+  cursor: inherit;
   color: var(--w-text-primary);
 }
 
