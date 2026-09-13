@@ -294,8 +294,8 @@
   --w-accent-green-surface: rgba(69, 211, 164, 0.15);
   --w-accent-green-text: #07724e;
   --w-accent-lime: #d2d246;
-  --w-accent-lime-surface: rgba(210, 210, 70, 0.15);
-  --w-accent-lime-text: #6e6e1b;
+  --w-accent-lime-surface: rgba(210, 210, 70, 0.25);
+  --w-accent-lime-text: #55550f;
   --w-accent-neutral-surface: rgba(0, 0, 0, 0.03);
   --w-accent-pink-60: rgba(244, 37, 199, 0.6);
   --w-accent-green-60: rgba(69, 211, 164, 0.6);
@@ -604,8 +604,8 @@
   --w-accent-green-surface: rgba(69, 211, 164, 0.15);
   --w-accent-green-text: #07724e;
   --w-accent-lime: #d2d246;
-  --w-accent-lime-surface: rgba(210, 210, 70, 0.15);
-  --w-accent-lime-text: #6e6e1b;
+  --w-accent-lime-surface: rgba(210, 210, 70, 0.25);
+  --w-accent-lime-text: #55550f;
   --w-accent-neutral-surface: rgba(0, 0, 0, 0.03);
   --w-accent-pink-60: rgba(244, 37, 199, 0.6);
   --w-accent-green-60: rgba(69, 211, 164, 0.6);
