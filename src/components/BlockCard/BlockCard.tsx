@@ -1,11 +1,11 @@
 import type { ReactNode } from 'react'
 
-import type { BlockCardShadow } from './constants'
+import type { BlockCardFill } from './constants'
 import './BlockCard.css'
 
 export type BlockCardProps = {
-  /** Figma Shadow */
-  shadow?: BlockCardShadow
+  /** Figma Fill — заливка `Base/Selection` у выбранной карточки. */
+  fill?: BlockCardFill
   /** Figma Text — имя блока. */
   content?: ReactNode
   /** Figma Caption — что в блоке. */
@@ -15,9 +15,9 @@ export type BlockCardProps = {
 }
 
 /** Карточка блока внутри тренировки. Не путать с карточкой тренировки: состав другой. */
-export function BlockCard({ shadow = 'off', content, caption, actions }: BlockCardProps) {
+export function BlockCard({ fill = 'off', content, caption, actions }: BlockCardProps) {
   return (
-    <div className={`w-block-card w-block-card_shadow_${shadow}`}>
+    <div className={`w-block-card w-block-card_fill_${fill}`}>
       <span className="w-block-card__text">
         <span className="w-block-card__title">{content}</span>
         {caption ? <span className="w-block-card__caption">{caption}</span> : null}

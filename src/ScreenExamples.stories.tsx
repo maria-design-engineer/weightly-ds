@@ -377,8 +377,8 @@ function ReviewScreen() {
           onToggle={() => {}}
         />
 
-        <BlockCard shadow="on" content="Разминка" caption="4 упражнения · 10 минут" />
-        <BlockCard shadow="off" content="Основа" caption="63 КПШ · 5 упражнений" />
+        <BlockCard fill="off" content="Разминка" caption="4 упражнения · 10 минут" />
+        <BlockCard fill="on" content="Основа" caption="63 КПШ · 5 упражнений" />
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
           <ExerciseCard
@@ -416,8 +416,8 @@ function ReviewScreen() {
           />
         </div>
 
-        <BlockCard shadow="on" content="Закачка" caption="2 упражнения" />
-        <BlockCard shadow="on" content="Растяжка" caption="2 упражнения" />
+        <BlockCard fill="off" content="Закачка" caption="2 упражнения" />
+        <BlockCard fill="off" content="Растяжка" caption="2 упражнения" />
       </div>
     </Screen>
   )

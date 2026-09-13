@@ -161,8 +161,8 @@ export type { LiftsCellProps } from './components/LiftsCell/LiftsCell'
 
 export { BlockCard } from './components/BlockCard/BlockCard'
 export type { BlockCardProps } from './components/BlockCard/BlockCard'
-export { BLOCK_CARD_SHADOWS } from './components/BlockCard/constants'
-export type { BlockCardShadow } from './components/BlockCard/constants'
+export { BLOCK_CARD_FILLS } from './components/BlockCard/constants'
+export type { BlockCardFill } from './components/BlockCard/constants'
 
 export { WorkoutCard } from './components/WorkoutCard/WorkoutCard'
 export type { WorkoutCardProps } from './components/WorkoutCard/WorkoutCard'

@@ -1,4 +1,7 @@
-/** Ось Shadow кита — 2 значения. В релизе 1 свойство переименовано из Property 1. */
-export const BLOCK_CARD_SHADOWS = ['on', 'off'] as const
+/**
+ * Ось Fill кита — 2 значения. Правка кита 13.09.2026: ось `Shadow` заменена на
+ * `Fill`, тени у карточки больше нет, вместо неё заливка `Base/Selection`.
+ */
+export const BLOCK_CARD_FILLS = ['on', 'off'] as const
 
-export type BlockCardShadow = (typeof BLOCK_CARD_SHADOWS)[number]
+export type BlockCardFill = (typeof BLOCK_CARD_FILLS)[number]

@@ -13,7 +13,7 @@ import {
   AVATAR_VIEWS,
 } from './components/Avatar/constants'
 import { BlockCard } from './components/BlockCard/BlockCard'
-import { BLOCK_CARD_SHADOWS } from './components/BlockCard/constants'
+import { BLOCK_CARD_FILLS } from './components/BlockCard/constants'
 import { BlockTab } from './components/BlockTab/BlockTab'
 import { BLOCK_TAB_STATES } from './components/BlockTab/constants'
 import { BlockTabs } from './components/BlockTabs/BlockTabs'
@@ -767,14 +767,14 @@ function Molecules() {
       </Component>
 
       <Component kit="Product / block-card" code="BlockCard">
-        <Axis name="Shadow · 2">
-          {BLOCK_CARD_SHADOWS.map((shadow) => (
-            <Item key={shadow} label={shadow} width={328}>
+        <Axis name="Fill · 2">
+          {BLOCK_CARD_FILLS.map((fill) => (
+            <Item key={fill} label={fill} width={328}>
               <BlockCard
-                shadow={shadow}
+                fill={fill}
                 content="Разминка"
                 caption="4 упражнения"
-                actions={<Button view="flat-secondary" size="s" content="Открыть" />}
+                actions={<Button view="flat-action" size="s" content="Открыть" />}
               />
             </Item>
           ))}

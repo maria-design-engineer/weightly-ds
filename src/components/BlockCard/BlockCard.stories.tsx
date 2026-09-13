@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite'
 import { Button } from '../Button/Button'
 import { Cell, Row } from '../story-layout'
 import { BlockCard } from './BlockCard'
-import { BLOCK_CARD_SHADOWS } from './constants'
+import { BLOCK_CARD_FILLS } from './constants'
 
 const ACTIONS = (
   <>
@@ -16,7 +16,7 @@ const meta = {
   title: 'Product components/BlockCard',
   component: BlockCard,
   argTypes: {
-    shadow: { control: 'inline-radio', options: BLOCK_CARD_SHADOWS },
+    fill: { control: 'inline-radio', options: BLOCK_CARD_FILLS },
     content: { control: 'text' },
     caption: { control: 'text' },
     actions: { control: 'boolean', mapping: { true: ACTIONS, false: undefined } },
@@ -41,9 +41,9 @@ export const Playground: Story = {
 export const Shadows: Story = {
   render: (args) => (
     <Row>
-      {BLOCK_CARD_SHADOWS.map((shadow) => (
-        <Cell key={shadow} label={`Shadow = ${shadow}`} width={328}>
-          <BlockCard {...args} shadow={shadow} />
+      {BLOCK_CARD_FILLS.map((fill) => (
+        <Cell key={fill} label={`Fill = ${fill}`} width={328}>
+          <BlockCard {...args} fill={fill} />
         </Cell>
       ))}
     </Row>

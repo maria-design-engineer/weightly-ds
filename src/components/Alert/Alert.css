@@ -4,11 +4,21 @@
  * строка-предупреждение на странице. Поведения внутри нет.
  * Имя темы и имя токена расходятся: тема Success красится токенами Positive.
  */
+/*
+ * Раскладка вертикальная и по центру: значок сверху, под ним заголовок, текст
+ * и кнопки. Правка кита 13.09.2026 — до неё значок стоял слева, а содержимое
+ * прижималось к левому краю.
+ */
 .w-alert {
+  position: relative;
   box-sizing: border-box;
   display: flex;
-  gap: var(--w-g-spacing-3);
+  flex-direction: column;
+  align-items: center;
+  /* Промежуток между значком и содержимым — 8. */
+  gap: var(--w-g-spacing-2);
   padding: var(--w-g-spacing-4) var(--w-g-spacing-5);
+  text-align: center;
   border: 0 solid transparent;
   /* Текст сообщения — Text/Body 1 цветом Text/Complementary. Пересснято 03.09.2026. */
   color: var(--w-text-complementary);
@@ -57,6 +67,7 @@
   flex: 1;
   flex-direction: column;
   gap: var(--w-g-spacing-5);
+  align-self: stretch;
   min-width: 0;
 }
 
@@ -64,8 +75,9 @@
   display: flex;
   flex: 1;
   flex-direction: column;
-  /* Промежуток между заголовком и текстом — g-spacing-1. */
-  gap: var(--w-g-spacing-1);
+  /* Промежуток между заголовком и текстом — 8. Правка кита 13.09.2026, было 4. */
+  gap: var(--w-g-spacing-2);
+  align-items: center;
   min-width: 0;
 }
 
@@ -76,23 +88,32 @@
 }
 
 /*
- * Кнопки делят ширину поровну и тянутся во всю строку. В мастере кита кнопка
- * стоит по содержимому, а на всех трёх alert с кнопками в макетах продукта —
- * `Fill`, поровну: сценарий «Ближайшая тренировка», кадры 1, 2б и alert
- * пропуска. Расхождение записано в отклонения этапа 13.
+ * Кнопки идут столбиком во всю ширину, промежуток 12. Правка кита 13.09.2026:
+ * до неё они стояли в строку и делили ширину поровну. Размер и вид задаёт тот,
+ * кто их вставляет: по макету верхняя — `normal-contrast`, вторая и третья —
+ * `flat`, все размера `xl`.
  */
 .w-alert__actions {
   display: flex;
   flex: none;
+  flex-direction: column;
   gap: var(--w-g-spacing-3);
+  align-self: stretch;
 }
 
 .w-alert__actions > * {
-  flex: 1 1 0;
+  width: 100%;
   min-width: 0;
 }
 
+/*
+ * Крестик вынесен из потока и прижат к правому верхнему углу: в вертикальной
+ * раскладке он иначе занимал бы строку и сдвигал значок с середины.
+ */
 .w-alert__close {
+  position: absolute;
+  top: var(--w-g-spacing-2);
+  right: var(--w-g-spacing-2);
   display: inline-flex;
   flex: none;
 }
