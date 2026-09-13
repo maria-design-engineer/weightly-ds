@@ -22,6 +22,15 @@
   gap: 3px;
 }
 
+/*
+ * Плашка даты стоит с полями 12 по бокам — правка кита 13.09.2026; у Label размера M
+ * свои 6, и на экране дата читалась зажатой. Поля правит шапка, а не сам Label:
+ * плашки того же размера стоят и в других местах, там поля прежние.
+ */
+.w-screen-header__mark .w-label {
+  padding-inline: var(--w-g-spacing-3);
+}
+
 .w-screen-header__offline {
   display: inline-flex;
   color: var(--w-text-secondary);
