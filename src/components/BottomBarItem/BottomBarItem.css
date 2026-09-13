@@ -15,6 +15,10 @@
   border: 0;
   background: none;
   font: var(--w-style-text-caption-1);
+  /* Вкладка с адресом приходит ссылкой, и подчёркивание ей не нужно: на макете
+     подписи панели без него. Находка прогона 13.09.2026. */
+  text-decoration: none;
+  color: inherit;
   cursor: pointer;
 }
 
