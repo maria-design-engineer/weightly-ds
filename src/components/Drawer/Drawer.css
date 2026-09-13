@@ -35,6 +35,13 @@
   justify-content: center;
 }
 
+/*
+ * Шторка не выше экрана, содержимое внутри прокручивается: шапка и кнопки
+ * остаются на виду всегда. В мастере кита высота идёт по содержимому — там его
+ * ровно столько, сколько влезает; в продукте в шторку кладут список упражнений
+ * блока, и он бывает длиннее экрана. Находка прогона 13.09.2026: список вырос
+ * на разделители, и кнопка «Закрыть» уехала за нижний край.
+ */
 .w-drawer {
   box-sizing: border-box;
   display: flex;
@@ -42,6 +49,7 @@
   gap: 16px;
   width: 100%;
   max-width: var(--w-drawer-max-width);
+  max-height: 90dvh;
   padding: 16px;
   /* Верхние углы 20 — `2XL radius`, правка кита 13.09.2026; было 16. Низ у пола. */
   border-radius: var(--w-2xl-radius) var(--w-2xl-radius) 0 0;
@@ -65,6 +73,12 @@
 .w-drawer:focus-visible {
   outline: var(--w-focus-ring-width) solid var(--w-focus-ring-color);
   outline-offset: -2px;
+}
+
+/* Прокручивается только содержимое: `min-height: 0` даёт ему сжаться в колонке. */
+.w-drawer__content {
+  min-height: 0;
+  overflow-y: auto;
 }
 
 .w-drawer__head {
