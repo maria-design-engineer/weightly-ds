@@ -58,15 +58,14 @@ export function IntensityChip({
       className={className}
       {...(onPick ? { type: 'button' as const, onClick: onPick, 'aria-label': pickLabel } : {})}
     >
-      <span className="w-intensity-chip__value">
-        {content}
-        {state === 'done' ? (
-          <span className="w-intensity-chip__done">
-            <Icon data={Check} size={16} />
-          </span>
-        ) : null}
-      </span>
+      <span className="w-intensity-chip__value">{content}</span>
       {caption ? <span className="w-intensity-chip__caption">{caption}</span> : null}
+      {/* Галка стоит углом чипа, вне потока: в потоке она сдвигала процент. */}
+      {state === 'done' ? (
+        <span className="w-intensity-chip__done">
+          <Icon data={Check} size={16} />
+        </span>
+      ) : null}
     </Tag>
   )
 }

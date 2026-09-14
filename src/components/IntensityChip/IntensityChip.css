@@ -12,6 +12,8 @@
 .w-intensity-chip {
   /* Голубую метку касания Android убираем: отклик даёт сам элемент. */
   -webkit-tap-highlight-color: transparent;
+  /* Якорь для галки сделанного: она стоит по углу чипа и выступает за его край. */
+  position: relative;
   box-sizing: border-box;
   display: inline-flex;
   flex-direction: column;
@@ -64,9 +66,16 @@ button.w-set-marker {
 }
 
 /* У сделанной ступени рядом с процентом стоит галка — правка релиза 2. */
+/*
+ * Галка сделанного стоит углом наружу: 16 на 16, на 3 выше и правее края чипа —
+ * мастер `Size=S, State=done, Band=pink`, правка кита 14.09.2026. В потоке она
+ * стояла рядом с процентом и сдвигала число.
+ */
 .w-intensity-chip__done {
+  position: absolute;
+  top: -3px;
+  right: -3px;
   display: inline-flex;
-  vertical-align: middle;
   color: var(--w-text-positive);
 }
 
