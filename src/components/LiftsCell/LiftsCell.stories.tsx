@@ -7,7 +7,7 @@ import { Cell, Row } from '../story-layout'
 import { LiftsCell } from './LiftsCell'
 
 /** «нет» означает, что подъёма не было: в Figma это выключенное свойство Lift N. */
-const OPTIONS = ['done', 'failed', 'skipped', 'нет'] as const
+const OPTIONS = ['done', 'failed', 'skipped', 'not-started', 'нет'] as const
 
 type Option = (typeof OPTIONS)[number]
 
