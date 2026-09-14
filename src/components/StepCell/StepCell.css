@@ -11,7 +11,13 @@
   flex: none;
   flex-direction: column;
   gap: var(--w-g-spacing-1);
-  width: 52px;
+  /*
+   * Ширина от содержимого, но не меньше чипа: плашка итога растёт под число
+   * подходов зоны — 128 при пяти отметках, мастер `Product / step-cell`
+   * от 14.09.2026. До правки стояло ровно 52.
+   */
+  width: max-content;
+  min-width: 52px;
 }
 
 .w-step-cell > * {

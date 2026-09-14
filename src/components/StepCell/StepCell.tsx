@@ -2,6 +2,7 @@ import type { ReactNode } from 'react'
 
 import { IntensityChip } from '../IntensityChip/IntensityChip'
 import type { IntensityChipBand, IntensityChipState } from '../IntensityChip/constants'
+import type { LiftMarkState } from '../LiftMark/constants'
 import { SetMarker } from '../SetMarker/SetMarker'
 import type { SetMarkerState } from '../SetMarker/constants'
 import './StepCell.css'
@@ -19,6 +20,11 @@ export type StepCellProps = {
   markerState?: SetMarkerState
   /** Номер подхода — Figma Text у отметки. */
   markerContent?: ReactNode
+  /**
+   * Итог зоны: по отметке на каждый её подход — состояние `result` у отметки,
+   * `Product / step-cell` от 14.09.2026. Переданы — номер подхода не показывается.
+   */
+  marks?: LiftMarkState[]
 }
 
 /**
@@ -33,11 +39,16 @@ export function StepCell({
   chipState = 'default',
   markerState = 'planned',
   markerContent,
+  marks,
 }: StepCellProps) {
   return (
     <div className="w-step-cell">
       <IntensityChip band={band} state={chipState} content={content} caption={caption} />
-      <SetMarker state={markerState} content={markerContent} />
+      <SetMarker
+        state={marks ? 'result' : markerState}
+        content={marks ? undefined : markerContent}
+        marks={marks}
+      />
     </div>
   )
 }
