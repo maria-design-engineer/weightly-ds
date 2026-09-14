@@ -244,3 +244,19 @@ export type { ParanjaType } from './components/Paranja/constants'
 
 export { BlockTabs } from './components/BlockTabs/BlockTabs'
 export type { BlockTabsProps } from './components/BlockTabs/BlockTabs'
+
+// Релиз 3, срез 4: меню у кнопки «⋮», чипы формы и зона удаления.
+export { DropdownMenu } from './components/DropdownMenu/DropdownMenu'
+export type { DropdownMenuProps } from './components/DropdownMenu/DropdownMenu'
+export { DROPDOWN_MENU_SIZES } from './components/DropdownMenu/constants'
+export type { DropdownMenuItem, DropdownMenuSize } from './components/DropdownMenu/constants'
+
+export { ChipSelect } from './components/ChipSelect/ChipSelect'
+export type { ChipSelectProps } from './components/ChipSelect/ChipSelect'
+export { CHIP_SELECT_STATES } from './components/ChipSelect/constants'
+export type { ChipSelectState } from './components/ChipSelect/constants'
+
+export { DeleteZone } from './components/DeleteZone/DeleteZone'
+export type { DeleteZoneProps } from './components/DeleteZone/DeleteZone'
+export { DELETE_ZONE_STATES } from './components/DeleteZone/constants'
+export type { DeleteZoneState } from './components/DeleteZone/constants'

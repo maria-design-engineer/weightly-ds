@@ -25,7 +25,12 @@ import { Button } from './components/Button/Button'
 import { BUTTON_SIZES, BUTTON_VIEWS } from './components/Button/constants'
 import { CoachComment } from './components/CoachComment/CoachComment'
 import { COACH_COMMENT_BANDS, COACH_COMMENT_STATES } from './components/CoachComment/constants'
+import { ChipSelect } from './components/ChipSelect/ChipSelect'
+import { CHIP_SELECT_STATES } from './components/ChipSelect/constants'
 import { CorrespondenceRow } from './components/CorrespondenceRow/CorrespondenceRow'
+import { DeleteZone } from './components/DeleteZone/DeleteZone'
+import { DELETE_ZONE_STATES } from './components/DeleteZone/constants'
+import { DropdownMenu } from './components/DropdownMenu/DropdownMenu'
 import { Divider } from './components/Divider/Divider'
 import { ExerciseCard } from './components/ExerciseCard/ExerciseCard'
 import { EXERCISE_CARD_TYPES } from './components/ExerciseCard/constants'
@@ -206,7 +211,7 @@ function Item({ label, width, children }: { label: string; width?: number; child
 
 function Base() {
   return (
-    <Layer title="Базовый слой — 10 компонентов и иконотека">
+    <Layer title="Базовый слой — 11 компонентов и иконотека">
       <Component kit="Button" code="Button">
         <Axis name="View · 21">
           {BUTTON_VIEWS.map((view) => (
@@ -334,6 +339,20 @@ function Base() {
           </Item>
           <Item label="counter" width={200}>
             <Select items={SELECT_ITEMS} placeholder="Упражнение" ariaLabel="Упражнение" counter={2} />
+          </Item>
+        </Axis>
+      </Component>
+
+      <Component kit="DropdownMenu" code="DropdownMenu">
+        <Axis name="Size · 4">
+          <Item label="меню открывается в своей истории" width={220}>
+            <DropdownMenu
+              items={[
+                { id: 'add', content: 'Добавить упражнение' },
+                { id: 'all', content: 'Открыть все упражнения' },
+              ]}
+              switcherLabel="Действия с упражнением"
+            />
           </Item>
         </Axis>
       </Component>
@@ -495,7 +514,7 @@ function Base() {
 
 function Atoms() {
   return (
-    <Layer title="Атомы — 11 компонентов">
+    <Layer title="Атомы — 12 компонентов">
       <Component kit="Product / divider" code="Divider">
         <Axis name="Свойств нет">
           <Item label="divider" width={280}>
@@ -557,6 +576,16 @@ function Atoms() {
           {[false, true].map((icon) => (
             <Item key={String(icon)} label={icon ? 'on' : 'off'}>
               <IntensityChipXs icon={icon} content="75%" />
+            </Item>
+          ))}
+        </Axis>
+      </Component>
+
+      <Component kit="Product / chip-select" code="ChipSelect">
+        <Axis name="State · 2">
+          {CHIP_SELECT_STATES.map((state) => (
+            <Item key={state} label={state}>
+              <ChipSelect state={state} content="С помоста" />
             </Item>
           ))}
         </Axis>
@@ -697,12 +726,22 @@ const RUNNING_STEPS = (
 
 function Molecules() {
   return (
-    <Layer title="Молекулы — 15 компонентов">
+    <Layer title="Молекулы — 16 компонентов">
       <Component kit="Product / bottom-bar-item" code="BottomBarItem">
         <Axis name="State · 2">
           {BOTTOM_BAR_ITEM_STATES.map((state) => (
             <Item key={state} label={state}>
               <BottomBarItem state={state} label="Тренировки" icon={<Icon data={Play} size={20} />} />
+            </Item>
+          ))}
+        </Axis>
+      </Component>
+
+      <Component kit="Product / delete-zone" code="DeleteZone">
+        <Axis name="State · 2">
+          {DELETE_ZONE_STATES.map((state) => (
+            <Item key={state} label={state} width={328}>
+              <DeleteZone state={state} content="Удалить упражнение" />
             </Item>
           ))}
         </Axis>

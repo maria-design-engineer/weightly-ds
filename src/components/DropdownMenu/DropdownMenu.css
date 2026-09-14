@@ -1,0 +1,167 @@
+/*
+ * DropdownMenu — профиль `ui-kit/components/dropdown-menu.md`. Плита 320 в ширину,
+ * радиус `XL radius` 16, заливка `Base Float/Float`, тень `shadows/YC Select shadow`.
+ * Поля 4 сверху, снизу и слева, справа 0 — строки прижаты к правому краю;
+ * промежуток между строками 4. Ширина и поле справа вписаны числом: шкалы под них
+ * в ките нет.
+ */
+.w-dropdown-menu {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: var(--w-g-spacing-1);
+  width: 320px;
+  /*
+   * Нарисована одна ширина, 320: под колонку 360 с полями она подходит впритык,
+   * а на 320 вылезла бы за экран. Свободное место даёт Base UI переменной —
+   * меню сжимается до него и остаётся на экране. Отклонение записано этапом 33.
+   */
+  max-width: var(--available-width);
+  /* Список получает фокус при открытии — синюю рамку браузера снимаем, в ките её нет. */
+  outline: none;
+  padding: var(--w-g-spacing-1) 0 var(--w-g-spacing-1) var(--w-g-spacing-1);
+  border-radius: var(--w-xl-radius);
+  background: var(--w-base-float-float-bg);
+  box-shadow: var(--w-shadows-yc-select-shadow);
+  color: var(--w-text-primary);
+  /*
+   * Полоса прокрутки — свойство `Scroll` кита. В коде оно не проп, а рантайм:
+   * меню не растёт выше свободного места под кнопкой, и когда пунктов больше,
+   * чем помещается, список прокручивается. Высоту даёт Base UI переменной.
+   */
+  max-height: var(--available-height);
+  overflow-y: auto;
+}
+
+/*
+ * Кнопка-многоточие. Своего мастера в ките у неё нет: на экранах стоит `Button`
+ * `View=Flat-secondary, Size=M` без подписи — 34 × 34, радиус `M radius`,
+ * цвет `Text/Secondary`. Те же значения повторены здесь, чтобы кнопка осталась
+ * внутри компонента и держала якорь меню.
+ */
+.w-dropdown-menu__switcher {
+  /* Голубую метку касания Android убираем: отклик даёт сам элемент. */
+  -webkit-tap-highlight-color: transparent;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--w-m-radius);
+  background: none;
+  color: var(--w-text-secondary);
+  cursor: pointer;
+}
+
+.w-dropdown-menu__switcher:focus-visible {
+  outline: var(--w-focus-ring-width) solid var(--w-focus-ring-color);
+  outline-offset: 1px;
+}
+
+/*
+ * Наведение показываем только там, где есть мышь: на телефоне `:hover` залипает
+ * после касания — то же правило, что у кнопки.
+ */
+@media (hover: hover) {
+  .w-dropdown-menu__switcher:hover {
+    background: var(--w-base-simple-hover);
+    color: var(--w-text-primary);
+  }
+}
+
+/*
+ * Строка меню — `List-item` кита. Size задаёт высоту, отступы, промежуток
+ * и радиус; значения вписаны числом, как в ките.
+ */
+.w-dropdown-menu__item {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  /* Строка получает фокус обходом с клавиатуры — рамку рисуем своим кольцом. */
+  outline: none;
+  width: 100%;
+  font: var(--w-style-text-body-2);
+  text-align: left;
+  cursor: pointer;
+  user-select: none;
+}
+
+.w-dropdown-menu_size_s .w-dropdown-menu__item {
+  min-height: 24px;
+  gap: var(--w-g-spacing-2);
+  padding: 2px var(--w-g-spacing-2);
+  border-radius: var(--w-s-radius);
+}
+
+.w-dropdown-menu_size_m .w-dropdown-menu__item {
+  min-height: 28px;
+  gap: var(--w-g-spacing-3);
+  padding: var(--w-g-spacing-1) var(--w-g-spacing-3);
+  border-radius: var(--w-m-radius);
+}
+
+.w-dropdown-menu_size_l .w-dropdown-menu__item {
+  min-height: 36px;
+  gap: var(--w-g-spacing-4);
+  padding: var(--w-g-spacing-2) var(--w-g-spacing-4);
+  border-radius: var(--w-l-radius);
+}
+
+.w-dropdown-menu_size_xl .w-dropdown-menu__item {
+  min-height: 44px;
+  gap: var(--w-g-spacing-4);
+  padding: var(--w-g-spacing-3) var(--w-g-spacing-4);
+  border-radius: var(--w-xl-radius);
+}
+
+/*
+ * Состояния несёт строка: обычная без заливки, под курсором `Base/Simple Hover`,
+ * выбранная — та, на которой стоит обход с клавиатуры, — `Base/Selection`.
+ */
+.w-dropdown-menu__item[data-highlighted] {
+  background: var(--w-branding-base-selection);
+}
+
+@media (hover: hover) {
+  .w-dropdown-menu__item:hover:not([data-disabled]) {
+    background: var(--w-base-simple-hover);
+  }
+}
+
+.w-dropdown-menu__item:focus-visible {
+  outline: var(--w-focus-ring-width) solid var(--w-focus-ring-color);
+  outline-offset: -2px;
+}
+
+/*
+ * Отключённая строка от обычной заливкой не отличается — в ките так же.
+ * Гаснет содержимое, и нажатие не проходит.
+ */
+.w-dropdown-menu__item[data-disabled] {
+  color: var(--w-text-hint);
+  cursor: default;
+}
+
+.w-dropdown-menu__icon {
+  display: inline-flex;
+  flex: none;
+  color: var(--w-text-secondary);
+}
+
+.w-dropdown-menu__text {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+/*
+ * Разделитель групп — `Type=Divider` строки: высота 9 с отступами 4 сверху
+ * и снизу, внутри линия 1 на `Line/Generic`.
+ */
+.w-dropdown-menu__separator {
+  height: 1px;
+  margin: var(--w-g-spacing-1) 0;
+  background: var(--w-line-generic);
+}

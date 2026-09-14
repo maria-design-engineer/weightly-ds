@@ -1,0 +1,55 @@
+/*
+ * Product / chip-select — профиль `ui-kit/product-components/chip-select.md`.
+ * Высота 26, радиус `M radius` 10, поля 4 по вертикали и 8 по бокам, текст
+ * `Text/Body 3`. Ширина по содержимому.
+ *
+ * До 14.09.2026 чипы на макете собирались из `Label` `Size=M`: там поля по бокам
+ * 6 и высота 28. Шага 6 в ките нет, поэтому чип пересобран из шаговых полей.
+ */
+.w-chip-select {
+  /* Голубую метку касания Android убираем: отклик даёт сам элемент. */
+  -webkit-tap-highlight-color: transparent;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: max-content;
+  min-height: 26px;
+  margin: 0;
+  padding: var(--w-g-spacing-1) var(--w-g-spacing-2);
+  border: 1px solid transparent;
+  border-radius: var(--w-m-radius);
+  background: none;
+  font: var(--w-style-text-body-3);
+  white-space: nowrap;
+}
+
+button.w-chip-select {
+  cursor: pointer;
+}
+
+/*
+ * Заливка выбранного в ките зовётся `Light/Brand/50` 10 процентов. Переменной
+ * этого имени в коде нет — палитра в CSS не выведена; значение сходится
+ * с `Branding/Base Selection` до последнего разряда, на нём и собрано.
+ * Строка ушла дизайнеру 14.09.2026.
+ */
+.w-chip-select_state_selected {
+  border-color: var(--w-line-focus);
+  background: var(--w-branding-base-selection);
+  color: var(--w-branding-base-brand);
+}
+
+.w-chip-select_state_default {
+  border-color: var(--w-line-generic);
+  color: var(--w-text-complementary);
+}
+
+/*
+ * Наведение и нажатие в ките не нарисованы — чип живёт на телефоне. Фокус
+ * рисуется всё равно: он про клавиатуру, а не про оформление.
+ */
+.w-chip-select:focus-visible {
+  outline: var(--w-focus-ring-width) solid var(--w-focus-ring-color);
+  outline-offset: 1px;
+}

@@ -1,0 +1,38 @@
+/*
+ * Product / delete-zone — профиль `ui-kit/product-components/delete-zone.md`.
+ * Полоса 328 × 44, радиус `XL radius` 16, поля 12 со всех сторон, промежуток 8,
+ * значок `trash-bin` 20 × 20, подпись `Text/Body 2`.
+ *
+ * Ширина в коде не 328, а во всю колонку: колонка продукта 360 с полями 16 даёт
+ * ровно 328, а на 480 зона встаёт под список, а не уже его.
+ *
+ * Обводка пунктирная — зона читается как место, куда кладут, а не как кнопка.
+ * Рисунок штриха в ките 4 через 4; в браузере длину штриха у `dashed` задать
+ * нечем, её рисует сам браузер — отклонение от кита, записано этапом 33.
+ */
+.w-delete-zone {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--w-g-spacing-2);
+  width: 100%;
+  min-height: 44px;
+  padding: var(--w-g-spacing-3);
+  border: 1px dashed;
+  border-radius: var(--w-xl-radius);
+  font: var(--w-style-text-body-2);
+}
+
+/* Значок и подпись красятся тем же цветом, что и обводка, — он один на состояние. */
+.w-delete-zone_state_idle {
+  border-color: var(--w-line-generic);
+  background: var(--w-base-generic);
+  color: var(--w-text-secondary);
+}
+
+.w-delete-zone_state_over {
+  border-color: var(--w-line-danger);
+  background: var(--w-base-semantic-danger-light);
+  color: var(--w-text-danger);
+}
