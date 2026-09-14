@@ -20,6 +20,16 @@ const WITH_ICONS: DropdownMenuItem[] = [
   { id: 'delete', content: 'Удалить', icon: <Icon data={TrashBin} size={16} /> },
 ]
 
+/*
+ * Десять пунктов — столько строк нарисовано у мастера кита. Потолка у кода нет:
+ * строк столько, сколько пришло в `items`; когда список не помещается на экран,
+ * появляется полоса прокрутки — свойство `Scroll` карты.
+ */
+const LONG: DropdownMenuItem[] = Array.from({ length: 10 }, (_, index) => ({
+  id: `item-${index + 1}`,
+  content: `Пункт ${index + 1}`,
+}))
+
 const GROUPED: DropdownMenuItem[] = [
   { id: 'add', content: 'Добавить упражнение' },
   { id: 'all', content: 'Открыть все упражнения' },
@@ -81,6 +91,13 @@ export const WithIcons: Story = {
 export const Grouped: Story = {
   render: (args) => <Opened size={args.size ?? 'xl'} items={GROUPED} />,
 }
+
+/**
+ * Десять пунктов — столько же строк у мастера кита, и это не потолок кода.
+ * Выше свободного места под кнопкой меню не растёт: не поместилось — список
+ * прокручивается, поэтому на низком окне у этой истории появляется полоса.
+ */
+export const LongList: Story = { render: (args) => <Opened size={args.size ?? 'xl'} items={LONG} /> }
 
 /** Ось Size — 4: высота строки 24, 28, 36 и 44. */
 export const SizeS: Story = { render: () => <Opened size="s" items={BASIC} /> }
