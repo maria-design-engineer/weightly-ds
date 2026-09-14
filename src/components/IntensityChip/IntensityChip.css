@@ -10,6 +10,8 @@
  * поля, рамка и шрифт задаются здесь, а не приходят от браузера.
  */
 .w-intensity-chip {
+  /* Голубую метку касания Android убираем: отклик даёт сам элемент. */
+  -webkit-tap-highlight-color: transparent;
   box-sizing: border-box;
   display: inline-flex;
   flex-direction: column;

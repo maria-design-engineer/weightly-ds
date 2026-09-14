@@ -4,6 +4,8 @@
  * State красит значок и подпись: Base/Brand против Text/Primary.
  */
 .w-bottom-bar-item {
+  /* Голубую метку касания Android убираем: отклик даёт сам элемент. */
+  -webkit-tap-highlight-color: transparent;
   box-sizing: border-box;
   display: inline-flex;
   flex-direction: column;

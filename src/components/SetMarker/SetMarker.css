@@ -5,6 +5,8 @@
  * Текущий подход обведён Line/Brand, остальные — Line/Generic.
  */
 .w-set-marker {
+  /* Голубую метку касания Android убираем: отклик даёт сам элемент. */
+  -webkit-tap-highlight-color: transparent;
   box-sizing: border-box;
   display: inline-flex;
   align-items: center;
