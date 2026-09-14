@@ -158,11 +158,6 @@
 /*
  * State=Pressed — то же, что наведение: кнопка заливается на время нажатия.
  *
- * У прозрачных видов заливка берётся плотная — `Base/Generic Hover`, 15 процентов
- * черноты. Наведение красит их пятью процентами, и на панели прохождения такое пятно
- * не читалось вовсе: кнопки выглядели мёртвыми. На макете нажатая плоская кнопка
- * ощутимо серая — кадр `1109-41549`. Находка прогона 13.09.2026.
- *
  * Заливка включается мгновенно и гаснет плавно, за 250 мс. Иначе её не видно вовсе:
  * касание длится десятые доли секунды, и цвет успевает мелькнуть, — кнопки нижней
  * панели прохождения читались как мёртвые. Находка прогона 13.09.2026.
@@ -197,7 +192,7 @@
 .w-button_view_outlined-warning:active:not([data-disabled]),
 .w-button_view_outlined-danger:active:not([data-disabled]),
 .w-button_view_outlined-utility:active:not([data-disabled]),
-.w-button_view_outlined-action:active:not([data-disabled]) { background: var(--w-base-generic-hover); }
+.w-button_view_outlined-action:active:not([data-disabled]) { background: var(--w-base-generic); }
 
 /* У Flat-secondary наведение меняет и текст: Text/Secondary становится Text/Primary. */
 .w-button_view_flat-secondary:active:not([data-disabled]) { color: var(--w-text-primary); }
