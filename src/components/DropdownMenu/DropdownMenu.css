@@ -97,8 +97,12 @@
 /*
  * Состояния несёт строка: обычная без заливки, под курсором `Base/Simple Hover`,
  * выбранная — та, на которой стоит обход с клавиатуры, — `Base/Selection`.
+ *
+ * Красит именно `:focus-visible`, а не `:focus`: открытое меню само уводит фокус
+ * на первую строку, и по `:focus` она загоралась выбранной у всех, кто открыл
+ * меню пальцем. Находка прогона 14.09.2026.
  */
-.w-dropdown-menu__item:focus {
+.w-dropdown-menu__item:focus-visible {
   background: var(--w-branding-base-selection);
 }
 
