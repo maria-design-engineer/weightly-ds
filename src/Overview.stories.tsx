@@ -55,6 +55,11 @@ import { LiftMark } from './components/LiftMark/LiftMark'
 import { LIFT_MARK_STATES } from './components/LiftMark/constants'
 import { LiftsCell } from './components/LiftsCell/LiftsCell'
 import { ScreenHeader } from './components/ScreenHeader/ScreenHeader'
+import { SegmentedRadioGroup } from './components/SegmentedRadioGroup/SegmentedRadioGroup'
+import {
+  SEGMENTED_RADIO_GROUP_SIZES,
+  SEGMENTED_RADIO_GROUP_WIDTHS,
+} from './components/SegmentedRadioGroup/constants'
 import { Select } from './components/Select/Select'
 import { SELECT_SIZES, SELECT_VIEWS } from './components/Select/constants'
 import { SetMarker } from './components/SetMarker/SetMarker'
@@ -103,6 +108,12 @@ import './tokens/index.css'
  * организмы. Фон и цвета из токенов, у каждого Mode своя история.
  * Примеры выдуманные: ни одного настоящего имени, адреса или суммы.
  */
+
+/** Вкладки движений связки — так ряд стоит в форме своего упражнения. */
+const MOVEMENT_OPTIONS = [
+  { value: 'first', content: 'Движение 1' },
+  { value: 'second', content: 'Движение 2' },
+]
 
 const SELECT_ITEMS = [
   { value: 'snatch', label: 'Рывок' },
@@ -211,7 +222,7 @@ function Item({ label, width, children }: { label: string; width?: number; child
 
 function Base() {
   return (
-    <Layer title="Базовый слой — 11 компонентов и иконотека">
+    <Layer title="Базовый слой — 12 компонентов и иконотека">
       <Component kit="Button" code="Button">
         <Axis name="View · 21">
           {BUTTON_VIEWS.map((view) => (
@@ -352,6 +363,53 @@ function Base() {
                 { id: 'all', content: 'Открыть все упражнения' },
               ]}
               switcherLabel="Действия с упражнением"
+            />
+          </Item>
+        </Axis>
+      </Component>
+
+      <Component kit="SegmentedRadioGroup" code="SegmentedRadioGroup">
+        <Axis name="Size · 4">
+          {SEGMENTED_RADIO_GROUP_SIZES.map((size) => (
+            <Item key={size} label={size} width={200}>
+              <SegmentedRadioGroup
+                size={size}
+                options={MOVEMENT_OPTIONS}
+                defaultValue="first"
+                ariaLabel="Движение упражнения"
+              />
+            </Item>
+          ))}
+        </Axis>
+        <Axis name="Width · 2">
+          {SEGMENTED_RADIO_GROUP_WIDTHS.map((width) => (
+            <Item key={width} label={width} width={240}>
+              <SegmentedRadioGroup
+                width={width}
+                options={MOVEMENT_OPTIONS}
+                defaultValue="first"
+                ariaLabel="Движение упражнения"
+              />
+            </Item>
+          ))}
+        </Axis>
+        <Axis name="State">
+          <Item label="disabled" width={200}>
+            <SegmentedRadioGroup
+              options={MOVEMENT_OPTIONS}
+              defaultValue="first"
+              ariaLabel="Движение упражнения"
+              disabled
+            />
+          </Item>
+          <Item label="counter" width={240}>
+            <SegmentedRadioGroup
+              options={[
+                { value: 'first', content: 'Движение 1', counter: 3 },
+                { value: 'second', content: 'Движение 2', counter: 1 },
+              ]}
+              defaultValue="first"
+              ariaLabel="Движение упражнения"
             />
           </Item>
         </Axis>

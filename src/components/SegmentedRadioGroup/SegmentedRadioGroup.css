@@ -1,0 +1,143 @@
+/*
+ * SegmentedRadioGroup — профиль `ui-kit/components/segmented-radio-group.md`,
+ * значения сняты с мастеров 14.09.2026. Ряд кнопок в общей рамке: рамка
+ * `Line/Generic`, радиус по размеру, соседи разделены линией того же цвета.
+ *
+ * Углы крайних кнопок режет сама рамка — `overflow: clip`; в ките то же самое
+ * сделано радиусами на внешних углах первой и последней кнопки.
+ */
+.w-segmented-radio-group {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: stretch;
+  border: 1px solid var(--w-line-generic);
+  overflow: clip;
+}
+
+/* Width=Max тянет ряд во всю ширину родителя и делит его между кнопками поровну. */
+.w-segmented-radio-group_width_max {
+  display: flex;
+  width: 100%;
+}
+
+.w-segmented-radio-group_width_max .w-segmented-radio-group__item {
+  flex: 1 1 0;
+}
+
+.w-segmented-radio-group__item {
+  /* Голубую метку касания Android убираем: отклик даёт сам элемент. */
+  -webkit-tap-highlight-color: transparent;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  /* Промежуток между значком и подписью — 8 во всех размерах. */
+  gap: var(--w-g-spacing-2);
+  border: 1px solid transparent;
+  /* Рамка кнопки лежит поверх рамки ряда, а не рядом с ней. */
+  margin: -1px;
+  font: var(--w-style-text-body-3);
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+/*
+ * Разделитель между соседями — линия `Line/Generic`. Справа от выбранной её нет:
+ * там стоит рамка самой выбранной кнопки, и две линии слились бы в двойную.
+ */
+.w-segmented-radio-group__item + .w-segmented-radio-group__item {
+  border-left-color: var(--w-line-generic);
+}
+
+.w-segmented-radio-group__item[data-checked] + .w-segmented-radio-group__item {
+  border-left-color: transparent;
+}
+
+.w-segmented-radio-group__item:focus-visible {
+  outline: var(--w-focus-ring-width) solid var(--w-focus-ring-color);
+  outline-offset: -2px;
+}
+
+/* Size задаёт высоту, радиус рамки и боковой отступ кнопки. */
+.w-segmented-radio-group_size_s { border-radius: var(--w-s-radius); }
+.w-segmented-radio-group_size_s .w-segmented-radio-group__item {
+  min-height: 24px;
+  padding: 0 var(--w-g-spacing-2);
+}
+
+.w-segmented-radio-group_size_m { border-radius: var(--w-m-radius); }
+.w-segmented-radio-group_size_m .w-segmented-radio-group__item {
+  min-height: 28px;
+  padding: 0 var(--w-g-spacing-3);
+}
+
+.w-segmented-radio-group_size_l { border-radius: var(--w-l-radius); }
+.w-segmented-radio-group_size_l .w-segmented-radio-group__item {
+  min-height: 36px;
+  padding: 0 var(--w-g-spacing-4);
+}
+
+.w-segmented-radio-group_size_xl { border-radius: var(--w-xl-radius); }
+.w-segmented-radio-group_size_xl .w-segmented-radio-group__item {
+  min-height: 44px;
+  padding: 0 var(--w-g-spacing-6);
+}
+
+/*
+ * Цвет задаёт пара «выбрана» и состояние. Невыбранная кнопка идёт без заливки
+ * и без своей рамки: в ките у неё назначен цвет обводки, но толщина 0 —
+ * значит обводки нет. Строка ушла дизайнеру 14.09.2026.
+ */
+.w-segmented-radio-group__item {
+  color: var(--w-text-complementary);
+}
+
+.w-segmented-radio-group__counter {
+  color: var(--w-text-secondary);
+}
+
+@media (hover: hover) {
+  .w-segmented-radio-group__item:hover:not([data-checked]):not([data-disabled]) {
+    background: var(--w-base-simple-hover);
+    color: var(--w-text-primary);
+  }
+}
+
+/*
+ * Выбранная: заливка `Branding/Base Selection`, рамка `Branding/Base Selection
+ * Hover`, подпись `Branding/Base Brand`, счётчик `Branding/Text Brand Heavy`.
+ */
+.w-segmented-radio-group__item[data-checked] {
+  border-color: var(--w-branding-base-selection-hover);
+  background: var(--w-branding-base-selection);
+  color: var(--w-branding-base-brand);
+}
+
+.w-segmented-radio-group__item[data-checked] .w-segmented-radio-group__counter {
+  color: var(--w-branding-text-brand-heavy);
+}
+
+/*
+ * Отключённая невыбранная залита так же, как невыбранная под курсором, —
+ * различает их только цвет подписи. Отключённая выбранная теряет бренд целиком.
+ */
+.w-segmented-radio-group__item[data-disabled] {
+  background: var(--w-base-simple-hover);
+  color: var(--w-text-hint);
+  cursor: default;
+}
+
+.w-segmented-radio-group__item[data-disabled] .w-segmented-radio-group__counter {
+  color: var(--w-text-hint);
+}
+
+.w-segmented-radio-group__item[data-checked][data-disabled] {
+  border-color: var(--w-line-generic-accent);
+  background: var(--w-base-generic-accent);
+  color: var(--w-text-secondary);
+}
+
+.w-segmented-radio-group__icon {
+  display: inline-flex;
+  flex: none;
+}

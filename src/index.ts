@@ -260,3 +260,15 @@ export { DeleteZone } from './components/DeleteZone/DeleteZone'
 export type { DeleteZoneProps } from './components/DeleteZone/DeleteZone'
 export { DELETE_ZONE_STATES } from './components/DeleteZone/constants'
 export type { DeleteZoneState } from './components/DeleteZone/constants'
+
+export { SegmentedRadioGroup } from './components/SegmentedRadioGroup/SegmentedRadioGroup'
+export type { SegmentedRadioGroupProps } from './components/SegmentedRadioGroup/SegmentedRadioGroup'
+export {
+  SEGMENTED_RADIO_GROUP_SIZES,
+  SEGMENTED_RADIO_GROUP_WIDTHS,
+} from './components/SegmentedRadioGroup/constants'
+export type {
+  SegmentedRadioGroupOption,
+  SegmentedRadioGroupSize,
+  SegmentedRadioGroupWidth,
+} from './components/SegmentedRadioGroup/constants'
