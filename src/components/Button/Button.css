@@ -122,6 +122,10 @@
  * State=Hover — заливка на каждый из 21 вида. Снято обходом мастеров Figma 02.09.2026:
  * Size=M, State=Hover, Icon only=Off. В профиле кита записан только Secondary.
  *
+ * У `normal-contrast` наведение с 14.09.2026 — `Base/Simple Hover Solid` (#f2f2f2),
+ * а не `Base/Light Hover`: прежний цвет был белым с прозрачностью и на светлой
+ * подложке не читался. Правка кита, коммит Figma `b5ef463`.
+ *
  * Наведение показываем только там, где есть мышь: на телефоне `:hover` залипает после
  * касания — кнопка остаётся подсвеченной, пока не тронут другую. Та же заливка стоит
  * на нажатии, и на телефоне человек видит именно её. Находка прогона 13.09.2026.
@@ -131,7 +135,7 @@
   .w-button_view_primary-brand:hover:not([data-disabled]) { background: var(--w-branding-base-brand-hover); }
   .w-button_view_primary:hover:not([data-disabled]) { background: var(--w-branding-base-dark-hover); }
   .w-button_view_raised:hover:not([data-disabled]) { background: var(--w-base-float-float-hover); }
-  .w-button_view_normal-contrast:hover:not([data-disabled]) { background: var(--w-base-light-hover); }
+  .w-button_view_normal-contrast:hover:not([data-disabled]) { background: var(--w-base-simple-hover-solid); }
 
   .w-button_view_outlined-contrast:hover:not([data-disabled]),
   .w-button_view_flat-contrast:hover:not([data-disabled]) { background: var(--w-base-light-simple-hover); }
@@ -163,7 +167,7 @@
 .w-button_view_primary-brand:active:not([data-disabled]) { background: var(--w-branding-base-brand-hover); }
 .w-button_view_primary:active:not([data-disabled]) { background: var(--w-branding-base-dark-hover); }
 .w-button_view_raised:active:not([data-disabled]) { background: var(--w-base-float-float-hover); }
-.w-button_view_normal-contrast:active:not([data-disabled]) { background: var(--w-base-light-hover); }
+.w-button_view_normal-contrast:active:not([data-disabled]) { background: var(--w-base-simple-hover-solid); }
 
 .w-button_view_outlined-contrast:active:not([data-disabled]),
 .w-button_view_flat-contrast:active:not([data-disabled]) { background: var(--w-base-light-simple-hover); }
