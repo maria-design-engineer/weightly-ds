@@ -17,8 +17,13 @@
   background: var(--w-base-float-float-bg);
 }
 
+/*
+ * Заливка выбранной карточки — `Base/Generic Ultralight`, правка кита 14.09.2026.
+ * До неё стояла брендовая `Base/Selection`: розовая плашка спорила с оранжевым
+ * шевроном, а он на карточке единственное цветное пятно.
+ */
 .w-block-card_fill_on {
-  background: var(--w-branding-base-selection);
+  background: var(--w-base-generic-ultralight-legacy);
 }
 
 .w-block-card__text {
