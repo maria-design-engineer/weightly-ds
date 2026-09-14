@@ -19,7 +19,12 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: fit-content;
+  /*
+   * Ширина по содержимому и только по нему: `fit-content` ужимался, когда ряду
+   * не хватало места, и длинная подпись связки — «|1 + 2| × 3» — вылезала за
+   * заливку чипа. Ряд на этот случай прокручивается вбок. Правка 14.09.2026.
+   */
+  width: max-content;
   margin: 0;
   border: 0;
   border-radius: var(--w-l-radius);
