@@ -13,10 +13,10 @@
   width: 320px;
   /*
    * Нарисована одна ширина, 320: под колонку 360 с полями она подходит впритык,
-   * а на 320 вылезла бы за экран. Свободное место даёт Base UI переменной —
-   * меню сжимается до него и остаётся на экране. Отклонение записано этапом 33.
+   * а на экране 320 вылезла бы за край. Поэтому ширина ужимается до места,
+   * которое дал экран. Отклонение записано этапом 33.
    */
-  max-width: var(--available-width);
+  max-width: 100%;
   /* Список получает фокус при открытии — синюю рамку браузера снимаем, в ките её нет. */
   outline: none;
   padding: var(--w-g-spacing-1) 0 var(--w-g-spacing-1) var(--w-g-spacing-1);
@@ -26,50 +26,11 @@
   color: var(--w-text-primary);
   /*
    * Полоса прокрутки — свойство `Scroll` кита. В коде оно не проп, а рантайм:
-   * меню не растёт выше свободного места под кнопкой, и когда пунктов больше,
-   * чем помещается, список прокручивается. Высоту даёт Base UI переменной.
+   * пунктов больше, чем помещается в отведённое место, — список прокручивается.
+   * Сколько места отведено, решает экран: он и ставит высоту снаружи.
    */
-  max-height: var(--available-height);
+  max-height: 100%;
   overflow-y: auto;
-}
-
-/*
- * Кнопка-многоточие. Своего мастера в ките у неё нет: на экранах стоит `Button`
- * `View=Flat-secondary, Size=M` без подписи — 34 × 34, радиус `M radius`,
- * цвет `Text/Secondary`. Те же значения повторены здесь, чтобы кнопка осталась
- * внутри компонента и держала якорь меню.
- */
-.w-dropdown-menu__switcher {
-  /* Голубую метку касания Android убираем: отклик даёт сам элемент. */
-  -webkit-tap-highlight-color: transparent;
-  box-sizing: border-box;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 34px;
-  height: 34px;
-  padding: 0;
-  border: 0;
-  border-radius: var(--w-m-radius);
-  background: none;
-  color: var(--w-text-secondary);
-  cursor: pointer;
-}
-
-.w-dropdown-menu__switcher:focus-visible {
-  outline: var(--w-focus-ring-width) solid var(--w-focus-ring-color);
-  outline-offset: 1px;
-}
-
-/*
- * Наведение показываем только там, где есть мышь: на телефоне `:hover` залипает
- * после касания — то же правило, что у кнопки.
- */
-@media (hover: hover) {
-  .w-dropdown-menu__switcher:hover {
-    background: var(--w-base-simple-hover);
-    color: var(--w-text-primary);
-  }
 }
 
 /*
@@ -83,6 +44,10 @@
   /* Строка получает фокус обходом с клавиатуры — рамку рисуем своим кольцом. */
   outline: none;
   width: 100%;
+  margin: 0;
+  border: 0;
+  background: none;
+  color: inherit;
   font: var(--w-style-text-body-2);
   text-align: left;
   cursor: pointer;
@@ -121,12 +86,12 @@
  * Состояния несёт строка: обычная без заливки, под курсором `Base/Simple Hover`,
  * выбранная — та, на которой стоит обход с клавиатуры, — `Base/Selection`.
  */
-.w-dropdown-menu__item[data-highlighted] {
+.w-dropdown-menu__item:focus {
   background: var(--w-branding-base-selection);
 }
 
 @media (hover: hover) {
-  .w-dropdown-menu__item:hover:not([data-disabled]) {
+  .w-dropdown-menu__item:hover:not(:disabled) {
     background: var(--w-base-simple-hover);
   }
 }
@@ -140,7 +105,7 @@
  * Отключённая строка от обычной заливкой не отличается — в ките так же.
  * Гаснет содержимое, и нажатие не проходит.
  */
-.w-dropdown-menu__item[data-disabled] {
+.w-dropdown-menu__item:disabled {
   color: var(--w-text-hint);
   cursor: default;
 }

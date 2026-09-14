@@ -1,10 +1,8 @@
-import type { ReactNode } from 'react'
+import type { KeyboardEvent } from 'react'
+import { useEffect, useRef } from 'react'
 
-import { Menu } from '@base-ui/react/menu'
-import { Ellipsis } from '@gravity-ui/icons'
-
-import { Icon } from '../Icon/Icon'
 import type { DropdownMenuItem, DropdownMenuSize } from './constants'
+import '../focus.css'
 import './DropdownMenu.css'
 
 export type DropdownMenuProps = {
@@ -12,71 +10,85 @@ export type DropdownMenuProps = {
   size?: DropdownMenuSize
   /** Пункты и разделители по порядку. */
   items: DropdownMenuItem[]
-  /**
-   * Что стоит на кнопке, с которой меню открывается. Не передано — многоточие.
-   * Саму кнопку рисует компонент: меню держится за неё якорем, и подменить
-   * её снаружи значит оторвать якорь.
-   */
-  renderSwitcher?: () => ReactNode
-  /** Подпись кнопки-многоточия для чтения с экрана. */
-  switcherLabel?: string
-  /** Меню открыто. Не передано — компонент держит это сам. */
-  open?: boolean
-  onOpenChange?: (open: boolean) => void
+  /** Закрыть меню: нажали пункт, Esc или ушли с него. */
+  onClose?: () => void
   /** Подпись списка для чтения с экрана. */
   ariaLabel?: string
 }
 
 /**
- * Меню у кнопки-многоточия: список действий, открывающийся якорем к кнопке.
- * Вид карточки и строк собран по киту на токенах, из Base UI приходит
- * поведение: клавиатура, чтение с экрана, закрытие по нажатию и по Esc.
+ * Меню действий: карточка со строками. В ките это ровно она — кнопки, с которой
+ * меню открывают, в мастере нет, и компонент её не рисует. Где карточка лежит —
+ * у кнопки, на парандже, в углу экрана — решает экран: решение пользователя
+ * 14.09.2026, до него кнопка была внутри компонента.
  *
  * Строки меню в ките — отдельный набор `List-item`: он же стоит в списках.
- * В коде отдельным компонентом не заводится — в продукте он живёт только здесь,
- * решение пользователя 14.09.2026.
+ * Отдельным компонентом в код не заводится — в продукте он живёт только здесь.
  */
-export function DropdownMenu({
-  size = 'xl',
-  items,
-  renderSwitcher,
-  switcherLabel,
-  open,
-  onOpenChange,
-  ariaLabel,
-}: DropdownMenuProps) {
+export function DropdownMenu({ size = 'xl', items, onClose, ariaLabel }: DropdownMenuProps) {
+  const card = useRef<HTMLDivElement>(null)
+
+  /*
+   * Открытое меню забирает фокус на первую строку: иначе человек с клавиатуры
+   * остаётся на кнопке, а список читается где-то в стороне.
+   */
+  useEffect(() => {
+    const first = card.current?.querySelector<HTMLButtonElement>('[role="menuitem"]:not([disabled])')
+    first?.focus()
+  }, [])
+
+  /*
+   * Обход строк стрелками — этого ждёт роль `menu`: Tab уводит из меню целиком,
+   * а вверх и вниз ходят по пунктам. Esc закрывает.
+   */
+  function onKeyDown(event: KeyboardEvent<HTMLDivElement>) {
+    if (event.key === 'Escape') {
+      event.stopPropagation()
+      onClose?.()
+      return
+    }
+    if (event.key !== 'ArrowDown' && event.key !== 'ArrowUp') return
+
+    const rows = Array.from(
+      card.current?.querySelectorAll<HTMLButtonElement>('[role="menuitem"]:not([disabled])') ?? [],
+    )
+    if (rows.length === 0) return
+
+    event.preventDefault()
+    const here = rows.indexOf(document.activeElement as HTMLButtonElement)
+    const step = event.key === 'ArrowDown' ? 1 : -1
+    const next = (here + step + rows.length) % rows.length
+    rows[next]?.focus()
+  }
+
   return (
-    <Menu.Root open={open} onOpenChange={(next) => onOpenChange?.(next)}>
-      {/*
-        Кнопку рисует сам `Menu.Trigger` — он и есть `<button>`. Своя кнопка
-        внутрь не вкладывается: кнопка в кнопке ломает и разметку, и клавиатуру.
-      */}
-      <Menu.Trigger className="w-dropdown-menu__switcher" aria-label={switcherLabel}>
-        {renderSwitcher ? renderSwitcher() : <Icon data={Ellipsis} />}
-      </Menu.Trigger>
-      <Menu.Portal>
-        <Menu.Positioner className="w-dropdown-menu__positioner" sideOffset={4} align="end">
-          <Menu.Popup className={`w-dropdown-menu w-dropdown-menu_size_${size}`} aria-label={ariaLabel}>
-            {items.map((item) =>
-              item.type === 'separator' ? (
-                <div key={item.id} className="w-dropdown-menu__separator" role="separator" />
-              ) : (
-                <Menu.Item
-                  key={item.id}
-                  className="w-dropdown-menu__item"
-                  disabled={item.disabled}
-                  onClick={() => item.onPick?.()}
-                >
-                  {item.icon ? (
-                    <span className="w-dropdown-menu__icon">{item.icon}</span>
-                  ) : null}
-                  <span className="w-dropdown-menu__text">{item.content}</span>
-                </Menu.Item>
-              ),
-            )}
-          </Menu.Popup>
-        </Menu.Positioner>
-      </Menu.Portal>
-    </Menu.Root>
+    <div
+      ref={card}
+      className={`w-dropdown-menu w-dropdown-menu_size_${size}`}
+      role="menu"
+      aria-label={ariaLabel}
+      onKeyDown={onKeyDown}
+    >
+      {items.map((item) =>
+        item.type === 'separator' ? (
+          <div key={item.id} className="w-dropdown-menu__separator" role="separator" />
+        ) : (
+          <button
+            key={item.id}
+            type="button"
+            className="w-dropdown-menu__item"
+            role="menuitem"
+            disabled={item.disabled}
+            onClick={() => {
+              onClose?.()
+              item.onPick?.()
+            }}
+          >
+            {item.icon ? <span className="w-dropdown-menu__icon">{item.icon}</span> : null}
+            <span className="w-dropdown-menu__text">{item.content}</span>
+          </button>
+        ),
+      )}
+    </div>
   )
 }

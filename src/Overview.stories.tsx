@@ -31,6 +31,7 @@ import { CorrespondenceRow } from './components/CorrespondenceRow/Correspondence
 import { DeleteZone } from './components/DeleteZone/DeleteZone'
 import { DELETE_ZONE_STATES } from './components/DeleteZone/constants'
 import { DropdownMenu } from './components/DropdownMenu/DropdownMenu'
+import { DROPDOWN_MENU_SIZES } from './components/DropdownMenu/constants'
 import { Divider } from './components/Divider/Divider'
 import { ExerciseCard } from './components/ExerciseCard/ExerciseCard'
 import { EXERCISE_CARD_TYPES } from './components/ExerciseCard/constants'
@@ -222,7 +223,7 @@ function Item({ label, width, children }: { label: string; width?: number; child
 
 function Base() {
   return (
-    <Layer title="Базовый слой — 12 компонентов и иконотека">
+    <Layer title="Базовый слой — 11 компонентов и иконотека">
       <Component kit="Button" code="Button">
         <Axis name="View · 21">
           {BUTTON_VIEWS.map((view) => (
@@ -350,20 +351,6 @@ function Base() {
           </Item>
           <Item label="counter" width={200}>
             <Select items={SELECT_ITEMS} placeholder="Упражнение" ariaLabel="Упражнение" counter={2} />
-          </Item>
-        </Axis>
-      </Component>
-
-      <Component kit="DropdownMenu" code="DropdownMenu">
-        <Axis name="Size · 4">
-          <Item label="меню открывается в своей истории" width={220}>
-            <DropdownMenu
-              items={[
-                { id: 'add', content: 'Добавить упражнение' },
-                { id: 'all', content: 'Открыть все упражнения' },
-              ]}
-              switcherLabel="Действия с упражнением"
-            />
           </Item>
         </Axis>
       </Component>
@@ -784,12 +771,29 @@ const RUNNING_STEPS = (
 
 function Molecules() {
   return (
-    <Layer title="Молекулы — 16 компонентов">
+    <Layer title="Молекулы — 17 компонентов">
       <Component kit="Product / bottom-bar-item" code="BottomBarItem">
         <Axis name="State · 2">
           {BOTTOM_BAR_ITEM_STATES.map((state) => (
             <Item key={state} label={state}>
               <BottomBarItem state={state} label="Тренировки" icon={<Icon data={Play} size={20} />} />
+            </Item>
+          ))}
+        </Axis>
+      </Component>
+
+      <Component kit="DropdownMenu" code="DropdownMenu">
+        <Axis name="Size · 4">
+          {DROPDOWN_MENU_SIZES.map((size) => (
+            <Item key={size} label={size} width={340}>
+              <DropdownMenu
+                size={size}
+                items={[
+                  { id: 'add', content: 'Добавить упражнение' },
+                  { id: 'all', content: 'Открыть все упражнения' },
+                ]}
+                ariaLabel="Действия с упражнением"
+              />
             </Item>
           ))}
         </Axis>
