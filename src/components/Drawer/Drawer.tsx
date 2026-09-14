@@ -2,6 +2,11 @@ import type { ReactNode } from 'react'
 
 import { Drawer as BaseDrawer } from '@base-ui/react/drawer'
 
+import { Xmark } from '@gravity-ui/icons'
+
+import { Button } from '../Button/Button'
+import { Icon } from '../Icon/Icon'
+
 import '../focus.css'
 import type { DrawerActions } from './constants'
 import './Drawer.css'
@@ -26,6 +31,13 @@ export type DrawerProps = {
   dividerTop?: boolean
   /** Figma Divider bottom — разделитель над действиями: ниже есть что показать. */
   dividerBottom?: boolean
+  /**
+   * Закрыли крестиком. Не передан — крестика нет: закрывают кнопкой действий,
+   * свайпом, Escape или нажатием мимо.
+   */
+  onClose?: () => void
+  /** Подпись крестика для чтения с экрана. */
+  closeLabel?: string
 }
 
 /**
@@ -48,6 +60,8 @@ export function Drawer({
   secondAction,
   dividerTop = false,
   dividerBottom = false,
+  onClose,
+  closeLabel = 'Закрыть',
 }: DrawerProps) {
   return (
     <BaseDrawer.Root open={open} onOpenChange={onOpenChange} swipeDirection="down">
@@ -55,11 +69,30 @@ export function Drawer({
         <BaseDrawer.Backdrop className="w-drawer__backdrop" />
         <BaseDrawer.Viewport className="w-drawer__viewport">
           <BaseDrawer.Popup className="w-drawer">
-            {title || caption ? (
+            {title || caption || onClose ? (
+              /*
+               * Шапка стоит строкой: слева заголовок с подписью, справа крестик —
+               * правка кита 14.09.2026, до неё крестика у шторки не было вовсе.
+               */
               <div className="w-drawer__head">
-                {title ? <BaseDrawer.Title className="w-drawer__title">{title}</BaseDrawer.Title> : null}
-                {caption ? (
-                  <BaseDrawer.Description className="w-drawer__caption">{caption}</BaseDrawer.Description>
+                <div className="w-drawer__heading">
+                  {title ? (
+                    <BaseDrawer.Title className="w-drawer__title">{title}</BaseDrawer.Title>
+                  ) : null}
+                  {caption ? (
+                    <BaseDrawer.Description className="w-drawer__caption">
+                      {caption}
+                    </BaseDrawer.Description>
+                  ) : null}
+                </div>
+                {onClose ? (
+                  <Button
+                    view="flat-secondary"
+                    size="m"
+                    startIcon={<Icon data={Xmark} size={16} />}
+                    ariaLabel={closeLabel}
+                    onClick={onClose}
+                  />
                 ) : null}
               </div>
             ) : null}

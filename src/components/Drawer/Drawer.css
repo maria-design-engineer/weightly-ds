@@ -89,9 +89,21 @@
   overflow-y: auto;
 }
 
+/*
+ * Шапка строкой: заголовок с подписью слева, крестик справа — правка кита
+ * 14.09.2026, промежуток 10. Крестик держит свой размер, заголовок забирает остаток.
+ */
 .w-drawer__head {
   display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.w-drawer__heading {
+  display: flex;
+  flex: 1;
   flex-direction: column;
+  min-width: 0;
   gap: 4px;
 }
 

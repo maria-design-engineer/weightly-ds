@@ -63,9 +63,11 @@ function DrawerDemo(args: DrawerProps) {
         {...args}
         open={open}
         onOpenChange={setOpen}
-        action={<Button view="primary" size="xl" content="Сохранить" onClick={() => setOpen(false)} />}
+        /* Кнопки размера L и крестик в шапке — правка кита 14.09.2026. */
+        onClose={() => setOpen(false)}
+        action={<Button view="primary" size="l" content="Сохранить" onClick={() => setOpen(false)} />}
         secondAction={
-          <Button view="secondary" size="xl" content="Отмена" onClick={() => setOpen(false)} />
+          <Button view="flat" size="l" content="Отмена" onClick={() => setOpen(false)} />
         }
       >
         <Slot />
