@@ -119,7 +119,20 @@ export function Select({
           </BaseSelect.Icon>
         </BaseSelect.Trigger>
         <BaseSelect.Portal>
-          <BaseSelect.Positioner sideOffset={4}>
+          {/*
+            Слой стоит на позиционере, а не на самом списке: список приходит
+            `position: static`, а на статичном элементе `z-index` не работает —
+            он уходил под панель шторки. Находка прогона 14.09.2026.
+
+            `alignItemWithTrigger` выключен: с ним Base UI ставит список так, чтобы
+            выбранный пункт оказался под пальцем, и у поля внизу экрана список
+            уезжал за верхний край.
+          */}
+          <BaseSelect.Positioner
+            className="w-select__positioner"
+            sideOffset={4}
+            alignItemWithTrigger={false}
+          >
             <BaseSelect.Popup className="w-select__popup">
               {items.map((item) => (
                 <BaseSelect.Item key={item.value} className="w-select__item" value={item.value}>

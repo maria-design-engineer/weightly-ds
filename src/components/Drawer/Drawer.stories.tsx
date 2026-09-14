@@ -3,6 +3,7 @@ import { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 import { Button } from '../Button/Button'
+import { Select } from '../Select/Select'
 import { DRAWER_ACTIONS } from './constants'
 import type { DrawerProps } from './Drawer'
 import { Drawer } from './Drawer'
@@ -96,4 +97,30 @@ export const ActionsRow: Story = {
 export const Dividers: Story = {
   args: { dividerTop: true, dividerBottom: true },
   render: (args) => <DrawerDemo {...args} />,
+}
+
+/**
+ * Поле выбора внутри шторки: список уходит в свой портал, а шторка модальная
+ * и поднята слоем — проверяем, что он всё равно открывается поверх панели.
+ * Проверка заведена по находке прогона 14.09.2026.
+ */
+export const WithSelect: Story = {
+  render: () => {
+    const items = [
+      { value: 'snatch', label: 'Рывок' },
+      { value: 'clean', label: 'Толчок' },
+      { value: 'squat', label: 'Приседания со штангой' },
+    ]
+
+    return (
+      <Drawer
+        open
+        title="Своё упражнение"
+        actions="column"
+        action={<Button view="primary" size="l" content="Добавить" />}
+      >
+        <Select items={items} placeholder="Движение" ariaLabel="Движение" />
+      </Drawer>
+    )
+  },
 }
