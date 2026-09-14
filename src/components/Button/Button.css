@@ -156,32 +156,20 @@
 }
 
 /*
- * Нажатие откликается уменьшением — `commons/motion.md`: «самый дешёвый способ
- * сказать „услышал“». Одной заливки мало: на телефоне её закрывает палец, и кнопки
- * нижней панели читались как мёртвые. Находка прогона 13.09.2026.
+ * State=Pressed — то же, что наведение: кнопка заливается на время нажатия.
+ *
+ * Заливка включается мгновенно и гаснет плавно, за 250 мс. Иначе её не видно вовсе:
+ * касание длится десятые доли секунды, и цвет успевает мелькнуть, — кнопки нижней
+ * панели прохождения читались как мёртвые. Находка прогона 13.09.2026.
  */
 .w-button {
-  transition: transform 100ms ease-out;
+  transition: background-color 250ms ease-out;
 }
 
 .w-button:active:not([data-disabled]) {
-  transform: scale(0.97);
+  transition-duration: 0s;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .w-button {
-    transition: none;
-  }
-
-  .w-button:active:not([data-disabled]) {
-    transform: none;
-  }
-}
-
-/*
- * State=Pressed — то же, что наведение: кнопка заливается на время нажатия. Это
- * единственный отклик на касание, и без него палец не получает ответа вовсе.
- */
 .w-button_view_secondary:active:not([data-disabled]) { background: var(--w-base-generic-hover); }
 .w-button_view_primary-brand:active:not([data-disabled]) { background: var(--w-branding-base-brand-hover); }
 .w-button_view_primary:active:not([data-disabled]) { background: var(--w-branding-base-dark-hover); }
