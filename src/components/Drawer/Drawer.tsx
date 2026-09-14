@@ -64,7 +64,18 @@ export function Drawer({
   closeLabel = 'Закрыть',
 }: DrawerProps) {
   return (
-    <BaseDrawer.Root open={open} onOpenChange={onOpenChange} swipeDirection="down">
+    /*
+     * `trap-focus` вместо полной модальности: при ней Base UI гасит нажатия по всему,
+     * что вне шторки, — включая списки, которые уходят в свой портал. Поле выбора
+     * внутри формы переставало открываться. Находка прогона 14.09.2026. Фокус
+     * по-прежнему держится внутри, нажатие мимо закрывает.
+     */
+    <BaseDrawer.Root
+      open={open}
+      onOpenChange={onOpenChange}
+      swipeDirection="down"
+      modal="trap-focus"
+    >
       <BaseDrawer.Portal>
         <BaseDrawer.Backdrop className="w-drawer__backdrop" />
         <BaseDrawer.Viewport className="w-drawer__viewport">
