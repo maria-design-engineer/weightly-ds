@@ -42,6 +42,10 @@
 /*
  * Строка меню — `List-item` кита. Size задаёт высоту, отступы, промежуток
  * и радиус; значения вписаны числом, как в ките.
+ *
+ * Строки подросли правкой кита 14.09.2026 — 28, 36, 52 и 68 вместо 24, 28, 36 и 44:
+ * по прежним в мобильном интерфейсе трудно попасть пальцем. У `XL` вместе с высотой
+ * сменился и кегль — `Text/Body 1` 17/24 вместо `Text/Body 3`.
  */
 .w-dropdown-menu__item {
   box-sizing: border-box;
@@ -54,37 +58,39 @@
   border: 0;
   background: none;
   color: inherit;
-  font: var(--w-style-text-body-2);
+  font: var(--w-style-text-body-3);
   text-align: left;
   cursor: pointer;
   user-select: none;
 }
 
 .w-dropdown-menu_size_s .w-dropdown-menu__item {
-  min-height: 24px;
+  min-height: 28px;
   gap: var(--w-g-spacing-2);
-  padding: 2px var(--w-g-spacing-2);
+  padding: var(--w-g-spacing-1) var(--w-g-spacing-2);
   border-radius: var(--w-s-radius);
 }
 
 .w-dropdown-menu_size_m .w-dropdown-menu__item {
-  min-height: 28px;
+  min-height: 36px;
   gap: var(--w-g-spacing-3);
-  padding: var(--w-g-spacing-1) var(--w-g-spacing-3);
+  padding: var(--w-g-spacing-2) var(--w-g-spacing-3);
   border-radius: var(--w-m-radius);
 }
 
 .w-dropdown-menu_size_l .w-dropdown-menu__item {
-  min-height: 36px;
+  min-height: 52px;
   gap: var(--w-g-spacing-4);
-  padding: var(--w-g-spacing-2) var(--w-g-spacing-4);
+  padding: var(--w-g-spacing-4);
   border-radius: var(--w-l-radius);
 }
 
 .w-dropdown-menu_size_xl .w-dropdown-menu__item {
-  min-height: 44px;
+  min-height: 68px;
   gap: var(--w-g-spacing-4);
-  padding: var(--w-g-spacing-3) var(--w-g-spacing-4);
+  padding: var(--w-g-spacing-6) var(--w-g-spacing-4);
+  /* У самого крупного размера и кегль крупнее — `Text/Body 1`. */
+  font: var(--w-style-text-body-1);
   border-radius: var(--w-xl-radius);
 }
 
