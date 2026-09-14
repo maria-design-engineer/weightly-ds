@@ -7,6 +7,12 @@ import { Icon } from '../Icon/Icon'
 import type { ExerciseCardState, ExerciseCardType, ExerciseCardView } from './constants'
 import './ExerciseCard.css'
 
+/** Меньше двух строк название задания не сжимается — решение пользователя 14.09.2026. */
+const MIN_TITLE_LINES = 2
+
+/** Шаг строки названия задания в мастере: Header/Subheader 1, 17 на 24. */
+const TITLE_LINE_STEP = 24
+
 export type ExerciseCardProps = {
   /** Figma Type — план, задание или идущее упражнение. */
   type?: ExerciseCardType
@@ -54,18 +60,33 @@ export function ExerciseCard({
   const stepsRef = useRef<HTMLDivElement>(null)
   const titleRef = useRef<HTMLSpanElement>(null)
   /*
-   * Название влезло не целиком. У задания оно держит ровно три строки, и лишнее
-   * прячется многоточием; по линии обрезки в мастере стоит разделитель. Влезло —
-   * разделителя нет. Спросить об этом можно только саму разметку: сколько строк
-   * займёт текст, заранее не знает никто.
+   * Название влезло не целиком. Лишнее прячется многоточием; по линии обрезки
+   * в мастере стоит разделитель. Влезло — разделителя нет. Спросить об этом можно
+   * только саму разметку: сколько строк займёт текст, заранее не знает никто.
    */
   const [clipped, setClipped] = useState(false)
+  /*
+   * Сколько строк названия помещается. У задания карточка тянется и сжимается вместе
+   * с экраном — макет «Поведение блоков при изменении высоты экрана», 14.09.2026, —
+   * и предел названию ставит не число, а оставшееся место: на высоком экране строк
+   * больше, на низком название сжимается до двух и обрезается многоточием.
+   *
+   * Считается здесь, потому что многоточие в разметке задаётся числом строк, а число
+   * это зависит от высоты, которую даёт родитель.
+   */
+  const [lines, setLines] = useState(MIN_TITLE_LINES)
 
   useEffect(() => {
     const node = titleRef.current
     if (!node) return
 
-    const check = () => setClipped(node.scrollHeight > node.clientHeight + 1)
+    const check = () => {
+      const lineHeight = parseFloat(getComputedStyle(node).lineHeight)
+      /* Гарнитура ещё не доехала — считаем по шагу строки мастера, 24. */
+      const step = Number.isFinite(lineHeight) && lineHeight > 0 ? lineHeight : TITLE_LINE_STEP
+      setLines(Math.max(MIN_TITLE_LINES, Math.floor((node.clientHeight + 1) / step)))
+      setClipped(node.scrollHeight > node.clientHeight + 1)
+    }
     check()
     /* Ширина меняется вместе с экраном, а высота — когда доедет гарнитура. */
     const observer = new ResizeObserver(check)
@@ -137,7 +158,12 @@ export function ExerciseCard({
               {hint}
               {caption ? <span className="w-exercise-card__counter">{caption}</span> : null}
             </div>
-            <span className="w-exercise-card__title" ref={titleRef}>
+            <span
+              className="w-exercise-card__title"
+              ref={titleRef}
+              /* Многоточие задаётся числом строк, а число считает разметка — см. выше. */
+              style={{ ['--w-exercise-card-lines' as string]: lines }}
+            >
               {bullets ?? content}
             </span>
             {/*
