@@ -156,29 +156,6 @@
 }
 
 /*
- * Нажатие откликается уменьшением — `commons/motion.md`: «самый дешёвый способ
- * сказать „услышал“». Одной заливки мало: на телефоне её закрывает палец, и кнопки
- * нижней панели читались как мёртвые. Находка прогона 13.09.2026.
- */
-.w-button {
-  transition: transform 100ms ease-out;
-}
-
-.w-button:active:not([data-disabled]) {
-  transform: scale(0.97);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .w-button {
-    transition: none;
-  }
-
-  .w-button:active:not([data-disabled]) {
-    transform: none;
-  }
-}
-
-/*
  * State=Pressed — то же, что наведение: кнопка заливается на время нажатия. Это
  * единственный отклик на касание, и без него палец не получает ответа вовсе.
  */
