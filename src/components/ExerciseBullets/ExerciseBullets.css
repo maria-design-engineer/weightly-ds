@@ -32,6 +32,8 @@
 
 .w-exercise-bullets__text {
   min-width: 0;
+  /* Слово без пробелов длиннее строки переносится посреди слова, а не уходит за край. */
+  overflow-wrap: anywhere;
 }
 
 .w-exercise-bullets_view_collapsed .w-exercise-bullets__text {

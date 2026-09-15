@@ -1,7 +1,7 @@
 import type { PointerEvent as ReactPointerEvent, ReactNode } from 'react'
 import { useEffect, useRef, useState } from 'react'
 
-import { CircleQuestion } from '@gravity-ui/icons'
+import { CircleQuestion, Grip } from '@gravity-ui/icons'
 
 import { Icon } from '../Icon/Icon'
 import type { ExerciseCardState, ExerciseCardType, ExerciseCardView } from './constants'
@@ -40,6 +40,14 @@ export type ExerciseCardProps = {
   onHint?: () => void
   /** Подпись значка подсказки для чтения с экрана. */
   hintLabel?: string
+  /**
+   * Figma «Иконка · перетаскивание» — ручка справа от названия у `plan` и `running`.
+   * Нажали на ручку — экран начинает перетаскивание карточки. Не передан — ручки нет:
+   * там, где двигать нечего, её не показываем, как значок подсказки без `onHint`.
+   */
+  onDragStart?: (event: ReactPointerEvent<HTMLButtonElement>) => void
+  /** Подпись ручки для чтения с экрана. */
+  dragLabel?: string
 }
 
 /**
@@ -56,6 +64,8 @@ export function ExerciseCard({
   steps,
   onHint,
   hintLabel = 'Как выполнять',
+  onDragStart,
+  dragLabel,
 }: ExerciseCardProps) {
   const stepsRef = useRef<HTMLDivElement>(null)
   const titleRef = useRef<HTMLSpanElement>(null)
@@ -183,6 +193,17 @@ export function ExerciseCard({
           <div className="w-exercise-card__head">
             {hint}
             <span className="w-exercise-card__title">{bullets ?? content}</span>
+            {/* Ручка — справа от названия, мастер `50552:53958`. У задания её нет. */}
+            {onDragStart ? (
+              <button
+                className="w-exercise-card__grip"
+                type="button"
+                onPointerDown={onDragStart}
+                aria-label={dragLabel}
+              >
+                <Icon data={Grip} size={16} />
+              </button>
+            ) : null}
             {caption ? <span className="w-exercise-card__counter">{caption}</span> : null}
           </div>
         )}

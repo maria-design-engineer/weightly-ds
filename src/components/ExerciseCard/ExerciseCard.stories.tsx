@@ -72,6 +72,7 @@ const meta = {
     caption: { control: 'text' },
     steps: { control: false },
     onHint: { control: false },
+    onDragStart: { control: false },
   },
   args: {
     type: 'plan',
@@ -146,7 +147,10 @@ export const Bullets: Story = {
   ),
 }
 
-/** Ось State: карточку тянут — заливка светлеет, тень становится глубже. */
+/**
+ * Ось State: карточку тянут — заливка светлеет, появляется тень. Ручка справа
+ * от названия стоит только там, где экран передал `onDragStart`.
+ */
 export const Drag: Story = {
   render: (args) => (
     <Row>
@@ -156,8 +160,10 @@ export const Drag: Story = {
             {...args}
             type="plan"
             state={state}
-            content={TITLE_BY_TYPE.plan}
+            content={TITLE_BY_TYPE.task}
             steps={STEPS_BY_TYPE.plan}
+            onDragStart={() => {}}
+            dragLabel="Передвинуть упражнение"
           />
         </Cell>
       ))}
