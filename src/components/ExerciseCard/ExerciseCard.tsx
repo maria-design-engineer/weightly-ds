@@ -1,8 +1,9 @@
 import type { PointerEvent as ReactPointerEvent, ReactNode } from 'react'
 import { useEffect, useRef, useState } from 'react'
 
-import { CircleQuestion, Grip } from '@gravity-ui/icons'
+import { ChevronsCollapseUpRight, ChevronsExpandUpRight, CircleQuestion, Grip } from '@gravity-ui/icons'
 
+import { Button } from '../Button/Button'
 import { Icon } from '../Icon/Icon'
 import type { ExerciseCardState, ExerciseCardType, ExerciseCardView } from './constants'
 import './ExerciseCard.css'
@@ -48,6 +49,15 @@ export type ExerciseCardProps = {
   onDragStart?: (event: ReactPointerEvent<HTMLButtonElement>) => void
   /** Подпись ручки для чтения с экрана. */
   dragLabel?: string
+  /**
+   * Кнопка в углу задания — «развернуть» и «свернуть» название, гайд
+   * «Custom / exercise-card · как собирается название». Стоит, когда название
+   * не влезло целиком или карточка уже развёрнута; не передан — кнопки нет.
+   */
+  onExpand?: () => void
+  /** Подписи кнопки для чтения с экрана: свёрнутая карточка и развёрнутая. */
+  expandLabel?: string
+  collapseLabel?: string
 }
 
 /**
@@ -66,9 +76,15 @@ export function ExerciseCard({
   hintLabel = 'Как выполнять',
   onDragStart,
   dragLabel,
+  onExpand,
+  expandLabel,
+  collapseLabel,
 }: ExerciseCardProps) {
   const stepsRef = useRef<HTMLDivElement>(null)
   const titleRef = useRef<HTMLSpanElement>(null)
+  /** Видимые строки названия внутри места, которое название занимает. */
+  const linesRef = useRef<HTMLSpanElement>(null)
+  const expanded = view === 'expanded'
   /*
    * Название влезло не целиком. Лишнее прячется многоточием; по линии обрезки
    * в мастере стоит разделитель. Влезло — разделителя нет. Спросить об этом можно
@@ -88,21 +104,34 @@ export function ExerciseCard({
 
   useEffect(() => {
     const node = titleRef.current
-    if (!node) return
+    const inner = linesRef.current
+    if (!node || !inner) return
 
     const check = () => {
-      const lineHeight = parseFloat(getComputedStyle(node).lineHeight)
+      /*
+       * Шаг строки берём у текста: у названия строкой это Header/Subheader 1, 24,
+       * у списка движений — строка движения, 20. Название занимает свободное место,
+       * а видно в нём только целые строки: у списка обрезка без полоски следующей.
+       */
+      const text = inner.querySelector('.w-exercise-bullets__text') ?? inner
+      const lineHeight = parseFloat(getComputedStyle(text).lineHeight)
       /* Гарнитура ещё не доехала — считаем по шагу строки мастера, 24. */
       const step = Number.isFinite(lineHeight) && lineHeight > 0 ? lineHeight : TITLE_LINE_STEP
-      setLines(Math.max(MIN_TITLE_LINES, Math.floor((node.clientHeight + 1) / step)))
-      setClipped(node.scrollHeight > node.clientHeight + 1)
+      /*
+       * Запас полпикселя, а не пиксель: место под название дробное, и с пикселем
+       * 79 давали четыре строки по 20 — последняя торчала полоской. Прогон 15.09.2026.
+       */
+      setLines(Math.max(MIN_TITLE_LINES, Math.floor((node.clientHeight + 0.5) / step)))
+      node.style.setProperty('--w-exercise-card-step', `${step}px`)
+      setClipped(inner.scrollHeight > inner.clientHeight + 1)
     }
     check()
     /* Ширина меняется вместе с экраном, а высота — когда доедет гарнитура. */
     const observer = new ResizeObserver(check)
     observer.observe(node)
+    observer.observe(inner)
     return () => observer.disconnect()
-  }, [content, bullets, type])
+  }, [content, bullets, type, view])
 
   /* Отписка от текущего перетаскивания: держим её здесь, чтобы снять и при уходе с экрана. */
   const stopDragRef = useRef<(() => void) | null>(null)
@@ -167,14 +196,34 @@ export function ExerciseCard({
             <div className="w-exercise-card__head">
               {hint}
               {caption ? <span className="w-exercise-card__counter">{caption}</span> : null}
+              {/*
+               * Кнопка в углу — одна на оба вида, меняется только значок: свёрнутая
+               * несёт chevrons-expand-up-right, развёрнутая — chevrons-collapse-up-right.
+               * Название влезло целиком — разворачивать нечего, кнопки нет.
+               */}
+              {onExpand && (expanded || clipped) ? (
+                <span className="w-exercise-card__expand">
+                  <Button
+                    view="raised"
+                    size="xs"
+                    startIcon={
+                      <Icon data={expanded ? ChevronsCollapseUpRight : ChevronsExpandUpRight} size={12} />
+                    }
+                    ariaLabel={expanded ? collapseLabel : expandLabel}
+                    onClick={onExpand}
+                  />
+                </span>
+              ) : null}
             </div>
             <span
-              className="w-exercise-card__title"
+              className={`w-exercise-card__title${bullets ? ' w-exercise-card__title_bullets' : ''}`}
               ref={titleRef}
               /* Многоточие задаётся числом строк, а число считает разметка — см. выше. */
               style={{ ['--w-exercise-card-lines' as string]: lines }}
             >
-              {bullets ?? content}
+              <span className="w-exercise-card__lines" ref={linesRef}>
+                {bullets ?? content}
+              </span>
             </span>
             {/*
              * Разделитель снизу — знак того, что название влезло не целиком:
@@ -208,7 +257,8 @@ export function ExerciseCard({
           </div>
         )}
       </div>
-      {steps ? (
+      {/* Развёрнутое задание несёт только название — ряда ступеней в мастере `View=expanded` нет. */}
+      {steps && !(type === 'task' && expanded) ? (
         <div className="w-exercise-card__steps" ref={stepsRef} onPointerDown={handlePointerDown}>
           {steps}
         </div>

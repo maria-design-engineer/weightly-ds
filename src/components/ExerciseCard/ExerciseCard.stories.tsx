@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 import { IntensityChip } from '../IntensityChip/IntensityChip'
@@ -143,6 +145,55 @@ export const Bullets: Story = {
           />
         </Cell>
       ))}
+    </Row>
+  ),
+}
+
+/** Задание в месте заданной высоты: название упирается в минимум и разворачивается кнопкой. */
+function ExpandDemo({ list }: { list: boolean }) {
+  const [view, setView] = useState<'collapsed' | 'expanded'>('collapsed')
+  const bulletsView = view === 'expanded' ? 'expanded' : 'collapsed'
+  return (
+    /* Ширина экрана 360 и минимум карточки 182 — название упирается в две строки. */
+    <div style={{ width: 360, height: 182 }}>
+      <ExerciseCard
+        type="task"
+        view={view}
+        caption="Упражнение 2 из 5"
+        onHint={() => {}}
+        content={list ? undefined : 'Тяга рывковая · с подставки · с середины бедра · с остановкой · без касания помоста и глубокий сед в ножницы'}
+        bullets={
+          list ? (
+            <>
+              <ExerciseBullets view={bulletsView} content="Толчок · над головой · с остановкой" />
+              <ExerciseBullets view={bulletsView} content="Толчок от груди · с помоста · на плечах · ноги вместе" />
+              <ExerciseBullets view={bulletsView} content="Тяга толчковая · с помоста · в полуприсед · ноги вместе" />
+            </>
+          ) : undefined
+        }
+        steps={STEPS_BY_TYPE.task}
+        onExpand={() => setView((current) => (current === 'expanded' ? 'collapsed' : 'expanded'))}
+        expandLabel="Развернуть название"
+        collapseLabel="Свернуть название"
+      />
+    </div>
+  )
+}
+
+/**
+ * Кнопка в углу задания: название не влезло — разделитель и «развернуть», по нажатию
+ * название целиком текстом 13 без ряда ступеней. Гайд «как собирается название».
+ */
+export const Expand: Story = {
+  decorators: [],
+  render: () => (
+    <Row>
+      <Cell label="одно движение" width={360}>
+        <ExpandDemo list={false} />
+      </Cell>
+      <Cell label="список движений" width={360}>
+        <ExpandDemo list />
+      </Cell>
     </Row>
   ),
 }
