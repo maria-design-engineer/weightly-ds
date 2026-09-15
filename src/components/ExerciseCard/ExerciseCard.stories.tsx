@@ -1,11 +1,16 @@
 import { useState } from 'react'
+import type React from 'react'
 
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
+import { Plus } from '@gravity-ui/icons'
+
+import { Button } from '../Button/Button'
+import { Icon } from '../Icon/Icon'
 import { IntensityChip } from '../IntensityChip/IntensityChip'
 import { StepCell } from '../StepCell/StepCell'
 import { Cell, Row } from '../story-layout'
-import { ExerciseCard } from './ExerciseCard'
+import { ExerciseCard, type ExerciseCardProps } from './ExerciseCard'
 import { ExerciseBullets } from '../ExerciseBullets/ExerciseBullets'
 import { EXERCISE_CARD_STATES, EXERCISE_CARD_TYPES, EXERCISE_CARD_VIEWS } from './constants'
 
@@ -32,6 +37,8 @@ const STEPS_L = (
     <IntensityChip size="l" content="92%" caption="3 × 1" />
     <IntensityChip size="l" content="92%" caption="3 × 1" />
     <IntensityChip size="l" content="92%" caption="3 × 1" />
+    {/* После чипов — «+», как на экране подхода: ряд несёт её сам. */}
+    <Button view="secondary" size="l" startIcon={<Icon data={Plus} />} ariaLabel="Добавить ступень" />
   </>
 )
 
@@ -58,13 +65,6 @@ const TITLE_BY_TYPE = {
 const meta = {
   title: 'Product components/ExerciseCard',
   component: ExerciseCard,
-  decorators: [
-    (Story) => (
-      <div style={{ width: 328 }}>
-        <Story />
-      </div>
-    ),
-  ],
   argTypes: {
     type: { control: 'inline-radio', options: EXERCISE_CARD_TYPES },
     view: { control: 'inline-radio', options: EXERCISE_CARD_VIEWS },
@@ -73,8 +73,17 @@ const meta = {
     content: { control: 'text' },
     caption: { control: 'text' },
     steps: { control: false },
-    onHint: { control: false },
-    onDragStart: { control: false },
+    /*
+     * Действия и подписи для чтения с экрана в панели не правятся: действия вешает
+     * экран, подписи он же вписывает. Разворот включают кнопкой в карточке или `view`.
+     */
+    onHint: { table: { disable: true } },
+    hintLabel: { table: { disable: true } },
+    onDragStart: { table: { disable: true } },
+    dragLabel: { table: { disable: true } },
+    onExpand: { table: { disable: true } },
+    expandLabel: { table: { disable: true } },
+    collapseLabel: { table: { disable: true } },
   },
   args: {
     type: 'plan',
@@ -88,19 +97,67 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
+/** Движения для списка в Playground: первое длинное — оно одно забирает две строки. */
+const MOVEMENTS = [
+  'Тяга рывковая · с подставки · с середины бедра · с остановкой · без касания помоста',
+  'Толчок · над головой · с остановкой',
+  'Толчок от груди · с помоста · на плечах · ноги вместе',
+  'Тяга толчковая · с помоста · в полуприсед · ноги вместе',
+  'Рывок · с виса',
+]
+
+type PlaygroundArgs = ExerciseCardProps & { movements: number }
+
 /**
- * Ступени приходят содержимым: сколько чипов передали, столько и стоит.
- * Переключатель `type` меняет и содержимое — у каждого вида кита оно своё.
+ * Карточка во всё окно витрины: тяни W и H в панели размеров — карточка тянется
+ * по ширине и высоте, название сжимается до двух строк, появляются разделитель
+ * и кнопка «развернуть». Кнопка работает. `movements` — одно название или список.
  */
-export const Playground: Story = {
-  render: (args) => (
-    <ExerciseCard
-      {...args}
-      content={TITLE_BY_TYPE[args.type ?? 'plan']}
-      steps={STEPS_BY_TYPE[args.type ?? 'plan']}
-    />
-  ),
+function PlaygroundDemo({ movements, view: viewArg = 'collapsed', ...args }: PlaygroundArgs) {
+  /* Переключатель `view` в панели пересоздаёт демо через `key` — состояние берёт его как начальное. */
+  const [view, setView] = useState(viewArg)
+  const type = args.type ?? 'plan'
+  const bulletsView = type === 'plan' ? 'plan' : view
+  const list = movements > 1
+
+  return (
+    <div style={{ boxSizing: 'border-box', width: '100%', height: '100vh', padding: 16 }}>
+      <ExerciseCard
+        {...args}
+        view={view}
+        content={list ? undefined : (args.content ?? MOVEMENTS[0])}
+        bullets={
+          list
+            ? MOVEMENTS.slice(0, movements).map((movement) => (
+                <ExerciseBullets key={movement} view={bulletsView} content={movement} />
+              ))
+            : undefined
+        }
+        steps={STEPS_BY_TYPE[type]}
+        onExpand={() => setView((current) => (current === 'expanded' ? 'collapsed' : 'expanded'))}
+        expandLabel="Развернуть название"
+        collapseLabel="Свернуть название"
+      />
+    </div>
+  )
 }
+
+export const Playground: StoryObj<PlaygroundArgs> = {
+  decorators: [],
+  parameters: { layout: 'fullscreen' },
+  argTypes: {
+    movements: { control: { type: 'range', min: 1, max: 5, step: 1 } },
+  },
+  args: { type: 'task', movements: 1, content: MOVEMENTS[0] },
+  render: (args) => <PlaygroundDemo key={args.view ?? 'collapsed'} {...args} />,
+}
+
+/** Ширина колонки кита, 328: в ней показывают истории без растяжения. */
+const COLUMN = (Story: () => React.ReactNode) => (
+  <div style={{ width: 328 }}>
+    <Story />
+  </div>
+)
 
 /** Ось Type: план, задание, идущее упражнение. Ряд ступеней прокручивается вбок. */
 export const Types: Story = {
@@ -127,6 +184,7 @@ export const Types: Story = {
  * размер набора — `collapsed` крупнее `expanded`.
  */
 export const Bullets: Story = {
+  decorators: [COLUMN],
   render: (args) => (
     <Row>
       {EXERCISE_CARD_VIEWS.map((view) => (
@@ -220,6 +278,7 @@ export const ScreenHeight: Story = {
  * от названия стоит только там, где экран передал `onDragStart`.
  */
 export const Drag: Story = {
+  decorators: [COLUMN],
   render: (args) => (
     <Row>
       {EXERCISE_CARD_STATES.map((state) => (
