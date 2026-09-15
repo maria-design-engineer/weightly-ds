@@ -235,8 +235,8 @@ export function ExerciseCard({
               {onExpand && (expanded || clipped) ? (
                 <span className="w-exercise-card__expand">
                   <Button
-                    /* Кнопка плоская — решение пользователя 15.09.2026. */
-                    view="flat"
+                    /* Мастер кнопки в углу: View Flat-secondary, Size XS, Icon only. */
+                    view="flat-secondary"
                     size="xs"
                     startIcon={
                       <Icon data={expanded ? ChevronsCollapseUpRight : ChevronsExpandUpRight} size={12} />
