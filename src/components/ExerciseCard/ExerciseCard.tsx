@@ -121,7 +121,8 @@ export function ExerciseCard({
        * Запас полпикселя, а не пиксель: место под название дробное, и с пикселем
        * 79 давали четыре строки по 20 — последняя торчала полоской. Прогон 15.09.2026.
        */
-      setLines(Math.max(MIN_TITLE_LINES, Math.floor((node.clientHeight + 0.5) / step)))
+      /* Минус пиксель — разделитель стоит в том же месте, сразу под строками. */
+      setLines(Math.max(MIN_TITLE_LINES, Math.floor((node.clientHeight - 1 + 0.5) / step)))
       node.style.setProperty('--w-exercise-card-step', `${step}px`)
       setClipped(inner.scrollHeight > inner.clientHeight + 1)
     }
@@ -224,13 +225,14 @@ export function ExerciseCard({
               <span className="w-exercise-card__lines" ref={linesRef}>
                 {bullets ?? content}
               </span>
+              {/*
+               * Разделитель — знак того, что название влезло не целиком: в мастере он
+               * лежит по линии обрезки, сразу под последней видимой строкой. Стоит внутри
+               * места под название, а не под ним: место растёт с экраном, и снаружи линия
+               * уезжала вниз к чипам. Прогон 15.09.2026. Название помещается — линии нет.
+               */}
+              {clipped ? <span className="w-exercise-card__rule" /> : null}
             </span>
-            {/*
-             * Разделитель снизу — знак того, что название влезло не целиком:
-             * в мастере он лежит по линии обрезки. Название помещается — линии нет.
-             * Гайд `Custom / exercise-card`, заметка фронту.
-             */}
-            {clipped ? <span className="w-exercise-card__rule" /> : null}
           </>
         ) : (
           /*

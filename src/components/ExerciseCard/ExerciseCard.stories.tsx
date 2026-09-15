@@ -150,12 +150,12 @@ export const Bullets: Story = {
 }
 
 /** Задание в месте заданной высоты: название упирается в минимум и разворачивается кнопкой. */
-function ExpandDemo({ list }: { list: boolean }) {
+function ExpandDemo({ list, height = 182 }: { list: boolean; height?: number | string }) {
   const [view, setView] = useState<'collapsed' | 'expanded'>('collapsed')
   const bulletsView = view === 'expanded' ? 'expanded' : 'collapsed'
   return (
-    /* Ширина экрана 360 и минимум карточки 182 — название упирается в две строки. */
-    <div style={{ width: 360, height: 182 }}>
+    /* Ширина экрана 360; высота — место, которое экран отдаёт карточке. */
+    <div style={{ width: 360, height }}>
       <ExerciseCard
         type="task"
         view={view}
@@ -195,6 +195,23 @@ export const Expand: Story = {
         <ExpandDemo list />
       </Cell>
     </Row>
+  ),
+}
+
+/**
+ * Высота экрана: карточка задания забирает всю высоту окна витрины. Тяни H в панели
+ * размеров — на высоком окне название видно целиком, на низком сжимается до двух
+ * строк, появляются разделитель и кнопка «развернуть». Минимум карточки — 182.
+ */
+export const ScreenHeight: Story = {
+  name: 'Высота экрана',
+  decorators: [],
+  parameters: { layout: 'fullscreen' },
+  render: () => (
+    <div style={{ display: 'flex', gap: 16, height: '100vh', padding: 16, boxSizing: 'border-box' }}>
+      <ExpandDemo list={false} height="100%" />
+      <ExpandDemo list height="100%" />
+    </div>
   ),
 }
 

@@ -164,6 +164,8 @@
  * влияет, текст на минимуме обрезается под две строки.
  */
 .w-exercise-card_type_task .w-exercise-card__lines {
+  /* Строки держат свою высоту: разделитель под ними не отнимает место у текста. */
+  flex: none;
   display: -webkit-box;
   overflow: hidden;
   -webkit-box-orient: vertical;
