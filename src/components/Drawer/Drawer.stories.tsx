@@ -16,6 +16,7 @@ const meta = {
     open: { control: 'boolean' },
     dividerTop: { control: 'boolean' },
     dividerBottom: { control: 'boolean' },
+    fixSlot: { control: false },
     children: { control: false },
     action: { control: false },
     secondAction: { control: false },
@@ -123,4 +124,48 @@ export const WithSelect: Story = {
       </Drawer>
     )
   },
+}
+
+/**
+ * `Fix-slot`: верх содержимого стоит на месте, список под ним прокручивается.
+ * В ките это отдельный слот над `Slot`, мастер `Actions=column`.
+ */
+export const FixSlot: Story = {
+  render: () => (
+    <Drawer
+      open
+      title="Своё упражнение"
+      actions="column"
+      action={<Button view="primary" size="l" content="Добавить" />}
+      fixSlot={
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+          <span style={{ font: 'var(--w-style-header-subheader-3)' }}>Движение</span>
+          <Select
+            items={[
+              { value: 'snatch', label: 'Рывок' },
+              { value: 'clean', label: 'Толчок' },
+            ]}
+            placeholder="Движение"
+            ariaLabel="Движение"
+          />
+        </div>
+      }
+    >
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+        {Array.from({ length: 12 }, (_, index) => (
+          <div
+            key={index}
+            style={{
+              padding: 12,
+              borderRadius: 'var(--w-l-radius)',
+              background: 'var(--w-base-generic)',
+              font: 'var(--w-style-text-body-3)',
+            }}
+          >
+            Поле {index + 1}
+          </div>
+        ))}
+      </div>
+    </Drawer>
+  ),
 }
