@@ -1,5 +1,7 @@
 import { useState } from 'react'
 
+import type { ReactNode } from 'react'
+
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 import { Button } from '../Button/Button'
@@ -33,21 +35,21 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 /** Слот содержимого: в ките на его месте стоит заглушка, в коде приходит children. */
-function Slot() {
+function Slot({ height = 118, children = 'Содержимое шторки' }: { height?: number; children?: ReactNode }) {
   return (
     <div
       style={{
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        height: 118,
+        height,
         borderRadius: 'var(--w-l-radius)',
         background: 'var(--w-base-generic)',
         font: 'var(--w-style-text-body-3)',
         color: 'var(--w-text-secondary)',
       }}
     >
-      Содержимое шторки
+      {children}
     </div>
   )
 }
@@ -127,45 +129,19 @@ export const WithSelect: Story = {
 }
 
 /**
- * `Fix-slot`: верх содержимого стоит на месте, список под ним прокручивается.
- * В ките это отдельный слот над `Slot`, мастер `Actions=column`.
+ * `Fix-slot`: слот, который стоит на месте, пока содержимое под ним прокручивается.
+ * Что в них лежит, решает экран — здесь обе заглушки, как в остальных историях.
  */
 export const FixSlot: Story = {
   render: () => (
     <Drawer
       open
-      title="Своё упражнение"
+      title="Заголовок шторки"
       actions="column"
-      action={<Button view="primary" size="l" content="Добавить" />}
-      fixSlot={
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-          <span style={{ font: 'var(--w-style-header-subheader-3)' }}>Движение</span>
-          <Select
-            items={[
-              { value: 'snatch', label: 'Рывок' },
-              { value: 'clean', label: 'Толчок' },
-            ]}
-            placeholder="Движение"
-            ariaLabel="Движение"
-          />
-        </div>
-      }
+      action={<Button view="primary" size="l" content="Сохранить" />}
+      fixSlot={<Slot height={64}>Fix-slot</Slot>}
     >
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-        {Array.from({ length: 12 }, (_, index) => (
-          <div
-            key={index}
-            style={{
-              padding: 12,
-              borderRadius: 'var(--w-l-radius)',
-              background: 'var(--w-base-generic)',
-              font: 'var(--w-style-text-body-3)',
-            }}
-          >
-            Поле {index + 1}
-          </div>
-        ))}
-      </div>
+      <Slot height={600}>Содержимое шторки</Slot>
     </Drawer>
   ),
 }
