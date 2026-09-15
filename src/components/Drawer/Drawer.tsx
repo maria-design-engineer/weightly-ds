@@ -22,11 +22,11 @@ export type DrawerProps = {
   /** Figma Caption — подпись под заголовком. */
   caption?: ReactNode
   /**
-   * Шапка содержимого: стоит под заголовком и не прокручивается. Нужна формам,
-   * где верх остаётся на месте, а список полей ездит под ним, — форма своего
-   * упражнения, кадры `3` и `3б`. Не передана — прокручивается всё содержимое.
+   * Figma `Fix-slot` — слот, который не прокручивается: стоит под заголовком,
+   * над обычным слотом. Нужен формам, где верх остаётся на месте, а поля ездят
+   * под ним, — форма своего упражнения, кадры `3` и `3б`.
    */
-  header?: ReactNode
+  fixSlot?: ReactNode
   /** Слот содержимого. В ките на его месте стоит непубликуемый `.Product / drawer-slot`. */
   children?: ReactNode
   /** Figma Действие 1 — главная кнопка. */
@@ -61,7 +61,7 @@ export function Drawer({
   actions = 'column',
   title,
   caption,
-  header,
+  fixSlot,
   children,
   action,
   secondAction,
@@ -115,8 +115,8 @@ export function Drawer({
               </div>
             ) : null}
             {dividerTop ? <hr className="w-drawer__divider" /> : null}
-            {/* Шапка содержимого стоит на месте: прокрутка живёт ниже, в слоте. */}
-            {header ? <div className="w-drawer__header">{header}</div> : null}
+            {/* `Fix-slot` стоит на месте: прокрутка живёт ниже, в обычном слоте. */}
+            {fixSlot ? <div className="w-drawer__fix-slot">{fixSlot}</div> : null}
             {children ? <div className="w-drawer__content">{children}</div> : null}
             {dividerBottom ? <hr className="w-drawer__divider" /> : null}
             {action || secondAction ? (
