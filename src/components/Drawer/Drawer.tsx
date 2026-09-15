@@ -35,14 +35,6 @@ export type DrawerProps = {
   /** Figma Action 2 — вторая кнопка. */
   secondAction?: ReactNode
   /**
-   * Figma Divider top — разделитель над слотом: содержимое ушло под обрез сверху.
-   * Ставить руками не нужно — шторка сама смотрит, прокручено ли содержимое;
-   * проп оставлен на случай, когда линия нужна всегда.
-   */
-  dividerTop?: boolean
-  /** Figma Divider bottom — то же снизу: под обрезом осталось ещё содержимое. */
-  dividerBottom?: boolean
-  /**
    * Закрыли крестиком. Не передан — крестика нет: закрывают кнопкой действий,
    * свайпом, Escape или нажатием мимо.
    */
@@ -70,16 +62,14 @@ export function Drawer({
   children,
   action,
   secondAction,
-  dividerTop = false,
-  dividerBottom = false,
   onClose,
   closeLabel = 'Закрыть',
 }: DrawerProps) {
   /*
    * Разделители показывают, что содержимое ушло под обрез, — значит считать их
    * должна сама шторка: экран не знает ни высоты окна, ни того, куда докрутили.
-   * Решение пользователя 15.09.2026. Пропы остаются принудительными: `true`
-   * держит линию всегда.
+   * Решение пользователя 15.09.2026. Своих пропов у разделителей нет: ставить
+   * их руками нечем и незачем — линия значит обрез, а не оформление.
    */
   const [cutTop, setCutTop] = useState(false)
   const [cutBottom, setCutBottom] = useState(false)
@@ -163,7 +153,7 @@ export function Drawer({
               они говорят, что содержимое ушло под обрез сверху или снизу. Поэтому
               верхний стоит не под шапкой, а прямо над слотом — правка 15.09.2026.
             */}
-            {dividerTop || cutTop ? (
+            {cutTop ? (
               <hr className="w-drawer__divider w-drawer__divider_top" />
             ) : null}
             {children ? (
@@ -171,7 +161,7 @@ export function Drawer({
                 {children}
               </div>
             ) : null}
-            {dividerBottom || cutBottom ? (
+            {cutBottom ? (
               <hr className="w-drawer__divider w-drawer__divider_bottom" />
             ) : null}
             {action || secondAction ? (

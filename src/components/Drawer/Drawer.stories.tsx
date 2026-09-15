@@ -27,11 +27,28 @@ type DemoArgs = DrawerProps & {
 
 const meta = {
   title: 'Product components/Drawer',
-  component: Drawer,
+  /*
+   * Компонент в `meta` не назван намеренно: тогда Storybook добавляет к таблице
+   * свои строки из типов и ставит их своим порядком, а нам нужен порядок мастера.
+   * Свойства перечислены ниже руками — в той же последовательности, что в ките.
+   */
+  /*
+   * Порядок тот же, что у свойств мастера: `Actions`, `Title`, `Caption`,
+   * `Caption on`, `Header`, `Content on`, `fixSlot on`. Разделители сюда не идут —
+   * шторка считает их сама по прокрутке.
+   */
+  parameters: {
+    controls: { sort: 'none' },
+    /*
+     * Кадр предпросмотра без полей: шторка прижата к низу окна, а поля витрины
+     * вокруг кадра читались как её отступ снизу. Находка прогона 15.09.2026.
+     */
+    layout: 'fullscreen',
+  },
   argTypes: {
-    actions: { control: 'inline-radio', options: DRAWER_ACTIONS },
-    title: { control: 'text' },
-    caption: { control: 'text' },
+    actions: { control: 'inline-radio', options: DRAWER_ACTIONS, name: 'Actions' },
+    title: { control: 'text', name: 'Title' },
+    caption: { control: 'text', name: 'Caption' },
     captionOn: { control: 'boolean', name: 'Caption on' },
     header: { control: 'boolean', name: 'Header' },
     contentOn: { control: 'boolean', name: 'Content on' },
@@ -44,13 +61,6 @@ const meta = {
     secondAction: { table: { disable: true } },
     onClose: { table: { disable: true } },
     closeLabel: { table: { disable: true } },
-    /*
-     * Разделители переключателями не выставляются: шторка считает их сама
-     * по прокрутке — решение пользователя 15.09.2026. Пропы остались на случай,
-     * когда линию надо держать принудительно.
-     */
-    dividerTop: { table: { disable: true } },
-    dividerBottom: { table: { disable: true } },
   },
   args: {
     actions: 'column',
