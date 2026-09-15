@@ -2,12 +2,17 @@ import { useState } from 'react'
 
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
+import { LIFT_COUNTER_VIEWS } from './constants'
 import { LiftCounter } from './LiftCounter'
 
 const meta = {
   title: 'Product components/LiftCounter',
   component: LiftCounter,
-  args: { content: 2 },
+  args: { view: 'panel', content: 2 },
+  argTypes: {
+    view: { control: 'inline-radio', options: LIFT_COUNTER_VIEWS },
+    content: { control: 'text' },
+  },
 } satisfies Meta<typeof LiftCounter>
 
 export default meta
