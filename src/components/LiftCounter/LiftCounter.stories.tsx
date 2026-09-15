@@ -31,3 +31,15 @@ function LiftCounterDemo() {
 export const Live: Story = {
   render: () => <LiftCounterDemo />,
 }
+
+/** Оба вида рядом: `panel` — панель подхода, `field` — форма шторки, ширина 156 как в мастере. */
+export const Views: Story = {
+  render: () => (
+    <div style={{ display: 'flex', alignItems: 'center', gap: 40 }}>
+      <LiftCounter view="panel" content={2} />
+      <div style={{ width: 156 }}>
+        <LiftCounter view="field" content={2} />
+      </div>
+    </div>
+  ),
+}

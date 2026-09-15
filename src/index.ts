@@ -201,6 +201,8 @@ export type { MoodScaleState } from './components/MoodScale/constants'
 
 export { LiftCounter } from './components/LiftCounter/LiftCounter'
 export type { LiftCounterProps } from './components/LiftCounter/LiftCounter'
+export { LIFT_COUNTER_VIEWS } from './components/LiftCounter/constants'
+export type { LiftCounterView } from './components/LiftCounter/constants'
 
 export { LiftCounters } from './components/LiftCounters/LiftCounters'
 export type { LiftCountersProps } from './components/LiftCounters/LiftCounters'
