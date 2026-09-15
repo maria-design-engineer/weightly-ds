@@ -1,5 +1,8 @@
+import { Plus } from '@gravity-ui/icons'
+
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
+import { Icon } from '../Icon/Icon'
 import { Cell, Row } from '../story-layout'
 import { SELECT_SIZES, SELECT_VIEWS } from './constants'
 import { Select } from './Select'
@@ -84,6 +87,22 @@ export const States: Story = {
       </Cell>
     </Row>
   ),
+}
+
+/**
+ * Слоты строки списка — `List-item` кита: `Start Icon` слева, `Secondary content`
+ * справа, `Type=Divider` между группами. Кадр `1277:135207` продуктового файла:
+ * своя основа стоит с меткой «Своё», пункт добавления отбит линией и несёт «+».
+ */
+export const ItemSlots: Story = {
+  args: {
+    items: [
+      ...EXERCISES,
+      { value: 'own', label: 'Рывок в три этапа', secondary: 'Своё' },
+      { type: 'separator', value: 'line' },
+      { value: 'new', label: 'Добавить новое движение', icon: <Icon data={Plus} size={16} /> },
+    ],
+  },
 }
 
 /** Counter — счётчик выбранных значений, гаснет только в отключённом состоянии. */

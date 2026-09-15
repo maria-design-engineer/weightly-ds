@@ -54,6 +54,8 @@ export function Select({
   errorPlacement = 'outline',
   ariaLabel,
 }: SelectProps) {
+  /* Строки, которые выбираются: разделитель — линия, значения у него нет. */
+  const pickable = items.filter((item) => item.type !== 'separator')
   const invalid = Boolean(errorMessage)
   const errorId = useId()
   const valueId = useId()
@@ -80,7 +82,8 @@ export function Select({
   return (
     <div className={className}>
       <BaseSelect.Root
-        items={items}
+        /* Разделители — вид, а не значение: в Base UI уходят только пункты. */
+        items={pickable}
         value={value}
         defaultValue={defaultValue}
         onValueChange={(next: string | null) => {
@@ -100,7 +103,7 @@ export function Select({
           ) : null}
           <BaseSelect.Value className="w-select__value" id={valueId}>
             {(selected: string | null) => {
-              const item = items.find((candidate) => candidate.value === selected)
+              const item = pickable.find((candidate) => candidate.value === selected)
               return item ? (
                 item.label
               ) : (
@@ -134,14 +137,29 @@ export function Select({
             alignItemWithTrigger={false}
           >
             <BaseSelect.Popup className="w-select__popup">
-              {items.map((item) => (
-                <BaseSelect.Item key={item.value} className="w-select__item" value={item.value}>
-                  <BaseSelect.ItemIndicator className="w-select__item-indicator">
-                    <Icon data={Check} size={16} />
-                  </BaseSelect.ItemIndicator>
-                  <BaseSelect.ItemText>{item.label}</BaseSelect.ItemText>
-                </BaseSelect.Item>
-              ))}
+              {items.map((item) =>
+                item.type === 'separator' ? (
+                  /* Строка `Type=Divider` кита: линия, отделяющая группу от группы. */
+                  <div key={item.value} className="w-select__separator" role="separator" />
+                ) : (
+                  <BaseSelect.Item key={item.value} className="w-select__item" value={item.value}>
+                    <BaseSelect.ItemIndicator className="w-select__item-indicator">
+                      <Icon data={Check} size={16} />
+                    </BaseSelect.ItemIndicator>
+                    {/* Слот `Start Icon` строки — значок слева, «+» у пункта добавления. */}
+                    {item.icon === undefined ? null : (
+                      <span className="w-select__item-icon">{item.icon}</span>
+                    )}
+                    <BaseSelect.ItemText className="w-select__item-text">
+                      {item.label}
+                    </BaseSelect.ItemText>
+                    {/* Слот `Secondary content` — метка справа, «Своё» у своей основы. */}
+                    {item.secondary === undefined ? null : (
+                      <span className="w-select__item-secondary">{item.secondary}</span>
+                    )}
+                  </BaseSelect.Item>
+                ),
+              )}
             </BaseSelect.Popup>
           </BaseSelect.Positioner>
         </BaseSelect.Portal>

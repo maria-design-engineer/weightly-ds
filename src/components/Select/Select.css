@@ -170,19 +170,26 @@
    *
    * Высота считается от пункта: 28 на строку плюс поля плиты 4 сверху и снизу.
    */
-  max-height: calc(5 * 28px + var(--w-g-spacing-1) * 2);
+  max-height: calc(5 * 36px + var(--w-g-spacing-1) * 2);
   overflow-y: auto;
   /* Место под полосу прокрутки держится всегда, иначе список дёргается при открытии. */
   scrollbar-gutter: stable;
 }
 
+/*
+ * Строка списка — `List-item` кита, размер как у меню: высота 36, поля 8 и 12,
+ * промежуток 12, радиус `M radius`. Сняты с кадра `1277:135207` продуктового файла,
+ * где открытый список поля собран из `DropdownMenu`. Решение пользователя 15.09.2026;
+ * до него строка была 28 и собрана без макета.
+ */
 .w-select__item {
+  box-sizing: border-box;
   display: flex;
   align-items: center;
-  gap: var(--w-g-spacing-2);
-  height: 28px;
-  padding: 0 var(--w-g-spacing-2);
-  border-radius: var(--w-s-radius);
+  gap: var(--w-g-spacing-3);
+  min-height: 36px;
+  padding: var(--w-g-spacing-2) var(--w-g-spacing-3);
+  border-radius: var(--w-m-radius);
   cursor: pointer;
 }
 
@@ -198,4 +205,52 @@
   display: inline-flex;
   flex: none;
   width: 16px;
+}
+
+/* Слот `Start Icon` — значок 16 в блоке 20, цвет Text/Secondary. */
+.w-select__item-icon {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  color: var(--w-text-secondary);
+}
+
+/* Подпись занимает всё место между значком и меткой; длинная обрезается. */
+.w-select__item-text {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/*
+ * Слот `Secondary content` — метка справа: поля 6 и 3, радиус `XS radius`,
+ * заливка `Base/Generic`. Нажатия у неё нет, это подпись к строке.
+ */
+.w-select__item-secondary {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  /*
+   * Метка выше строки текста на 2 сверху и снизу и выходит за неё, не поднимая
+   * высоту строки: в ките она стоит в слоте 20 с выносом, кадр `1277:135207`.
+   */
+  margin-block: -2px;
+  padding: 3px 6px;
+  border-radius: var(--w-xs-radius);
+  background: var(--w-base-generic);
+  color: var(--w-text-primary);
+}
+
+/*
+ * Строка `Type=Divider`: высота 9 — линия 1 и поля 4 сверху и снизу, как у меню.
+ */
+.w-select__separator {
+  height: 1px;
+  margin: var(--w-g-spacing-1) 0;
+  background: var(--w-line-generic);
 }
