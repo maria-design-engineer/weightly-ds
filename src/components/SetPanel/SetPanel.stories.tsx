@@ -74,6 +74,24 @@ export const Default: Story = {
   },
 }
 
+/**
+ * Подходов больше, чем влезает: восемь отметок. Ряд прокручивается вбок свайпом,
+ * кнопка «плюс» не сжимается, первая отметка не уходит за левый край.
+ */
+export const ManySets: Story = {
+  args: {
+    ...Default.args,
+    markers: (
+      <>
+        <SetMarker state="current" content="1" />
+        {[2, 3, 4, 5, 6, 7, 8].map((order) => (
+          <SetMarker key={order} state="planned" content={String(order)} />
+        ))}
+      </>
+    ),
+  },
+}
+
 /** Пустое состояние: интенсивность не задана, подходов нет. */
 export const Empty: Story = {
   args: {

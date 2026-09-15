@@ -42,10 +42,31 @@
  * Ряд отметок с кнопкой «плюс» в конце. Отметок бывает от одной до пяти,
  * и ряд стоит по середине панели, а не прижат к левому краю.
  */
+/*
+ * Ряд отметок прокручивается вбок свайпом, когда подходов больше, чем влезает, —
+ * решение пользователя 15.09.2026: на шести подходах при ширине 361 кнопка «плюс»
+ * сжималась, а первая отметка уезжала за левый край. Кнопки не сжимаются.
+ *
+ * Центр — авто-полями крайних детей, как в LiftCounters.css, а не justify-content:
+ * тот при переполнении уводил левый край за окно, и прокруткой он не доставался.
+ */
 .w-set-panel__markers {
   display: flex;
-  justify-content: center;
   gap: 8px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.w-set-panel__markers > * {
+  flex: none;
+}
+
+.w-set-panel__markers > :first-child {
+  margin-left: auto;
+}
+
+.w-set-panel__markers > :last-child {
+  margin-right: auto;
 }
 
 /*
