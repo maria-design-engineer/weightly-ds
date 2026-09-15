@@ -80,6 +80,8 @@ export function ExerciseCard({
   expandLabel,
   collapseLabel,
 }: ExerciseCardProps) {
+  const cardRef = useRef<HTMLDivElement>(null)
+  const headRef = useRef<HTMLDivElement>(null)
   const stepsRef = useRef<HTMLDivElement>(null)
   const titleRef = useRef<HTMLSpanElement>(null)
   /** Видимые строки названия внутри места, которое название занимает. */
@@ -103,33 +105,60 @@ export function ExerciseCard({
   const [lines, setLines] = useState(MIN_TITLE_LINES)
 
   useEffect(() => {
+    const card = cardRef.current
+    const head = headRef.current
     const node = titleRef.current
     const inner = linesRef.current
-    if (!node || !inner) return
+    if (!card || !head || !node || !inner) return
 
     const check = () => {
       /*
        * Шаг строки берём у текста: у названия строкой это Header/Subheader 1, 24,
-       * у списка движений — строка движения, 20. Название занимает свободное место,
-       * а видно в нём только целые строки: у списка обрезка без полоски следующей.
+       * у списка движений — строка движения, 20.
        */
       const text = inner.querySelector('.w-exercise-bullets__text') ?? inner
       const lineHeight = parseFloat(getComputedStyle(text).lineHeight)
       /* Гарнитура ещё не доехала — считаем по шагу строки мастера, 24. */
       const step = Number.isFinite(lineHeight) && lineHeight > 0 ? lineHeight : TITLE_LINE_STEP
+
       /*
-       * Запас полпикселя, а не пиксель: место под название дробное, и с пикселем
-       * 79 давали четыре строки по 20 — последняя торчала полоской. Прогон 15.09.2026.
+       * Место под название считаем от карточки, а не от самого названия: высота
+       * карточки минус поля, строка счётчика, ряд ступеней и промежутки. Иначе
+       * обрезанное название забирало всё свободное место, и между разделителем
+       * и ступенями оставалась пустота до строки — находка пользователя 15.09.2026.
        */
-      /* Минус пиксель — разделитель стоит в том же месте, сразу под строками. */
-      setLines(Math.max(MIN_TITLE_LINES, Math.floor((node.clientHeight - 1 + 0.5) / step)))
+      const cardStyle = getComputedStyle(card)
+      const infoStyle = getComputedStyle(head.parentElement as HTMLElement)
+      const steps = stepsRef.current
+      const stepsStyle = steps ? getComputedStyle(steps) : null
+      const stepsSpace =
+        steps && stepsStyle
+          ? steps.offsetHeight +
+            parseFloat(stepsStyle.marginTop) +
+            parseFloat(stepsStyle.marginBottom) +
+            (parseFloat(cardStyle.rowGap) || 0)
+          : 0
+      const available =
+        card.clientHeight -
+        parseFloat(cardStyle.paddingTop) -
+        parseFloat(cardStyle.paddingBottom) -
+        head.offsetHeight -
+        (parseFloat(infoStyle.rowGap) || 0) -
+        stepsSpace
+
+      /*
+       * Видно только целые строки, не меньше двух. Минус пиксель — место разделителя;
+       * запас полпикселя — место дробное, с пикселем последняя строка торчала полоской.
+       */
+      const fit = Math.max(MIN_TITLE_LINES, Math.floor((available - 1 + 0.5) / step))
+      setLines(fit)
       node.style.setProperty('--w-exercise-card-step', `${step}px`)
-      setClipped(inner.scrollHeight > inner.clientHeight + 1)
+      setClipped(inner.scrollHeight > fit * step + 1)
     }
     check()
-    /* Ширина меняется вместе с экраном, а высота — когда доедет гарнитура. */
+    /* Ширина и высота меняются вместе с экраном, а шаг строки — когда доедет гарнитура. */
     const observer = new ResizeObserver(check)
-    observer.observe(node)
+    observer.observe(card)
     observer.observe(inner)
     return () => observer.disconnect()
   }, [content, bullets, type, view])
@@ -184,7 +213,8 @@ export function ExerciseCard({
 
   return (
     <div
-      className={`w-exercise-card w-exercise-card_type_${type} w-exercise-card_view_${view} w-exercise-card_state_${state}`}
+      ref={cardRef}
+      className={`w-exercise-card w-exercise-card_type_${type} w-exercise-card_view_${view} w-exercise-card_state_${state}${type === 'task' && clipped && !expanded ? ' w-exercise-card_clipped' : ''}`}
     >
       <div className="w-exercise-card__info">
         {type === 'task' ? (
@@ -194,7 +224,7 @@ export function ExerciseCard({
            * и идущего всё это идёт одной строкой.
            */
           <>
-            <div className="w-exercise-card__head">
+            <div className="w-exercise-card__head" ref={headRef}>
               {hint}
               {caption ? <span className="w-exercise-card__counter">{caption}</span> : null}
               {/*
@@ -205,7 +235,8 @@ export function ExerciseCard({
               {onExpand && (expanded || clipped) ? (
                 <span className="w-exercise-card__expand">
                   <Button
-                    view="raised"
+                    /* Кнопка плоская — решение пользователя 15.09.2026. */
+                    view="flat"
                     size="xs"
                     startIcon={
                       <Icon data={expanded ? ChevronsCollapseUpRight : ChevronsExpandUpRight} size={12} />
