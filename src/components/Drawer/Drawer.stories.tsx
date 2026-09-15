@@ -34,8 +34,6 @@ const meta = {
     caption: { control: 'text' },
     captionOn: { control: 'boolean', name: 'Caption on' },
     header: { control: 'boolean', name: 'Header' },
-    dividerTop: { control: 'boolean', name: 'Divider top' },
-    dividerBottom: { control: 'boolean', name: 'Divider bottom' },
     contentOn: { control: 'boolean', name: 'Content on' },
     fixSlotOn: { control: 'boolean', name: 'fixSlot on' },
     open: { table: { disable: true } },
@@ -46,6 +44,13 @@ const meta = {
     secondAction: { table: { disable: true } },
     onClose: { table: { disable: true } },
     closeLabel: { table: { disable: true } },
+    /*
+     * Разделители переключателями не выставляются: шторка считает их сама
+     * по прокрутке — решение пользователя 15.09.2026. Пропы остались на случай,
+     * когда линию надо держать принудительно.
+     */
+    dividerTop: { table: { disable: true } },
+    dividerBottom: { table: { disable: true } },
   },
   args: {
     actions: 'column',
@@ -53,8 +58,6 @@ const meta = {
     caption: 'Подпись под заголовком',
     captionOn: true,
     header: true,
-    dividerTop: false,
-    dividerBottom: false,
     contentOn: true,
     fixSlotOn: true,
   },
@@ -132,8 +135,10 @@ export const ActionsRow: Story = {
   render: (args) => <DrawerDemo {...args} />,
 }
 
-/** Разделители сверху и снизу: у мастера они спрятаны, включаются булевыми. */
+/**
+ * Разделители: их ставит сама шторка, когда содержимое ушло под обрез. Прокрутите
+ * слот — сверху появится линия, внизу списка пропадёт нижняя.
+ */
 export const Dividers: Story = {
-  args: { dividerTop: true, dividerBottom: true },
   render: (args) => <DrawerDemo {...args} />,
 }
