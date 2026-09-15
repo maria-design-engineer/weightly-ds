@@ -154,19 +154,24 @@
  * Правка кита 15.09.2026.
  */
 .w-drawer__divider {
-  width: 100%;
+  /*
+   * Линия идёт по краю слота, а не по колонке: слот выступает на 3 наружу —
+   * это место под кольцо фокуса, — и линия шириной в колонку оказывалась короче
+   * него. Находка прогона 15.09.2026.
+   */
+  width: auto;
   height: 1px;
-  margin: 0;
+  margin: 0 -3px;
   border: 0;
   background: var(--w-line-generic);
 }
 
 .w-drawer__divider_top {
-  margin-bottom: calc(var(--w-g-spacing-4) * -1);
+  margin-bottom: calc(var(--w-g-spacing-4) * -1 + 3px);
 }
 
 .w-drawer__divider_bottom {
-  margin-top: calc(var(--w-g-spacing-4) * -1);
+  margin-top: calc(var(--w-g-spacing-4) * -1 + 3px);
 }
 
 .w-drawer__actions {
