@@ -5,31 +5,60 @@ import type { ReactNode } from 'react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 import { Button } from '../Button/Button'
-import { Select } from '../Select/Select'
 import { DRAWER_ACTIONS } from './constants'
 import type { DrawerProps } from './Drawer'
 import { Drawer } from './Drawer'
+
+/**
+ * Витрина повторяет свойства мастера: ось `Actions`, тексты заголовка и подписи
+ * и булевы, которыми части включаются, — `Caption on`, `Header`, `Content on`,
+ * `Divider top`, `Divider bottom`, `fixSlot on`. Решение пользователя 15.09.2026.
+ *
+ * В коде этих булевых у компонента нет намеренно: часть показывается тогда, когда
+ * для неё передано содержимое. Здесь они живут переключателями витрины и решают,
+ * передать проп или нет, — так виден и состав мастера, и правило кода.
+ */
+type DemoArgs = DrawerProps & {
+  captionOn?: boolean
+  header?: boolean
+  contentOn?: boolean
+  fixSlotOn?: boolean
+}
 
 const meta = {
   title: 'Product components/Drawer',
   component: Drawer,
   argTypes: {
     actions: { control: 'inline-radio', options: DRAWER_ACTIONS },
-    open: { control: 'boolean' },
-    dividerTop: { control: 'boolean' },
-    dividerBottom: { control: 'boolean' },
-    fixSlot: { control: false },
-    children: { control: false },
-    action: { control: false },
-    secondAction: { control: false },
-    onOpenChange: { control: false },
+    title: { control: 'text' },
+    caption: { control: 'text' },
+    captionOn: { control: 'boolean', name: 'Caption on' },
+    header: { control: 'boolean', name: 'Header' },
+    dividerTop: { control: 'boolean', name: 'Divider top' },
+    dividerBottom: { control: 'boolean', name: 'Divider bottom' },
+    contentOn: { control: 'boolean', name: 'Content on' },
+    fixSlotOn: { control: 'boolean', name: 'fixSlot on' },
+    open: { table: { disable: true } },
+    onOpenChange: { table: { disable: true } },
+    fixSlot: { table: { disable: true } },
+    children: { table: { disable: true } },
+    action: { table: { disable: true } },
+    secondAction: { table: { disable: true } },
+    onClose: { table: { disable: true } },
+    closeLabel: { table: { disable: true } },
   },
   args: {
+    actions: 'column',
     title: 'Заголовок шторки',
     caption: 'Подпись под заголовком',
-    actions: 'column',
+    captionOn: true,
+    header: true,
+    dividerTop: false,
+    dividerBottom: false,
+    contentOn: true,
+    fixSlotOn: true,
   },
-} satisfies Meta<typeof Drawer>
+} satisfies Meta<DemoArgs>
 
 export default meta
 type Story = StoryObj<typeof meta>
@@ -54,11 +83,14 @@ function Slot({ height = 118, children = 'Содержимое шторки' }: 
   )
 }
 
-/**
- * Открывается кнопкой. Проверяется руками: Escape, клик мимо и свайп вниз
- * закрывают, Tab не уводит за пределы шторки, фокус возвращается на кнопку.
- */
-function DrawerDemo(args: DrawerProps) {
+/** Шторка мастера: шапка, `Fix-slot`, `Slot` и блок действий. */
+function DrawerDemo({
+  captionOn = true,
+  header = true,
+  contentOn = true,
+  fixSlotOn = true,
+  ...args
+}: DemoArgs) {
   const [open, setOpen] = useState(false)
   return (
     <div style={{ height: 420 }}>
@@ -67,24 +99,28 @@ function DrawerDemo(args: DrawerProps) {
         {...args}
         open={open}
         onOpenChange={setOpen}
-        /* Кнопки размера L и крестик в шапке — правка кита 14.09.2026. */
-        onClose={() => setOpen(false)}
+        /* Шапка мастера — заголовок, подпись и крестик: выключена, ничего из них нет. */
+        title={header ? args.title : undefined}
+        caption={header && captionOn ? args.caption : undefined}
+        onClose={header ? () => setOpen(false) : undefined}
+        /* `Fix-slot` стоит на месте, `Slot` под ним прокручивается — слои мастера. */
+        fixSlot={fixSlotOn ? <Slot height={64}>Fix-slot</Slot> : undefined}
         action={<Button view="primary" size="l" content="Сохранить" onClick={() => setOpen(false)} />}
         secondAction={
           <Button view="flat" size="l" content="Отмена" onClick={() => setOpen(false)} />
         }
       >
-        <Slot />
+        {contentOn ? <Slot height={420} /> : null}
       </Drawer>
     </div>
   )
 }
 
-export const Playground: Story = {
-  render: (args) => <DrawerDemo {...args} />,
-}
-
-/** Ось Actions = column: кнопки столбиком, промежуток 8, панель 360 × 340. */
+/**
+ * Ось Actions = column: кнопки столбиком, промежуток 8. Открывается кнопкой;
+ * проверяется руками: Escape, клик мимо и свайп вниз закрывают, Tab не уводит
+ * за пределы шторки, фокус возвращается на кнопку.
+ */
 export const ActionsColumn: Story = {
   args: { actions: 'column' },
   render: (args) => <DrawerDemo {...args} />,
@@ -96,52 +132,8 @@ export const ActionsRow: Story = {
   render: (args) => <DrawerDemo {...args} />,
 }
 
-/** Разделители: включаются, когда содержимое уходит под обрез сверху или снизу. */
+/** Разделители сверху и снизу: у мастера они спрятаны, включаются булевыми. */
 export const Dividers: Story = {
   args: { dividerTop: true, dividerBottom: true },
   render: (args) => <DrawerDemo {...args} />,
-}
-
-/**
- * Поле выбора внутри шторки: список уходит в свой портал, а шторка модальная
- * и поднята слоем — проверяем, что он всё равно открывается поверх панели.
- * Проверка заведена по находке прогона 14.09.2026.
- */
-export const WithSelect: Story = {
-  render: () => {
-    const items = [
-      { value: 'snatch', label: 'Рывок' },
-      { value: 'clean', label: 'Толчок' },
-      { value: 'squat', label: 'Приседания со штангой' },
-    ]
-
-    return (
-      <Drawer
-        open
-        title="Своё упражнение"
-        actions="column"
-        action={<Button view="primary" size="l" content="Добавить" />}
-      >
-        <Select items={items} placeholder="Движение" ariaLabel="Движение" />
-      </Drawer>
-    )
-  },
-}
-
-/**
- * `Fix-slot`: слот, который стоит на месте, пока содержимое под ним прокручивается.
- * Что в них лежит, решает экран — здесь обе заглушки, как в остальных историях.
- */
-export const FixSlot: Story = {
-  render: () => (
-    <Drawer
-      open
-      title="Заголовок шторки"
-      actions="column"
-      action={<Button view="primary" size="l" content="Сохранить" />}
-      fixSlot={<Slot height={64}>Fix-slot</Slot>}
-    >
-      <Slot height={600}>Содержимое шторки</Slot>
-    </Drawer>
-  ),
 }

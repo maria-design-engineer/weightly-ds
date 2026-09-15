@@ -140,12 +140,26 @@
   color: var(--w-text-secondary);
 }
 
+/*
+ * Разделители прилегают к слоту вплотную: они говорят, что содержимое ушло под
+ * обрез, и просвет между линией и обрезанным краем читался бы как отступ раскладки.
+ * Промежуток колонки 16 снимается отрицательным полем с той стороны, где слот.
+ * Правка кита 15.09.2026.
+ */
 .w-drawer__divider {
   width: 100%;
   height: 1px;
   margin: 0;
   border: 0;
   background: var(--w-line-generic);
+}
+
+.w-drawer__divider_top {
+  margin-bottom: calc(var(--w-g-spacing-4) * -1);
+}
+
+.w-drawer__divider_bottom {
+  margin-top: calc(var(--w-g-spacing-4) * -1);
 }
 
 .w-drawer__actions {
