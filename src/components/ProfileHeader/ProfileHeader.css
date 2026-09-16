@@ -29,6 +29,14 @@
   }
 }
 
+/*
+ * Нажатие — та же заливка, что у наведения: на телефоне это единственный отклик,
+ * и без него палец не получает ответа вовсе. Так же устроены кнопки, `State=Pressed`.
+ */
+.w-profile-header_action:active {
+  background: var(--w-base-simple-hover);
+}
+
 .w-profile-header_action:focus-visible {
   outline: var(--w-focus-ring-width) solid var(--w-focus-ring-color);
   outline-offset: 1px;

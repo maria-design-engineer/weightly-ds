@@ -40,6 +40,19 @@
   }
 }
 
+/*
+ * Нажатие — та же заливка: на телефоне наведения нет, и без этого отклика строка
+ * на касание не отвечает вовсе. Так же устроены кнопки, `State=Pressed`.
+ */
+.w-settings-row:active {
+  border-radius: var(--w-xl-radius);
+  background: var(--w-base-simple-hover);
+}
+
+.w-settings-row_card_on:active {
+  box-shadow: none;
+}
+
 .w-settings-row__text {
   display: flex;
   flex: 1;
