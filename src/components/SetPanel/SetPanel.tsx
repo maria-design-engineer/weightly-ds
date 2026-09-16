@@ -11,6 +11,12 @@ import './SetPanel.css'
 export type SetPanelProps = {
   /** Figma State — есть данные подхода или пусто. */
   state?: SetPanelState
+  /**
+   * Figma Property 1 — раскладка панели. `panel` — ряды один под другим,
+   * `columns` — три колонки: подходы, вес, подъёмы (мастер `set-panel-columns`,
+   * узел `50561:55532`).
+   */
+  view?: 'panel' | 'columns'
   /** Заголовок блока подходов. */
   title?: ReactNode
   /**
@@ -46,6 +52,7 @@ export type SetPanelProps = {
  */
 export function SetPanel({
   state = 'default',
+  view = 'panel',
   title,
   markers,
   onAddSet,
@@ -74,21 +81,55 @@ export function SetPanel({
     )
   }
 
+  const addSet = onAddSet ? (
+    <Button
+      view="normal-contrast"
+      size="m"
+      startIcon={<Icon data={Plus} />}
+      ariaLabel={addSetLabel}
+      onClick={onAddSet}
+    />
+  ) : null
+
+  /*
+   * Три колонки: подходы столбиком, барабан веса стоймя, счётчики подъёмов один
+   * под другим. Мастер `set-panel-columns`, узел `50561:55532`.
+   */
+  if (view === 'columns') {
+    return (
+      <div className="w-set-panel w-set-panel_view_columns">
+        <div className="w-set-panel__column w-set-panel__column_sets">
+          <span className="w-set-panel__column-title">{title}</span>
+          <div className="w-set-panel__markers-column">
+            {markers}
+            {addSet}
+          </div>
+        </div>
+
+        <div className="w-set-panel__column w-set-panel__column_weight">
+          {/* Подпись и кнопка максимума в ките включаются порознь — обе стоят здесь. */}
+          <span className="w-set-panel__column-title">
+            {maxButton}
+            {caption}
+          </span>
+          <div className="w-set-panel__wheel-column">{wheel}</div>
+        </div>
+
+        <div className="w-set-panel__column w-set-panel__column_lifts">
+          <span className="w-set-panel__column-title">{liftsTitle}</span>
+          {lifts}
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className="w-set-panel">
       <div className="w-set-panel__block">
         <span className="w-set-panel__title">{title}</span>
         <div className="w-set-panel__markers">
           {markers}
-          {onAddSet ? (
-            <Button
-              view="normal-contrast"
-              size="m"
-              startIcon={<Icon data={Plus} />}
-              ariaLabel={addSetLabel}
-              onClick={onAddSet}
-            />
-          ) : null}
+          {addSet}
         </div>
         {caption || maxButton ? (
           <div className="w-set-panel__caption-row">

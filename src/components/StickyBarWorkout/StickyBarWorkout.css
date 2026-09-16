@@ -17,7 +17,12 @@
   box-sizing: border-box;
   display: flex;
   width: 100%;
-  padding: var(--w-g-spacing-4);
+  /*
+   * Поля 8 со всех сторон — правка мастера 16.09.2026: боковые уменьшены с 16.
+   * Высота своя не задаётся, панель тянется содержимым: в ките она 88 при этих
+   * полях и кнопке 56.
+   */
+  padding: var(--w-g-spacing-2);
   border-radius: var(--w-l-radius) var(--w-l-radius) 0 0;
   background: var(--w-text-light-hint);
   backdrop-filter: blur(10px);

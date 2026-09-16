@@ -32,6 +32,7 @@ const meta = {
   component: SetPanel,
   argTypes: {
     state: { control: 'inline-radio', options: SET_PANEL_STATES },
+    view: { control: 'inline-radio', options: ['panel', 'columns'] },
     markers: { control: false },
     wheel: { control: false },
     lifts: { control: false },
@@ -89,6 +90,45 @@ export const ManySets: Story = {
         ))}
       </>
     ),
+  },
+}
+
+/**
+ * Три колонки — мастер `set-panel-columns`, узел `50561:55532`: отметки подходов
+ * столбиком с «плюсом» в конце, барабан веса стоймя, счётчики подъёмов один
+ * под другим, до четырёх.
+ */
+export const Columns: Story = {
+  args: {
+    ...Default.args,
+    view: 'columns',
+    /* Кнопка максимума и подпись в ките включаются порознь: здесь подпись. */
+    maxButton: undefined,
+    markers: (
+      <>
+        <SetMarker state="current" content="1" />
+        <SetMarker state="planned" content="2" />
+        <SetMarker state="planned" content="3" />
+      </>
+    ),
+    wheel: <WeightWheel direction="vertical" values={VALUES} selected={43} ariaLabel="Вес подхода" />,
+    lifts: (
+      <>
+        <LiftCounter content={3} />
+        <LiftCounter content={2} />
+        <LiftCounter content={2} />
+        <LiftCounter content={2} />
+      </>
+    ),
+  },
+}
+
+/** Те же колонки, когда максимум не внесён: вместо подписи кнопка «Максимум». */
+export const ColumnsNoMax: Story = {
+  args: {
+    ...Columns.args,
+    caption: undefined,
+    maxButton: <Button view="flat-danger" size="xs" startIcon={<Icon data={Plus} />} content="Максимум" />,
   },
 }
 

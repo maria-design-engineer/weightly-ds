@@ -31,6 +31,127 @@
   gap: 12px;
 }
 
+/*
+ * Раскладка в три колонки — мастер `set-panel-columns`, узел `50561:55532`:
+ * подходы 58, вес 98, подъёмы 140, промежуток 16. Поля 16, снизу 96 — запас под
+ * нижнюю панель: 88 её высоты и 8 полей. Своей высоты панель не держит, ряды
+ * колонок стоят на 204 мастера.
+ */
+.w-set-panel_view_columns {
+  display: flex;
+  /* В основе у панели колонка — здесь колонки стоят в строку. */
+  flex-direction: row;
+  gap: 16px;
+  min-height: 0;
+  padding: 16px 16px 96px;
+}
+
+.w-set-panel__column {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+
+.w-set-panel__column_sets {
+  flex: none;
+  width: 58px;
+}
+
+/* Средняя колонка забирает остаток: на узком экране ужимается она, а не счётчики. */
+.w-set-panel__column_weight {
+  flex: 1 1 auto;
+}
+
+.w-set-panel__column_lifts {
+  flex: none;
+  width: 140px;
+  gap: 4px;
+}
+
+/*
+ * Подписи колонок — Text/Caption 1, по середине своей колонки, в одну строку.
+ * Средняя колонка узкая, 98, и «50% от 123 кг» в неё не влезает: подпись выходит
+ * за колонку, как в мастере, а не переносится и не растягивает ряд.
+ */
+.w-set-panel__column-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 24px;
+  white-space: nowrap;
+  font: var(--w-style-text-caption-1);
+  color: var(--w-text-secondary);
+}
+
+/*
+ * Отметки подходов идут сверху вниз, кнопка «плюс» последняя. Подходов бывает
+ * больше, чем влезает, — столбец листается вверх-вниз без полосы прокрутки,
+ * как ряд отметок в раскладке `panel`.
+ */
+.w-set-panel__markers-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  height: 204px;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+.w-set-panel__markers-column::-webkit-scrollbar {
+  display: none;
+}
+
+.w-set-panel__markers-column > * {
+  flex: none;
+}
+
+/*
+ * Барабан стоймя: лента выше окна и гасится растворением сверху и снизу — тем же
+ * приёмом, что в горизонтальной раскладке, только по вертикали. Заливки под лентой
+ * в мастере нет: растворение идёт от заливки самой панели.
+ */
+.w-set-panel__wheel-column {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 204px;
+  overflow: hidden;
+}
+
+.w-set-panel__wheel-column::before,
+.w-set-panel__wheel-column::after {
+  position: absolute;
+  right: 0;
+  left: 0;
+  height: 72px;
+  content: '';
+  pointer-events: none;
+}
+
+.w-set-panel__wheel-column::before {
+  top: 0;
+  background: linear-gradient(
+    to bottom,
+    var(--w-base-simple-hover-solid) 0,
+    var(--w-base-simple-hover-solid) var(--w-g-spacing-6),
+    transparent 100%
+  );
+}
+
+.w-set-panel__wheel-column::after {
+  bottom: 0;
+  background: linear-gradient(
+    to top,
+    var(--w-base-simple-hover-solid) 0,
+    var(--w-base-simple-hover-solid) var(--w-g-spacing-6),
+    transparent 100%
+  );
+}
+
 /* Заголовки блоков и подпись процента стоят по середине панели. */
 .w-set-panel__title {
   text-align: center;
