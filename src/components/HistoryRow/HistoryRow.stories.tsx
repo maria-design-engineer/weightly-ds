@@ -13,11 +13,18 @@ const meta = {
       </div>
     ),
   ],
-  argTypes: { content: { control: 'text' }, caption: { control: 'text' } },
+  argTypes: {
+    content: { control: 'text' },
+    caption: { control: 'text' },
+    onClick: { control: false },
+    ariaLabel: { control: false },
+  },
   args: {
     content: 'Сегодня · утро',
-    caption: 'КПШ 63 · вес 2 840 кг',
+    caption: '63 КПШ · 2 840 кг',
     mark: <Label size="s" theme="danger" content="92%" />,
+    /* Строка открывает тренировку: с действием она кнопка и отвечает на нажатие. */
+    onClick: () => {},
   },
 } satisfies Meta<typeof HistoryRow>
 
@@ -26,6 +33,20 @@ type Story = StoryObj<typeof meta>
 
 /** Плашка справа приходит содержимым: в ките это экземпляр Label. */
 export const Playground: Story = {}
+
+/**
+ * Ось наведения: строка с действием красится `Base/Simple Hover` под курсором
+ * и на время нажатия; строка без действия не нажимается вовсе.
+ */
+export const States: Story = {
+  name: 'Наведение и нажатие',
+  render: (args) => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+      <HistoryRow {...args} onClick={() => {}} ariaLabel="Открыть тренировку" />
+      <HistoryRow {...args} onClick={undefined} />
+    </div>
+  ),
+}
 
 /**
  * Свойство Offline: значок «без сети» между текстом и плашкой — тренировка
