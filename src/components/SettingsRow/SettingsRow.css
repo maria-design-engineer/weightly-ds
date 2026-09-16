@@ -71,10 +71,11 @@
   color: var(--w-text-secondary);
 }
 
+/* Шеврон брендовый — `Branding/Base Brand`, правка мастера 16.09.2026; был Text/Secondary. */
 .w-settings-row__chevron {
   display: inline-flex;
   flex: none;
-  color: var(--w-text-secondary);
+  color: var(--w-branding-base-brand);
 }
 
 .w-settings-row:focus-visible {
