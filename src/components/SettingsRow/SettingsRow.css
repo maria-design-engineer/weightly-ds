@@ -22,6 +22,24 @@
   box-shadow: var(--w-card-shadow-card-new);
 }
 
+/*
+ * State=hover — мастер `Product / settings-row`, снято 16.09.2026: заливка
+ * `Base/Simple Hover`, радиус 16 в обоих видах; у `Card=on` тень в наведении снята.
+ *
+ * Только там, где наведение есть на самом деле: на телефоне `:hover` залипает
+ * после нажатия, и строка остаётся подсвеченной, пока не тронут соседнюю.
+ */
+@media (hover: hover) {
+  .w-settings-row:hover {
+    border-radius: var(--w-xl-radius);
+    background: var(--w-base-simple-hover);
+  }
+
+  .w-settings-row_card_on:hover {
+    box-shadow: none;
+  }
+}
+
 .w-settings-row__text {
   display: flex;
   flex: 1;
