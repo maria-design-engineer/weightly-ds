@@ -70,6 +70,12 @@ export function WeightWheel({
   const scrolling = useRef(false)
   const settle = useRef<ReturnType<typeof setTimeout> | null>(null)
   /*
+   * Идёт программная постановка. Прокрутка от неё — не выбор человека: при смене
+   * направления браузер обнуляет прокрутку по новой оси и шлёт событие, барабан
+   * считал его рывком и сбрасывал вес на начало шкалы. Находка 16.09.2026.
+   */
+  const placing = useRef(false)
+  /*
    * Без `onSelect` барабан ведёт выбор сам: иначе чёрное значение остаётся на
    * месте, а лента уезжает — в середине оказывается серое.
    */
@@ -127,6 +133,10 @@ export function WeightWheel({
       placed.current = true
     }
 
+    placing.current = true
+    const settled = setTimeout(() => {
+      placing.current = false
+    }, 300)
     place()
 
     /*
@@ -146,6 +156,8 @@ export function WeightWheel({
 
     return () => {
       alive = false
+      clearTimeout(settled)
+      placing.current = false
       observer.disconnect()
       /* Ждать окончания прокрутки после ухода компонента некому и незачем. */
       if (settle.current) clearTimeout(settle.current)
@@ -195,6 +207,8 @@ export function WeightWheel({
   function handleScroll() {
     const node = listRef.current
     if (!node) return
+    /* Прокрутка от программной постановки выбор не меняет. */
+    if (placing.current) return
 
     scrolling.current = true
     if (settle.current) clearTimeout(settle.current)
