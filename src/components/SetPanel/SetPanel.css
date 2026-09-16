@@ -46,14 +46,14 @@
 }
 
 /*
- * Колонка 248 — высота внутреннего блока мастера. Подпись 24, промежуток 12,
- * остаток 212 забирает ряд: столбец отметок, барабан или счётчики.
+ * Колонка 250 — высота внутреннего блока мастера. Подпись 24, промежуток 12,
+ * остаток 214 забирает ряд: столбец отметок, барабан или счётчики.
  */
 .w-set-panel__column {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  height: 248px;
+  height: 250px;
   min-width: 0;
 }
 
@@ -70,7 +70,36 @@
 .w-set-panel__column_lifts {
   flex: none;
   width: 140px;
+}
+
+/*
+ * Счётчики идут через 4 и стоят по середине колонки — мастер 16.09.2026.
+ * Центр авто-полями крайних, как в столбце отметок.
+ */
+.w-set-panel__lifts-column {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
   gap: 4px;
+  min-height: 0;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+.w-set-panel__lifts-column::-webkit-scrollbar {
+  display: none;
+}
+
+.w-set-panel__lifts-column > * {
+  flex: none;
+}
+
+.w-set-panel__lifts-column > :first-child {
+  margin-top: auto;
+}
+
+.w-set-panel__lifts-column > :last-child {
+  margin-bottom: auto;
 }
 
 /*
@@ -99,8 +128,11 @@
   flex: 1 1 auto;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
+  /* Отметки идут через 2, столбец 44 в ширину — мастер, 16.09.2026. */
+  gap: 2px;
+  width: 44px;
   min-height: 0;
+  margin-inline: auto;
   overflow-y: auto;
   scrollbar-width: none;
 }
@@ -111,6 +143,19 @@
 
 .w-set-panel__markers-column > * {
   flex: none;
+}
+
+/*
+ * Столбец стоит по середине колонки — мастер 16.09.2026. Центр авто-полями крайних
+ * детей, а не `justify-content`: у переполненного столбца тот уводит верхний край
+ * за окно, и прокруткой он не достаётся. То же правило в ряду отметок и счётчиков.
+ */
+.w-set-panel__markers-column > :first-child {
+  margin-top: auto;
+}
+
+.w-set-panel__markers-column > :last-child {
+  margin-bottom: auto;
 }
 
 /*

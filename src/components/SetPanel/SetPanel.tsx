@@ -117,7 +117,7 @@ export function SetPanel({
 
         <div className="w-set-panel__column w-set-panel__column_lifts">
           <span className="w-set-panel__column-title">{liftsTitle}</span>
-          {lifts}
+          <div className="w-set-panel__lifts-column">{lifts}</div>
         </div>
       </div>
     )
