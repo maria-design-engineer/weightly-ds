@@ -9,7 +9,7 @@ import { LiftCounters } from '../LiftCounters/LiftCounters'
 import { SetMarker } from '../SetMarker/SetMarker'
 import { WeightWheel } from '../WeightWheel/WeightWheel'
 import { SET_PANEL_STATES } from './constants'
-import { SetPanel } from './SetPanel'
+import { SetPanel, type SetPanelProps } from './SetPanel'
 
 /** Шкала веса: от 40 до 200 килограммов с шагом полкило. */
 const VALUES = Array.from({ length: 321 }, (_, index) => {
@@ -27,25 +27,41 @@ const MARKERS = (
   </>
 )
 
+const MAX_BUTTON = <Button view="flat-danger" size="xs" startIcon={<Icon data={Plus} />} content="Максимум" />
+
+/**
+ * Свойства историй. Подпись и кнопка максимума включаются тумблерами, как булевые
+ * `Caption` и `Max button` в ките: в панели свойств витрины видно то же, что в Figma.
+ * В компонент едет содержимое.
+ */
+type PanelArgs = Omit<SetPanelProps, 'caption' | 'maxButton'> & {
+  caption?: boolean
+  maxButton?: boolean
+}
+
 const meta = {
   title: 'Product components/SetPanel',
   component: SetPanel,
   argTypes: {
     state: { control: 'inline-radio', options: SET_PANEL_STATES },
     view: { control: 'inline-radio', options: ['panel', 'columns'] },
+    caption: { control: 'boolean' },
+    maxButton: { control: 'boolean' },
     markers: { control: false },
     wheel: { control: false },
     lifts: { control: false },
-    maxButton: { control: false },
     emptyAction: { control: false },
   },
   args: {
     title: 'Подход',
-    caption: '50% от 123 кг',
+    caption: true,
     liftsTitle: 'Подъёмы',
     emptyTitle: 'Подходов пока нет',
     emptyCaption: 'Появятся, когда добавишь интенсивность',
   },
+  render: ({ caption, maxButton, ...args }: PanelArgs) => (
+    <SetPanel {...args} caption={caption ? '50% от 123 кг' : undefined} maxButton={maxButton ? MAX_BUTTON : undefined} />
+  ),
   decorators: [
     (Story) => (
       <div style={{ width: 360 }}>
@@ -53,7 +69,7 @@ const meta = {
       </div>
     ),
   ],
-} satisfies Meta<typeof SetPanel>
+} satisfies Meta<PanelArgs>
 
 export default meta
 type Story = StoryObj<typeof meta>
@@ -64,7 +80,7 @@ export const Default: Story = {
     state: 'default',
     markers: MARKERS,
     onAddSet: () => {},
-    maxButton: <Button view="flat-danger" size="xs" startIcon={<Icon data={Plus} />} content="Максимум" />,
+    maxButton: true,
     wheel: <WeightWheel direction="horizontal" values={VALUES} selected={43} ariaLabel="Вес подхода" />,
     lifts: (
       <LiftCounters>
@@ -103,7 +119,7 @@ export const Columns: Story = {
     ...Default.args,
     view: 'columns',
     /* Кнопка максимума и подпись в ките включаются порознь: здесь подпись. */
-    maxButton: undefined,
+    maxButton: false,
     markers: (
       <>
         <SetMarker state="current" content="1" />
@@ -127,8 +143,8 @@ export const Columns: Story = {
 export const ColumnsNoMax: Story = {
   args: {
     ...Columns.args,
-    caption: undefined,
-    maxButton: <Button view="flat-danger" size="xs" startIcon={<Icon data={Plus} />} content="Максимум" />,
+    caption: false,
+    maxButton: true,
   },
 }
 

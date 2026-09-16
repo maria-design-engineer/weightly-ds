@@ -138,24 +138,20 @@
   pointer-events: none;
 }
 
+/*
+ * Растворение идёт от края сразу, без плотной кромки: крайние значения ленты
+ * должны просвечивать и истаивать, а не срезаться — мастер `set-panel-columns`,
+ * где в окне видно пять значений. Сплошная кромка нужна была горизонтальному
+ * барабану в рамке, здесь рамки нет.
+ */
 .w-set-panel__wheel-column::before {
   top: 0;
-  background: linear-gradient(
-    to bottom,
-    var(--w-base-simple-hover-solid) 0,
-    var(--w-base-simple-hover-solid) var(--w-g-spacing-6),
-    transparent 100%
-  );
+  background: linear-gradient(to bottom, var(--w-base-simple-hover-solid) 0, transparent 100%);
 }
 
 .w-set-panel__wheel-column::after {
   bottom: 0;
-  background: linear-gradient(
-    to top,
-    var(--w-base-simple-hover-solid) 0,
-    var(--w-base-simple-hover-solid) var(--w-g-spacing-6),
-    transparent 100%
-  );
+  background: linear-gradient(to top, var(--w-base-simple-hover-solid) 0, transparent 100%);
 }
 
 /* Заголовки блоков и подпись процента стоят по середине панели. */
