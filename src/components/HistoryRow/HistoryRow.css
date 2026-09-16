@@ -1,7 +1,9 @@
 /*
- * Custom / history-row. Снято обходом мастера Figma 03.09.2026:
- * 328 × 64, радиус 16, поля 12/16, промежуток 8, заливка Base Float/Float,
- * тень card-shadow/card (new). Заголовок Header/Subheader 2, подпись Text/Body 1.
+ * Custom / history-row. Снято обходом мастера Figma 03.09.2026, мастер пересобран
+ * 16.09.2026 (`50626:9630`): 328 × 64, радиус 16, поля 12/16, промежуток 8,
+ * заливка Base Float/Float. Тень снята, справа встал шеврон 16, заведена ось
+ * наведения — `Base/Simple Hover`.
+ * Заголовок Header/Subheader 2, подпись Text/Body 3.
  */
 .w-history-row {
   box-sizing: border-box;
@@ -10,10 +12,42 @@
   display: flex;
   align-items: center;
   gap: var(--w-g-spacing-2);
+  border: 0;
   padding: var(--w-g-spacing-3) var(--w-g-spacing-4);
   border-radius: var(--w-xl-radius);
   background: var(--w-base-float-float-bg);
-  box-shadow: var(--w-card-shadow-card-new);
+  text-align: left;
+}
+
+.w-history-row_action {
+  cursor: pointer;
+}
+
+/* Наведение есть только там, где оно настоящее: на телефоне `:hover` залипает. */
+@media (hover: hover) {
+  .w-history-row_action:hover {
+    background: var(--w-base-simple-hover-solid);
+  }
+}
+
+/*
+ * Нажатие — тот же отклик, что у шапки профиля и строки настроек: на телефоне
+ * это единственный ответ на касание, `State=Pressed`.
+ */
+.w-history-row_action:active {
+  background: var(--w-base-simple-hover-solid);
+}
+
+.w-history-row_action:focus-visible {
+  outline: var(--w-focus-ring-width) solid var(--w-focus-ring-color);
+  outline-offset: 1px;
+}
+
+/* Шеврон справа — брендовый, как у строки настроек; мастер 16.09.2026. */
+.w-history-row__chevron {
+  display: inline-flex;
+  flex: none;
+  color: var(--w-branding-base-brand);
 }
 
 .w-history-row__text {

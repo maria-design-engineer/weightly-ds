@@ -1,9 +1,10 @@
 import type { ReactNode } from 'react'
 
-import { CloudSlash } from '@gravity-ui/icons'
+import { ChevronRight, CloudSlash } from '@gravity-ui/icons'
 
 import { Icon } from '../Icon/Icon'
 
+import '../focus.css'
 import './HistoryRow.css'
 
 export type HistoryRowProps = {
@@ -17,18 +18,31 @@ export type HistoryRowProps = {
   offline?: boolean
   /** Подпись значка «без сети» для чтения с экрана. */
   offlineLabel?: string
+  /** Строка открывает тренировку. Не передано — строка не нажимается. */
+  onClick?: () => void
+  /** Что откроется по нажатию — подпись для чтения с экрана. */
+  ariaLabel?: string
 }
 
-/** Строка истории: дата, числа и плашка интенсивности справа. */
+/**
+ * Строка истории: дата, числа, плашка интенсивности и шеврон справа — мастер
+ * `50626:9630`, пересобран 16.09.2026: тень снята, добавлен шеврон, заведено
+ * состояние наведения.
+ *
+ * Нажимаемая строка — кнопка, ненажимаемая — блок: строка без действия нажиматься
+ * не должна вовсе. Так же устроена шапка профиля.
+ */
 export function HistoryRow({
   content,
   caption,
   mark,
   offline = false,
   offlineLabel = 'Тренировка ещё не выгружена',
+  onClick,
+  ariaLabel,
 }: HistoryRowProps) {
-  return (
-    <div className="w-history-row">
+  const inside = (
+    <>
       <span className="w-history-row__text">
         <span className="w-history-row__title">{content}</span>
         {caption ? <span className="w-history-row__caption">{caption}</span> : null}
@@ -39,6 +53,22 @@ export function HistoryRow({
         </span>
       ) : null}
       {mark}
-    </div>
+      <span className="w-history-row__chevron">
+        <Icon data={ChevronRight} size={16} />
+      </span>
+    </>
+  )
+
+  if (!onClick) return <div className="w-history-row">{inside}</div>
+
+  return (
+    <button
+      className="w-history-row w-history-row_action"
+      type="button"
+      aria-label={ariaLabel}
+      onClick={onClick}
+    >
+      {inside}
+    </button>
   )
 }
