@@ -13,6 +13,11 @@
   /* Когда отметку растягивают на ширину колонки, значок и номер стоят по центру. */
   justify-content: center;
   width: fit-content;
+  /*
+   * Высота 34 — число мастера. Своим числом, а не полями: строка `Text/Body 3` выше
+   * 18, и с полями 8 отметка выходила 36. Решение пользователя 16.09.2026.
+   */
+  height: 34px;
   gap: var(--w-g-spacing-1);
   padding: var(--w-g-spacing-2);
   border: 1px solid var(--w-line-generic);
