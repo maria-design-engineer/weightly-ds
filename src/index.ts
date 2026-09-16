@@ -274,3 +274,7 @@ export type {
   SegmentedRadioGroupSize,
   SegmentedRadioGroupWidth,
 } from './components/SegmentedRadioGroup/constants'
+
+// Срез 6, личный кабинет: шапка профиля.
+export { ProfileHeader } from './components/ProfileHeader/ProfileHeader'
+export type { ProfileHeaderProps } from './components/ProfileHeader/ProfileHeader'

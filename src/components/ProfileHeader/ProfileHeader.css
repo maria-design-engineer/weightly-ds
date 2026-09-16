@@ -1,0 +1,45 @@
+/*
+ * Product / profile-header. Снято с мастера `50585:61042` 16.09.2026: 328 × 140,
+ * радиус 16, колонка по центру, промежуток 8, поля 16 сверху и снизу. Значок 50 —
+ * `Avatar` размера XL, имя `Header/Header 2`, почта `Text/Body 3`.
+ * Ось State: наведение красит шапку `Base/Simple Hover`.
+ */
+.w-profile-header {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--w-g-spacing-2);
+  width: 100%;
+  border: 0;
+  padding: var(--w-g-spacing-4) 0;
+  border-radius: var(--w-xl-radius);
+  background: none;
+  text-align: center;
+}
+
+.w-profile-header_action {
+  cursor: pointer;
+}
+
+/* Наведение есть только там, где оно настоящее: на телефоне `:hover` залипает после нажатия. */
+@media (hover: hover) {
+  .w-profile-header_action:hover {
+    background: var(--w-base-simple-hover);
+  }
+}
+
+.w-profile-header_action:focus-visible {
+  outline: var(--w-focus-ring-width) solid var(--w-focus-ring-color);
+  outline-offset: 1px;
+}
+
+.w-profile-header__name {
+  font: var(--w-style-header-header-2);
+  color: var(--w-text-primary);
+}
+
+.w-profile-header__email {
+  font: var(--w-style-text-body-3);
+  color: var(--w-text-secondary);
+}
