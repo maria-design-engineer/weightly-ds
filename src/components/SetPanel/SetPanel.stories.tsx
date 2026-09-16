@@ -8,7 +8,6 @@ import { LiftCounter } from '../LiftCounter/LiftCounter'
 import { LiftCounters } from '../LiftCounters/LiftCounters'
 import { SetMarker } from '../SetMarker/SetMarker'
 import { WeightWheel } from '../WeightWheel/WeightWheel'
-import { SET_PANEL_STATES } from './constants'
 import { SetPanel, type SetPanelProps } from './SetPanel'
 
 /** Шкала веса: от 40 до 200 килограммов с шагом полкило. */
@@ -17,50 +16,98 @@ const VALUES = Array.from({ length: 321 }, (_, index) => {
   return { whole: String(Math.trunc(value)), fraction: value % 1 === 0 ? '.0' : '.5' }
 })
 
-const MARKERS = (
-  <>
-    <SetMarker state="current" content="1" />
-    <SetMarker state="planned" content="2" />
-    <SetMarker state="planned" content="3" />
-    <SetMarker state="planned" content="4" />
-    <SetMarker state="planned" content="5" />
-  </>
-)
-
 const MAX_BUTTON = <Button view="flat-danger" size="xs" startIcon={<Icon data={Plus} />} content="Максимум" />
 
 /**
- * Свойства историй. Подпись и кнопка максимума включаются тумблерами, как булевые
- * `Caption` и `Max button` в ките: в панели свойств витрины видно то же, что в Figma.
- * В компонент едет содержимое.
+ * Свойства историй — те же, что у мастера в Figma и в том же порядке: вид панели,
+ * `Set 3`…`Set 5`, `Max button`, `Caption`. Содержимое — отметки, барабан, счётчики —
+ * собирает сама история: в панели свойств витрины его не правят.
  */
-type PanelArgs = Omit<SetPanelProps, 'caption' | 'maxButton'> & {
-  caption?: boolean
+type PanelArgs = {
+  view?: SetPanelProps['view']
+  set3?: boolean
+  set4?: boolean
+  set5?: boolean
   maxButton?: boolean
+  caption?: boolean
+  state?: SetPanelProps['state']
+  /** Отметок больше пяти — для истории с прокруткой ряда. */
+  manySets?: boolean
+}
+
+function markersOf({ set3, set4, set5, manySets }: PanelArgs) {
+  const orders = manySets
+    ? [2, 3, 4, 5, 6, 7, 8]
+    : [2, ...(set3 ? [3] : []), ...(set4 ? [4] : []), ...(set5 ? [5] : [])]
+  return (
+    <>
+      <SetMarker state="current" content="1" />
+      {orders.map((order) => (
+        <SetMarker key={order} state="planned" content={String(order)} />
+      ))}
+    </>
+  )
 }
 
 const meta = {
   title: 'Product components/SetPanel',
   component: SetPanel,
   argTypes: {
-    state: { control: 'inline-radio', options: SET_PANEL_STATES },
-    view: { control: 'inline-radio', options: ['panel', 'columns'] },
-    caption: { control: 'boolean' },
-    maxButton: { control: 'boolean' },
-    markers: { control: false },
-    wheel: { control: false },
-    lifts: { control: false },
-    emptyAction: { control: false },
+    view: { name: 'Property 1', control: 'inline-radio', options: ['panel', 'columns'] },
+    set3: { name: 'Set 3', control: 'boolean' },
+    set4: { name: 'Set 4', control: 'boolean' },
+    set5: { name: 'Set 5', control: 'boolean' },
+    maxButton: { name: 'Max button', control: 'boolean' },
+    caption: { name: 'Caption', control: 'boolean' },
+    state: { table: { disable: true } },
+    manySets: { table: { disable: true } },
   },
   args: {
-    title: 'Подход',
+    view: 'panel',
+    set3: true,
+    set4: false,
+    set5: false,
+    maxButton: false,
     caption: true,
-    liftsTitle: 'Подъёмы',
-    emptyTitle: 'Подходов пока нет',
-    emptyCaption: 'Появятся, когда добавишь интенсивность',
+    state: 'default',
   },
-  render: ({ caption, maxButton, ...args }: PanelArgs) => (
-    <SetPanel {...args} caption={caption ? '50% от 123 кг' : undefined} maxButton={maxButton ? MAX_BUTTON : undefined} />
+  render: (args: PanelArgs) => (
+    <SetPanel
+      state={args.state}
+      view={args.view}
+      title="Подход"
+      markers={markersOf(args)}
+      onAddSet={() => {}}
+      caption={args.caption ? '50% от 123 кг' : undefined}
+      maxButton={args.maxButton ? MAX_BUTTON : undefined}
+      wheel={
+        <WeightWheel
+          direction={args.view === 'columns' ? 'vertical' : 'horizontal'}
+          values={VALUES}
+          selected={43}
+          ariaLabel="Вес подхода"
+        />
+      }
+      liftsTitle="Подъёмы"
+      lifts={
+        args.view === 'columns' ? (
+          <>
+            <LiftCounter content={3} />
+            <LiftCounter content={2} />
+            <LiftCounter content={2} />
+            <LiftCounter content={2} />
+          </>
+        ) : (
+          <LiftCounters>
+            <LiftCounter content={2} />
+            <LiftCounter content={3} />
+          </LiftCounters>
+        )
+      }
+      emptyTitle="Подходов пока нет"
+      emptyCaption="Появятся, когда добавишь интенсивность"
+      emptyAction={<Button view="normal-contrast" size="m" content="Добавить" />}
+    />
   ),
   decorators: [
     (Story) => (
@@ -74,86 +121,24 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-/** Панель с данными: пять отметок, барабан веса и два счётчика подъёмов. */
-export const Default: Story = {
-  args: {
-    state: 'default',
-    markers: MARKERS,
-    onAddSet: () => {},
-    maxButton: true,
-    wheel: <WeightWheel direction="horizontal" values={VALUES} selected={43} ariaLabel="Вес подхода" />,
-    lifts: (
-      <LiftCounters>
-        <LiftCounter content={2} />
-        <LiftCounter content={3} />
-      </LiftCounters>
-    ),
-  },
-}
+/** Панель рядами: отметки подходов, барабан веса и счётчики подъёмов. */
+export const Default: Story = {}
 
-/**
- * Подходов больше, чем влезает: восемь отметок. Ряд прокручивается вбок свайпом,
- * кнопка «плюс» не сжимается, первая отметка не уходит за левый край.
- */
-export const ManySets: Story = {
-  args: {
-    ...Default.args,
-    markers: (
-      <>
-        <SetMarker state="current" content="1" />
-        {[2, 3, 4, 5, 6, 7, 8].map((order) => (
-          <SetMarker key={order} state="planned" content={String(order)} />
-        ))}
-      </>
-    ),
-  },
-}
+/** Подходов больше, чем влезает: ряд прокручивается вбок, кнопка «плюс» не сжимается. */
+export const ManySets: Story = { args: { manySets: true } }
 
 /**
  * Три колонки — мастер `set-panel-columns`, узел `50561:55532`: отметки подходов
- * столбиком с «плюсом» в конце, барабан веса стоймя, счётчики подъёмов один
- * под другим, до четырёх.
+ * столбиком, барабан веса стоймя, счётчики подъёмов один под другим.
  */
-export const Columns: Story = {
-  args: {
-    ...Default.args,
-    view: 'columns',
-    /* Кнопка максимума и подпись в ките включаются порознь: здесь подпись. */
-    maxButton: false,
-    markers: (
-      <>
-        <SetMarker state="current" content="1" />
-        <SetMarker state="planned" content="2" />
-        <SetMarker state="planned" content="3" />
-      </>
-    ),
-    wheel: <WeightWheel direction="vertical" values={VALUES} selected={43} ariaLabel="Вес подхода" />,
-    lifts: (
-      <>
-        <LiftCounter content={3} />
-        <LiftCounter content={2} />
-        <LiftCounter content={2} />
-        <LiftCounter content={2} />
-      </>
-    ),
-  },
-}
+export const Columns: Story = { args: { view: 'columns' } }
 
 /** Те же колонки, когда максимум не внесён: вместо подписи кнопка «Максимум». */
 export const ColumnsNoMax: Story = {
-  args: {
-    ...Columns.args,
-    caption: false,
-    maxButton: true,
-  },
+  args: { view: 'columns', caption: false, maxButton: true },
 }
 
 /** Пустое состояние: интенсивность не задана, подходов нет. */
-export const Empty: Story = {
-  args: {
-    state: 'empty',
-    emptyAction: <Button view="normal-contrast" size="m" content="Добавить" />,
-  },
-}
+export const Empty: Story = { args: { state: 'empty' } }
 
-export const Playground: Story = { ...Default }
+export const Playground: Story = {}
