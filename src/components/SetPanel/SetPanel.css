@@ -22,7 +22,32 @@
   min-height: 404px;
   padding: 16px 16px 120px;
   border-radius: var(--w-2xl-radius) var(--w-2xl-radius) 0 0;
-  background: var(--w-base-simple-hover-solid);
+  background: var(--w-set-panel-bg);
+}
+
+/*
+ * Полоса интенсивности: панель красится заливкой полосы, выбранное значение барабана —
+ * её текстом. Те же полосы, что у `Custom / chip`: neutral до 70 процентов, lime с 70,
+ * pink с 90. Мастер 16.09.2026, узел `50562:56578`.
+ */
+.w-set-panel_band_neutral {
+  --w-set-panel-bg: var(--w-base-simple-hover-solid);
+}
+
+.w-set-panel_band_lime {
+  --w-set-panel-bg: var(--w-accent-lime-surface);
+}
+
+.w-set-panel_band_pink {
+  --w-set-panel-bg: var(--w-accent-pink-surface);
+}
+
+.w-set-panel_band_lime .w-weight-wheel-item_state_active {
+  color: var(--w-accent-lime-text);
+}
+
+.w-set-panel_band_pink .w-weight-wheel-item_state_active {
+  color: var(--w-accent-pink-text);
 }
 
 .w-set-panel__block {
@@ -34,7 +59,7 @@
 /*
  * Раскладка в три колонки — мастер `set-panel-columns`, узел `50561:55532`:
  * подходы 58, вес 98, подъёмы 140, промежуток 16. Поля 16, снизу 112 — запас под
- * нижнюю панель. Колонка 248 в высоту, панель выходит 376: 16 + 248 + 112.
+ * нижнюю панель. Колонка 250 в высоту, панель выходит 378: 16 + 250 + 112.
  */
 .w-set-panel_view_columns {
   display: flex;
@@ -191,12 +216,12 @@
  */
 .w-set-panel__wheel-column::before {
   top: 0;
-  background: linear-gradient(to bottom, var(--w-base-simple-hover-solid) 0, transparent 100%);
+  background: linear-gradient(to bottom, var(--w-set-panel-bg) 0, transparent 100%);
 }
 
 .w-set-panel__wheel-column::after {
   bottom: 0;
-  background: linear-gradient(to top, var(--w-base-simple-hover-solid) 0, transparent 100%);
+  background: linear-gradient(to top, var(--w-set-panel-bg) 0, transparent 100%);
 }
 
 /* Заголовки блоков и подпись процента стоят по середине панели. */

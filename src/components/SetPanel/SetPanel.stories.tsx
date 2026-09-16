@@ -8,6 +8,7 @@ import { LiftCounter } from '../LiftCounter/LiftCounter'
 import { LiftCounters } from '../LiftCounters/LiftCounters'
 import { SetMarker } from '../SetMarker/SetMarker'
 import { WeightWheel } from '../WeightWheel/WeightWheel'
+import { SET_PANEL_BANDS } from './constants'
 import { SetPanel, type SetPanelProps } from './SetPanel'
 
 /** Шкала веса: от 40 до 200 килограммов с шагом полкило. */
@@ -19,12 +20,14 @@ const VALUES = Array.from({ length: 321 }, (_, index) => {
 const MAX_BUTTON = <Button view="flat-danger" size="xs" startIcon={<Icon data={Plus} />} content="Максимум" />
 
 /**
- * Свойства историй — те же, что у мастера в Figma и в том же порядке: вид панели,
- * `Set 3`…`Set 5`, `Max button`, `Caption`. Содержимое — отметки, барабан, счётчики —
- * собирает сама история: в панели свойств витрины его не правят.
+ * Свойства историй — то, что правят у мастера: вид панели, полоса интенсивности,
+ * число подходов и подъёмов, `Max button`, `Caption`. Содержимое — отметки, барабан,
+ * счётчики — собирает сама история.
  */
 type PanelArgs = {
   view?: SetPanelProps['view']
+  /** Полоса интенсивности: серая, лаймовая, розовая. */
+  band?: SetPanelProps['band']
   /** Подходов в зоне — от одного до пяти, решение пользователя 16.09.2026. */
   sets?: number
   /** Счётчиков подъёмов — по движению связки, от одного до четырёх. */
@@ -62,6 +65,7 @@ const meta = {
    */
   argTypes: {
     view: { name: 'Property 1', control: 'inline-radio', options: ['panel', 'columns'] },
+    band: { name: 'Band', control: 'inline-radio', options: SET_PANEL_BANDS },
     /* Подходов до пяти, движений до четырёх — модель, решение пользователя 16.09.2026. */
     sets: { name: 'Подходы', control: { type: 'range', min: 1, max: 5, step: 1 } },
     lifts: { name: 'Подъёмы', control: { type: 'range', min: 1, max: 4, step: 1 } },
@@ -72,6 +76,7 @@ const meta = {
   },
   args: {
     view: 'panel',
+    band: 'neutral',
     sets: 3,
     lifts: 2,
     maxButton: false,
@@ -82,6 +87,7 @@ const meta = {
     <SetPanel
       state={args.state}
       view={args.view}
+      band={args.band}
       title="Подход"
       markers={markersOf(args)}
       onAddSet={() => {}}

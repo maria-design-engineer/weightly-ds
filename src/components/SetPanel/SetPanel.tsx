@@ -5,7 +5,7 @@ import { Plus } from '@gravity-ui/icons'
 import { Button } from '../Button/Button'
 import { Icon } from '../Icon/Icon'
 import { Picture } from '../Picture/Picture'
-import type { SetPanelState } from './constants'
+import type { SetPanelBand, SetPanelState } from './constants'
 import './SetPanel.css'
 
 export type SetPanelProps = {
@@ -17,6 +17,8 @@ export type SetPanelProps = {
    * узел `50561:55532`).
    */
   view?: 'panel' | 'columns'
+  /** Figma Band — полоса интенсивности: серая, лаймовая или розовая. */
+  band?: SetPanelBand
   /** Заголовок блока подходов. */
   title?: ReactNode
   /**
@@ -53,6 +55,7 @@ export type SetPanelProps = {
 export function SetPanel({
   state = 'default',
   view = 'panel',
+  band = 'neutral',
   title,
   markers,
   onAddSet,
@@ -66,9 +69,11 @@ export function SetPanel({
   emptyCaption,
   emptyAction,
 }: SetPanelProps) {
+  const band_ = `w-set-panel_band_${band}`
+
   if (state === 'empty') {
     return (
-      <div className="w-set-panel">
+      <div className={`w-set-panel ${band_}`}>
         <div className="w-set-panel__empty">
           <Picture type="empty-badge" />
           <div className="w-set-panel__empty-text">
@@ -97,7 +102,7 @@ export function SetPanel({
    */
   if (view === 'columns') {
     return (
-      <div className="w-set-panel w-set-panel_view_columns">
+      <div className={`w-set-panel w-set-panel_view_columns ${band_}`}>
         <div className="w-set-panel__column w-set-panel__column_sets">
           <span className="w-set-panel__column-title">{title}</span>
           <div className="w-set-panel__markers-column">
@@ -124,7 +129,7 @@ export function SetPanel({
   }
 
   return (
-    <div className="w-set-panel">
+    <div className={`w-set-panel ${band_}`}>
       <div className="w-set-panel__block">
         <span className="w-set-panel__title">{title}</span>
         <div className="w-set-panel__markers">
