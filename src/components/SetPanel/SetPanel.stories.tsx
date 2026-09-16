@@ -25,9 +25,10 @@ const MAX_BUTTON = <Button view="flat-danger" size="xs" startIcon={<Icon data={P
  */
 type PanelArgs = {
   view?: SetPanelProps['view']
-  set3?: boolean
-  set4?: boolean
-  set5?: boolean
+  /** Подходов в зоне — от одного до пяти, решение пользователя 16.09.2026. */
+  sets?: number
+  /** Счётчиков подъёмов — по движению связки, от одного до четырёх. */
+  lifts?: number
   maxButton?: boolean
   caption?: boolean
   state?: SetPanelProps['state']
@@ -35,10 +36,8 @@ type PanelArgs = {
   manySets?: boolean
 }
 
-function markersOf({ set3, set4, set5, manySets }: PanelArgs) {
-  const orders = manySets
-    ? [2, 3, 4, 5, 6, 7, 8]
-    : [2, ...(set3 ? [3] : []), ...(set4 ? [4] : []), ...(set5 ? [5] : [])]
+function markersOf({ sets = 1, manySets }: PanelArgs) {
+  const orders = manySets ? [2, 3, 4, 5, 6, 7, 8] : Array.from({ length: Math.max(0, sets - 1) }, (_, at) => at + 2)
   return (
     <>
       <SetMarker state="current" content="1" />
@@ -49,14 +48,23 @@ function markersOf({ set3, set4, set5, manySets }: PanelArgs) {
   )
 }
 
+/** Счётчик на движение связки: первое на трёх подъёмах, остальные на двух. */
+function liftsOf({ lifts = 1 }: PanelArgs) {
+  return Array.from({ length: lifts }, (_, at) => <LiftCounter key={at} content={at === 0 ? 3 : 2} />)
+}
+
 const meta = {
   title: 'Product components/SetPanel',
-  component: SetPanel,
+  /*
+   * Компонент здесь не объявлен нарочно: иначе витрина вытаскивает в панель свойств
+   * все его пропы — содержимое отметок, барабана и счётчиков, — которые в ней не правят.
+   * Правятся только свойства мастера: вид, число подходов и подъёмов, подпись, кнопка.
+   */
   argTypes: {
     view: { name: 'Property 1', control: 'inline-radio', options: ['panel', 'columns'] },
-    set3: { name: 'Set 3', control: 'boolean' },
-    set4: { name: 'Set 4', control: 'boolean' },
-    set5: { name: 'Set 5', control: 'boolean' },
+    /* Подходов до пяти, движений до четырёх — модель, решение пользователя 16.09.2026. */
+    sets: { name: 'Подходы', control: { type: 'range', min: 1, max: 5, step: 1 } },
+    lifts: { name: 'Подъёмы', control: { type: 'range', min: 1, max: 4, step: 1 } },
     maxButton: { name: 'Max button', control: 'boolean' },
     caption: { name: 'Caption', control: 'boolean' },
     state: { table: { disable: true } },
@@ -64,9 +72,8 @@ const meta = {
   },
   args: {
     view: 'panel',
-    set3: true,
-    set4: false,
-    set5: false,
+    sets: 3,
+    lifts: 2,
     maxButton: false,
     caption: true,
     state: 'default',
@@ -89,21 +96,7 @@ const meta = {
         />
       }
       liftsTitle="Подъёмы"
-      lifts={
-        args.view === 'columns' ? (
-          <>
-            <LiftCounter content={3} />
-            <LiftCounter content={2} />
-            <LiftCounter content={2} />
-            <LiftCounter content={2} />
-          </>
-        ) : (
-          <LiftCounters>
-            <LiftCounter content={2} />
-            <LiftCounter content={3} />
-          </LiftCounters>
-        )
-      }
+      lifts={args.view === 'columns' ? <>{liftsOf(args)}</> : <LiftCounters>{liftsOf(args)}</LiftCounters>}
       emptyTitle="Подходов пока нет"
       emptyCaption="Появятся, когда добавишь интенсивность"
       emptyAction={<Button view="normal-contrast" size="m" content="Добавить" />}
@@ -131,7 +124,7 @@ export const ManySets: Story = { args: { manySets: true } }
  * Три колонки — мастер `set-panel-columns`, узел `50561:55532`: отметки подходов
  * столбиком, барабан веса стоймя, счётчики подъёмов один под другим.
  */
-export const Columns: Story = { args: { view: 'columns' } }
+export const Columns: Story = { args: { view: 'columns', sets: 5, lifts: 4 } }
 
 /** Те же колонки, когда максимум не внесён: вместо подписи кнопка «Максимум». */
 export const ColumnsNoMax: Story = {
