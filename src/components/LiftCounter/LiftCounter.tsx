@@ -43,12 +43,17 @@ export function LiftCounter({
 }: LiftCounterProps) {
   /* Кнопки 34 × 34 в обоих видах — мастер пересобран 16.09.2026, узел `50032:981`. */
   const size = 'm'
+  /*
+   * В панели кнопки белые и стоят прямо на заливке панели, своей подложки у счётчика
+   * нет: мастер 16.09.2026. В поле шторки всё как было — серые кнопки в рамке.
+   */
+  const buttonView = view === 'field' ? 'secondary' : 'normal-contrast'
 
   return (
     <div className={`w-lift-counter w-lift-counter_view_${view}`}>
       <div className="w-lift-counter__row">
         <Button
-          view="secondary"
+          view={buttonView}
           size={size}
           startIcon={<Icon data={Minus} />}
           ariaLabel={decreaseLabel ?? `Убавить ${label}`}
@@ -59,7 +64,7 @@ export function LiftCounter({
           {content}
         </span>
         <Button
-          view="secondary"
+          view={buttonView}
           size={size}
           startIcon={<Icon data={Plus} />}
           ariaLabel={increaseLabel ?? `Прибавить ${label}`}

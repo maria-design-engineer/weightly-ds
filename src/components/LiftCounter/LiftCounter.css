@@ -9,7 +9,8 @@
   width: 116px;
   padding: 4px;
   border-radius: var(--w-xl-radius);
-  background: var(--w-base-float-float-bg);
+  /* Своей подложки у счётчика нет: кнопки стоят прямо на заливке панели. */
+  background: none;
 }
 
 .w-lift-counter__row {
