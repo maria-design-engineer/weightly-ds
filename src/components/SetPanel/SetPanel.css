@@ -33,9 +33,8 @@
 
 /*
  * Раскладка в три колонки — мастер `set-panel-columns`, узел `50561:55532`:
- * подходы 58, вес 98, подъёмы 140, промежуток 16. Поля 16, снизу 96 — запас под
- * нижнюю панель: 88 её высоты и 8 полей. Своей высоты панель не держит, ряды
- * колонок стоят на 204 мастера.
+ * подходы 58, вес 98, подъёмы 140, промежуток 16. Поля 16, снизу 112 — запас под
+ * нижнюю панель. Колонка 248 в высоту, панель выходит 376: 16 + 248 + 112.
  */
 .w-set-panel_view_columns {
   display: flex;
@@ -43,13 +42,18 @@
   flex-direction: row;
   gap: 16px;
   min-height: 0;
-  padding: 16px 16px 96px;
+  padding: 16px 16px 112px;
 }
 
+/*
+ * Колонка 248 — высота внутреннего блока мастера. Подпись 24, промежуток 12,
+ * остаток 212 забирает ряд: столбец отметок, барабан или счётчики.
+ */
 .w-set-panel__column {
   display: flex;
   flex-direction: column;
   gap: 12px;
+  height: 248px;
   min-width: 0;
 }
 
@@ -92,10 +96,11 @@
  */
 .w-set-panel__markers-column {
   display: flex;
+  flex: 1 1 auto;
   flex-direction: column;
   align-items: center;
   gap: 4px;
-  height: 204px;
+  min-height: 0;
   overflow-y: auto;
   scrollbar-width: none;
 }
@@ -116,9 +121,10 @@
 .w-set-panel__wheel-column {
   position: relative;
   display: flex;
+  flex: 1 1 auto;
   align-items: center;
   justify-content: center;
-  height: 204px;
+  min-height: 0;
   overflow: hidden;
 }
 
