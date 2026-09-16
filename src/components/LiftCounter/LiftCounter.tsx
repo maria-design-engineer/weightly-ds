@@ -41,7 +41,8 @@ export function LiftCounter({
   decreaseLabel,
   increaseLabel,
 }: LiftCounterProps) {
-  const size = view === 'field' ? 'm' : 'l'
+  /* Кнопки 34 × 34 в обоих видах — мастер пересобран 16.09.2026, узел `50032:981`. */
+  const size = 'm'
 
   return (
     <div className={`w-lift-counter w-lift-counter_view_${view}`}>

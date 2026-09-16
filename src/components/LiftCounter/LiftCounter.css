@@ -1,11 +1,12 @@
 /*
- * Product / lift-counter. Снято обходом мастера кита 09.09.2026: счётчик 140 × 50,
- * поля 4, радиус XL, заливка Base Float/Float. Внутри ряд с промежутком 8:
- * две кнопки 42 × 42 радиусом L и число Header/Header 1 цветом Text/Primary.
+ * Product / lift-counter. Мастер пересобран 16.09.2026, узел `50032:981`:
+ * счётчик 116 × 42, поля 4, радиус XL, заливка Base Float/Float. Внутри ряд
+ * с промежутком 4: две кнопки 34 × 34 и число шириной 32. Было 140 × 50
+ * с кнопками 42 и промежутком 8.
  */
 .w-lift-counter {
   box-sizing: border-box;
-  width: 140px;
+  width: 116px;
   padding: 4px;
   border-radius: var(--w-xl-radius);
   background: var(--w-base-float-float-bg);
@@ -14,7 +15,7 @@
 .w-lift-counter__row {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 4px;
 }
 
 .w-lift-counter__value {
