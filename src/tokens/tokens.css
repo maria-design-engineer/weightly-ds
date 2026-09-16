@@ -289,7 +289,8 @@
   --w-branding-base-dark-hover: #333333;
   --w-accent-pink: #f425c7;
   --w-accent-pink-surface: rgba(244, 37, 199, 0.07);
-  --w-accent-pink-text: #a70083;
+  /* Тёмно-розовый текст плашек — решение пользователя 16.09.2026, было #a70083. */
+  --w-accent-pink-text: #88016b;
   --w-accent-green: #45d3a4;
   --w-accent-green-surface: rgba(69, 211, 164, 0.15);
   --w-accent-green-text: #07724e;
