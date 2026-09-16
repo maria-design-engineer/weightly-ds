@@ -134,13 +134,21 @@
  * за колонку, как в мастере, а не переносится и не растягивает ряд.
  */
 .w-set-panel__column-title {
+  box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  /* Промежуток 4 и поля 3 на 6 — мастер `Подпись · подходы`, снято 16.09.2026. */
+  gap: 4px;
   height: 24px;
+  padding: 3px 6px;
   white-space: nowrap;
-  font: var(--w-style-text-caption-1);
+  /*
+   * Подпись — `Text/Body 3`, 13 на 18: мастер 16.09.2026, до этого стоял
+   * `Text/Caption 1`. «Подходы» этим кеглем шире своей колонки и выходит за неё,
+   * как в мастере, — колонка держит ширину отметок, а не подписи.
+   */
+  font: var(--w-style-text-body-3);
   color: var(--w-text-secondary);
 }
 
