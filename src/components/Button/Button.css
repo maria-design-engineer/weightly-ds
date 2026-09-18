@@ -29,7 +29,14 @@
 }
 
 /* Size задаёт высоту, отступы, промежуток и радиус. */
-.w-button_size_xs { height: 24px; padding: 0 6px; gap: 4px; border-radius: var(--w-xs-radius); }
+/* Кегль XS — Text/Caption 1, правка кита 18.09.2026: был Text/Body 3. */
+.w-button_size_xs {
+  height: 24px;
+  padding: 0 6px;
+  gap: 4px;
+  border-radius: var(--w-xs-radius);
+  font: var(--w-style-text-caption-1);
+}
 .w-button_size_s { height: 28px; padding: 0 var(--w-g-spacing-2); gap: 4px; border-radius: var(--w-s-radius); }
 .w-button_size_m { height: 34px; padding: 0 var(--w-g-spacing-3); gap: var(--w-g-spacing-2); border-radius: var(--w-m-radius); }
 .w-button_size_l { height: 42px; padding: 0 var(--w-g-spacing-4); gap: var(--w-g-spacing-2); border-radius: var(--w-l-radius); }
@@ -57,10 +64,11 @@
 .w-button_view_primary { background: var(--w-branding-base-dark); color: var(--w-text-inverted-primary); }
 
 
-/* Raised: релиз 2 добавил к тени обводку Base/Generic внутрь. */
+/*
+ * Raised: обводка снята правкой кита 18.09.2026 — во всех пятидесяти вариантах
+ * осталась только тень `shadows/raised button`. Релиз 2 её добавлял, релиз 3 убрал.
+ */
 .w-button_view_raised {
-  border-width: 1px;
-  border-color: var(--w-base-generic);
   background: var(--w-base-float-float-bg);
   box-shadow: var(--w-shadows-raised-button);
 }
