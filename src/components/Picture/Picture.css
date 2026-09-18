@@ -1,7 +1,8 @@
 /*
- * Product / picture. Снято обходом мастеров кита 09.09.2026: круг 45 × 45,
- * поля 8, заливка Base/Selection — брендовый оранжевый 15%, значок 29 × 29
- * обводкой 2 на Branding/Base Brand. Радиус 100 в ките — способ сделать круг.
+ * Product / picture. Снято обходом мастеров кита 09.09.2026, знаки пересняты
+ * выгрузкой 18.09.2026: круг 45 × 45, заливка Base/Selection — брендовый
+ * оранжевый 15%, знак нарисован внутри компонента обводкой 2 на Branding/Base Brand.
+ * Поля у круга нет: рисунок живёт в своём поле 45 × 45, как в мастере.
  */
 .w-picture {
   display: inline-flex;
@@ -10,8 +11,12 @@
   box-sizing: border-box;
   width: 45px;
   height: 45px;
-  padding: 8px;
   border-radius: 50%;
   background: var(--w-branding-base-selection);
   color: var(--w-branding-base-brand);
+}
+
+.w-picture__drawing {
+  width: 100%;
+  height: 100%;
 }
