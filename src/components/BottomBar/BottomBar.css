@@ -5,10 +5,40 @@
  * по центру нижней полосы.
  */
 .w-bottom-bar {
+  position: relative;
   box-sizing: border-box;
   display: inline-flex;
   padding: 2px;
   border-radius: var(--w-xl-radius);
   background: var(--w-base-float-float-bg);
   box-shadow: var(--w-card-shadow-card-new);
+}
+
+/*
+ * Плашка текущей вкладки. Стоит на месте вкладки по её номеру и переезжает
+ * к нажатой: вкладки одной ширины, поэтому место считается умножением.
+ */
+.w-bottom-bar__pill {
+  position: absolute;
+  top: 2px;
+  bottom: 2px;
+  left: 2px;
+  z-index: 0;
+  width: var(--w-bottom-bar-item-width);
+  border-radius: 15px;
+  background: var(--w-branding-base-selection);
+  transform: translateX(calc(var(--w-bottom-bar-at, 0) * var(--w-bottom-bar-item-width)));
+  transition: transform 260ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  pointer-events: none;
+}
+
+/* Внутри панели заливку кладёт плашка — своей вкладке она не нужна. */
+.w-bottom-bar .w-bottom-bar-item::before {
+  content: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .w-bottom-bar__pill {
+    transition: none;
+  }
 }

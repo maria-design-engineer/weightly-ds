@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react'
+import type { CSSProperties, ReactNode } from 'react'
 
 import { BottomBarItem } from '../BottomBarItem/BottomBarItem'
 import type { BottomBarSection } from './constants'
@@ -34,8 +34,23 @@ export function BottomBar({
   tabs = BOTTOM_BAR_TABS,
   ariaLabel,
 }: BottomBarProps) {
+  /* Какая вкладка текущая — по её месту едет плашка. Нет такой — плашки нет. */
+  const activeAt = tabs.findIndex((tab) => tab.id === active)
+
   return (
     <nav className="w-bottom-bar" aria-label={ariaLabel}>
+      {/*
+        Заливка текущей вкладки — одна на панель: она переезжает к нажатой вкладке,
+        а не гаснет и загорается на месте. Просьба пользователя 18.09.2026.
+        Слой не читается и не нажимается: он краска.
+      */}
+      {activeAt >= 0 ? (
+        <span
+          className="w-bottom-bar__pill"
+          style={{ '--w-bottom-bar-at': activeAt } as CSSProperties}
+          aria-hidden="true"
+        />
+      ) : null}
       {tabs.map((tab) => (
         <BottomBarItem
           key={tab.id}

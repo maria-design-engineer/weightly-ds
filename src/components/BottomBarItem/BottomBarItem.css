@@ -4,6 +4,11 @@
  * State красит значок и подпись — Base/Brand против Text/Primary — и у текущей вкладки
  * кладёт заливку Base/Selection.
  */
+/* Ширина вкладки — одно число на вкладку и плашку панели: макет `49064:26938`. */
+:root {
+  --w-bottom-bar-item-width: 82px;
+}
+
 .w-bottom-bar-item {
   /* Голубую метку касания Android убираем: отклик даёт сам элемент. */
   -webkit-tap-highlight-color: transparent;
@@ -13,7 +18,7 @@
   align-items: center;
   justify-content: center;
   gap: 2px;
-  width: 82px;
+  width: var(--w-bottom-bar-item-width);
   padding: var(--w-g-spacing-1) var(--w-g-spacing-2);
   position: relative;
   border: 0;
