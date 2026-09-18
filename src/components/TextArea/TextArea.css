@@ -58,7 +58,15 @@
 }
 
 /* Size задаёт отступы и радиус, высота не меняется. */
-.w-text-area_size_s .w-text-area__box { padding: 5px var(--w-g-spacing-2); border-radius: var(--w-s-radius); }
+/*
+ * Размер S — текст и подсказка кеглем Text/Caption 1 (11), правка кита 18.09.2026:
+ * был Text/Body 3. Подсказка кегля не держит своего — берёт его от поля.
+ */
+.w-text-area_size_s .w-text-area__box {
+  padding: 5px var(--w-g-spacing-2);
+  border-radius: var(--w-s-radius);
+  font: var(--w-style-text-caption-1);
+}
 .w-text-area_size_m .w-text-area__box { padding: var(--w-g-spacing-2) var(--w-g-spacing-3); border-radius: var(--w-m-radius); }
 .w-text-area_size_l .w-text-area__box { padding: var(--w-g-spacing-3) var(--w-g-spacing-4); border-radius: var(--w-l-radius); }
 .w-text-area_size_xl .w-text-area__box { padding: var(--w-g-spacing-4) var(--w-g-spacing-6); border-radius: var(--w-xl-radius); }
