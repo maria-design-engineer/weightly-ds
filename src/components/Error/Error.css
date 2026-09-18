@@ -1,0 +1,32 @@
+/*
+ * Product / error — пустое состояние экрана: значок, заголовок, пояснение и кнопка.
+ * Снято с мастера `50732:19704` 18.09.2026: колонка по центру, промежуток 16,
+ * поля 32 сверху и снизу, 36 по бокам; заголовок Header/Header 3, пояснение
+ * Text/Body 3 цветом Text/Secondary.
+ */
+.w-error {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--w-g-spacing-4);
+  width: 100%;
+  padding: var(--w-g-spacing-8) 36px;
+  text-align: center;
+}
+
+.w-error__text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--w-g-spacing-4);
+}
+
+.w-error__title {
+  font: var(--w-style-header-header-3);
+  color: var(--w-text-primary);
+}
+
+.w-error__message {
+  font: var(--w-style-text-body-3);
+  color: var(--w-text-secondary);
+}

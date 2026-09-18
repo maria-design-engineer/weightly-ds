@@ -1,12 +1,22 @@
-import { Clock, FaceNeutralDashed } from '@gravity-ui/icons'
+import { Clock, CloudSlash, FaceNeutralDashed, Hammer } from '@gravity-ui/icons'
 
 import { Icon } from '../Icon/Icon'
 import type { PictureType } from './constants'
 import './Picture.css'
 
-const ICONS = { 'empty-badge': FaceNeutralDashed, time: Clock }
+const ICONS = {
+  'empty-badge': FaceNeutralDashed,
+  disconect: CloudSlash,
+  fix: Hammer,
+  time: Clock,
+}
 
-const TITLES = { 'empty-badge': 'Пусто', time: 'Время' }
+const TITLES = {
+  'empty-badge': 'Пусто',
+  disconect: 'Нет связи',
+  fix: 'Чиним',
+  time: 'Время',
+}
 
 export type PictureProps = {
   /** Figma Type — пустое состояние или время. */

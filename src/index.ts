@@ -184,6 +184,8 @@ export type { ExerciseCardState, ExerciseCardType, ExerciseCardView } from './co
 
 export { Icon } from './components/Icon/Icon'
 
+export { ErrorState } from './components/Error/Error'
+export type { ErrorStateProps } from './components/Error/Error'
 export { Picture } from './components/Picture/Picture'
 export type { PictureProps } from './components/Picture/Picture'
 export { PICTURE_TYPES } from './components/Picture/constants'
