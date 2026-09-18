@@ -5,20 +5,20 @@
  * Имя темы и имя токена расходятся: тема Success красится токенами Positive.
  */
 /*
- * Раскладка вертикальная и по центру: значок сверху, под ним заголовок, текст
- * и кнопки. Правка кита 13.09.2026 — до неё значок стоял слева, а содержимое
- * прижималось к левому краю.
+ * Раскладка вертикальная, содержимое прижато к левому краю: значок сверху, под ним
+ * заголовок, текст и кнопки. Пересснято с мастера `53623:196774` 18.09.2026 —
+ * до этого содержимое стояло по центру, правка кита 13.09.2026.
  */
 .w-alert {
   position: relative;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   /* Промежуток между значком и содержимым — 8. */
   gap: var(--w-g-spacing-2);
   padding: var(--w-g-spacing-4) var(--w-g-spacing-5);
-  text-align: center;
+  text-align: left;
   border: 0 solid transparent;
   /* Текст сообщения — Text/Body 1 цветом Text/Complementary. Пересснято 03.09.2026. */
   color: var(--w-text-complementary);
@@ -26,11 +26,10 @@
 }
 
 /*
- * Corners=Rounded — радиус XL radius; Squared — радиуса нет.
- * Правка кита 11.09.2026: у всех двадцати четырёх вариантов скругление
- * привязано к `XL radius` (16), было `L radius` (12).
+ * Corners=Rounded — радиус 2XL radius (20); Squared — радиуса нет. Пересснято
+ * с мастера 18.09.2026, было `XL radius` (16).
  */
-.w-alert_corners_rounded { border-radius: var(--w-xl-radius); }
+.w-alert_corners_rounded { border-radius: var(--w-2xl-radius); }
 .w-alert_corners_squared { border-radius: 0; }
 
 /* View=Filled — заливка по теме, обводки нет. */
@@ -91,7 +90,7 @@
   flex-direction: column;
   /* Промежуток между заголовком и текстом — 8. Правка кита 13.09.2026, было 4. */
   gap: var(--w-g-spacing-2);
-  align-items: center;
+  align-items: flex-start;
   min-width: 0;
 }
 
@@ -107,11 +106,13 @@
  * их вставляет: по макету верхняя — `normal-contrast`, вторая и третья — `flat`,
  * все размера `xl`.
  */
+/* Кнопки прижаты к правому краю — мастер `.Content`, «Buttons in row». */
 .w-alert__actions {
   display: flex;
   flex: none;
   gap: var(--w-g-spacing-3);
   align-self: stretch;
+  justify-content: flex-end;
 }
 
 .w-alert__actions_column {
