@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react'
+import type { MouseEvent, ReactNode } from 'react'
 
 import type { BottomBarItemState } from './constants'
 import './BottomBarItem.css'
@@ -12,7 +12,11 @@ export type BottomBarItemProps = {
   icon?: ReactNode
   /** Адрес раздела: нижняя навигация меняет раздел, а не панель. */
   href?: string
-  onClick?: () => void
+  /**
+   * Нажатие. Событие приходит целиком: продукт, который ведёт переходы сам,
+   * отменяет им переход браузера — иначе страница грузится заново.
+   */
+  onClick?: (event: MouseEvent<HTMLAnchorElement | HTMLButtonElement>) => void
 }
 
 /**

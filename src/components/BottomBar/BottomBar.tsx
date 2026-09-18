@@ -1,4 +1,4 @@
-import type { CSSProperties, ReactNode } from 'react'
+import type { CSSProperties, MouseEvent, ReactNode } from 'react'
 
 import { BottomBarItem } from '../BottomBarItem/BottomBarItem'
 import type { BottomBarSection } from './constants'
@@ -13,7 +13,7 @@ export type BottomBarTab = {
   icon: ReactNode
   /** Адрес раздела — нижняя навигация меняет раздел, а не панель. */
   href?: string
-  onClick?: () => void
+  onClick?: (event: MouseEvent<HTMLAnchorElement | HTMLButtonElement>) => void
 }
 
 export type BottomBarProps = {
