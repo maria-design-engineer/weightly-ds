@@ -69,7 +69,12 @@
 }
 .w-text-area_size_m .w-text-area__box { padding: var(--w-g-spacing-2) var(--w-g-spacing-3); border-radius: var(--w-m-radius); }
 .w-text-area_size_l .w-text-area__box { padding: var(--w-g-spacing-3) var(--w-g-spacing-4); border-radius: var(--w-l-radius); }
-.w-text-area_size_xl .w-text-area__box { padding: var(--w-g-spacing-4) var(--w-g-spacing-6); border-radius: var(--w-xl-radius); }
+/* Размер XL — кегль Text/Body 2 (15), как у поля ввода и списка: решение пользователя 18.09.2026. */
+.w-text-area_size_xl .w-text-area__box {
+  padding: var(--w-g-spacing-4) var(--w-g-spacing-6);
+  border-radius: var(--w-xl-radius);
+  font: var(--w-style-text-body-2);
+}
 
 /* View=Clear — без рамки и заливки, боковых отступов нет, высота остаётся 102. */
 .w-text-area_view_clear .w-text-area__box {
