@@ -22,7 +22,12 @@ const meta = {
     onSelect: { control: false },
   },
   args: {
-    unit: 'кг', values: VALUES, selected: 43, ariaLabel: 'Вес подхода', errorText: 'Вес не задан' },
+    unit: 'кг',
+    values: VALUES,
+    selected: 43,
+    ariaLabel: 'Вес подхода',
+    errorText: 'Вес не задан',
+  },
   decorators: [
     (Story) => (
       <div style={{ width: 328 }}>
