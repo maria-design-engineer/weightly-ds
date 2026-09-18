@@ -26,23 +26,43 @@ const meta = {
   component: Alert,
   decorators: [
     (Story) => (
-      <div style={{ width: 487 }}>
+      <div style={{ width: 328 }}>
         <Story />
       </div>
     ),
   ],
+  /*
+   * Порядок и имена настроек — как в панели Figma у мастера `53623:196774`:
+   * Theme, View, Corners, Close button, Icon (optional), затем Content — Layout,
+   * Content text, Title text, Show buttons. Сортировку выключаем, иначе витрина
+   * выстраивает их по алфавиту и с китом не сходится. Просьба пользователя
+   * 18.09.2026. Всё, чего в панели кита нет, из настроек убрано.
+   */
+  parameters: { controls: { sort: 'none', exclude: ['closeLabel'] } },
   argTypes: {
-    theme: { control: 'select', options: ALERT_THEMES },
-    view: { control: 'inline-radio', options: ALERT_VIEWS },
-    corners: { control: 'inline-radio', options: ALERT_CORNERS },
-    layout: { control: 'inline-radio', options: ALERT_LAYOUTS },
+    theme: { name: 'Theme', control: 'select', options: ALERT_THEMES },
+    view: { name: 'View', control: 'inline-radio', options: ALERT_VIEWS },
+    corners: { name: 'Corners', control: 'inline-radio', options: ALERT_CORNERS },
     // Содержимое переключателем не задаётся, поэтому булев тумблер подменяет его целиком.
     // В ките это ровно те же булевы свойства: Show buttons, Close button, Icon (optional).
-    actions: { control: 'boolean', mapping: { true: ACTIONS, false: undefined } },
-    onClose: { control: 'boolean', mapping: { true: () => {}, false: undefined } },
-    icon: { control: 'boolean', mapping: { true: ALERT_ICON, false: undefined } },
+    onClose: {
+      name: 'Close button',
+      control: 'boolean',
+      mapping: { true: () => {}, false: undefined },
+    },
+    icon: { name: 'Icon (optional)', control: 'boolean', mapping: { true: ALERT_ICON, false: undefined } },
+    layout: { name: 'Layout', control: 'inline-radio', options: ALERT_LAYOUTS },
+    message: { name: 'Content text', control: 'text' },
+    title: { name: 'Title text', control: 'text' },
+    actions: { name: 'Show buttons', control: 'boolean', mapping: { true: ACTIONS, false: undefined } },
+    closeLabel: { control: false },
   },
+  /* Состояние по умолчанию — как в панели кита: Normal, Outlined, Rounded, всё включено. */
   args: {
+    theme: 'normal',
+    view: 'outlined',
+    corners: 'rounded',
+    layout: 'row',
     title: 'Тренировка не сохранена',
     message: 'Соединение прервалось. Повторите отправку.',
   },
@@ -52,7 +72,7 @@ export default meta
 
 type Story = StoryObj<typeof meta>
 
-/** Кнопки, значок и крестик включаются тумблерами `actions`, `icon` и `onClose`. */
+/** Кнопки, значок и крестик включаются тумблерами «Show buttons», «Icon», «Close button». */
 export const Playground: Story = {
   args: { icon: ALERT_ICON, actions: ACTIONS, onClose: () => {} },
 }
