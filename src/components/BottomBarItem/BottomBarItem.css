@@ -1,7 +1,8 @@
 /*
- * Custom / bottom-bar-item. Снято обходом мастеров Figma 03.09.2026:
- * 104 × 52, поля 6/0, промежуток 4, значок 20, подпись Text/Caption 2.
- * State красит значок и подпись: Base/Brand против Text/Primary.
+ * Custom / bottom-bar-item. Снято с мастера `49064:26938`, правка макета 18.09.2026:
+ * 82 в ширину, поля 4 и 8, промежуток 2, радиус 15, значок 20, подпись Text/Caption 2.
+ * State красит значок и подпись — Base/Brand против Text/Primary — и у текущей вкладки
+ * кладёт заливку Base/Selection.
  */
 .w-bottom-bar-item {
   /* Голубую метку касания Android убираем: отклик даёт сам элемент. */
@@ -11,10 +12,11 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: var(--w-g-spacing-1);
-  width: 104px;
-  padding: 6px 0;
+  gap: 2px;
+  width: 82px;
+  padding: var(--w-g-spacing-1) var(--w-g-spacing-2);
   border: 0;
+  border-radius: 15px;
   background: none;
   font: var(--w-style-text-caption-1);
   /* Вкладка с адресом приходит ссылкой, и подчёркивание ей не нужно: на макете
@@ -24,7 +26,10 @@
   cursor: pointer;
 }
 
-.w-bottom-bar-item_state_active { color: var(--w-branding-base-brand); }
+.w-bottom-bar-item_state_active {
+  color: var(--w-branding-base-brand);
+  background: var(--w-branding-base-selection);
+}
 .w-bottom-bar-item_state_inactive { color: var(--w-text-primary); }
 
 .w-bottom-bar-item__icon {

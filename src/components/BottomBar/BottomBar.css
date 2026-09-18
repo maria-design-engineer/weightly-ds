@@ -1,20 +1,14 @@
 /*
- * Custom / bottom-bar. Снято обходом мастеров Figma 03.09.2026:
- * 328 × 68, поля 8, промежуток 0, радиус 16, заливка Base Float/Float BG,
- * тень card-shadow/card (new). Вкладки делят ширину поровну.
+ * Custom / bottom-bar. Снято с мастера `49372:48049`, правка макета 18.09.2026:
+ * поле 2, промежуток 0, радиус 16, заливка Base Float/Float BG, тень card-shadow/card
+ * (new). Панель ужимается по вкладкам и не тянется во всю ширину: на макете она стоит
+ * по центру нижней полосы.
  */
 .w-bottom-bar {
   box-sizing: border-box;
-  display: flex;
-  width: 100%;
-  padding: var(--w-g-spacing-2);
+  display: inline-flex;
+  padding: 2px;
   border-radius: var(--w-xl-radius);
   background: var(--w-base-float-float-bg);
   box-shadow: var(--w-card-shadow-card-new);
-}
-
-/* В мастере вкладка стоит на FILL: ширина 104 приходит от панели, а не от себя. */
-.w-bottom-bar .w-bottom-bar-item {
-  flex: 1;
-  width: auto;
 }
