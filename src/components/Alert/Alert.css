@@ -166,6 +166,9 @@
   top: var(--w-g-spacing-4);
   right: var(--w-g-spacing-5);
   display: inline-flex;
+  /* Высота как у рамки значка — 34: так их середины совпадают, а не только верх. */
+  height: 34px;
+  align-items: center;
   flex: none;
   color: var(--w-text-secondary);
 }
