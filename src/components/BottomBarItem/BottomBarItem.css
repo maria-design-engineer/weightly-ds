@@ -83,7 +83,8 @@
     transition: none;
   }
 }
-.w-bottom-bar-item_state_inactive { color: var(--w-text-primary); }
+/* Прочие вкладки — Text/Secondary, правка макета 18.09.2026, мастер `49064:26939`. */
+.w-bottom-bar-item_state_inactive { color: var(--w-text-secondary); }
 
 .w-bottom-bar-item__icon {
   display: inline-flex;
