@@ -1,21 +1,29 @@
 /*
- * Product / profile-header. Снято с мастера `50585:61042` 16.09.2026: 328 × 140,
- * радиус 16, колонка по центру, промежуток 8, поля 16 сверху и снизу. Значок 50 —
- * `Avatar` размера XL, имя `Header/Header 2`, почта `Text/Body 3`.
- * Ось State: наведение красит шапку `Base/Simple Hover`.
+ * Product / profile-header. Пересснято с мастера `50585:61042` 18.09.2026: строка,
+ * значок слева, справа имя и почта столбиком с промежутком 4; промежуток между
+ * значком и текстом 8, поля 2 со всех сторон и 16 справа, скругление полное.
+ * Было — колонка по центру, радиус 16. Значок 50 — `Avatar` размера XL,
+ * имя `Header/Header 2`, почта `Text/Body 3`. Ось State: наведение красит шапку
+ * `Base/Simple Hover`.
  */
 .w-profile-header {
   box-sizing: border-box;
   display: flex;
-  flex-direction: column;
   align-items: center;
   gap: var(--w-g-spacing-2);
-  width: 100%;
   border: 0;
-  padding: var(--w-g-spacing-4) 0;
-  border-radius: var(--w-xl-radius);
+  padding: 2px var(--w-g-spacing-4) 2px 2px;
+  border-radius: 999px;
   background: none;
-  text-align: center;
+  text-align: left;
+}
+
+/* Имя и почта столбиком — рамка «Текст» мастера. */
+.w-profile-header__text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--w-g-spacing-1);
+  min-width: 0;
 }
 
 .w-profile-header_action {

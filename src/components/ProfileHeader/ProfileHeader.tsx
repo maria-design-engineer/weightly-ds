@@ -17,9 +17,9 @@ export type ProfileHeaderProps = {
 }
 
 /**
- * Шапка профиля: значок, имя и почта колонкой по центру — мастер
- * `Product / profile-header`, `50585:61042`. Ось State: наведение красит шапку
- * `Base/Simple Hover`, радиус 16.
+ * Шапка профиля: значок слева, справа имя и почта — мастер
+ * `Product / profile-header`, `50585:61042`, пересснят 18.09.2026. Ось State:
+ * наведение красит шапку `Base/Simple Hover`, скругление полное.
  *
  * Нажимаемая — кнопка, ненажимаемая — обычный блок: выключенная кнопка на экране
  * выглядит как рабочая, а шапка без действия нажиматься не должна вовсе.
@@ -28,8 +28,10 @@ export function ProfileHeader({ avatar, name, email, onClick, ariaLabel }: Profi
   const content = (
     <>
       {avatar}
-      <span className="w-profile-header__name">{name}</span>
-      <span className="w-profile-header__email">{email}</span>
+      <span className="w-profile-header__text">
+        <span className="w-profile-header__name">{name}</span>
+        <span className="w-profile-header__email">{email}</span>
+      </span>
     </>
   )
 
