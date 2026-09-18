@@ -13,11 +13,12 @@ const ALERT_ICON = <Icon data={CircleInfo} size={18} />
 const ACTIONS = (
   <>
     {/*
-      Кнопки alert: верхняя — `normal-contrast`, следующие — `flat`, размер `xl`
-      (высота 52). Правка кита 13.09.2026: до неё они стояли в строку, размером `s`.
+      Кнопки alert — как в мастере `.Content`: второстепенные `flat-secondary`,
+      главная `flat`, размер `l`. Пересснято 18.09.2026; до этого главная была
+      `normal-contrast` размера `xl`.
     */}
-    <Button view="normal-contrast" size="xl" content="Повторить" />
-    <Button view="flat" size="xl" content="Отмена" />
+    <Button view="flat-secondary" size="l" content="Повторить" />
+    <Button view="flat" size="l" content="Отмена" />
   </>
 )
 
