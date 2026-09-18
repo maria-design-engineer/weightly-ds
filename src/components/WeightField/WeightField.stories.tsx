@@ -16,11 +16,13 @@ const meta = {
   title: 'Product components/WeightField',
   component: WeightField,
   argTypes: {
+    unit: { control: 'text' },
     state: { control: 'inline-radio', options: WEIGHT_FIELD_STATES },
     values: { control: false },
     onSelect: { control: false },
   },
-  args: { values: VALUES, selected: 43, ariaLabel: 'Вес подхода', errorText: 'Вес не задан' },
+  args: {
+    unit: 'кг', values: VALUES, selected: 43, ariaLabel: 'Вес подхода', errorText: 'Вес не задан' },
   decorators: [
     (Story) => (
       <div style={{ width: 328 }}>

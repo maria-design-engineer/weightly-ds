@@ -64,3 +64,18 @@
   font: var(--w-style-text-body-3);
   color: var(--w-text-danger);
 }
+
+/*
+ * Единица у выбранного значения — мастер `49876:23485`. Стоит справа от числа
+ * и по середине поля: 44 от середины — половина самого широкого значения плюс
+ * промежуток.
+ */
+.w-weight-field__unit {
+  position: absolute;
+  top: 50%;
+  left: calc(50% + 44px);
+  transform: translateY(-50%);
+  font: var(--w-style-text-body-3);
+  color: var(--w-text-secondary);
+  pointer-events: none;
+}

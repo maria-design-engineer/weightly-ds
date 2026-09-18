@@ -18,6 +18,11 @@ export type WeightFieldProps = {
   errorText?: ReactNode
   /** Подпись поля для чтения с экрана. */
   ariaLabel?: string
+  /**
+   * Единица у выбранного значения — «кг» в мастере `49876:23485`, правка макета
+   * 18.09.2026. Не передали — подписи нет: барабан бывает и не про вес.
+   */
+  unit?: ReactNode
 }
 
 /**
@@ -32,6 +37,7 @@ export function WeightField({
   onSelect,
   errorText,
   ariaLabel,
+  unit,
 }: WeightFieldProps) {
   return (
     <div className="w-weight-field">
@@ -43,6 +49,16 @@ export function WeightField({
           onSelect={onSelect}
           ariaLabel={ariaLabel}
         />
+        {/*
+          Единица стоит рядом с выбранным значением и вместе с ним по середине
+          поля. Читать её отдельно нечего: значение барабана уже названо подписью
+          поля, поэтому от скринридера она скрыта.
+        */}
+        {unit ? (
+          <span className="w-weight-field__unit" aria-hidden="true">
+            {unit}
+          </span>
+        ) : null}
         {/* Растворения краёв — часть поля, а не барабана: барабан внутри едет целиком. */}
         <span className="w-weight-field__fade w-weight-field__fade_top" aria-hidden="true" />
         <span className="w-weight-field__fade w-weight-field__fade_bottom" aria-hidden="true" />
