@@ -19,7 +19,12 @@
   gap: var(--w-g-spacing-2);
   padding: var(--w-g-spacing-4) var(--w-g-spacing-5);
   text-align: left;
-  border: 0 solid transparent;
+  /*
+   * Рамка стоит всегда и у заливки прозрачна: в мастере обводка 1 внутрь, и поля
+   * у обоих видов одни. Разная толщина рамки двигала содержимое на переключении —
+   * находка пользователя 18.09.2026.
+   */
+  border: 1px solid transparent;
   /* Текст сообщения — Text/Body 1 цветом Text/Complementary. Пересснято 03.09.2026. */
   color: var(--w-text-complementary);
   font: var(--w-style-text-body-3);
@@ -32,7 +37,19 @@
 .w-alert_corners_rounded { border-radius: var(--w-2xl-radius); }
 .w-alert_corners_squared { border-radius: 0; }
 
-/* View=Filled — заливка по теме, обводки нет. */
+/*
+ * Обводка стоит у обоих видов, толщина одна — 1, меняется только цвет: у заливки
+ * `<тема> Light`, у обводки `<тема> Medium Hover`. Пересснято с мастера 18.09.2026:
+ * до этого у заливки обводки не было вовсе, и на переключении содержимое дёргалось.
+ */
+.w-alert_view_filled.w-alert_theme_normal { border-color: var(--w-base-semantic-neutral-light); }
+.w-alert_view_filled.w-alert_theme_info { border-color: var(--w-base-semantic-info-light); }
+.w-alert_view_filled.w-alert_theme_success { border-color: var(--w-base-semantic-positive-light); }
+.w-alert_view_filled.w-alert_theme_warning { border-color: var(--w-base-semantic-warning-light); }
+.w-alert_view_filled.w-alert_theme_danger { border-color: var(--w-base-semantic-danger-light); }
+.w-alert_view_filled.w-alert_theme_utility { border-color: var(--w-base-semantic-utility-light); }
+
+/* View=Filled — заливка по теме. */
 .w-alert_view_filled.w-alert_theme_normal { background: var(--w-base-semantic-misc-light-solid); }
 .w-alert_view_filled.w-alert_theme_info { background: var(--w-base-semantic-info-light-solid); }
 .w-alert_view_filled.w-alert_theme_success { background: var(--w-base-semantic-positive-light-solid); }
@@ -40,14 +57,13 @@
 .w-alert_view_filled.w-alert_theme_danger { background: var(--w-base-semantic-danger-light-solid); }
 .w-alert_view_filled.w-alert_theme_utility { background: var(--w-base-semantic-utility-light-solid); }
 
-/* View=Outlined — заливки нет, обводка 1 по теме. */
-.w-alert_view_outlined { border-width: 2px; }
-.w-alert_view_outlined.w-alert_theme_normal { border-color: var(--w-line-misc); }
-.w-alert_view_outlined.w-alert_theme_info { border-color: var(--w-line-info); }
-.w-alert_view_outlined.w-alert_theme_success { border-color: var(--w-line-positive); }
-.w-alert_view_outlined.w-alert_theme_warning { border-color: var(--w-line-warning); }
-.w-alert_view_outlined.w-alert_theme_danger { border-color: var(--w-line-danger); }
-.w-alert_view_outlined.w-alert_theme_utility { border-color: var(--w-line-utility); }
+/* View=Outlined — заливки нет, обводка 1 по теме: мастер, обводка внутрь. */
+.w-alert_view_outlined.w-alert_theme_normal { border-color: var(--w-base-semantic-neutral-medium-hover); }
+.w-alert_view_outlined.w-alert_theme_info { border-color: var(--w-base-semantic-info-medium-hover); }
+.w-alert_view_outlined.w-alert_theme_success { border-color: var(--w-base-semantic-positive-medium-hover); }
+.w-alert_view_outlined.w-alert_theme_warning { border-color: var(--w-base-semantic-warning-medium-hover); }
+.w-alert_view_outlined.w-alert_theme_danger { border-color: var(--w-base-semantic-danger-medium-hover); }
+.w-alert_view_outlined.w-alert_theme_utility { border-color: var(--w-base-semantic-utility-medium-hover); }
 
 /*
  * Значок 18 — в ките вписан числом. Вокруг него место: 8 сверху и снизу, 4 по бокам,
@@ -67,7 +83,7 @@
 .w-alert_theme_normal .w-alert__icon { color: var(--w-text-secondary); }
 .w-alert_theme_info .w-alert__icon { color: var(--w-text-info); }
 .w-alert_theme_success .w-alert__icon { color: var(--w-text-positive); }
-.w-alert_theme_warning .w-alert__icon { color: var(--w-text-warning); }
+.w-alert_theme_warning .w-alert__icon { color: var(--w-line-warning); }
 .w-alert_theme_danger .w-alert__icon { color: var(--w-text-danger); }
 .w-alert_theme_utility .w-alert__icon { color: var(--w-text-utility-heavy); }
 

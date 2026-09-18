@@ -59,8 +59,15 @@ const meta = {
     actions: { name: 'Show buttons', control: 'boolean', mapping: { true: ACTIONS, false: undefined } },
     closeLabel: { control: false },
   },
-  /* Состояние по умолчанию — как в панели кита: Normal, Outlined, Rounded, всё включено. */
+  /*
+   * Состояние по умолчанию — как в панели кита: Normal, Outlined, Rounded, всё
+   * включено. Значок, крестик и кнопки стоят у всех историй: оси видно целиком,
+   * а не на голой плите. Просьба пользователя 18.09.2026.
+   */
   args: {
+    icon: ALERT_ICON,
+    actions: ACTIONS,
+    onClose: () => {},
     theme: 'normal',
     view: 'outlined',
     corners: 'rounded',
