@@ -61,6 +61,18 @@
 }
 
 /*
+ * Цвет значка задаёт тема — так в мастере Figma: Success красится Text/Positive,
+ * Normal — Text/Secondary и так далее. Без этого значок брал цвет текста рядом
+ * и в зелёном alert стоял чёрным. Находка пользователя 18.09.2026.
+ */
+.w-alert_theme_normal .w-alert__icon { color: var(--w-text-secondary); }
+.w-alert_theme_info .w-alert__icon { color: var(--w-text-info); }
+.w-alert_theme_success .w-alert__icon { color: var(--w-text-positive); }
+.w-alert_theme_warning .w-alert__icon { color: var(--w-text-warning); }
+.w-alert_theme_danger .w-alert__icon { color: var(--w-text-danger); }
+.w-alert_theme_utility .w-alert__icon { color: var(--w-text-utility-heavy); }
+
+/*
  * Кнопки всегда под текстом: оси Layout в ките нет, проп убран приёмкой
  * релиза 0.1.0 — строка 4 этапа 15.
  */
