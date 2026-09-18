@@ -1,7 +1,8 @@
 /*
  * Product / error — пустое состояние экрана: значок, заголовок, пояснение и кнопка.
  * Снято с мастера `50732:19704` 18.09.2026: колонка по центру, промежуток 16,
- * поля 32 сверху и снизу, 36 по бокам; заголовок Header/Header 3, пояснение
+ * поля 32 сверху и снизу, 36 по бокам; заголовок 20 полужирным — `Header/Header 2`,
+ * пояснение
  * Text/Body 3 цветом Text/Secondary.
  */
 .w-error {
@@ -22,7 +23,7 @@
 }
 
 .w-error__title {
-  font: var(--w-style-header-header-3);
+  font: var(--w-style-header-header-2);
   color: var(--w-text-primary);
 }
 
