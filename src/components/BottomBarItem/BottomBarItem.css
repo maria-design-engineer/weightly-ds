@@ -15,6 +15,7 @@
   gap: 2px;
   width: 82px;
   padding: var(--w-g-spacing-1) var(--w-g-spacing-2);
+  position: relative;
   border: 0;
   border-radius: 15px;
   background: none;
@@ -26,9 +27,56 @@
   cursor: pointer;
 }
 
-.w-bottom-bar-item_state_active {
-  color: var(--w-branding-base-brand);
+/*
+ * Заливка текущей вкладки живёт отдельным слоем, а не фоном кнопки: слой можно
+ * растить из середины, и переключение вкладки видно движением, а не подменой
+ * цвета. Просьба пользователя 18.09.2026.
+ */
+.w-bottom-bar-item::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
   background: var(--w-branding-base-selection);
+  opacity: 0;
+  transform: scale(0.6);
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease;
+  pointer-events: none;
+}
+
+.w-bottom-bar-item_state_active::before {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Содержимое стоит над слоем заливки. */
+.w-bottom-bar-item > * {
+  position: relative;
+  z-index: 1;
+}
+
+.w-bottom-bar-item_state_active { color: var(--w-branding-base-brand); }
+
+/* Нажатие видно сдвигом внутрь — то же правило отклика, что у кнопок. */
+.w-bottom-bar-item:active {
+  transform: scale(0.96);
+}
+
+.w-bottom-bar-item {
+  transition:
+    color 180ms ease,
+    transform 120ms ease;
+}
+
+/* Кому движение мешает — его нет. */
+@media (prefers-reduced-motion: reduce) {
+  .w-bottom-bar-item,
+  .w-bottom-bar-item::before {
+    transition: none;
+  }
 }
 .w-bottom-bar-item_state_inactive { color: var(--w-text-primary); }
 
