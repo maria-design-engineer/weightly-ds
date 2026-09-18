@@ -18,6 +18,7 @@ const ACTIONS = (
       `normal-contrast` размера `xl`.
     */}
     <Button view="flat-secondary" size="l" content="Повторить" />
+    <Button view="flat-secondary" size="l" content="Позже" />
     <Button view="flat" size="l" content="Отмена" />
   </>
 )
@@ -73,7 +74,11 @@ export default meta
 
 type Story = StoryObj<typeof meta>
 
-/** Кнопки, значок и крестик включаются тумблерами «Show buttons», «Icon», «Close button». */
+/**
+ * Кнопки, значок и крестик включаются тумблерами «Show buttons», «Icon», «Close button».
+ * Кнопок здесь три — как в мастере: две второстепенные и главная. Не помещаются
+ * в строку — главная переносится под них, обе строки прижаты вправо.
+ */
 export const Playground: Story = {
   args: { icon: ALERT_ICON, actions: ACTIONS, onClose: () => {} },
 }
