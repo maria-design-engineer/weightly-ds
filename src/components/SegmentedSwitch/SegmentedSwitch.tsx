@@ -53,14 +53,22 @@ export function SegmentedSwitch({
     if (box === null) return
     const measure = () => {
       const button = box.querySelectorAll<HTMLElement>(':scope > .w-button')[at]
-      setPlace(button ? { left: button.offsetLeft, width: button.offsetWidth } : null)
+      const next = button ? { left: button.offsetLeft, width: button.offsetWidth } : null
+      /*
+       * Ставим, только если место сдвинулось: экран передаёт список кнопок новым
+       * массивом на каждой отрисовке, и замер без сверки гонял отрисовку по кругу —
+       * страница истории вставала намертво. Находка прогона 19.09.2026.
+       */
+      setPlace((was) =>
+        was?.left === next?.left && was?.width === next?.width ? was : next,
+      )
     }
     measure()
     /* Ширина кнопок меняется, когда догружается шрифт: плашка идёт за ними. */
     const observer = new ResizeObserver(measure)
     for (const button of box.querySelectorAll(':scope > .w-button')) observer.observe(button)
     return () => observer.disconnect()
-  }, [at, items, size])
+  }, [at, items.length, size])
 
   return (
     <div
