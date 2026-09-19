@@ -50,6 +50,7 @@ export function SegmentedSwitch({
           size={size === 's' ? 'xs' : 'm'}
           view={item.value === current ? 'raised' : 'flat-secondary'}
           content={item.content}
+          ariaLabel={item.ariaLabel}
           pressed={item.value === current}
           onClick={() => {
             if (item.value === current) return

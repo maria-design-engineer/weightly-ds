@@ -10,4 +10,6 @@ export type SegmentedSwitchSize = (typeof SEGMENTED_SWITCH_SIZES)[number]
 export type SegmentedSwitchItem = {
   value: string
   content: string
+  /** Подпись для чтения с экрана, когда на кнопке сокращение: «Неделя» у «Нед». */
+  ariaLabel?: string
 }
