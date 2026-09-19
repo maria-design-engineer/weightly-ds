@@ -71,7 +71,7 @@ export function Select({
   const labelledBy = labelId ? `${labelId} ${valueId}` : undefined
 
   /* Есть пункт со второй строкой — список шире поля и без предела в пять строк. */
-  const multiline = pickable.some((item) => item.type !== 'separator' && item.description !== undefined)
+  const multiline = pickable.some((item) => item.description !== undefined)
   const className = [
     'w-select',
     `w-select_size_${size}`,
