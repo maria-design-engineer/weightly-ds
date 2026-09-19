@@ -118,3 +118,28 @@ export const Counter: Story = {
     </Row>
   ),
 }
+
+/**
+ * `Type=Multiline` — вторая строка под подписью, кадр `1462:37362` продуктового
+ * файла: список упражнений над карточками истории. В закрытом поле — только подпись;
+ * список шире узкого поля и виден целиком.
+ */
+export const Multiline: Story = {
+  args: {
+    size: 's',
+    defaultValue: 'all',
+    items: [
+      { value: 'all', label: 'Все', description: 'Все упражнения' },
+      { value: 'snatch', label: 'Рывок', description: 'Все вариации' },
+      { value: 'jerk', label: 'Толчок', description: 'Все вариации + Подъём на грудь и толчок от груди' },
+      { value: 'snatchPull', label: 'Тяга рывковая', description: 'Все вариации' },
+      { value: 'cleanPull', label: 'Тяга толчковая', description: 'Все вариации' },
+      { value: 'squat', label: 'Приседания', description: 'На груди · На плечах' },
+    ],
+  },
+  render: (args) => (
+    <div style={{ width: 192 }}>
+      <Select {...args} />
+    </div>
+  ),
+}

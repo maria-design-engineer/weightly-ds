@@ -254,6 +254,36 @@
 }
 
 /*
+ * `Type=Multiline` — подпись и под ней вторая строка `Text/Secondary`, обе Body 3;
+ * строка растёт по тексту и переносится. Кадр `1462:37362` продуктового файла.
+ */
+.w-select__item-rows {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.w-select__item-rows .w-select__item-text {
+  white-space: normal;
+}
+
+.w-select__item-description {
+  color: var(--w-text-secondary);
+}
+
+/*
+ * Список со второй строкой — кадр `1462:37362`: плита 304 шире поля 192, и шесть
+ * пунктов видны целиком, без прокрутки. Предел в пять строк считался от строки 36
+ * и здесь не подходит. Ширина — не больше экрана без полей 16.
+ */
+.w-select__popup_multiline {
+  width: max(var(--anchor-width), min(304px, 100vw - 2 * var(--w-g-spacing-4)));
+  max-width: none;
+  max-height: var(--available-height);
+}
+
+/*
  * Слот `Secondary content` — метка справа: поля 6 и 3, радиус `XS radius`,
  * заливка `Base/Generic`. Нажатия у неё нет, это подпись к строке.
  */

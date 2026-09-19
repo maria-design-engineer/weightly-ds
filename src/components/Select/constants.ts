@@ -19,6 +19,12 @@ export type SelectItem =
       type?: 'item'
       value: string
       label: string
+      /**
+       * Figma Description — вторая строка пункта под подписью, `List-item`
+       * `Type=Multiline`: «Все вариации» под «Рывок». В закрытом поле не видна —
+       * там стоит только подпись. Кадр `1462:37362` продуктового файла.
+       */
+      description?: ReactNode
       /** Figma Start Icon — значок слева от подписи. */
       icon?: ReactNode
       /** Figma Secondary content — метка справа: «Своё» у своей основы. */

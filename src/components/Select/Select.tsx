@@ -70,11 +70,14 @@ export function Select({
   const labelId = fieldLabelId ?? (ariaLabel ? ownLabelId : undefined)
   const labelledBy = labelId ? `${labelId} ${valueId}` : undefined
 
+  /* Есть пункт со второй строкой — список шире поля и без предела в пять строк. */
+  const multiline = pickable.some((item) => item.type !== 'separator' && item.description !== undefined)
   const className = [
     'w-select',
     `w-select_size_${size}`,
     `w-select_view_${view}`,
     invalid ? 'w-select_invalid' : '',
+    multiline ? 'w-select_multiline' : '',
   ]
     .filter(Boolean)
     .join(' ')
@@ -136,7 +139,9 @@ export function Select({
             sideOffset={4}
             alignItemWithTrigger={false}
           >
-            <BaseSelect.Popup className="w-select__popup">
+            <BaseSelect.Popup
+              className={multiline ? 'w-select__popup w-select__popup_multiline' : 'w-select__popup'}
+            >
               {items.map((item) =>
                 item.type === 'separator' ? (
                   /* Строка `Type=Divider` кита: линия, отделяющая группу от группы. */
@@ -150,9 +155,19 @@ export function Select({
                     {item.icon === undefined ? null : (
                       <span className="w-select__item-icon">{item.icon}</span>
                     )}
-                    <BaseSelect.ItemText className="w-select__item-text">
-                      {item.label}
-                    </BaseSelect.ItemText>
+                    {item.description === undefined ? (
+                      <BaseSelect.ItemText className="w-select__item-text">
+                        {item.label}
+                      </BaseSelect.ItemText>
+                    ) : (
+                      /* `Type=Multiline`: подпись и под ней вторая строка. */
+                      <span className="w-select__item-rows">
+                        <BaseSelect.ItemText className="w-select__item-text">
+                          {item.label}
+                        </BaseSelect.ItemText>
+                        <span className="w-select__item-description">{item.description}</span>
+                      </span>
+                    )}
                     {/* Слот `Secondary content` — метка справа, «Своё» у своей основы. */}
                     {item.secondary === undefined ? null : (
                       <span className="w-select__item-secondary">{item.secondary}</span>
