@@ -27,6 +27,12 @@ export type ButtonProps = {
    * компонент не берёт, `aria-pressed` не выставляется.
    */
   selected?: boolean
+  /**
+   * Кнопка-переключатель: нажата или нет, читается с экрана как `aria-pressed`.
+   * Осью кита не является — нужна `SegmentedSwitch`, где вид выбранной кнопки
+   * задаёт `view`, а не `selected`.
+   */
+  pressed?: boolean
   onClick?: MouseEventHandler<HTMLButtonElement>
   /** Подпись для чтения с экрана, когда кнопка несёт только иконку. */
   ariaLabel?: string
@@ -51,6 +57,7 @@ export function Button({
   disabled,
   loading,
   selected,
+  pressed,
   onClick,
   ariaLabel,
   type,
@@ -83,6 +90,7 @@ export function Button({
       onClick={onClick}
       aria-label={ariaLabel}
       aria-busy={loading || undefined}
+      aria-pressed={pressed}
     >
       {startIcon}
       {content}

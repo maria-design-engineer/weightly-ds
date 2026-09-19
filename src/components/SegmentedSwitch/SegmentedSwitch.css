@@ -1,0 +1,17 @@
+/*
+ * Плашка на кнопках кита. Поля 2 и промежутка нет — профиль
+ * `product-components/segmented-switch.md`, раздел «Размеры». Радиус плашки
+ * на поле больше радиуса кнопки: S radius у S, L radius у L.
+ */
+.w-segmented-switch {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px;
+  background: var(--w-base-generic);
+}
+
+.w-segmented-switch_size_s { border-radius: var(--w-s-radius); }
+.w-segmented-switch_size_l { border-radius: var(--w-l-radius); }
+
+/* Кнопка не уже 40 — вписано числом в ките. */
+.w-segmented-switch .w-button { min-width: 40px; }

@@ -265,6 +265,10 @@ export type { DeleteZoneProps } from './components/DeleteZone/DeleteZone'
 export { DELETE_ZONE_STATES } from './components/DeleteZone/constants'
 export type { DeleteZoneState } from './components/DeleteZone/constants'
 
+export { SegmentedSwitch } from './components/SegmentedSwitch/SegmentedSwitch'
+export type { SegmentedSwitchProps } from './components/SegmentedSwitch/SegmentedSwitch'
+export { SEGMENTED_SWITCH_SIZES } from './components/SegmentedSwitch/constants'
+export type { SegmentedSwitchItem, SegmentedSwitchSize } from './components/SegmentedSwitch/constants'
 export { SegmentedRadioGroup } from './components/SegmentedRadioGroup/SegmentedRadioGroup'
 export type { SegmentedRadioGroupProps } from './components/SegmentedRadioGroup/SegmentedRadioGroup'
 export {
