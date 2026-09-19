@@ -4,6 +4,7 @@
  * на поле больше радиуса кнопки: S radius у S, L radius у L.
  */
 .w-segmented-switch {
+  position: relative;
   display: inline-flex;
   align-items: center;
   padding: 2px;
@@ -13,5 +14,48 @@
 .w-segmented-switch_size_s { border-radius: var(--w-s-radius); }
 .w-segmented-switch_size_l { border-radius: var(--w-l-radius); }
 
-/* Кнопка не уже 40 — вписано числом в ките. */
-.w-segmented-switch .w-button { min-width: 40px; }
+/* Кнопка не уже 40 — вписано числом в ките. Лежит над подложкой. */
+.w-segmented-switch > .w-button {
+  position: relative;
+  z-index: 1;
+  min-width: 40px;
+}
+
+/*
+ * Заливку и тень выбранной кнопки рисует общая подложка ниже: у самой кнопки
+ * их нет, иначе при переезде на старом месте мигала бы вторая белая кнопка.
+ */
+.w-segmented-switch > .w-button_view_raised {
+  background: none;
+  box-shadow: none;
+}
+
+/*
+ * Подложка выбранной — вид `Raised`: белая заливка и тень `shadows/raised button`,
+ * радиус кнопки своего размера. Переезжает к нажатой тем же ходом, что плашка
+ * нижней навигации.
+ */
+.w-segmented-switch__plate {
+  position: absolute;
+  top: 2px;
+  bottom: 2px;
+  left: 0;
+  z-index: 0;
+  width: var(--w-segmented-switch-width);
+  background: var(--w-base-float-float-bg);
+  box-shadow: var(--w-shadows-raised-button);
+  transform: translateX(var(--w-segmented-switch-left));
+  transition:
+    transform 260ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    width 260ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  pointer-events: none;
+}
+
+.w-segmented-switch_size_s .w-segmented-switch__plate { border-radius: var(--w-xs-radius); }
+.w-segmented-switch_size_l .w-segmented-switch__plate { border-radius: var(--w-m-radius); }
+
+@media (prefers-reduced-motion: reduce) {
+  .w-segmented-switch__plate {
+    transition: none;
+  }
+}
