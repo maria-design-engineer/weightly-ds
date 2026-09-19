@@ -29,9 +29,13 @@
 }
 
 /* Size задаёт высоту, отступы, промежуток и радиус. */
-/* Кегль XS — Text/Caption 1, правка кита 18.09.2026: был Text/Body 3. */
+/*
+ * Кегль XS — Text/Caption 1, правка кита 18.09.2026: был Text/Body 3.
+ * Высота в ките по содержимому: 3 + строка 16 + 3 = 22. Кнопка-значок XS
+ * осталась 24 × 24 — сверено по набору 19.09.2026.
+ */
 .w-button_size_xs {
-  height: 24px;
+  height: 22px;
   padding: 0 6px;
   gap: 4px;
   border-radius: var(--w-xs-radius);
@@ -43,7 +47,7 @@
 .w-button_size_xl { height: 52px; padding: 0 var(--w-g-spacing-6); gap: var(--w-g-spacing-3); border-radius: var(--w-xl-radius); font: var(--w-style-text-body-2); }
 
 /* Icon only=On — квадрат: у Size=M это 34 × 34. */
-.w-button_icon-only.w-button_size_xs { width: 24px; padding: 0; }
+.w-button_icon-only.w-button_size_xs { width: 24px; height: 24px; padding: 0; }
 .w-button_icon-only.w-button_size_s { width: 28px; padding: 0; }
 .w-button_icon-only.w-button_size_m { width: 34px; padding: 0; }
 .w-button_icon-only.w-button_size_l { width: 42px; padding: 0; }
