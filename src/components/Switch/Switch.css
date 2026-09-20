@@ -1,0 +1,107 @@
+/*
+ * Switch — профиль `ui-kit/components/switch.md`, набор `53131:64366`, страница
+ * `Switch 🅱`. Значения сверены с китом 20.09.2026.
+ *
+ * Дорожка `L` 42 × 24, кружок 18 с полем 3; `M` 36 × 20, кружок 16 с полем 2.
+ * Радиус 17 в обоих размерах — числом, токена под него в ките нет.
+ */
+.w-switch {
+  display: inline-flex;
+  align-items: flex-start;
+  /* Промежуток до подписи 8 в обоих размерах. */
+  gap: var(--w-g-spacing-2);
+  cursor: pointer;
+}
+
+.w-switch__control {
+  /* Голубую метку касания Android убираем: отклик даёт сам переключатель. */
+  -webkit-tap-highlight-color: transparent;
+  box-sizing: border-box;
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  width: 42px;
+  height: 24px;
+  border: 0;
+  border-radius: 17px;
+  padding: 0;
+  background: var(--w-base-generic-medium);
+  cursor: pointer;
+  transition: background 0.1s linear;
+}
+
+/* Наведение меняет только выключенную дорожку: у включённой его в ките нет. */
+.w-switch__control:hover {
+  background: var(--w-base-generic-medium-hover);
+}
+
+.w-switch__control[data-checked] {
+  background: var(--w-branding-base-brand);
+}
+
+/*
+ * Отключённый тумблер не гаснет: выключенный берёт свой цвет, включённый остаётся
+ * брендовым. Гаснет только подпись — ниже.
+ */
+.w-switch__control:disabled {
+  background: var(--w-base-generic-accent-disabled);
+  cursor: default;
+}
+
+.w-switch__control:disabled[data-checked] {
+  background: var(--w-branding-base-brand);
+}
+
+.w-switch__thumb {
+  display: block;
+  width: 18px;
+  height: 18px;
+  margin-left: 3px;
+  border-radius: 999px;
+  background: var(--w-branding-base-background);
+  transition: translate 0.1s linear;
+}
+
+/* Включённый `L` — кружок сдвигается с 3 на 21: 42 − 18 − 3. */
+.w-switch__thumb[data-checked] {
+  translate: 18px 0;
+}
+
+.w-switch__control_size_m {
+  width: 36px;
+  height: 20px;
+}
+
+.w-switch__control_size_m .w-switch__thumb {
+  width: 16px;
+  height: 16px;
+  margin-left: 2px;
+}
+
+/* Включённый `M` — кружок сдвигается с 2 на 18: 36 − 16 − 2. */
+.w-switch__control_size_m .w-switch__thumb[data-checked] {
+  translate: 16px 0;
+}
+
+/*
+ * Подпись лежит с полем 2 сверху — в ките под неё стоит распорка `Top padding`
+ * во фрейме `Label container`.
+ */
+.w-switch__label {
+  padding-top: 2px;
+  font: var(--w-style-text-body-2);
+  color: var(--w-text-primary);
+}
+
+.w-switch_size_m .w-switch__label {
+  font: var(--w-style-text-body-3);
+}
+
+/* Отключённое: подпись гаснет прозрачностью 0,5, цвет остаётся прежним. */
+.w-switch_disabled {
+  cursor: default;
+}
+
+.w-switch_disabled .w-switch__label {
+  opacity: 0.5;
+}

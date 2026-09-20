@@ -26,7 +26,7 @@ type DemoArgs = DrawerProps & {
 }
 
 const meta = {
-  title: 'Product components/Drawer',
+  title: 'Base UI/Drawer',
   /*
    * Компонент в `meta` не назван намеренно: тогда Storybook добавляет к таблице
    * свои строки из типов и ставит их своим порядком, а нам нужен порядок мастера.

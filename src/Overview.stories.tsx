@@ -56,11 +56,6 @@ import { LiftMark } from './components/LiftMark/LiftMark'
 import { LIFT_MARK_STATES } from './components/LiftMark/constants'
 import { LiftsCell } from './components/LiftsCell/LiftsCell'
 import { ScreenHeader } from './components/ScreenHeader/ScreenHeader'
-import { SegmentedRadioGroup } from './components/SegmentedRadioGroup/SegmentedRadioGroup'
-import {
-  SEGMENTED_RADIO_GROUP_SIZES,
-  SEGMENTED_RADIO_GROUP_WIDTHS,
-} from './components/SegmentedRadioGroup/constants'
 import { Select } from './components/Select/Select'
 import { SELECT_SIZES, SELECT_VIEWS } from './components/Select/constants'
 import { SetMarker } from './components/SetMarker/SetMarker'
@@ -109,12 +104,6 @@ import './tokens/index.css'
  * организмы. Фон и цвета из токенов, у каждого Mode своя история.
  * Примеры выдуманные: ни одного настоящего имени, адреса или суммы.
  */
-
-/** Вкладки движений связки — так ряд стоит в форме своего упражнения. */
-const MOVEMENT_OPTIONS = [
-  { value: 'first', content: 'Движение 1' },
-  { value: 'second', content: 'Движение 2' },
-]
 
 const SELECT_ITEMS = [
   { value: 'snatch', label: 'Рывок' },
@@ -351,53 +340,6 @@ function Base() {
           </Item>
           <Item label="counter" width={200}>
             <Select items={SELECT_ITEMS} placeholder="Упражнение" ariaLabel="Упражнение" counter={2} />
-          </Item>
-        </Axis>
-      </Component>
-
-      <Component kit="SegmentedRadioGroup" code="SegmentedRadioGroup">
-        <Axis name="Size · 4">
-          {SEGMENTED_RADIO_GROUP_SIZES.map((size) => (
-            <Item key={size} label={size} width={200}>
-              <SegmentedRadioGroup
-                size={size}
-                options={MOVEMENT_OPTIONS}
-                defaultValue="first"
-                ariaLabel="Движение упражнения"
-              />
-            </Item>
-          ))}
-        </Axis>
-        <Axis name="Width · 2">
-          {SEGMENTED_RADIO_GROUP_WIDTHS.map((width) => (
-            <Item key={width} label={width} width={240}>
-              <SegmentedRadioGroup
-                width={width}
-                options={MOVEMENT_OPTIONS}
-                defaultValue="first"
-                ariaLabel="Движение упражнения"
-              />
-            </Item>
-          ))}
-        </Axis>
-        <Axis name="State">
-          <Item label="disabled" width={200}>
-            <SegmentedRadioGroup
-              options={MOVEMENT_OPTIONS}
-              defaultValue="first"
-              ariaLabel="Движение упражнения"
-              disabled
-            />
-          </Item>
-          <Item label="counter" width={240}>
-            <SegmentedRadioGroup
-              options={[
-                { value: 'first', content: 'Движение 1', counter: 3 },
-                { value: 'second', content: 'Движение 2', counter: 1 },
-              ]}
-              defaultValue="first"
-              ariaLabel="Движение упражнения"
-            />
           </Item>
         </Axis>
       </Component>

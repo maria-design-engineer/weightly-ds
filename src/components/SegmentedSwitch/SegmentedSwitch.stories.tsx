@@ -24,12 +24,18 @@ type Args = {
 }
 
 const meta = {
-  title: 'Product components/SegmentedSwitch',
+  title: 'Base UI/SegmentedSwitch',
+  /* Порядок настроек — как оси мастера: `Item 1`-`Item 5` идут перед `Size`. */
   argTypes: {
+    'Item 1': { control: 'boolean' },
+    'Item 2': { control: 'boolean' },
+    'Item 3': { control: 'boolean' },
+    'Item 4': { control: 'boolean' },
+    'Item 5': { control: 'boolean' },
     size: { control: 'inline-radio', options: SEGMENTED_SWITCH_SIZES },
   },
   /* Как в мастере: включены первые три кнопки. */
-  args: { size: 's', 'Item 1': true, 'Item 2': true, 'Item 3': true, 'Item 4': false, 'Item 5': false },
+  args: { 'Item 1': true, 'Item 2': true, 'Item 3': true, 'Item 4': false, 'Item 5': false, size: 's' },
   render: (args) => {
     const items = ITEMS.filter((_, at) => args[`Item ${at + 1}` as keyof Args])
     /* Ключ пересаживает переключатель, когда меняется состав кнопок. */

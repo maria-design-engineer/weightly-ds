@@ -269,17 +269,6 @@ export { SegmentedSwitch } from './components/SegmentedSwitch/SegmentedSwitch'
 export type { SegmentedSwitchProps } from './components/SegmentedSwitch/SegmentedSwitch'
 export { SEGMENTED_SWITCH_SIZES } from './components/SegmentedSwitch/constants'
 export type { SegmentedSwitchItem, SegmentedSwitchSize } from './components/SegmentedSwitch/constants'
-export { SegmentedRadioGroup } from './components/SegmentedRadioGroup/SegmentedRadioGroup'
-export type { SegmentedRadioGroupProps } from './components/SegmentedRadioGroup/SegmentedRadioGroup'
-export {
-  SEGMENTED_RADIO_GROUP_SIZES,
-  SEGMENTED_RADIO_GROUP_WIDTHS,
-} from './components/SegmentedRadioGroup/constants'
-export type {
-  SegmentedRadioGroupOption,
-  SegmentedRadioGroupSize,
-  SegmentedRadioGroupWidth,
-} from './components/SegmentedRadioGroup/constants'
 
 // Срез 6, личный кабинет: шапка профиля.
 export { ProfileHeader } from './components/ProfileHeader/ProfileHeader'
