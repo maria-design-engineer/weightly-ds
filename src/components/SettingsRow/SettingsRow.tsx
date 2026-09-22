@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react'
+import { useId, type ReactNode } from 'react'
 
 import { ChevronRight } from '@gravity-ui/icons'
 
@@ -14,13 +14,26 @@ export type SettingsRowProps = {
   /** Figma Caption — подпись под названием. */
   caption?: ReactNode
   onClick?: () => void
+  /**
+   * Подпись для чтения с экрана — что делает нажатие: «Изменить свой вес». Название
+   * и подпись строки тогда читаются следом, описанием. Не передана — строка читается
+   * своим текстом.
+   */
+  ariaLabel?: string
 }
 
 /** Строка настройки или упражнения: текст слева, шеврон справа. */
-export function SettingsRow({ card = 'off', content, caption, onClick }: SettingsRowProps) {
+export function SettingsRow({ card = 'off', content, caption, onClick, ariaLabel }: SettingsRowProps) {
+  const textId = useId()
   return (
-    <button className={`w-settings-row w-settings-row_card_${card}`} type="button" onClick={onClick}>
-      <span className="w-settings-row__text">
+    <button
+      className={`w-settings-row w-settings-row_card_${card}`}
+      type="button"
+      onClick={onClick}
+      aria-label={ariaLabel}
+      aria-describedby={ariaLabel ? textId : undefined}
+    >
+      <span className="w-settings-row__text" id={textId}>
         <span className="w-settings-row__title">{content}</span>
         {caption ? <span className="w-settings-row__caption">{caption}</span> : null}
       </span>

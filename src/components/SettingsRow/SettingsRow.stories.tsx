@@ -12,6 +12,7 @@ const meta = {
     content: { control: 'text' },
     caption: { control: 'text' },
     onClick: { control: false },
+    ariaLabel: { table: { disable: true } },
   },
   args: { content: 'Рывок классический', caption: '78 кг · 12 мая' },
 } satisfies Meta<typeof SettingsRow>
