@@ -7,17 +7,18 @@ import { Icon } from '../Icon/Icon'
 import { Label } from '../Label/Label'
 import { WorkoutCard } from './WorkoutCard'
 
+/* Размер кнопок M — правка мастера `Actions=on` (`49086:34322`) 03.10.2026, был L. */
 const ACTIONS = (
   <>
     <Button
       view="flat"
-      size="l"
+      size="m"
       content="Пропустить"
       endIcon={<Icon data={ChevronsRight} size={16} />}
     />
     <Button
       view="primary-brand"
-      size="l"
+      size="m"
       content="Начать"
       endIcon={<Icon data={Play} size={16} />}
     />
