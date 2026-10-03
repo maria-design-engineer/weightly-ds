@@ -18,6 +18,17 @@ let stop: (() => void) | null = null
 
 const VARIABLE = '--w-keyboard-inset'
 
+/**
+ * Запас на системную панель над клавиатурой iPhone — ту, где стрелки «вверх-вниз»
+ * и галочка. В видимую часть окна она не входит: шторка вставала ровно над
+ * клавиатурой, а панель ложилась поверх её кнопок. Находка пользователя 03.10.2026,
+ * снимок в `bugs/sheet-button-under-keyboard`.
+ *
+ * Высота панели у Apple постоянная — 44 точки. Своей величины здесь нет: это размер
+ * системного элемента, а не продукта. Клавиатуры нет — запас не ставится.
+ */
+const KEYBOARD_BAR = 44
+
 function apply() {
   const view = window.visualViewport
   if (!view) return
@@ -27,7 +38,9 @@ function apply() {
    * пальцем, и тогда видимая часть меньше окна без всякой клавиатуры.
    */
   const hidden = window.innerHeight - view.height - view.offsetTop
-  const inset = Math.max(0, Math.round(hidden))
+  const keyboard = Math.max(0, Math.round(hidden))
+  /* Клавиатура открыта — поднимаем ещё и над панелью с её стрелками. */
+  const inset = keyboard > 0 ? keyboard + KEYBOARD_BAR : 0
   document.documentElement.style.setProperty(VARIABLE, `${inset}px`)
 }
 
