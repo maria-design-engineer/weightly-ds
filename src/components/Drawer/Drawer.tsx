@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 
 import { Drawer as BaseDrawer } from '@base-ui/react/drawer'
 
@@ -10,6 +10,7 @@ import { Icon } from '../Icon/Icon'
 
 import '../focus.css'
 import type { DrawerActions } from './constants'
+import { watchKeyboardInset } from './keyboard-inset'
 import './Drawer.css'
 
 export type DrawerProps = {
@@ -73,6 +74,15 @@ export function Drawer({
    */
   const [cutTop, setCutTop] = useState(false)
   const [cutBottom, setCutBottom] = useState(false)
+
+  /*
+   * Пока шторка открыта, она следит за клавиатурой: та ложится поверх окна,
+   * и кнопки шторки оставались под ней. Устройство — `keyboard-inset.ts`.
+   */
+  useEffect(() => {
+    if (!open) return
+    return watchKeyboardInset()
+  }, [open])
 
   /*
    * Слот появляется не вместе со шторкой: Base UI монтирует панель своим шагом,

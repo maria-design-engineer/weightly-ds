@@ -19,9 +19,14 @@
   background: transparent;
   color: var(--w-text-primary);
   /*
-   * Текст поля — Text/Body 1, у XL Text/Body 2. Пересснято обходом Figma
-   * 03.09.2026: Subheader в мастере стоит у подписи «Label:», а не у текста,
-   * и в первой сборке она уехала на само поле — текст выходил жирным.
+   * Текст поля — Text/Body 3 у размеров S и M, Text/Body 1 у L и XL. Пересснято
+   * обходом Figma 03.09.2026: Subheader в мастере стоит у подписи «Label:»,
+   * а не у текста, и в первой сборке она уехала на само поле — текст выходил жирным.
+   *
+   * Кегль L и XL поднят до 17 — мастер `TextInput` `53175:148339`, сверено
+   * 03.10.2026. Ниже 16 Safari сам увеличивает страницу, когда человек встаёт
+   * в поле: шторка «Своя интенсивность» уезжала за край экрана на iPhone,
+   * баг `exercise-zone-row-wider-than-screen`.
    */
   font: var(--w-style-text-body-3);
 }
@@ -69,8 +74,8 @@
 /* Size задаёт высоту, отступы и радиус. */
 .w-text-input_size_s .w-text-input__box { height: 28px; padding: 0 var(--w-g-spacing-2); border-radius: var(--w-s-radius); }
 .w-text-input_size_m .w-text-input__box { height: 34px; padding: 0 var(--w-g-spacing-3); border-radius: var(--w-m-radius); }
-.w-text-input_size_l .w-text-input__box { height: 42px; padding: 0 var(--w-g-spacing-4); border-radius: var(--w-l-radius); }
-.w-text-input_size_xl .w-text-input__box { height: 52px; padding: 0 var(--w-g-spacing-6); border-radius: var(--w-xl-radius); font: var(--w-style-text-body-2); }
+.w-text-input_size_l .w-text-input__box { height: 42px; padding: 0 var(--w-g-spacing-4); border-radius: var(--w-l-radius); font: var(--w-style-text-body-1); }
+.w-text-input_size_xl .w-text-input__box { height: 52px; padding: 0 var(--w-g-spacing-6); border-radius: var(--w-xl-radius); font: var(--w-style-text-body-1); }
 
 /* View=Clear — ни рамки, ни заливки, ни боковых отступов. */
 .w-text-input_view_clear .w-text-input__box {
@@ -104,6 +109,17 @@
   display: inline-flex;
   flex: none;
   color: var(--w-text-danger);
+}
+
+/*
+ * Right side — кнопки у правого края, внутри рамки поля. Своих размеров слот
+ * не держит: их задаёт сама кнопка, в мастере это `Button` Size=L, 42 × 42.
+ */
+.w-text-input__right-side {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  gap: var(--w-g-spacing-2);
 }
 
 .w-text-input__error-text {

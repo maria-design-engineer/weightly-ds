@@ -41,6 +41,13 @@
 .w-drawer__viewport {
   position: fixed;
   inset: 0;
+  /*
+   * Низ поднимается на высоту клавиатуры: та ложится поверх окна и не ужимает
+   * его, поэтому кнопки шторки оставались под ней. Переменную ставит сама
+   * шторка, пока открыта, — `keyboard-inset.ts`. Клавиатуры нет — ноль,
+   * и шторка стоит у пола, как прежде.
+   */
+  bottom: var(--w-keyboard-inset, 0px);
   z-index: 100;
   display: flex;
   align-items: flex-end;
@@ -61,7 +68,12 @@
   gap: 16px;
   width: 100%;
   max-width: var(--w-drawer-max-width);
-  max-height: 90dvh;
+  /*
+   * Девять десятых окна, а при открытой клавиатуре — девять десятых того, что
+   * от окна осталось: иначе поднятая шторка уходит верхним краем за экран,
+   * и шапка с крестиком пропадает.
+   */
+  max-height: calc(90dvh - var(--w-keyboard-inset, 0px));
   padding: 16px;
   /* Верхние углы 20 — `2XL radius`, правка кита 13.09.2026; было 16. Низ у пола. */
   border-radius: var(--w-2xl-radius) var(--w-2xl-radius) 0 0;

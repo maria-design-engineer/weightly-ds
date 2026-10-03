@@ -43,7 +43,8 @@
 }
 .w-button_size_s { height: 28px; padding: 0 var(--w-g-spacing-2); gap: 4px; border-radius: var(--w-s-radius); }
 .w-button_size_m { height: 34px; padding: 0 var(--w-g-spacing-3); gap: var(--w-g-spacing-2); border-radius: var(--w-m-radius); }
-.w-button_size_l { height: 42px; padding: 0 var(--w-g-spacing-4); gap: var(--w-g-spacing-2); border-radius: var(--w-l-radius); }
+/* Размер L — кегль Text/Body 1 (17), мастер `Button` `53098:497062`, сверено 03.10.2026: код занижал его до 13. */
+.w-button_size_l { height: 42px; padding: 0 var(--w-g-spacing-4); gap: var(--w-g-spacing-2); border-radius: var(--w-l-radius); font: var(--w-style-text-body-1); }
 .w-button_size_xl { height: 52px; padding: 0 var(--w-g-spacing-6); gap: var(--w-g-spacing-3); border-radius: var(--w-xl-radius); font: var(--w-style-text-body-2); }
 
 /* Icon only=On — квадрат: у Size=M это 34 × 34. */

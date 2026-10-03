@@ -27,6 +27,7 @@ const meta = {
     errorMessage: { control: 'text' },
     onValueChange: { control: false },
     startIcon: { control: 'boolean', mapping: { true: MAGNIFIER, false: undefined } },
+    inputMode: { table: { disable: true } },
   },
   args: { ariaLabel: 'Вес штанги' },
 } satisfies Meta<typeof TextInput>

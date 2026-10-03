@@ -33,6 +33,11 @@ export type TextInputProps = {
   errorPlacement?: 'inline' | 'outline'
   /** Figma Start icon */
   startIcon?: ReactNode
+  /**
+   * Figma Right side — кнопки у правого края поля, внутри рамки. В мастере
+   * слот держит до двух кнопок: `Button 1` и `Button 2`.
+   */
+  rightSide?: ReactNode
   /** Подпись поля стоит над полем, в Custom / field: свойство Label кита не берётся. */
   ariaLabel?: string
   /**
@@ -42,6 +47,12 @@ export type TextInputProps = {
   name?: string
   /** Тип ввода: почта, пароль или обычный текст. Тоже не ось, а свойство платформы. */
   type?: 'text' | 'email' | 'password' | 'tel' | 'url'
+  /**
+   * Какую клавиатуру открыть на телефоне. Осью кита не является и вида поля
+   * не меняет: это подсказка браузеру. Без неё в поле с числом открывается
+   * буквенная клавиатура — баг `numeric-field-opens-letter-keyboard`.
+   */
+  inputMode?: 'text' | 'numeric' | 'decimal' | 'tel' | 'email' | 'url' | 'search'
   /** Подсказка браузеру, чем заполнять. */
   autoComplete?: string
   /** Поле обязательно. Проверку всё равно ведёт сервер — это подсказка браузеру. */
@@ -63,9 +74,11 @@ export function TextInput({
   errorMessage,
   errorPlacement = 'outline',
   startIcon,
+  rightSide,
   ariaLabel,
   name,
   type,
+  inputMode,
   autoComplete,
   required,
 }: TextInputProps) {
@@ -90,6 +103,7 @@ export function TextInput({
           className="w-text-input__control"
           name={name}
           type={type}
+          inputMode={inputMode}
           autoComplete={autoComplete}
           required={required}
           value={value}
@@ -104,6 +118,7 @@ export function TextInput({
             <Icon data={CircleExclamation} size={16} />
           </span>
         ) : null}
+        {rightSide ? <span className="w-text-input__right-side">{rightSide}</span> : null}
       </div>
       {invalid ? (
         <Field.Error
