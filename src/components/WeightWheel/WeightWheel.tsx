@@ -123,9 +123,21 @@ export function WeightWheel({
       const shift = offsetFromCenter(wheel, option, direction)
       /* Меньше пикселя — считаем, что значение уже стоит в середине. */
       if (Math.abs(shift) >= 1) {
-        wheel.scrollBy({
-          top: direction === 'vertical' ? shift : 0,
-          left: direction === 'horizontal' ? shift : 0,
+        /*
+         * Доводка говорит «встань туда-то», а не «сдвинься на столько-то».
+         * Относительный сдвиг складывался сам с собой: плавная прокрутка идёт
+         * треть секунды, и пришедшая следом доводка — от доехавшей гарнитуры
+         * или от пересчёта размеров — считала тот же сдвиг от прежнего места
+         * и прибавляла его. Лента уезжала вдвое дальше: вместо 149-го значения
+         * вставала на 298-е, и на экране читалось «149,0» при сохранённых 74,5.
+         * Находка 03.10.2026, бумага `percent-weight-mismatch`.
+         */
+        const target = direction === 'vertical'
+          ? wheel.scrollTop + shift
+          : wheel.scrollLeft + shift
+        wheel.scrollTo({
+          top: direction === 'vertical' ? target : 0,
+          left: direction === 'horizontal' ? target : 0,
           /* Движение выключается вместе с системной настройкой — находка 8. */
           behavior: placed.current && !instant && !prefersReducedMotion() ? 'smooth' : 'auto',
         })
@@ -162,7 +174,13 @@ export function WeightWheel({
       /* Ждать окончания прокрутки после ухода компонента некому и незачем. */
       if (settle.current) clearTimeout(settle.current)
     }
-  }, [current, direction, values])
+    /*
+     * В зависимостях длина набора, а не сам набор: экраны собирают массив значений
+     * заново на каждой отрисовке, и эффект перезапускался без всякой причины —
+     * а каждый его запуск поднимает признак `placing` на треть секунды и глушит
+     * выбор. Длина меняется только тогда, когда шкала действительно другая.
+     */
+  }, [current, direction, values.length])
 
   /**
    * Какое значение стоит в середине. Ищем двоичным поиском по самой разметке,
@@ -207,15 +225,40 @@ export function WeightWheel({
   function handleScroll() {
     const node = listRef.current
     if (!node) return
-    /* Прокрутка от программной постановки выбор не меняет. */
-    if (placing.current) return
 
     scrolling.current = true
     if (settle.current) clearTimeout(settle.current)
-    /* Прокрутка считается законченной, когда событий не было 120 мс. */
-    settle.current = setTimeout(() => {
+    /*
+     * Прокрутка считается законченной, когда событий не было 120 мс. Тогда же
+     * выбранное сверяется с серединой ещё раз — и это главное, что здесь есть.
+     * Пока сверка шла только на самом событии, короткий жест оставлял выбранным
+     * значение, уехавшее с экрана: признак `placing` поднимается на треть секунды
+     * при каждой смене выбранного, а смену вызывает сама прокрутка человека.
+     * Жест короче этого окна — и пометка застревала, в середине оставалось серое.
+     * Находка 03.10.2026, бумага `weight-wheel-slow-and-grey-value`.
+     */
+    settle.current = setTimeout(function settled() {
       scrolling.current = false
+      /*
+       * Программная постановка ещё идёт — ждём её конца. Иначе за выбор человека
+       * примем обнуление прокрутки при смене направления: браузер обнуляет её
+       * по новой оси и шлёт событие, а вес сбрасывался на начало шкалы.
+       * Находка 16.09.2026.
+       */
+      if (placing.current) {
+        settle.current = setTimeout(settled, 120)
+        return
+      }
+      const wheel = listRef.current
+      if (!wheel) return
+      const settledAt = currentFromScroll(wheel)
+      if (settledAt === current) return
+      setOwnSelected(settledAt)
+      onSelect?.(settledAt)
     }, 120)
+
+    /* Прокрутка от программной постановки выбор не меняет. */
+    if (placing.current) return
 
     const next = currentFromScroll(node)
     if (next === current) return
