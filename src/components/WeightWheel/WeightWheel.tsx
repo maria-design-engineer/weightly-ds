@@ -225,6 +225,15 @@ export function WeightWheel({
   function handleScroll() {
     const node = listRef.current
     if (!node) return
+    /*
+     * Барабан скрыт или ещё не разложен — выбор не трогаем. Под шторкой или
+     * алертом его размер нулевой, замерять нечего, и поиск середины отдаёт первое
+     * значение: вес сбрасывался на начало шкалы, стоило поверх открыться шторке
+     * предельного максимума. Находка пользователя 03.10.2026, бумага
+     * `weight-not-saved-after-workout`. Та же защита стоит в программной постановке.
+     */
+    const size = direction === 'vertical' ? node.clientHeight : node.clientWidth
+    if (size === 0) return
 
     scrolling.current = true
     if (settle.current) clearTimeout(settle.current)
