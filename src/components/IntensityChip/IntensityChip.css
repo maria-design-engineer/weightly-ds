@@ -96,11 +96,25 @@ button.w-set-marker {
   text-align: left;
 }
 
-.w-intensity-chip_band_neutral { background: var(--w-base-semantic-neutral-light); }
+/*
+ * Обводка 1 снаружи — правка кита 04.10.2026, мастер `Product / intensity-chip`.
+ * Тенью без смещения, а не рамкой: в мастере она стоит снаружи и размеров плашки
+ * не меняет, а рамка добавила бы к ним два пикселя.
+ */
+.w-intensity-chip_band_neutral {
+  background: var(--w-base-semantic-neutral-light);
+  box-shadow: 0 0 0 1px var(--w-base-semantic-neutral-light-hover);
+}
 .w-intensity-chip_band_neutral .w-intensity-chip__value { color: var(--w-text-primary); }
 
-.w-intensity-chip_band_lime { background: var(--w-accent-lime-surface); }
+.w-intensity-chip_band_lime {
+  background: var(--w-accent-lime-surface);
+  box-shadow: 0 0 0 1px var(--w-accent-lime-50);
+}
 .w-intensity-chip_band_lime .w-intensity-chip__value { color: var(--w-accent-lime-text); }
 
-.w-intensity-chip_band_pink { background: var(--w-accent-pink-surface); }
+.w-intensity-chip_band_pink {
+  background: var(--w-accent-pink-surface);
+  box-shadow: 0 0 0 1px var(--w-accent-pink-15);
+}
 .w-intensity-chip_band_pink .w-intensity-chip__value { color: var(--w-accent-pink-text); }

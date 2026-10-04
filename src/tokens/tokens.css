@@ -294,13 +294,17 @@
   --w-accent-green: #45d3a4;
   --w-accent-green-surface: rgba(69, 211, 164, 0.15);
   --w-accent-green-text: #07724e;
-  --w-accent-lime: #d2d246;
-  --w-accent-lime-surface: rgba(210, 210, 70, 0.25);
-  --w-accent-lime-text: #55550f;
+  /* Лайм пересснят 04.10.2026: был #d2d246, стал ярче. Правка кита. */
+  --w-accent-lime: #dbef05;
+  --w-accent-lime-surface: rgba(219, 239, 5, 0.25);
+  --w-accent-lime-text: #324a01;
   --w-accent-neutral-surface: rgba(0, 0, 0, 0.03);
   --w-accent-pink-60: rgba(244, 37, 199, 0.6);
   --w-accent-green-60: rgba(69, 211, 164, 0.6);
-  --w-accent-lime-60: rgba(210, 210, 70, 0.6);
+  --w-accent-lime-60: rgba(219, 239, 5, 0.6);
+  /* Обводки плашек интенсивности — новые токены кита 04.10.2026. */
+  --w-accent-lime-50: rgba(219, 239, 5, 0.5);
+  --w-accent-pink-15: rgba(244, 37, 199, 0.15);
 }
 
 /* Цвета — коллекция Color Styles, режим Dark, 144 переменные */
@@ -456,6 +460,9 @@
   --w-accent-pink-60: rgba(247, 110, 218, 0.6);
   --w-accent-green-60: rgba(131, 226, 194, 0.6);
   --w-accent-lime-60: rgba(225, 225, 132, 0.6);
+  /* Обводки плашек интенсивности — новые токены кита 04.10.2026. */
+  --w-accent-lime-50: rgba(225, 225, 132, 0.5);
+  --w-accent-pink-15: rgba(247, 110, 218, 0.15);
 }
 
 /* Цвета — коллекция Color Styles, режим Light HC, 144 переменные */
@@ -605,12 +612,15 @@
   --w-accent-green-surface: rgba(69, 211, 164, 0.15);
   --w-accent-green-text: #07724e;
   --w-accent-lime: #d2d246;
-  --w-accent-lime-surface: rgba(210, 210, 70, 0.25);
-  --w-accent-lime-text: #55550f;
+  --w-accent-lime-surface: rgba(210, 210, 70, 0.15);
+  --w-accent-lime-text: #6e6e1b;
   --w-accent-neutral-surface: rgba(0, 0, 0, 0.03);
   --w-accent-pink-60: rgba(244, 37, 199, 0.6);
   --w-accent-green-60: rgba(69, 211, 164, 0.6);
   --w-accent-lime-60: rgba(210, 210, 70, 0.6);
+  /* Обводки плашек интенсивности — новые токены кита 04.10.2026. */
+  --w-accent-lime-50: rgba(210, 210, 70, 0.5);
+  --w-accent-pink-15: rgba(244, 37, 199, 0.15);
 }
 
 /* Цвета — коллекция Color Styles, режим Dark HC, 144 переменные */
@@ -766,4 +776,7 @@
   --w-accent-pink-60: rgba(247, 110, 218, 0.6);
   --w-accent-green-60: rgba(131, 226, 194, 0.6);
   --w-accent-lime-60: rgba(225, 225, 132, 0.6);
+  /* Обводки плашек интенсивности — новые токены кита 04.10.2026. */
+  --w-accent-lime-50: rgba(225, 225, 132, 0.5);
+  --w-accent-pink-15: rgba(247, 110, 218, 0.15);
 }

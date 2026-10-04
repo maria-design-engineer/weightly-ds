@@ -23,6 +23,11 @@
   padding: 16px 16px 120px;
   border-radius: var(--w-2xl-radius) var(--w-2xl-radius) 0 0;
   background: var(--w-set-panel-bg);
+  /*
+   * Обводка 1 снаружи — правка кита 04.10.2026, мастер `Product / set-panel`.
+   * Цвет идёт за полосой: у каждой свой, как и заливка.
+   */
+  box-shadow: 0 0 0 1px var(--w-set-panel-line);
 }
 
 /*
@@ -32,14 +37,17 @@
  */
 .w-set-panel_band_neutral {
   --w-set-panel-bg: var(--w-base-simple-hover-solid);
+  --w-set-panel-line: var(--w-base-semantic-neutral-light-hover);
 }
 
 .w-set-panel_band_lime {
   --w-set-panel-bg: var(--w-accent-lime-surface);
+  --w-set-panel-line: var(--w-accent-lime-50);
 }
 
 .w-set-panel_band_pink {
   --w-set-panel-bg: var(--w-accent-pink-surface);
+  --w-set-panel-line: var(--w-accent-pink-15);
 }
 
 .w-set-panel_band_lime .w-weight-wheel-item_state_active {

@@ -42,17 +42,24 @@
   color: var(--w-text-hint);
 }
 
+/*
+ * Обводка 1 снаружи — правка кита 04.10.2026, мастер `Product / intensity-chip-xs`.
+ * Тенью без смещения: в мастере она стоит снаружи и размеров плашки не меняет.
+ */
 .w-intensity-chip-xs_band_neutral {
   background: var(--w-base-semantic-neutral-light);
+  box-shadow: 0 0 0 1px var(--w-base-semantic-neutral-light-hover);
   color: var(--w-text-primary);
 }
 
 .w-intensity-chip-xs_band_lime {
   background: var(--w-accent-lime-surface);
+  box-shadow: 0 0 0 1px var(--w-accent-lime-50);
   color: var(--w-accent-lime-text);
 }
 
 .w-intensity-chip-xs_band_pink {
   background: var(--w-accent-pink-surface);
+  box-shadow: 0 0 0 1px var(--w-accent-pink-15);
   color: var(--w-accent-pink-text);
 }
