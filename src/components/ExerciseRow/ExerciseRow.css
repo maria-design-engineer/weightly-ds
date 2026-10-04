@@ -33,16 +33,17 @@
  * Название переносится, а не обрезается: у ОФП оно бывает длинным — «Удержание
  * ягодичного мостика с подъёмом одной ноги», кадр `5а`, и в мастере оно в две строки.
  */
+/* Название и число — `Header/Subheader 2`, правка мастера 04.10.2026: было Subheader 3. */
 .w-exercise-row__text {
   flex: 1;
   min-width: 0;
-  font: var(--w-style-header-subheader-3);
+  font: var(--w-style-header-subheader-2);
   color: var(--w-text-primary);
 }
 
 .w-exercise-row__caption {
   flex: none;
-  font: var(--w-style-header-subheader-3);
+  font: var(--w-style-header-subheader-2);
   color: var(--w-text-secondary);
 }
 
