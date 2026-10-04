@@ -1,5 +1,7 @@
 import type { ReactNode } from 'react'
 
+import { Smartphone } from '@gravity-ui/icons'
+
 import type { PictureType } from './constants'
 import './Picture.css'
 
@@ -71,6 +73,16 @@ const DRAWINGS: Record<PictureType, ReactNode> = {
       />
     </>
   ),
+  /*
+   * Телефон — единственный знак, взятый из иконотеки: в мастере `Type=Phone`
+   * стоит значок `smartphone`, а не свой рисунок. Правка кита 04.10.2026.
+   * Иконка рисуется в своём поле 24 и ставится в середину поля 45 переносом.
+   */
+  phone: (
+    <g transform="translate(10.5 10.5) scale(1)">
+      <Smartphone width={24} height={24} />
+    </g>
+  ),
 }
 
 const TITLES: Record<PictureType, string> = {
@@ -78,10 +90,11 @@ const TITLES: Record<PictureType, string> = {
   disconect: 'Нет связи',
   fix: 'Чиним',
   time: 'Время',
+  phone: 'Телефон',
 }
 
 export type PictureProps = {
-  /** Figma Type — пустое состояние, нет связи, чиним или время. */
+  /** Figma Type — пустое состояние, нет связи, чиним, время или телефон. */
   type?: PictureType
 }
 
