@@ -25,9 +25,23 @@ const VARIABLE = '--w-keyboard-inset'
  * снимок в `bugs/sheet-button-under-keyboard`.
  *
  * Высота панели у Apple постоянная — 44 точки. Своей величины здесь нет: это размер
- * системного элемента, а не продукта. Клавиатуры нет — запас не ставится.
+ * системного элемента, а не продукта.
  */
 const KEYBOARD_BAR = 44
+
+/**
+ * Устройство Apple: только у них над клавиатурой стоит панель, не попадающая
+ * в видимую часть окна. На Android такой панели нет, и запас оставлял между
+ * шторкой и клавиатурой пустую полосу — находка пользователя 04.10.2026.
+ *
+ * iPad с недавних пор представляется как Mac, и отличает его только то,
+ * что экран у него сенсорный.
+ */
+function isApple(): boolean {
+  const ua = navigator.userAgent
+  if (/iPhone|iPad|iPod/.test(ua)) return true
+  return /Macintosh/.test(ua) && navigator.maxTouchPoints > 1
+}
 
 function apply() {
   const view = window.visualViewport
@@ -39,8 +53,8 @@ function apply() {
    */
   const hidden = window.innerHeight - view.height - view.offsetTop
   const keyboard = Math.max(0, Math.round(hidden))
-  /* Клавиатура открыта — поднимаем ещё и над панелью с её стрелками. */
-  const inset = keyboard > 0 ? keyboard + KEYBOARD_BAR : 0
+  /* Клавиатура открыта на устройстве Apple — поднимаем ещё и над её панелью. */
+  const inset = keyboard > 0 && isApple() ? keyboard + KEYBOARD_BAR : keyboard
   document.documentElement.style.setProperty(VARIABLE, `${inset}px`)
 }
 
