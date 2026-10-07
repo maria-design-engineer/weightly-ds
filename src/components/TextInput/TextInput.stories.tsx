@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
-import { Magnifier } from '@gravity-ui/icons'
+import { Magnifier, PencilToLine, Xmark } from '@gravity-ui/icons'
 
 import { Icon } from '../Icon/Icon'
 import { Cell, Row } from '../story-layout'
@@ -8,6 +8,9 @@ import { TEXT_INPUT_SIZES, TEXT_INPUT_VIEWS } from './constants'
 import { TextInput } from './TextInput'
 
 const MAGNIFIER = <Icon data={Magnifier} size={16} />
+/* Значки слотов — те, что нарисованы в мастере: `xmark` у очистки, `pencil-to-line` у двух остальных. */
+const XMARK = <Icon data={Xmark} />
+const PENCIL = <Icon data={PencilToLine} />
 
 const meta = {
   title: 'Base UI/TextInput',
@@ -27,6 +30,15 @@ const meta = {
     errorMessage: { control: 'text' },
     onValueChange: { control: false },
     startIcon: { control: 'boolean', mapping: { true: MAGNIFIER, false: undefined } },
+    clearIcon: { control: 'boolean', mapping: { true: XMARK, false: undefined } },
+    icon1: { control: 'boolean', mapping: { true: PENCIL, false: undefined } },
+    icon2: { control: 'boolean', mapping: { true: PENCIL, false: undefined } },
+    onClearIconClick: { control: false },
+    onIcon1Click: { control: false },
+    onIcon2Click: { control: false },
+    clearIconLabel: { table: { disable: true } },
+    icon1Label: { table: { disable: true } },
+    icon2Label: { table: { disable: true } },
     inputMode: { table: { disable: true } },
   },
   args: { ariaLabel: 'Вес штанги' },
@@ -40,7 +52,7 @@ export const Playground: Story = {
   args: { placeholder: '100', size: 'm' },
 }
 
-/** Ось Size — высоты 28 · 34 · 42 · 52. */
+/** Ось Size — высоты 26 · 34 · 42 · 52. */
 export const Sizes: Story = {
   render: (args) => (
     <Row>
@@ -62,6 +74,42 @@ export const Views: Story = {
           <TextInput {...args} view={view} defaultValue="102,5" />
         </Cell>
       ))}
+    </Row>
+  ),
+}
+
+/**
+ * Слоты значков — Clear icon, Icon 1, Icon 2. Поле от них не растёт: высоту
+ * держит размер, а не содержимое слота. Правый значок здесь нажимаемый, и это
+ * всё, что он берёт от кнопки.
+ */
+export const Icons: Story = {
+  render: (args) => (
+    <Row>
+      <Cell label="Clear icon" width={200}>
+        <TextInput {...args} defaultValue="102,5" clearIcon={XMARK} />
+      </Cell>
+      <Cell label="Icon 1" width={200}>
+        <TextInput {...args} defaultValue="102,5" icon1={PENCIL} />
+      </Cell>
+      <Cell label="Три слота" width={200}>
+        <TextInput
+          {...args}
+          defaultValue="102,5"
+          clearIcon={XMARK}
+          icon1={PENCIL}
+          icon2={PENCIL}
+        />
+      </Cell>
+      <Cell label="Нажимаемый" width={200}>
+        <TextInput
+          {...args}
+          defaultValue="102,5"
+          icon1={PENCIL}
+          icon1Label="Править"
+          onIcon1Click={() => undefined}
+        />
+      </Cell>
     </Row>
   ),
 }

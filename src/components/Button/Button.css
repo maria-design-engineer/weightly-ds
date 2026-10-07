@@ -31,8 +31,7 @@
 /* Size задаёт высоту, отступы, промежуток и радиус. */
 /*
  * Кегль XS — Text/Caption 1, правка кита 18.09.2026: был Text/Body 3.
- * Высота в ките по содержимому: 3 + строка 16 + 3 = 22. Кнопка-значок XS
- * осталась 24 × 24 — сверено по набору 19.09.2026.
+ * Высота в ките по содержимому: 3 + строка 16 + 3 = 22.
  */
 .w-button_size_xs {
   height: 22px;
@@ -41,15 +40,23 @@
   border-radius: var(--w-xs-radius);
   font: var(--w-style-text-caption-1);
 }
-.w-button_size_s { height: 28px; padding: 0 var(--w-g-spacing-2); gap: 4px; border-radius: var(--w-s-radius); }
+/*
+ * Размер S — кегль Text/Caption 1 (11) и высота 26, релиз кита 4 от 07.10.2026:
+ * было 13 и 28. Ряд сведён — у кнопки, селекта и поля S теперь одна высота.
+ */
+.w-button_size_s { height: 26px; padding: 0 var(--w-g-spacing-2); gap: 4px; border-radius: var(--w-s-radius); font: var(--w-style-text-caption-1); }
 .w-button_size_m { height: 34px; padding: 0 var(--w-g-spacing-3); gap: var(--w-g-spacing-2); border-radius: var(--w-m-radius); }
 /* Размер L — кегль Text/Body 1 (17), мастер `Button` `53098:497062`, сверено 03.10.2026: код занижал его до 13. */
 .w-button_size_l { height: 42px; padding: 0 var(--w-g-spacing-4); gap: var(--w-g-spacing-2); border-radius: var(--w-l-radius); font: var(--w-style-text-body-1); }
-.w-button_size_xl { height: 52px; padding: 0 var(--w-g-spacing-6); gap: var(--w-g-spacing-3); border-radius: var(--w-xl-radius); font: var(--w-style-text-body-2); }
+/* Размер XL — кегль Text/Body 1 (17), релиз кита 4 от 07.10.2026: было 15. */
+.w-button_size_xl { height: 52px; padding: 0 var(--w-g-spacing-6); gap: var(--w-g-spacing-3); border-radius: var(--w-xl-radius); font: var(--w-style-text-body-1); }
 
-/* Icon only=On — квадрат: у Size=M это 34 × 34. */
-.w-button_icon-only.w-button_size_xs { width: 24px; height: 24px; padding: 0; }
-.w-button_icon-only.w-button_size_s { width: 28px; padding: 0; }
+/*
+ * Icon only=On — квадрат, равный высоте ряда: 22, 26, 34, 42, 52. Квадраты XS и S
+ * сведены релизом кита 4 от 07.10.2026: было 24 и 28 при высоте ряда 22 и 26.
+ */
+.w-button_icon-only.w-button_size_xs { width: 22px; padding: 0; }
+.w-button_icon-only.w-button_size_s { width: 26px; padding: 0; }
 .w-button_icon-only.w-button_size_m { width: 34px; padding: 0; }
 .w-button_icon-only.w-button_size_l { width: 42px; padding: 0; }
 .w-button_icon-only.w-button_size_xl { width: 52px; padding: 0; }

@@ -40,7 +40,7 @@ type Story = StoryObj<typeof meta>
 
 export const Playground: Story = {}
 
-/** Ось Size — высоты те же, что у TextInput: 28 · 34 · 42 · 52. */
+/** Ось Size — высоты те же, что у TextInput: 26 · 34 · 42 · 52. */
 export const Sizes: Story = {
   render: (args) => (
     <Row>

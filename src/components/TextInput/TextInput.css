@@ -72,7 +72,11 @@
 }
 
 /* Size задаёт высоту, отступы и радиус. */
-.w-text-input_size_s .w-text-input__box { height: 28px; padding: 0 var(--w-g-spacing-2); border-radius: var(--w-s-radius); }
+/*
+ * Размер S — высота 26 и кегль Text/Caption 1 (11), релиз кита 4 от 07.10.2026:
+ * было 28 и 13. Ряд S сведён — та же высота у кнопки и селекта.
+ */
+.w-text-input_size_s .w-text-input__box { height: 26px; padding: 0 var(--w-g-spacing-2); border-radius: var(--w-s-radius); font: var(--w-style-text-caption-1); }
 .w-text-input_size_m .w-text-input__box { height: 34px; padding: 0 var(--w-g-spacing-3); border-radius: var(--w-m-radius); }
 .w-text-input_size_l .w-text-input__box { height: 42px; padding: 0 var(--w-g-spacing-4); border-radius: var(--w-l-radius); font: var(--w-style-text-body-1); }
 .w-text-input_size_xl .w-text-input__box { height: 52px; padding: 0 var(--w-g-spacing-6); border-radius: var(--w-xl-radius); font: var(--w-style-text-body-1); }
@@ -112,14 +116,50 @@
 }
 
 /*
- * Right side — кнопки у правого края, внутри рамки поля. Своих размеров слот
- * не держит: их задаёт сама кнопка, в мастере это `Button` Size=L, 42 × 42.
+ * Clear icon, Icon 1, Icon 2 — значки у правого края, внутри рамки поля. Цвет
+ * Text/Secondary, релиз кита 4 от 07.10.2026. До него в слотах стояли кнопки:
+ * они были на ступень выше строки и поднимали поле — на `L` до 52 вместо 42.
  */
-.w-text-input__right-side {
+.w-text-input__icon {
   display: inline-flex;
   flex: none;
   align-items: center;
-  gap: var(--w-g-spacing-2);
+  color: var(--w-text-secondary);
+}
+
+/*
+ * Нажимаемый значок кнопкой не выглядит и её состояний не держит: ни заливки,
+ * ни наведения, ни своей высоты. Решение пользователя 07.10.2026. Обводка
+ * фокуса оставлена — иначе значок не достать клавиатурой.
+ */
+.w-text-input__icon_pressable {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+
+.w-text-input__icon_pressable:focus-visible {
+  outline: var(--w-focus-ring-width) solid var(--w-focus-ring-color);
+  outline-offset: 1px;
+}
+
+/*
+ * Размер значка задаёт поле, а не вызывающий код: 12 на S и M, 16 на L и XL —
+ * релиз кита 4 от 07.10.2026. Правило накрывает и значок ошибки: он стоял 16
+ * на всех размерах.
+ */
+.w-text-input_size_s .w-text-input__box svg,
+.w-text-input_size_m .w-text-input__box svg {
+  width: 12px;
+  height: 12px;
+}
+
+.w-text-input_size_l .w-text-input__box svg,
+.w-text-input_size_xl .w-text-input__box svg {
+  width: 16px;
+  height: 16px;
 }
 
 .w-text-input__error-text {

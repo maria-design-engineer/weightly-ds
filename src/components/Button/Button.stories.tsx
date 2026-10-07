@@ -57,7 +57,7 @@ export const Views: Story = {
   ),
 }
 
-/** Ось Size — 5 значений: высоты 24 · 28 · 34 · 42 · 52. */
+/** Ось Size — 5 значений: высоты 22 · 26 · 34 · 42 · 52. */
 export const Sizes: Story = {
   render: (args) => (
     <Row>

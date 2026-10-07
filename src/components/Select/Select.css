@@ -105,9 +105,12 @@
 }
 
 /* Size задаёт высоту, отступы и радиус. */
-/* Размер S — кегль Text/Caption 1 (11), правка кита 18.09.2026: был Text/Body 3. */
+/*
+ * Размер S — кегль Text/Caption 1 (11), правка кита 18.09.2026: был Text/Body 3.
+ * Высота 26 — релиз кита 4 от 07.10.2026: было 28, ряд S сведён по кнопке и полю.
+ */
 .w-select_size_s .w-select__trigger {
-  height: 28px;
+  height: 26px;
   padding: 0 var(--w-g-spacing-2);
   border-radius: var(--w-s-radius);
   font: var(--w-style-text-caption-1);
@@ -115,6 +118,23 @@
 .w-select_size_m .w-select__trigger { height: 34px; padding: 0 var(--w-g-spacing-3); border-radius: var(--w-m-radius); }
 .w-select_size_l .w-select__trigger { height: 42px; padding: 0 var(--w-g-spacing-4); border-radius: var(--w-l-radius); font: var(--w-style-text-body-1); }
 .w-select_size_xl .w-select__trigger { height: 52px; padding: 0 var(--w-g-spacing-6); border-radius: var(--w-xl-radius); font: var(--w-style-text-body-1); }
+
+/*
+ * Размер значка задаёт селект, а не вызывающий код: 12 на S и M, 16 на L и XL —
+ * релиз кита 4 от 07.10.2026. Правило накрывает стрелку, значок ошибки и значок
+ * из слота; значки в списке живут своим размером и под тригер не попадают.
+ */
+.w-select_size_s .w-select__trigger svg,
+.w-select_size_m .w-select__trigger svg {
+  width: 12px;
+  height: 12px;
+}
+
+.w-select_size_l .w-select__trigger svg,
+.w-select_size_xl .w-select__trigger svg {
+  width: 16px;
+  height: 16px;
+}
 
 /* View=Clear — без рамки и заливки, боковых отступов нет. */
 .w-select_view_clear .w-select__trigger {

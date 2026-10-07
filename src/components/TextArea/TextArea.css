@@ -73,9 +73,14 @@
  * сверено 03.10.2026. Код занижал его до 13 и 15. Ниже 16 Safari увеличивает
  * страницу на фокусе — баг `exercise-zone-row-wider-than-screen`.
  */
-.w-text-area_size_l .w-text-area__box { padding: var(--w-g-spacing-3) var(--w-g-spacing-4); border-radius: var(--w-l-radius); font: var(--w-style-text-body-1); }
+/*
+ * Отступ сверху-снизу 9 на L и 14 на XL — релиз кита 4 от 07.10.2026: было 12 и 16.
+ * Столько же у кнопки, селекта и поля этих размеров; ступеней 9 и 14 в шкале
+ * `Spacings` нет, поэтому числами.
+ */
+.w-text-area_size_l .w-text-area__box { padding: 9px var(--w-g-spacing-4); border-radius: var(--w-l-radius); font: var(--w-style-text-body-1); }
 .w-text-area_size_xl .w-text-area__box {
-  padding: var(--w-g-spacing-4) var(--w-g-spacing-6);
+  padding: 14px var(--w-g-spacing-6);
   border-radius: var(--w-xl-radius);
   font: var(--w-style-text-body-1);
 }

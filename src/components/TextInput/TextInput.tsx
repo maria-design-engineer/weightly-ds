@@ -34,10 +34,31 @@ export type TextInputProps = {
   /** Figma Start icon */
   startIcon?: ReactNode
   /**
-   * Figma Right side — кнопки у правого края поля, внутри рамки. В мастере
-   * слот держит до двух кнопок: `Button 1` и `Button 2`.
+   * Figma Clear icon — значок у правого края поля, внутри рамки; в мастере `xmark`.
+   * Релиз кита 4 от 07.10.2026 заменил здесь кнопку значком: кнопка стояла на
+   * ступень ниже поля и поднимала его — на `L` до 52 вместо 42.
    */
-  rightSide?: ReactNode
+  clearIcon?: ReactNode
+  /** Figma Icon 1 */
+  icon1?: ReactNode
+  /** Figma Icon 2 */
+  icon2?: ReactNode
+  /**
+   * Нажатия по значкам. Осями кита не являются: в мастере значок нарисован,
+   * а нажатие — свойство платформы. Обработчик делает значок нажимаемым,
+   * поведения кнопки у него при этом нет — ни наведения, ни заливки нажатия.
+   * Решение пользователя 07.10.2026.
+   */
+  onClearIconClick?: () => void
+  onIcon1Click?: () => void
+  onIcon2Click?: () => void
+  /**
+   * Подписи нажимаемых значков для чтения с экрана. Строки приходят от
+   * вызывающего кода — кит их не держит, рамки «♿️ Доступность» стоят у кадров.
+   */
+  clearIconLabel?: string
+  icon1Label?: string
+  icon2Label?: string
   /** Подпись поля стоит над полем, в Custom / field: свойство Label кита не берётся. */
   ariaLabel?: string
   /**
@@ -60,6 +81,35 @@ export type TextInputProps = {
 }
 
 /**
+ * Значок у правого края поля. Передали обработчик — значок нажимается, и это
+ * единственное, что он берёт от кнопки: ни наведения, ни заливки нажатия,
+ * ни своей высоты у него нет. Высоту поля значок не двигает — ею командует
+ * размер поля. Обводка фокуса оставлена: без неё значок не достать клавиатурой.
+ */
+function IconSlot({
+  icon,
+  onClick,
+  label,
+}: {
+  icon?: ReactNode
+  onClick?: () => void
+  label?: string
+}) {
+  if (!icon) return null
+  if (!onClick) return <span className="w-text-input__icon">{icon}</span>
+  return (
+    <button
+      type="button"
+      className="w-text-input__icon w-text-input__icon_pressable"
+      aria-label={label}
+      onClick={onClick}
+    >
+      {icon}
+    </button>
+  )
+}
+
+/**
  * Однострочный ввод. Вид собран по киту на токенах, из Base UI приходит
  * поведение поля: связка подписи и ошибки, состояния фокуса и отключения.
  */
@@ -74,7 +124,15 @@ export function TextInput({
   errorMessage,
   errorPlacement = 'outline',
   startIcon,
-  rightSide,
+  clearIcon,
+  icon1,
+  icon2,
+  onClearIconClick,
+  onIcon1Click,
+  onIcon2Click,
+  clearIconLabel,
+  icon1Label,
+  icon2Label,
   ariaLabel,
   name,
   type,
@@ -118,7 +176,9 @@ export function TextInput({
             <Icon data={CircleExclamation} size={16} />
           </span>
         ) : null}
-        {rightSide ? <span className="w-text-input__right-side">{rightSide}</span> : null}
+        <IconSlot icon={clearIcon} onClick={onClearIconClick} label={clearIconLabel} />
+        <IconSlot icon={icon1} onClick={onIcon1Click} label={icon1Label} />
+        <IconSlot icon={icon2} onClick={onIcon2Click} label={icon2Label} />
       </div>
       {invalid ? (
         <Field.Error
