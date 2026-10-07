@@ -9,14 +9,14 @@ export const STICKY_BAR_WORKOUT_ACTIONS: StickyBarWorkoutAction[] = [
   {
     id: 'fail',
     button: (
-      <Button view="flat-danger" size="xl" startIcon={<Icon data={Xmark} size={20} />} ariaLabel="Неуспешно" />
+      <Button view="flat-danger" size="xl" startIcon={<Icon data={Xmark} />} ariaLabel="Неуспешно" />
     ),
     caption: 'Неуспешно',
   },
   {
     id: 'success',
     button: (
-      <Button view="primary-brand" size="xl" startIcon={<Icon data={Play} size={20} />} ariaLabel="Успешно" />
+      <Button view="primary-brand" size="xl" startIcon={<Icon data={Play} />} ariaLabel="Успешно" />
     ),
     caption: 'Успешно',
   },
@@ -26,7 +26,7 @@ export const STICKY_BAR_WORKOUT_ACTIONS: StickyBarWorkoutAction[] = [
       <Button
         view="flat-secondary"
         size="xl"
-        startIcon={<Icon data={ArrowChevronRight} size={20} />}
+        startIcon={<Icon data={ArrowChevronRight} />}
         ariaLabel="Пропустить"
       />
     ),

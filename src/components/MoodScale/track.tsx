@@ -81,7 +81,7 @@ export function MoodTrack({
               <Button
                 view="primary"
                 size="xs"
-                startIcon={<Icon data={ChevronsExpandHorizontal} size={12} />}
+                startIcon={<Icon data={ChevronsExpandHorizontal} />}
                 ariaLabel={handleLabel}
               />
             </span>

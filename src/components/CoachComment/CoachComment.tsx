@@ -59,7 +59,7 @@ export function CoachComment({
             view="flat"
             size="m"
             ariaLabel={expanded ? 'Свернуть' : 'Развернуть'}
-            startIcon={<Icon data={expanded ? ChevronUp : ChevronDown} size={16} />}
+            startIcon={<Icon data={expanded ? ChevronUp : ChevronDown} />}
             onClick={onToggle}
           />
         ) : null}

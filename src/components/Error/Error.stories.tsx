@@ -12,7 +12,7 @@ const RELOAD = (
   <Button
     view="normal-contrast"
     size="l"
-    startIcon={<Icon data={ArrowRotateLeft} size={16} />}
+    startIcon={<Icon data={ArrowRotateLeft} />}
     content="Перезагрузить"
   />
 )

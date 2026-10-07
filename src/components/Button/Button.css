@@ -61,6 +61,25 @@
 .w-button_icon-only.w-button_size_l { width: 42px; padding: 0; }
 .w-button_icon-only.w-button_size_xl { width: 52px; padding: 0; }
 
+/*
+ * Размер значка задаёт кнопка, а не вызывающий код: 12 на XS, S и M, 16 на L и XL —
+ * релиз кита 4 от 07.10.2026. Сверено с продуктовыми макетами 07.10.2026: на странице
+ * «Тренировка атлета» 971 кнопка со значком, и у всех размер тот же. Код звал значки
+ * числами 18 и 20 — это была его собственная ошибка, не расхождение с макетом.
+ */
+.w-button_size_xs svg,
+.w-button_size_s svg,
+.w-button_size_m svg {
+  width: 12px;
+  height: 12px;
+}
+
+.w-button_size_l svg,
+.w-button_size_xl svg {
+  width: 16px;
+  height: 16px;
+}
+
 /* View задаёт заливку, обводку и цвет текста. */
 .w-button_view_secondary { background: var(--w-base-generic); }
 

@@ -14,13 +14,13 @@ const ACTIONS = (
       view="flat"
       size="m"
       content="Пропустить"
-      endIcon={<Icon data={ChevronsRight} size={16} />}
+      endIcon={<Icon data={ChevronsRight} />}
     />
     <Button
       view="primary-brand"
       size="m"
       content="Начать"
-      endIcon={<Icon data={Play} size={16} />}
+      endIcon={<Icon data={Play} />}
     />
   </>
 )
@@ -49,7 +49,7 @@ const meta = {
         view="flat-secondary"
         size="s"
         ariaLabel="Открыть тренировку"
-        startIcon={<Icon data={ChevronRight} size={16} />}
+        startIcon={<Icon data={ChevronRight} />}
       />
     ),
     actions: ACTIONS,

@@ -242,7 +242,7 @@ function Base() {
             <Button content="Кнопка" selected />
           </Item>
           <Item label="icon only">
-            <Button startIcon={<Icon data={Plus} size={16} />} ariaLabel="Добавить" />
+            <Button startIcon={<Icon data={Plus} />} ariaLabel="Добавить" />
           </Item>
         </Axis>
       </Component>
@@ -821,7 +821,7 @@ function Molecules() {
                   <Button
                     view="flat-action"
                     size="s"
-                    startIcon={<Icon data={ChevronDown} size={12} />}
+                    startIcon={<Icon data={ChevronDown} />}
                     ariaLabel="Раскрыть блок"
                   />
                 }
@@ -945,11 +945,11 @@ function WorkoutCardSample() {
       content="Тренировка"
       caption="4 упражнения"
       mark={<IntensityChip content="90%" caption="2 × 2" />}
-      trailing={<Button view="flat-secondary" size="s" startIcon={<Icon data={ChevronRight} size={16} />} ariaLabel="Открыть" />}
+      trailing={<Button view="flat-secondary" size="s" startIcon={<Icon data={ChevronRight} />} ariaLabel="Открыть" />}
       actions={
         <>
           <Button view="flat" size="l" content="Пропустить" />
-          <Button view="primary-brand" size="l" content="Начать" startIcon={<Icon data={Play} size={16} />} />
+          <Button view="primary-brand" size="l" content="Начать" startIcon={<Icon data={Play} />} />
         </>
       }
     />

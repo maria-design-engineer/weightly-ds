@@ -187,18 +187,18 @@ function planSteps(steps: { percent: string; caption: string; band?: 'neutral' |
 const WORKOUT_ACTIONS = [
   {
     id: 'fail',
-    button: <Button view="flat-danger" size="xl" startIcon={<Icon data={Xmark} size={20} />} ariaLabel="Неуспешно" />,
+    button: <Button view="flat-danger" size="xl" startIcon={<Icon data={Xmark} />} ariaLabel="Неуспешно" />,
     caption: 'Неуспешно',
   },
   {
     id: 'success',
-    button: <Button view="primary-brand" size="xl" startIcon={<Icon data={Check} size={20} />} ariaLabel="Успешно" />,
+    button: <Button view="primary-brand" size="xl" startIcon={<Icon data={Check} />} ariaLabel="Успешно" />,
     caption: 'Успешно',
   },
   {
     id: 'skip',
     button: (
-      <Button view="flat-secondary" size="xl" startIcon={<Icon data={ArrowChevronRight} size={20} />} ariaLabel="Пропустить" />
+      <Button view="flat-secondary" size="xl" startIcon={<Icon data={ArrowChevronRight} />} ariaLabel="Пропустить" />
     ),
     caption: 'Пропустить',
   },
@@ -208,18 +208,18 @@ const WORKOUT_ACTIONS = [
 const REVIEW_ACTIONS = [
   {
     id: 'back',
-    button: <Button view="flat-secondary" size="xl" startIcon={<Icon data={ChevronLeft} size={20} />} ariaLabel="Вернуться" />,
+    button: <Button view="flat-secondary" size="xl" startIcon={<Icon data={ChevronLeft} />} ariaLabel="Вернуться" />,
     caption: 'Вернуться',
   },
   {
     id: 'start',
-    button: <Button view="primary-brand" size="xl" startIcon={<Icon data={Play} size={20} />} ariaLabel="Начать" />,
+    button: <Button view="primary-brand" size="xl" startIcon={<Icon data={Play} />} ariaLabel="Начать" />,
     caption: 'Начать',
   },
   {
     id: 'skip',
     button: (
-      <Button view="flat-secondary" size="xl" startIcon={<Icon data={ArrowChevronRight} size={20} />} ariaLabel="Пропустить" />
+      <Button view="flat-secondary" size="xl" startIcon={<Icon data={ArrowChevronRight} />} ariaLabel="Пропустить" />
     ),
     caption: 'Пропустить',
   },
@@ -252,7 +252,7 @@ function SetScreen() {
             <Button
               view="flat"
               size="m"
-              startIcon={<Icon data={Comment} size={16} />}
+              startIcon={<Icon data={Comment} />}
               ariaLabel="Комментарий тренера"
             />
           </span>
@@ -285,7 +285,7 @@ function SetScreen() {
                 <Button
                   view="flat-secondary"
                   size="m"
-                  startIcon={<Icon data={Plus} size={16} />}
+                  startIcon={<Icon data={Plus} />}
                   ariaLabel="Добавить подход"
                 />
               </div>
@@ -336,7 +336,7 @@ function SetScreen() {
                 <Button
                   view="secondary"
                   size="l"
-                  startIcon={<Icon data={Minus} size={16} />}
+                  startIcon={<Icon data={Minus} />}
                   ariaLabel="Меньше подъёмов"
                   onClick={() => setLifts((count) => Math.max(count - 1, 0))}
                 />
@@ -344,7 +344,7 @@ function SetScreen() {
                 <Button
                   view="secondary"
                   size="l"
-                  startIcon={<Icon data={Plus} size={16} />}
+                  startIcon={<Icon data={Plus} />}
                   ariaLabel="Больше подъёмов"
                   onClick={() => setLifts((count) => count + 1)}
                 />

@@ -83,7 +83,7 @@ export function Alert({
             view="flat"
             size="s"
             ariaLabel={closeLabel}
-            startIcon={<Icon data={Xmark} size={16} />}
+            startIcon={<Icon data={Xmark} />}
             onClick={onClose}
           />
         </span>

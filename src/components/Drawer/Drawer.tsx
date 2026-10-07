@@ -149,7 +149,7 @@ export function Drawer({
                   <Button
                     view="flat-secondary"
                     size="m"
-                    startIcon={<Icon data={Xmark} size={16} />}
+                    startIcon={<Icon data={Xmark} />}
                     ariaLabel={closeLabel}
                     onClick={onClose}
                   />

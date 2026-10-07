@@ -43,7 +43,7 @@ export function ScreenHeader({
           view="secondary"
           size="m"
           ariaLabel={closeLabel}
-          startIcon={<Icon data={Xmark} size={16} />}
+          startIcon={<Icon data={Xmark} />}
           onClick={onClose}
         />
       ) : null}

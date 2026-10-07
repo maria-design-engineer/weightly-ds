@@ -247,7 +247,7 @@ export function ExerciseCard({
                     view="flat-secondary"
                     size="xs"
                     startIcon={
-                      <Icon data={expanded ? ChevronsCollapseUpRight : ChevronsExpandUpRight} size={12} />
+                      <Icon data={expanded ? ChevronsCollapseUpRight : ChevronsExpandUpRight} />
                     }
                     ariaLabel={expanded ? collapseLabel : expandLabel}
                     onClick={onExpand}

@@ -16,7 +16,7 @@ const ACTIONS = (
   <Button
     view="flat-action"
     size="s"
-    startIcon={<Icon data={ChevronDown} size={12} />}
+    startIcon={<Icon data={ChevronDown} />}
     ariaLabel="Раскрыть блок"
   />
 )
