@@ -17,9 +17,9 @@ const ACTIONS = (
       главная `flat`, размер `l`. Пересснято 18.09.2026; до этого главная была
       `normal-contrast` размера `xl`.
     */}
-    <Button view="flat-secondary" size="l" content="Повторить" />
-    <Button view="flat-secondary" size="l" content="Позже" />
-    <Button view="flat" size="l" content="Отмена" />
+    <Button view="flat-secondary" size="m" content="Повторить" />
+    <Button view="flat-secondary" size="m" content="Позже" />
+    <Button view="flat" size="m" content="Отмена" />
   </>
 )
 

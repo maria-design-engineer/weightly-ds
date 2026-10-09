@@ -79,9 +79,13 @@ export function Alert({
       </div>
       {onClose ? (
         <span className="w-alert__close">
+          {/*
+            * Крестик — кнопка Size=M, вид Flat: сверено с мастерами страницы
+            * `Alert` 09.10.2026, там 53 кнопки и все размера M. Код ставил S.
+            */}
           <Button
             view="flat"
-            size="s"
+            size="m"
             ariaLabel={closeLabel}
             startIcon={<Icon data={Xmark} />}
             onClick={onClose}

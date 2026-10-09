@@ -436,7 +436,7 @@ function Base() {
               title="Тренировка не сохранена"
               message="Нет связи с сервером"
               icon={<Icon data={CircleInfo} size={18} />}
-              actions={<Button view="outlined-info" size="s" content="Повторить" />}
+              actions={<Button view="outlined-info" size="m" content="Повторить" />}
             />
           </Item>
         </Axis>
