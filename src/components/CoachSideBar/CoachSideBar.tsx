@@ -69,7 +69,12 @@ export function CoachSideBar({
           </span>
         </div>
         <div className="w-coach-side-bar__items">{top.map(render)}</div>
-        <div className="w-coach-side-bar__divider">
+        {/*
+          Разделитель декоративный: VoiceOver читал его «горизонтальный разделитель»
+          между разделами и «Профилем», и это ничего не сообщало. Проход UX Writer,
+          этап 7а плана 02, «да» пользователя 03.11.2026.
+        */}
+        <div className="w-coach-side-bar__divider" aria-hidden="true">
           <Divider />
         </div>
         <div className="w-coach-side-bar__items">{bottom.map(render)}</div>
