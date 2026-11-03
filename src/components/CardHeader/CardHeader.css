@@ -1,6 +1,7 @@
 /*
- * Product / card-header — мастер `50990:74036`, обход 03.11.2026. Столбик с
- * промежутком 8 — `g-spacing-2`: строка заголовка и пояснение. Ширина — по месту.
+ * Product / card-header — набор `51673:42222`, четыре мастера по оси Size, обход
+ * 03.11.2026. Столбик с промежутком 8 — `g-spacing-2`: строка заголовка и пояснение.
+ * Ширина — по месту.
  */
 .w-card-header {
   display: flex;
@@ -24,22 +25,23 @@
   gap: var(--w-g-spacing-1);
 }
 
-/* `description` — `Text/Body 2` цветом `Text/Secondary`. */
+/* `description` — цветом `Text/Secondary`, стиль текста по оси Size. */
 .w-card-header__description {
   margin: 0;
-  font: var(--w-style-text-body-2);
   color: var(--w-text-secondary);
 }
 
 /*
- * `.Product / title` — набор `50832:21967`, четыре мастера по оси Size.
- * Значок, текст и кнопка в ряд по центру высоты; заголовок занимает остаток строки.
+ * `.Product / title` — набор `50832:21967`. Значок, текст и кнопка в ряд по центру
+ * высоты; высота строки закреплена по размеру — 22, 22, 32, 36, — чтобы без значка
+ * текст не уезжал вверх. Правка кита 03.11.2026.
  */
 .w-card-header__title {
   display: flex;
   flex: 1;
   align-items: center;
   min-width: 0;
+  height: var(--w-card-header-title-height);
 }
 
 .w-card-header__label {
@@ -60,59 +62,85 @@
   height: var(--w-card-header-icon);
 }
 
-/* Caption 1 — 69 × 22: промежуток 4, значок 12 без плашки; текст и значок `Text/Complementary`. */
-.w-card-header__title_size_caption-1 {
+/*
+ * Caption 1 — строка 22, промежуток 4, значок 12 без плашки; текст и значок
+ * `Text/Complementary`; пояснение `Text/Caption 1`.
+ */
+.w-card-header_size_caption-1 {
+  --w-card-header-title-height: 22px;
   --w-card-header-icon: 12px;
+}
+
+.w-card-header_size_caption-1 .w-card-header__title {
   gap: var(--w-g-spacing-1);
 }
 
-.w-card-header__title_size_caption-1 .w-card-header__label {
+.w-card-header_size_caption-1 .w-card-header__label {
   font: var(--w-style-text-caption-1);
   color: var(--w-text-complementary);
 }
 
-.w-card-header__title_size_caption-1 .w-card-header__icon {
+.w-card-header_size_caption-1 .w-card-header__icon {
   color: var(--w-text-complementary);
 }
 
-/* Subheader 2 — 92 × 22: промежуток 8, значок 16 без плашки. */
-.w-card-header__title_size_subheader-2 {
+.w-card-header_size_caption-1 .w-card-header__description {
+  font: var(--w-style-text-caption-1);
+}
+
+/* Subheader 2 — строка 22, промежуток 8, значок 16 без плашки; пояснение `Text/Body 3`. */
+.w-card-header_size_subheader-2 {
+  --w-card-header-title-height: 22px;
   --w-card-header-icon: 16px;
+}
+
+.w-card-header_size_subheader-2 .w-card-header__title {
   gap: var(--w-g-spacing-2);
 }
 
-.w-card-header__title_size_subheader-2 .w-card-header__label {
+.w-card-header_size_subheader-2 .w-card-header__label {
   font: var(--w-style-header-subheader-2);
+}
+
+.w-card-header_size_subheader-2 .w-card-header__description {
+  font: var(--w-style-text-body-3);
 }
 
 /*
  * Header 2 и Header 1 — промежуток 16, значок на плашке `Base/Selection` с полями 8
- * и радиусом 16: плашка 32 под значок 16 и 36 под значок 20.
+ * и радиусом 16: плашка 32 под значок 16 и 36 под значок 20. Пояснение `Text/Body 2`.
  */
-.w-card-header__title_size_header-2,
-.w-card-header__title_size_header-1 {
+.w-card-header_size_header-2 .w-card-header__title,
+.w-card-header_size_header-1 .w-card-header__title {
   gap: var(--w-g-spacing-4);
 }
 
-.w-card-header__title_size_header-2 .w-card-header__icon,
-.w-card-header__title_size_header-1 .w-card-header__icon {
+.w-card-header_size_header-2 .w-card-header__icon,
+.w-card-header_size_header-1 .w-card-header__icon {
   padding: var(--w-g-spacing-2);
   border-radius: var(--w-xl-radius);
   background: var(--w-branding-base-selection);
 }
 
-.w-card-header__title_size_header-2 {
+.w-card-header_size_header-2 .w-card-header__description,
+.w-card-header_size_header-1 .w-card-header__description {
+  font: var(--w-style-text-body-2);
+}
+
+.w-card-header_size_header-2 {
+  --w-card-header-title-height: 32px;
   --w-card-header-icon: 16px;
 }
 
-.w-card-header__title_size_header-2 .w-card-header__label {
+.w-card-header_size_header-2 .w-card-header__label {
   font: var(--w-style-header-header-2);
 }
 
-.w-card-header__title_size_header-1 {
+.w-card-header_size_header-1 {
+  --w-card-header-title-height: 36px;
   --w-card-header-icon: 20px;
 }
 
-.w-card-header__title_size_header-1 .w-card-header__label {
+.w-card-header_size_header-1 .w-card-header__label {
   font: var(--w-style-header-header-1);
 }

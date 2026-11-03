@@ -789,7 +789,7 @@ function Molecules() {
       </Component>
 
       <Component kit="Product / card-header" code="CardHeader">
-        <Axis name=".Product / title · Size · 4">
+        <Axis name="Size · 4">
           {CARD_HEADER_SIZES.map((size) => (
             <Item key={size} label={size} width={554}>
               <div style={{ width: 554 }}>
@@ -798,9 +798,7 @@ function Molecules() {
                   title="Цель"
                   description="Пояснение раздела"
                   icon={<Icon data={Play} />}
-                  action3={
-                    <Button view="flat-secondary" size="m" startIcon={<Icon data={Plus} size={12} />} ariaLabel="Добавить" />
-                  }
+                  action3={{ icon: <Icon data={Plus} size={12} />, ariaLabel: 'Добавить' }}
                 />
               </div>
             </Item>

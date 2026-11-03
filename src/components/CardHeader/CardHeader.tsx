@@ -1,37 +1,58 @@
-import type { ReactNode } from 'react'
+import type { MouseEventHandler, ReactNode } from 'react'
 
+import { Button } from '../Button/Button'
+import type { ButtonSize } from '../Button/constants'
 import type { CardHeaderSize } from './constants'
 import './CardHeader.css'
+
+/**
+ * Кнопка действия раздела. Вид и размер ставит шапка: `flat-secondary`, только
+ * значок, размер по оси Size. Экран передаёт значок, подпись и что делать.
+ */
+export type CardHeaderAction = {
+  /** Значок 12 — в ките «⋮» по умолчанию, подменяется в экземпляре. */
+  icon: ReactNode
+  /** Подпись для чтения с экрана: кнопка несёт только значок. */
+  ariaLabel: string
+  onClick?: MouseEventHandler<HTMLButtonElement>
+  disabled?: boolean
+}
 
 export type CardHeaderProps = {
   /** Текст заголовка — слой `label` вложенного `.Product / title`. */
   title: ReactNode
   /** Figma `description` — пояснение раздела под строкой заголовка. Не передано — строки нет. */
   description?: ReactNode
-  /** Figma Size вложенного `.Product / title` — стиль заголовка и размер значка. */
+  /** Figma Size — стиль заголовка, размер кнопок действий и стиль пояснения разом. */
   size?: CardHeaderSize
   /** Figma `icon` вложенного `.Product / title` — значок слева. Не передан — значка нет. */
   icon?: ReactNode
   /**
    * Figma `button` вложенного `.Product / title` — кнопка сразу за заголовком.
-   * Вид `flat-secondary`, только значок, размер по `size`: XS, XS, S, M.
+   * В мастерах шапки выключена: действия стоят справа. Решение пользователя 03.11.2026.
    */
-  button?: ReactNode
-  /**
-   * Figma `action-1`…`action-3` — кнопки действий раздела справа, слева направо.
-   * Вид `flat-secondary`, размер M, только значок. Не передана — кнопки нет.
-   */
-  action1?: ReactNode
-  action2?: ReactNode
-  action3?: ReactNode
+  button?: CardHeaderAction
+  /** Figma `action-1`…`action-3` — кнопки действий справа, слева направо. Не передана — нет. */
+  action1?: CardHeaderAction
+  action2?: CardHeaderAction
+  action3?: CardHeaderAction
   /** Уровень заголовка в документе. В ките его нет: он задаётся местом на странице. */
   headingLevel?: 2 | 3 | 4 | 5 | 6
 }
 
+/* Размер кнопок по оси Size — мастера набора `51673:42222`: 22, 22, 26, 34. */
+const BUTTON_SIZE: Record<CardHeaderSize, ButtonSize> = {
+  'caption-1': 'xs',
+  'subheader-2': 'xs',
+  'header-2': 's',
+  'header-1': 'm',
+}
+
 /**
- * Шапка раздела-карточки — `Product / card-header` `50990:74036`. Строка заголовка:
- * `.Product / title` слева, ряд действий справа; под ней пояснение. Внутренний
- * `.Product / title` наружу отдельно не отдаётся — его оси стоят пропами здесь.
+ * Шапка раздела-карточки — набор `Product / card-header` `51673:42222`, четыре
+ * мастера по оси Size. Строка заголовка: `.Product / title` слева, ряд действий
+ * справа; под ней пояснение. Внутренний `.Product / title` наружу отдельно не
+ * отдаётся — его выключатели стоят пропами здесь.
  */
 export function CardHeader({
   title,
@@ -45,22 +66,30 @@ export function CardHeader({
   headingLevel = 2,
 }: CardHeaderProps) {
   const Heading = `h${headingLevel}` as const
-  const hasActions = Boolean(action1 || action2 || action3)
+  const actions = [action1, action2, action3].filter((action) => action !== undefined)
+
+  const render = (action: CardHeaderAction, key?: number) => (
+    <Button
+      key={key}
+      view="flat-secondary"
+      size={BUTTON_SIZE[size]}
+      startIcon={action.icon}
+      ariaLabel={action.ariaLabel}
+      onClick={action.onClick}
+      disabled={action.disabled}
+    />
+  )
 
   return (
-    <div className="w-card-header">
+    <div className={`w-card-header w-card-header_size_${size}`}>
       <div className="w-card-header__row">
-        <div className={`w-card-header__title w-card-header__title_size_${size}`}>
+        <div className="w-card-header__title">
           {icon ? <span className="w-card-header__icon">{icon}</span> : null}
           <Heading className="w-card-header__label">{title}</Heading>
-          {button ?? null}
+          {button ? render(button) : null}
         </div>
-        {hasActions ? (
-          <div className="w-card-header__actions">
-            {action1 ?? null}
-            {action2 ?? null}
-            {action3 ?? null}
-          </div>
+        {actions.length > 0 ? (
+          <div className="w-card-header__actions">{actions.map((action, index) => render(action, index))}</div>
         ) : null}
       </div>
       {description ? <p className="w-card-header__description">{description}</p> : null}

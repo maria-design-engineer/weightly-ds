@@ -284,7 +284,7 @@ export { Breadcrumbs } from './components/Breadcrumbs/Breadcrumbs'
 export type { BreadcrumbsItem, BreadcrumbsProps } from './components/Breadcrumbs/Breadcrumbs'
 
 export { CardHeader } from './components/CardHeader/CardHeader'
-export type { CardHeaderProps } from './components/CardHeader/CardHeader'
+export type { CardHeaderAction, CardHeaderProps } from './components/CardHeader/CardHeader'
 export { CARD_HEADER_SIZES } from './components/CardHeader/constants'
 export type { CardHeaderSize } from './components/CardHeader/constants'
 
