@@ -1,0 +1,118 @@
+/*
+ * Product / card-header — мастер `50990:74036`, обход 03.11.2026. Столбик с
+ * промежутком 8 — `g-spacing-2`: строка заголовка и пояснение. Ширина — по месту.
+ */
+.w-card-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--w-g-spacing-2);
+  min-width: 0;
+}
+
+/* `header-row` — заголовок слева, действия справа, промежуток 10, верх по верху. */
+.w-card-header__row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+/* `actions-box` — кнопки в ряд через 4 — `g-spacing-1`. */
+.w-card-header__actions {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: var(--w-g-spacing-1);
+}
+
+/* `description` — `Text/Body 2` цветом `Text/Secondary`. */
+.w-card-header__description {
+  margin: 0;
+  font: var(--w-style-text-body-2);
+  color: var(--w-text-secondary);
+}
+
+/*
+ * `.Product / title` — набор `50832:21967`, четыре мастера по оси Size.
+ * Значок, текст и кнопка в ряд по центру высоты; заголовок занимает остаток строки.
+ */
+.w-card-header__title {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  min-width: 0;
+}
+
+.w-card-header__label {
+  margin: 0;
+  color: var(--w-text-primary);
+}
+
+.w-card-header__icon {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  color: var(--w-branding-text-brand);
+}
+
+.w-card-header__icon svg {
+  width: var(--w-card-header-icon);
+  height: var(--w-card-header-icon);
+}
+
+/* Caption 1 — 69 × 22: промежуток 4, значок 12 без плашки; текст и значок `Text/Complementary`. */
+.w-card-header__title_size_caption-1 {
+  --w-card-header-icon: 12px;
+  gap: var(--w-g-spacing-1);
+}
+
+.w-card-header__title_size_caption-1 .w-card-header__label {
+  font: var(--w-style-text-caption-1);
+  color: var(--w-text-complementary);
+}
+
+.w-card-header__title_size_caption-1 .w-card-header__icon {
+  color: var(--w-text-complementary);
+}
+
+/* Subheader 2 — 92 × 22: промежуток 8, значок 16 без плашки. */
+.w-card-header__title_size_subheader-2 {
+  --w-card-header-icon: 16px;
+  gap: var(--w-g-spacing-2);
+}
+
+.w-card-header__title_size_subheader-2 .w-card-header__label {
+  font: var(--w-style-header-subheader-2);
+}
+
+/*
+ * Header 2 и Header 1 — промежуток 16, значок на плашке `Base/Selection` с полями 8
+ * и радиусом 16: плашка 32 под значок 16 и 36 под значок 20.
+ */
+.w-card-header__title_size_header-2,
+.w-card-header__title_size_header-1 {
+  gap: var(--w-g-spacing-4);
+}
+
+.w-card-header__title_size_header-2 .w-card-header__icon,
+.w-card-header__title_size_header-1 .w-card-header__icon {
+  padding: var(--w-g-spacing-2);
+  border-radius: var(--w-xl-radius);
+  background: var(--w-branding-base-selection);
+}
+
+.w-card-header__title_size_header-2 {
+  --w-card-header-icon: 16px;
+}
+
+.w-card-header__title_size_header-2 .w-card-header__label {
+  font: var(--w-style-header-header-2);
+}
+
+.w-card-header__title_size_header-1 {
+  --w-card-header-icon: 20px;
+}
+
+.w-card-header__title_size_header-1 .w-card-header__label {
+  font: var(--w-style-header-header-1);
+}

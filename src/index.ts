@@ -133,8 +133,8 @@ export type { StatTileTone } from './components/StatTile/constants'
 // Молекулы — этап 11. Барабан и лента веса пока не собираются: колёса под вопросом.
 export { BottomBarItem } from './components/BottomBarItem/BottomBarItem'
 export type { BottomBarItemProps } from './components/BottomBarItem/BottomBarItem'
-export { BOTTOM_BAR_ITEM_STATES } from './components/BottomBarItem/constants'
-export type { BottomBarItemState } from './components/BottomBarItem/constants'
+export { BOTTOM_BAR_ITEM_DEVISES, BOTTOM_BAR_ITEM_STATES } from './components/BottomBarItem/constants'
+export type { BottomBarItemDevise, BottomBarItemState } from './components/BottomBarItem/constants'
 
 export { BlockTab } from './components/BlockTab/BlockTab'
 export type { BlockTabProps } from './components/BlockTab/BlockTab'
@@ -278,3 +278,24 @@ export type { SegmentedSwitchItem, SegmentedSwitchSize } from './components/Segm
 // Срез 6, личный кабинет: шапка профиля.
 export { ProfileHeader } from './components/ProfileHeader/ProfileHeader'
 export type { ProfileHeaderProps } from './components/ProfileHeader/ProfileHeader'
+
+// Релиз 0.5.0, кабинет тренера: меню, полотно, строка над заголовком, путь, шапка раздела.
+export { Breadcrumbs } from './components/Breadcrumbs/Breadcrumbs'
+export type { BreadcrumbsItem, BreadcrumbsProps } from './components/Breadcrumbs/Breadcrumbs'
+
+export { CardHeader } from './components/CardHeader/CardHeader'
+export type { CardHeaderProps } from './components/CardHeader/CardHeader'
+export { CARD_HEADER_SIZES } from './components/CardHeader/constants'
+export type { CardHeaderSize } from './components/CardHeader/constants'
+
+export { CoachSideBar } from './components/CoachSideBar/CoachSideBar'
+export type { CoachSideBarItem, CoachSideBarProps } from './components/CoachSideBar/CoachSideBar'
+export { COACH_SIDE_BAR_ITEMS } from './components/CoachSideBar/defaults'
+export { COACH_SIDE_BAR_SECTIONS } from './components/CoachSideBar/constants'
+export type { CoachSideBarSection } from './components/CoachSideBar/constants'
+
+export { Grid } from './components/Grid/Grid'
+export type { GridProps } from './components/Grid/Grid'
+
+export { PageTop } from './components/PageTop/PageTop'
+export type { PageTopProps } from './components/PageTop/PageTop'

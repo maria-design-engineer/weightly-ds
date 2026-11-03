@@ -1,0 +1,59 @@
+/*
+ * Breadcrumbs — мастер `53593:3494`, обход 03.11.2026. Звенья в строку через 4,
+ * высота строки 26, текст везде `Text/Body 3`. Строка в одну линию: не помещается —
+ * сворачивается середина пути, а не перенос.
+ */
+.w-breadcrumbs {
+  min-width: 0;
+  overflow: hidden;
+}
+
+.w-breadcrumbs__list {
+  display: flex;
+  align-items: center;
+  gap: var(--w-g-spacing-1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  white-space: nowrap;
+  font: var(--w-style-text-body-3);
+}
+
+/* `.breadcrumbs-item` — подпись и разделитель через 4, высота 26, `Text/Secondary`. */
+.w-breadcrumbs__item {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: var(--w-g-spacing-1);
+  height: 26px;
+  color: var(--w-text-secondary);
+}
+
+/* Звено-ссылка без подчёркивания: на макете путь им не размечен. */
+.w-breadcrumbs__link {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Разделитель — `chevron-right` 10 × 10. */
+.w-breadcrumbs__separator {
+  display: inline-flex;
+}
+
+/* `.breadcrumbs-current` — текущая страница, `Text/Primary`, значки через 8. */
+.w-breadcrumbs__current {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: var(--w-g-spacing-2);
+  height: 26px;
+  color: var(--w-text-primary);
+}
+
+/* `.breadcrumbs-icons` — до трёх значков 16 через 8, `Text/Secondary`. */
+.w-breadcrumbs__icons {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--w-g-spacing-2);
+  color: var(--w-text-secondary);
+}

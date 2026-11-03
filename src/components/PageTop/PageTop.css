@@ -1,0 +1,14 @@
+/*
+ * Product / page-top — мастер `51663:41905`, обход 03.11.2026: 1148 × 42, ряд,
+ * поля 8, промежуток 8, содержимое по центру высоты. Ширина тянется по полотну.
+ * Высота 42 вписана числом и в ките — ступени 42 в шкале нет.
+ */
+.w-page-top {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: var(--w-g-spacing-2);
+  min-width: 0;
+  height: 42px;
+  padding: var(--w-g-spacing-2);
+}

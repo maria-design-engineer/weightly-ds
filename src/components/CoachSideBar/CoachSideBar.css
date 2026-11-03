@@ -1,0 +1,64 @@
+/*
+ * Product / coach-side-bar — мастер `50821:15850`, обход 03.11.2026: 106 × 655.
+ * Снаружи поля 16 сверху и снизу, 8 по бокам. Внутри панель `side-bar` 90 в ширину:
+ * поля 16 сверху, 4 с остальных сторон, промежуток 16, радиус `XL radius`,
+ * заливка `Base Float/Float`, тень `card-shadow/card-light (new)`.
+ */
+.w-coach-side-bar {
+  box-sizing: border-box;
+  display: flex;
+  /* Ширина по содержимому — 106, как мастер: меню не тянется за рамкой. */
+  width: fit-content;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--w-g-spacing-4) var(--w-g-spacing-2);
+}
+
+.w-coach-side-bar__panel {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--w-g-spacing-4);
+  padding: var(--w-g-spacing-4) var(--w-g-spacing-1) var(--w-g-spacing-1);
+  border-radius: var(--w-xl-radius);
+  background: var(--w-base-float-float-bg);
+  box-shadow: var(--w-card-shadow-card-light-new);
+}
+
+/* `app-icon-box` — во всю ширину пунктов, поля 4 сверху и снизу. */
+.w-coach-side-bar__app-icon-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: stretch;
+  padding: var(--w-g-spacing-1) 0;
+}
+
+/*
+ * Значок продукта в меню: 56 × 56, радиус 16, плашка `Branding/Base Dark`,
+ * слово белое — `Text/Light Primary`.
+ */
+.w-coach-side-bar__app-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: var(--w-xl-radius);
+  background: var(--w-branding-base-dark);
+  color: var(--w-text-light-primary);
+}
+
+/* `items-top-box` и `items-bottom-box` — пункты столбиком без промежутка. */
+.w-coach-side-bar__items {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* `Product / divider` шириной 40 — `Divider` тянется по обёртке. */
+.w-coach-side-bar__divider {
+  display: flex;
+  width: 40px;
+}

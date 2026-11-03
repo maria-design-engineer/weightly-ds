@@ -20,7 +20,13 @@ import { BlockTabs } from './components/BlockTabs/BlockTabs'
 import { BottomBar } from './components/BottomBar/BottomBar'
 import { BOTTOM_BAR_SECTIONS } from './components/BottomBar/constants'
 import { BottomBarItem } from './components/BottomBarItem/BottomBarItem'
-import { BOTTOM_BAR_ITEM_STATES } from './components/BottomBarItem/constants'
+import { BOTTOM_BAR_ITEM_DEVISES, BOTTOM_BAR_ITEM_STATES } from './components/BottomBarItem/constants'
+import { Breadcrumbs } from './components/Breadcrumbs/Breadcrumbs'
+import { CardHeader } from './components/CardHeader/CardHeader'
+import { CARD_HEADER_SIZES } from './components/CardHeader/constants'
+import { CoachSideBar } from './components/CoachSideBar/CoachSideBar'
+import { Grid } from './components/Grid/Grid'
+import { PageTop } from './components/PageTop/PageTop'
 import { Button } from './components/Button/Button'
 import { BUTTON_SIZES, BUTTON_VIEWS } from './components/Button/constants'
 import { CoachComment } from './components/CoachComment/CoachComment'
@@ -212,7 +218,7 @@ function Item({ label, width, children }: { label: string; width?: number; child
 
 function Base() {
   return (
-    <Layer title="Базовый слой — 11 компонентов и иконотека">
+    <Layer title="Базовый слой — 12 компонентов и иконотека">
       <Component kit="Button" code="Button">
         <Axis name="View · 21">
           {BUTTON_VIEWS.map((view) => (
@@ -486,6 +492,28 @@ function Base() {
         </Axis>
       </Component>
 
+      <Component kit="Breadcrumbs" code="Breadcrumbs">
+        <Axis name="Глубина">
+          <Item label="одно звено" width={280}>
+            <Breadcrumbs items={[{ label: 'Раздел', href: '#' }, { label: 'Страница' }]} ariaLabel="Путь" />
+          </Item>
+          <Item label="Expand=On · середина свёрнута" width={300}>
+            <div style={{ width: 300 }}>
+              <Breadcrumbs
+                items={[
+                  { label: 'Раздел 1', href: '#' },
+                  { label: 'Раздел 2', href: '#' },
+                  { label: 'Раздел 3', href: '#' },
+                  { label: 'Раздел 4', href: '#' },
+                  { label: 'Страница' },
+                ]}
+                ariaLabel="Путь"
+              />
+            </div>
+          </Item>
+        </Axis>
+      </Component>
+
       <Component kit="Иконотека Gravity" code="Icon">
         <Axis name="Размер">
           {[14, 16, 20, 24].map((size) => (
@@ -501,7 +529,17 @@ function Base() {
 
 function Atoms() {
   return (
-    <Layer title="Атомы — 12 компонентов">
+    <Layer title="Атомы — 13 компонентов">
+      <Component kit="Product / grid" code="Grid">
+        <Axis name="Свойств нет">
+          <Item label="grid · вдвое меньше мастера" width={591}>
+            <div style={{ display: 'grid', width: 591, height: 120, outline: '1px dashed var(--w-line-generic)' }}>
+              <Grid />
+            </div>
+          </Item>
+        </Axis>
+      </Component>
+
       <Component kit="Product / divider" code="Divider">
         <Axis name="Свойств нет">
           <Item label="divider" width={280}>
@@ -713,12 +751,58 @@ const RUNNING_STEPS = (
 
 function Molecules() {
   return (
-    <Layer title="Молекулы — 17 компонентов">
+    <Layer title="Молекулы — 19 компонентов">
       <Component kit="Product / bottom-bar-item" code="BottomBarItem">
-        <Axis name="State · 2">
-          {BOTTOM_BAR_ITEM_STATES.map((state) => (
-            <Item key={state} label={state}>
-              <BottomBarItem state={state} label="Тренировки" icon={<Icon data={Play} size={20} />} />
+        {BOTTOM_BAR_ITEM_DEVISES.map((devise) => (
+          <Axis key={devise} name={`State · 2 · Devise=${devise}`}>
+            {BOTTOM_BAR_ITEM_STATES.map((state) => (
+              <Item key={state} label={state}>
+                <BottomBarItem
+                  state={state}
+                  devise={devise}
+                  label="Тренировки"
+                  icon={<Icon data={Play} size={20} />}
+                />
+              </Item>
+            ))}
+          </Axis>
+        ))}
+      </Component>
+
+      <Component kit="Product / page-top" code="PageTop">
+        <Axis name="breadcrumbs">
+          <Item label="breadcrumbs=On" width={560}>
+            <div style={{ width: 560, outline: '1px dashed var(--w-line-generic)' }}>
+              <PageTop
+                breadcrumbs={
+                  <Breadcrumbs items={[{ label: 'Раздел', href: '#' }, { label: 'Страница' }]} ariaLabel="Путь" />
+                }
+              />
+            </div>
+          </Item>
+          <Item label="breadcrumbs=Off" width={560}>
+            <div style={{ width: 560, outline: '1px dashed var(--w-line-generic)' }}>
+              <PageTop />
+            </div>
+          </Item>
+        </Axis>
+      </Component>
+
+      <Component kit="Product / card-header" code="CardHeader">
+        <Axis name=".Product / title · Size · 4">
+          {CARD_HEADER_SIZES.map((size) => (
+            <Item key={size} label={size} width={554}>
+              <div style={{ width: 554 }}>
+                <CardHeader
+                  size={size}
+                  title="Цель"
+                  description="Пояснение раздела"
+                  icon={<Icon data={Play} />}
+                  action3={
+                    <Button view="flat-secondary" size="m" startIcon={<Icon data={Plus} size={12} />} ariaLabel="Добавить" />
+                  }
+                />
+              </div>
             </Item>
           ))}
         </Axis>
@@ -958,7 +1042,7 @@ function WorkoutCardSample() {
 
 function Organisms() {
   return (
-    <Layer title="Организмы — 9 компонентов">
+    <Layer title="Организмы — 10 компонентов">
       <Component kit="Product / bottom-bar" code="BottomBar">
         <Axis name="Active · 3">
           {BOTTOM_BAR_SECTIONS.map((section) => (
@@ -1080,6 +1164,16 @@ function Organisms() {
               emptyAction={<Button view="normal-contrast" size="m" content="Добавить" />}
             />
           </Item>
+        </Axis>
+      </Component>
+
+      <Component kit="Product / coach-side-bar" code="CoachSideBar">
+        <Axis name="Осей нет · текущий пункт">
+          {(['plans', 'profile'] as const).map((section) => (
+            <Item key={section} label={section} width={106}>
+              <CoachSideBar active={section} ariaLabel="Разделы" />
+            </Item>
+          ))}
         </Axis>
       </Component>
 

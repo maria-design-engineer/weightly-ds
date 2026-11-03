@@ -1,11 +1,13 @@
 import type { MouseEvent, ReactNode } from 'react'
 
-import type { BottomBarItemState } from './constants'
+import type { BottomBarItemDevise, BottomBarItemState } from './constants'
 import './BottomBarItem.css'
 
 export type BottomBarItemProps = {
   /** Figma State — активный раздел красится брендовым цветом. */
   state?: BottomBarItemState
+  /** Figma Devise — нижняя панель телефона или боковое меню кабинета. */
+  devise?: BottomBarItemDevise
   /** Figma Label — подпись вкладки. */
   label?: ReactNode
   /** Figma Icon — подмена значка. */
@@ -25,12 +27,13 @@ export type BottomBarItemProps = {
  */
 export function BottomBarItem({
   state = 'inactive',
+  devise = 'mobile',
   label,
   icon,
   href,
   onClick,
 }: BottomBarItemProps) {
-  const className = `w-bottom-bar-item w-bottom-bar-item_state_${state}`
+  const className = `w-bottom-bar-item w-bottom-bar-item_state_${state} w-bottom-bar-item_devise_${devise}`
   const content = (
     <>
       <span className="w-bottom-bar-item__icon">{icon}</span>

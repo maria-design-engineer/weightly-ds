@@ -22,7 +22,8 @@
   padding: var(--w-g-spacing-1) var(--w-g-spacing-2);
   position: relative;
   border: 0;
-  border-radius: 15px;
+  /* Радиус 16 — `XL radius`: было 15, ступени 15 в шкале нет. Правка кита 03.11.2026. */
+  border-radius: var(--w-xl-radius);
   background: none;
   font: var(--w-style-text-caption-1);
   /* Вкладка с адресом приходит ссылкой, и подчёркивание ей не нужно: на макете
@@ -85,6 +86,19 @@
 }
 /* Прочие вкладки — Text/Secondary, правка макета 18.09.2026, мастер `49064:26939`. */
 .w-bottom-bar-item_state_inactive { color: var(--w-text-secondary); }
+
+/*
+ * Devise=Desktop — пункт бокового меню кабинета, мастера `50964:59192` и `50964:59195`:
+ * 82 × 70, поля 16 сверху и снизу, 8 по бокам, промежуток 2 тот же. Неактивный пункт —
+ * `Text/Primary`, а не `Text/Secondary`, как у мобильного.
+ */
+.w-bottom-bar-item_devise_desktop {
+  padding: var(--w-g-spacing-4) var(--w-g-spacing-2);
+}
+
+.w-bottom-bar-item_devise_desktop.w-bottom-bar-item_state_inactive {
+  color: var(--w-text-primary);
+}
 
 .w-bottom-bar-item__icon {
   display: inline-flex;
