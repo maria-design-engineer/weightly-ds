@@ -7,7 +7,7 @@
   position: relative;
   display: inline-flex;
   align-items: center;
-  padding: 2px;
+  padding: var(--w-g-spacing-0-5);
   background: var(--w-base-generic);
 }
 

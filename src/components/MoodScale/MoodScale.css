@@ -79,10 +79,10 @@
   box-sizing: border-box;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--w-g-spacing-2);
   width: 100%;
   height: 32px;
-  padding: 4px;
+  padding: var(--w-g-spacing-1);
   border-radius: var(--w-s-radius);
   background: var(--w-base-generic);
 }
@@ -107,7 +107,7 @@
 }
 
 .w-mood-scale__mark {
-  padding: 0 4px;
+  padding: 0 var(--w-g-spacing-1);
   font: var(--w-style-text-caption-1);
   color: var(--w-text-hint);
 }
@@ -119,7 +119,7 @@
  */
 .w-mood-scale__mark_pick {
   appearance: none;
-  padding: 0 4px;
+  padding: 0 var(--w-g-spacing-1);
   font: var(--w-style-text-caption-1);
   color: var(--w-text-hint);
   background: none;

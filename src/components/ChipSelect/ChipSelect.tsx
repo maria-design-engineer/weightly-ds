@@ -1,12 +1,14 @@
 import type { ReactNode } from 'react'
 
-import type { ChipSelectState } from './constants'
+import type { ChipSelectSize, ChipSelectState } from './constants'
 import '../focus.css'
 import './ChipSelect.css'
 
 export type ChipSelectProps = {
   /** Figma State — выбран чип или нет. */
   state?: ChipSelectState
+  /** Figma Size — S 26, M 34, L 42. По умолчанию `s`: так стоят все чипы атлета. */
+  size?: ChipSelectSize
   /** Figma Content — подпись чипа. */
   content?: ReactNode
   /**
@@ -24,8 +26,8 @@ export type ChipSelectProps = {
  * ряд чипов оборачивается на экране в `role="radiogroup"` с подписью группы —
  * иначе с клавиатуры он читается набором отдельных кнопок, а не выбором из списка.
  */
-export function ChipSelect({ state = 'default', content, onPick }: ChipSelectProps) {
-  const className = ['w-chip-select', `w-chip-select_state_${state}`].join(' ')
+export function ChipSelect({ state = 'default', size = 's', content, onPick }: ChipSelectProps) {
+  const className = ['w-chip-select', `w-chip-select_size_${size}`, `w-chip-select_state_${state}`].join(' ')
 
   if (!onPick) {
     return <span className={className}>{content}</span>

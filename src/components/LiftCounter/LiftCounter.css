@@ -7,7 +7,7 @@
 .w-lift-counter {
   box-sizing: border-box;
   width: 116px;
-  padding: 4px;
+  padding: var(--w-g-spacing-1);
   border-radius: var(--w-xl-radius);
   /* Своей подложки у счётчика нет: кнопки стоят прямо на заливке панели. */
   background: none;
@@ -16,7 +16,7 @@
 .w-lift-counter__row {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: var(--w-g-spacing-1);
 }
 
 .w-lift-counter__value {

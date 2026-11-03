@@ -216,8 +216,8 @@ export type { WeightFieldState } from './components/WeightField/constants'
 
 export { SetPanel } from './components/SetPanel/SetPanel'
 export type { SetPanelProps } from './components/SetPanel/SetPanel'
-export { SET_PANEL_STATES } from './components/SetPanel/constants'
-export type { SetPanelState } from './components/SetPanel/constants'
+export { SET_PANEL_VIEWS } from './components/SetPanel/constants'
+export type { SetPanelView } from './components/SetPanel/constants'
 
 // Организмы — 5 своих компонентов, этап 12.
 export { BottomBar } from './components/BottomBar/BottomBar'
@@ -257,8 +257,8 @@ export type { DropdownMenuItem, DropdownMenuSize } from './components/DropdownMe
 
 export { ChipSelect } from './components/ChipSelect/ChipSelect'
 export type { ChipSelectProps } from './components/ChipSelect/ChipSelect'
-export { CHIP_SELECT_STATES } from './components/ChipSelect/constants'
-export type { ChipSelectState } from './components/ChipSelect/constants'
+export { CHIP_SELECT_SIZES, CHIP_SELECT_STATES } from './components/ChipSelect/constants'
+export type { ChipSelectSize, ChipSelectState } from './components/ChipSelect/constants'
 
 export { DeleteZone } from './components/DeleteZone/DeleteZone'
 export type { DeleteZoneProps } from './components/DeleteZone/DeleteZone'

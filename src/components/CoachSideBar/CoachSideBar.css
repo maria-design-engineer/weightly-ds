@@ -36,8 +36,10 @@
 }
 
 /*
- * Значок продукта в меню: 56 × 56, радиус 16, плашка `Branding/Base Dark`,
- * слово белое — `Text/Light Primary`.
+ * Значок продукта в меню: 56 × 56, радиус 16, плашка `Branding/Base Dark`, слово —
+ * `Text/Inverted Primary`. Плашка в тёмных режимах светлеет, и белое слово
+ * `Text/Light Primary` пропадало: контраст 1.19 в Dark, 1.00 в Dark HC. Приёмка
+ * UI Designer релиза 0.5.3, строка «Ломает»; с инверсным цветом 17.6 · 14.7 · 21 · 21.
  */
 .w-coach-side-bar__app-icon {
   display: flex;
@@ -47,7 +49,7 @@
   height: 56px;
   border-radius: var(--w-xl-radius);
   background: var(--w-branding-base-dark);
-  color: var(--w-text-light-primary);
+  color: var(--w-text-inverted-primary);
 }
 
 /* `items-top-box` и `items-bottom-box` — пункты столбиком без промежутка. */

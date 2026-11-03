@@ -22,6 +22,12 @@ import { BOTTOM_BAR_SECTIONS } from './components/BottomBar/constants'
 import { BottomBarItem } from './components/BottomBarItem/BottomBarItem'
 import { BOTTOM_BAR_ITEM_DEVISES, BOTTOM_BAR_ITEM_STATES } from './components/BottomBarItem/constants'
 import { Breadcrumbs } from './components/Breadcrumbs/Breadcrumbs'
+import { ErrorState } from './components/Error/Error'
+import { ProfileHeader } from './components/ProfileHeader/ProfileHeader'
+import { SegmentedSwitch } from './components/SegmentedSwitch/SegmentedSwitch'
+import { SEGMENTED_SWITCH_SIZES } from './components/SegmentedSwitch/constants'
+import { Switch } from './components/Switch/Switch'
+import { SWITCH_SIZES } from './components/Switch/constants'
 import { CardHeader } from './components/CardHeader/CardHeader'
 import { CARD_HEADER_SIZES } from './components/CardHeader/constants'
 import { CoachSideBar } from './components/CoachSideBar/CoachSideBar'
@@ -32,7 +38,7 @@ import { BUTTON_SIZES, BUTTON_VIEWS } from './components/Button/constants'
 import { CoachComment } from './components/CoachComment/CoachComment'
 import { COACH_COMMENT_BANDS, COACH_COMMENT_STATES } from './components/CoachComment/constants'
 import { ChipSelect } from './components/ChipSelect/ChipSelect'
-import { CHIP_SELECT_STATES } from './components/ChipSelect/constants'
+import { CHIP_SELECT_SIZES, CHIP_SELECT_STATES } from './components/ChipSelect/constants'
 import { CorrespondenceRow } from './components/CorrespondenceRow/CorrespondenceRow'
 import { DeleteZone } from './components/DeleteZone/DeleteZone'
 import { DELETE_ZONE_STATES } from './components/DeleteZone/constants'
@@ -218,7 +224,7 @@ function Item({ label, width, children }: { label: string; width?: number; child
 
 function Base() {
   return (
-    <Layer title="Базовый слой — 12 компонентов и иконотека">
+    <Layer title="Базовый слой — 14 компонентов и иконотека">
       <Component kit="Button" code="Button">
         <Axis name="View · 21">
           {BUTTON_VIEWS.map((view) => (
@@ -492,6 +498,41 @@ function Base() {
         </Axis>
       </Component>
 
+      <Component kit="Switch" code="Switch">
+        {SWITCH_SIZES.map((size) => (
+          <Axis key={size} name={`Checked · Size=${size}`}>
+            <Item label="off">
+              <Switch size={size} ariaLabel="Выключатель" />
+            </Item>
+            <Item label="on">
+              <Switch size={size} defaultChecked ariaLabel="Выключатель" />
+            </Item>
+            <Item label="disabled">
+              <Switch size={size} disabled ariaLabel="Выключатель" />
+            </Item>
+          </Axis>
+        ))}
+      </Component>
+
+      <Component kit="SegmentedSwitch" code="SegmentedSwitch">
+        <Axis name="Size · 2">
+          {SEGMENTED_SWITCH_SIZES.map((size) => (
+            <Item key={size} label={size} width={300}>
+              <SegmentedSwitch
+                size={size}
+                defaultValue="week"
+                ariaLabel="Отрезок"
+                items={[
+                  { value: 'week', content: 'Неделя' },
+                  { value: 'month', content: 'Месяц' },
+                  { value: 'year', content: 'Год' },
+                ]}
+              />
+            </Item>
+          ))}
+        </Axis>
+      </Component>
+
       <Component kit="Breadcrumbs" code="Breadcrumbs">
         <Axis name="Глубина">
           <Item label="одно звено" width={280}>
@@ -607,13 +648,15 @@ function Atoms() {
       </Component>
 
       <Component kit="Product / chip-select" code="ChipSelect">
-        <Axis name="State · 2">
-          {CHIP_SELECT_STATES.map((state) => (
-            <Item key={state} label={state}>
-              <ChipSelect state={state} content="С помоста" />
-            </Item>
-          ))}
-        </Axis>
+        {CHIP_SELECT_SIZES.map((size) => (
+          <Axis key={size} name={`State · 2 · Size=${size}`}>
+            {CHIP_SELECT_STATES.map((state) => (
+              <Item key={state} label={state}>
+                <ChipSelect state={state} size={size} content="С помоста" />
+              </Item>
+            ))}
+          </Axis>
+        ))}
       </Component>
 
       <Component kit="Product / lift-mark" code="LiftMark">
@@ -751,7 +794,7 @@ const RUNNING_STEPS = (
 
 function Molecules() {
   return (
-    <Layer title="Молекулы — 19 компонентов">
+    <Layer title="Молекулы — 21 компонент">
       <Component kit="Product / bottom-bar-item" code="BottomBarItem">
         {BOTTOM_BAR_ITEM_DEVISES.map((devise) => (
           <Axis key={devise} name={`State · 2 · Devise=${devise}`}>
@@ -767,6 +810,32 @@ function Molecules() {
             ))}
           </Axis>
         ))}
+      </Component>
+
+      <Component kit="Product / profile-header" code="ProfileHeader">
+        <Axis name="State · нажимается или нет">
+          <Item label="default" width={320}>
+            <ProfileHeader name="Имя Фамилия" email="name@mail.ru" />
+          </Item>
+          <Item label="action" width={320}>
+            <ProfileHeader name="Имя Фамилия" email="name@mail.ru" onClick={() => {}} ariaLabel="Данные аккаунта" />
+          </Item>
+        </Axis>
+      </Component>
+
+      <Component kit="Error" code="ErrorState">
+        <Axis name="Picture">
+          {PICTURE_TYPES.map((picture) => (
+            <Item key={picture} label={picture} width={300}>
+              <ErrorState
+                picture={picture}
+                title="Заголовок"
+                message="Текст сообщения в одну-две строки"
+                action={<Button view="normal-contrast" size="m" content="Действие" />}
+              />
+            </Item>
+          ))}
+        </Axis>
       </Component>
 
       <Component kit="Product / page-top" code="PageTop">
@@ -1116,8 +1185,8 @@ function Organisms() {
       </Component>
 
       <Component kit="Product / set-panel" code="SetPanel">
-        <Axis name="State · 2">
-          <Item label="default" width={360}>
+        <Axis name="View · 3">
+          <Item label="panel" width={360}>
             <SetPanel
               title="Подход"
               caption="50% от 123 кг"
@@ -1154,9 +1223,38 @@ function Organisms() {
               }
             />
           </Item>
+          <Item label="columns" width={360}>
+            <SetPanel
+              view="columns"
+              title="Подход"
+              caption="50% от 123 кг"
+              liftsTitle="Подъёмы"
+              markers={
+                <>
+                  <SetMarker state="done" content="1" />
+                  <SetMarker state="current" content="2" />
+                </>
+              }
+              onAddSet={() => {}}
+              wheel={
+                <WeightWheel
+                  direction="vertical"
+                  values={WHEEL_VALUES}
+                  selected={43}
+                  ariaLabel="Вес подхода"
+                />
+              }
+              lifts={
+                <>
+                  <LiftCounter content={2} />
+                  <LiftCounter content={3} />
+                </>
+              }
+            />
+          </Item>
           <Item label="empty" width={360}>
             <SetPanel
-              state="empty"
+              view="empty"
               emptyTitle="Подходов пока нет"
               emptyCaption="Появятся, когда добавишь интенсивность"
               emptyAction={<Button view="normal-contrast" size="m" content="Добавить" />}

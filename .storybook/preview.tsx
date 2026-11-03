@@ -4,8 +4,36 @@ import type { Preview } from '@storybook/react-vite'
 import '../src/tokens/index.css'
 // Рамка экрана витрины — то, что в продукте объявляет приложение.
 import './preview.css'
+import { ModeRoot } from './ModeRoot'
+
+/*
+ * Режим на любой истории: переключатель на панели инструментов ставит `data-theme`
+ * на корень страницы — так режимы включает и продукт, `src/tokens/tokens.css`.
+ * Раньше режим менялся только на обзорной странице, и наведение, нажатие и фокус
+ * в тёмных режимах посмотреть было негде — приёмка релиза 0.5.3.
+ */
+const MODES = [
+  { value: 'light', title: 'Light' },
+  { value: 'dark', title: 'Dark' },
+  { value: 'light-hc', title: 'Light HC' },
+  { value: 'dark-hc', title: 'Dark HC' },
+]
 
 const preview: Preview = {
+  initialGlobals: { mode: 'light' },
+  globalTypes: {
+    mode: {
+      description: 'Режим кита',
+      toolbar: { title: 'Режим', icon: 'mirror', items: MODES, dynamicTitle: true },
+    },
+  },
+  decorators: [
+    (Story, context) => (
+      <ModeRoot mode={String(context.globals.mode ?? 'light')}>
+        <Story />
+      </ModeRoot>
+    ),
+  ],
   parameters: {
     /*
      * Дерево витрины — три группы по разделу «Компоненты» design-system-guide:

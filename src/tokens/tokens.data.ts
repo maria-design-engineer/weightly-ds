@@ -10,7 +10,7 @@ export const COLOR_TOKENS: ColorToken[] = [
   { kit: 'Branding/Base Background', name: '--w-branding-base-background', values: ['#ffffff', '#221d22', '#ffffff', '#121112'] },
   { kit: 'Branding/Base Brand', name: '--w-branding-base-brand', values: ['#fc5f2b', '#fc5f2b', '#fc5f2b', '#fc5f2b'] },
   { kit: 'Branding/Base Brand Hover', name: '--w-branding-base-brand-hover', values: ['#e6582a', '#fd7f55', '#e6582a', '#fd7f55'] },
-  { kit: 'Branding/Base Selection', name: '--w-branding-base-selection', values: ['rgba(252, 95, 43, 0.1)', 'rgba(252, 95, 43, 0.1)', 'rgba(252, 95, 43, 0.1)', 'rgba(252, 95, 43, 0.1)'] },
+  { kit: 'Branding/Base Selection', name: '--w-branding-base-selection', values: ['rgba(252, 95, 43, 0.1)', 'rgba(252, 95, 43, 0.15)', 'rgba(252, 95, 43, 0.15)', 'rgba(252, 95, 43, 0.15)'] },
   { kit: 'Branding/Base Selection Hover', name: '--w-branding-base-selection-hover', values: ['rgba(252, 95, 43, 0.5)', 'rgba(252, 95, 43, 0.3)', 'rgba(252, 95, 43, 0.5)', 'rgba(252, 95, 43, 0.3)'] },
   { kit: 'Branding/Line Brand', name: '--w-branding-line-brand', values: ['#fc5f2b', '#fc5f2b', '#fc5f2b', '#fc5f2b'] },
   { kit: 'Branding/Text Brand', name: '--w-branding-text-brand', values: ['#fc5f2b', '#fc5f2b', '#fc5f2b', '#fc5f2b'] },

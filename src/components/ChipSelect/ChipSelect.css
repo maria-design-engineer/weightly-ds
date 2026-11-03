@@ -1,10 +1,10 @@
 /*
  * Product / chip-select — профиль `ui-kit/product-components/chip-select.md`.
- * Высота 26, радиус `M radius` 10, поля 4 по вертикали и 8 по бокам, текст
- * `Text/Body 3`. Ширина по содержимому.
+ * Ширина по содержимому, высота — по оси Size: S 26, M 34, L 42.
  *
- * До 14.09.2026 чипы на макете собирались из `Label` `Size=M`: там поля по бокам
- * 6 и высота 28. Шага 6 в ките нет, поэтому чип пересобран из шаговых полей.
+ * Обводка в ките внутри: поля считаются от внешнего края чипа. В CSS рамка стоит
+ * до полей, поэтому поля меньше на её толщину — иначе `S` выходил 28 вместо 26.
+ * Находка Frontend на приёмке релиза 0.5.3.
  */
 .w-chip-select {
   /* Голубую метку касания Android убираем: отклик даёт сам элемент. */
@@ -14,14 +14,40 @@
   align-items: center;
   justify-content: center;
   width: max-content;
-  min-height: 26px;
   margin: 0;
-  padding: var(--w-g-spacing-1) var(--w-g-spacing-2);
   border: 1px solid transparent;
-  border-radius: var(--w-m-radius);
   background: none;
-  font: var(--w-style-text-body-3);
   white-space: nowrap;
+}
+
+/*
+ * S — 26: поля 4 и 8, радиус `M radius`, `Text/Body 3`. Отличается от ряда кита
+ * нарочно — так собраны экраны атлета, профиль, «Из чего собран — размеры».
+ */
+.w-chip-select_size_s {
+  min-height: 26px;
+  padding: calc(var(--w-g-spacing-1) - 1px) calc(var(--w-g-spacing-2) - 1px);
+  border-radius: var(--w-m-radius);
+  font: var(--w-style-text-body-3);
+}
+
+/* M — 34: поля 8 и 12, радиус `M radius`, `Text/Body 3`. Сторона тренера. */
+.w-chip-select_size_m {
+  min-height: 34px;
+  padding: calc(var(--w-g-spacing-2) - 1px) calc(var(--w-g-spacing-3) - 1px);
+  border-radius: var(--w-m-radius);
+  font: var(--w-style-text-body-3);
+}
+
+/*
+ * L — 42: поля 9 и 16, радиус `L radius`, `Text/Body 1`. Поле 9 вписано числом:
+ * ступени 9 в шкале нет, число из размерного ряда кита `work-doc/controls-size-row.md`.
+ */
+.w-chip-select_size_l {
+  min-height: 42px;
+  padding: calc(9px - 1px) calc(var(--w-g-spacing-4) - 1px);
+  border-radius: var(--w-l-radius);
+  font: var(--w-style-text-body-1);
 }
 
 button.w-chip-select {

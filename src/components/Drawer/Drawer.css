@@ -65,7 +65,7 @@
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: var(--w-g-spacing-4);
   width: 100%;
   max-width: var(--w-drawer-max-width);
   /*
@@ -80,7 +80,7 @@
    * пикселях от края — на обычном экране она прижата к краю. Находка пользователя
    * 04.10.2026.
    */
-  padding: 16px 0;
+  padding: var(--w-g-spacing-4) 0;
   /* Верхние углы 20 — `2XL radius`, правка кита 13.09.2026; было 16. Низ у пола. */
   border-radius: var(--w-2xl-radius) var(--w-2xl-radius) 0 0;
   background: var(--w-base-float-float-bg);
@@ -113,7 +113,7 @@
 .w-drawer__fix-slot {
   flex: none;
   /* Боковые поля шторки: у самой шторки их нет, их держат части. */
-  padding-inline: 16px;
+  padding-inline: var(--w-g-spacing-4);
 }
 
 /*
@@ -133,7 +133,7 @@
    * отрицательными отступами: прокрутка режет всё, что вылезло за окно, и рамка
    * поля у края срезалась. Находка прогона 13.09.2026.
    */
-  padding: 3px 16px;
+  padding: 3px var(--w-g-spacing-4);
   margin: -3px 0;
   overflow-y: auto;
   /*
@@ -154,7 +154,7 @@
   align-items: flex-start;
   gap: 10px;
   /* Боковые поля шторки: у самой шторки их нет, их держат части. */
-  padding-inline: 16px;
+  padding-inline: var(--w-g-spacing-4);
 }
 
 .w-drawer__heading {
@@ -162,7 +162,7 @@
   flex: 1;
   flex-direction: column;
   min-width: 0;
-  gap: 4px;
+  gap: var(--w-g-spacing-1);
 }
 
 .w-drawer__title {
@@ -193,7 +193,7 @@
      у неё есть заливка, и поле она бы закрасила. */
   width: calc(100% - 32px);
   height: 1px;
-  margin: 0 16px;
+  margin: 0 var(--w-g-spacing-4);
   border: 0;
   background: var(--w-line-generic);
 }
@@ -209,9 +209,9 @@
 
 .w-drawer__actions {
   display: flex;
-  gap: 8px;
+  gap: var(--w-g-spacing-2);
   /* Боковые поля шторки: у самой шторки их нет, их держат части. */
-  padding-inline: 16px;
+  padding-inline: var(--w-g-spacing-4);
 }
 
 .w-drawer__actions_column {

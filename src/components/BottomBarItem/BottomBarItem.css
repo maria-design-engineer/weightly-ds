@@ -17,7 +17,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 2px;
+  gap: var(--w-g-spacing-0-5);
   width: var(--w-bottom-bar-item-width);
   padding: var(--w-g-spacing-1) var(--w-g-spacing-2);
   position: relative;

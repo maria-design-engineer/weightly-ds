@@ -8,7 +8,7 @@ import { LiftCounter } from '../LiftCounter/LiftCounter'
 import { LiftCounters } from '../LiftCounters/LiftCounters'
 import { SetMarker } from '../SetMarker/SetMarker'
 import { WeightWheel } from '../WeightWheel/WeightWheel'
-import { SET_PANEL_BANDS } from './constants'
+import { SET_PANEL_BANDS, SET_PANEL_VIEWS } from './constants'
 import { SetPanel, type SetPanelProps } from './SetPanel'
 
 /** Шкала веса: от 40 до 200 килограммов с шагом полкило. */
@@ -34,7 +34,6 @@ type PanelArgs = {
   lifts?: number
   maxButton?: boolean
   caption?: boolean
-  state?: SetPanelProps['state']
   /** Отметок больше пяти — для истории с прокруткой ряда. */
   manySets?: boolean
 }
@@ -64,14 +63,13 @@ const meta = {
    * Правятся только свойства мастера: вид, число подходов и подъёмов, подпись, кнопка.
    */
   argTypes: {
-    view: { name: 'Property 1', control: 'inline-radio', options: ['panel', 'columns'] },
+    view: { name: 'View', control: 'inline-radio', options: SET_PANEL_VIEWS },
     band: { name: 'Band', control: 'inline-radio', options: SET_PANEL_BANDS },
     /* Подходов до пяти, движений до четырёх — модель, решение пользователя 16.09.2026. */
     sets: { name: 'Подходы', control: { type: 'range', min: 1, max: 5, step: 1 } },
     lifts: { name: 'Подъёмы', control: { type: 'range', min: 1, max: 4, step: 1 } },
     maxButton: { name: 'Max button', control: 'boolean' },
     caption: { name: 'Caption', control: 'boolean' },
-    state: { table: { disable: true } },
     manySets: { table: { disable: true } },
   },
   args: {
@@ -81,11 +79,9 @@ const meta = {
     lifts: 2,
     maxButton: false,
     caption: true,
-    state: 'default',
   },
   render: (args: PanelArgs) => (
     <SetPanel
-      state={args.state}
       view={args.view}
       band={args.band}
       title="Подход"
@@ -138,6 +134,6 @@ export const ColumnsNoMax: Story = {
 }
 
 /** Пустое состояние: интенсивность не задана, подходов нет. */
-export const Empty: Story = { args: { state: 'empty' } }
+export const Empty: Story = { args: { view: 'empty' } }
 
 export const Playground: Story = {}

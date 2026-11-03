@@ -23,7 +23,12 @@
   max-width: 100%;
   /* Список получает фокус при открытии — синюю рамку браузера снимаем, в ките её нет. */
   outline: none;
-  padding: var(--w-g-spacing-4) var(--w-g-spacing-1);
+  /*
+   * Поля карточки: сверху и снизу 8 — `g-spacing-2`, по бокам 4 — `g-spacing-1`.
+   * Решение пользователя 15.09.2026, профиль `ui-kit/components/dropdown-menu.md`;
+   * код стоял на 16 — находка приёмки релиза 0.5.3.
+   */
+  padding: var(--w-g-spacing-2) var(--w-g-spacing-1);
   /* Место под полосу прокрутки держится всегда — в ките под неё отведена дорожка. */
   scrollbar-gutter: stable;
   border-radius: var(--w-xl-radius);

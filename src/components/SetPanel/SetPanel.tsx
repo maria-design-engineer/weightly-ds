@@ -5,18 +5,15 @@ import { Plus } from '@gravity-ui/icons'
 import { Button } from '../Button/Button'
 import { Icon } from '../Icon/Icon'
 import { Picture } from '../Picture/Picture'
-import type { SetPanelBand, SetPanelState } from './constants'
+import type { SetPanelBand, SetPanelView } from './constants'
 import './SetPanel.css'
 
 export type SetPanelProps = {
-  /** Figma State — есть данные подхода или пусто. */
-  state?: SetPanelState
   /**
-   * Figma Property 1 — раскладка панели. `panel` — ряды один под другим,
-   * `columns` — три колонки: подходы, вес, подъёмы (мастер `set-panel-columns`,
-   * узел `50561:55532`).
+   * Figma View — `panel` ряды один под другим, `columns` три колонки: подходы, вес,
+   * подъёмы — мастер `set-panel-columns`, узел `50561:55532`; `empty` — подходов нет.
    */
-  view?: 'panel' | 'columns'
+  view?: SetPanelView
   /** Figma Band — полоса интенсивности: серая, лаймовая или розовая. */
   band?: SetPanelBand
   /** Заголовок блока подходов. */
@@ -53,7 +50,6 @@ export type SetPanelProps = {
  * Пустое состояние — отдельный вариант, а не спрятанные блоки: состав внутри другой.
  */
 export function SetPanel({
-  state = 'default',
   view = 'panel',
   band = 'neutral',
   title,
@@ -71,7 +67,7 @@ export function SetPanel({
 }: SetPanelProps) {
   const band_ = `w-set-panel_band_${band}`
 
-  if (state === 'empty') {
+  if (view === 'empty') {
     return (
       <div className={`w-set-panel ${band_}`}>
         <div className="w-set-panel__empty">

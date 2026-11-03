@@ -1,10 +1,14 @@
 import type { ReactNode } from 'react'
 
+import { Avatar } from '../Avatar/Avatar'
 import '../focus.css'
 import './ProfileHeader.css'
 
 export type ProfileHeaderProps = {
-  /** Значок человека — экземпляр `Avatar` приходит содержимым. */
+  /**
+   * Значок человека — экземпляр `Avatar` приходит содержимым. Не передан — стоит
+   * `Avatar` размера XL, 50, как в мастере; приёмка релиза 0.5.3.
+   */
   avatar?: ReactNode
   /** Figma Имя — имя атлета, а до его заполнения логин из почты. */
   name?: ReactNode
@@ -27,7 +31,7 @@ export type ProfileHeaderProps = {
 export function ProfileHeader({ avatar, name, email, onClick, ariaLabel }: ProfileHeaderProps) {
   const content = (
     <>
-      {avatar}
+      {avatar ?? <Avatar size="xl" />}
       <span className="w-profile-header__text">
         <span className="w-profile-header__name">{name}</span>
         <span className="w-profile-header__email">{email}</span>

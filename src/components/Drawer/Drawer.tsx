@@ -42,6 +42,12 @@ export type DrawerProps = {
   onClose?: () => void
   /** Подпись крестика для чтения с экрана. */
   closeLabel?: string
+  /**
+   * Figma `Close on` — показ крестика, по умолчанию включён. Выключенный прячет только
+   * крестик: шторка по-прежнему закрывается свайпом, Escape и нажатием мимо.
+   * Приёмка релиза 0.5.3.
+   */
+  closeOn?: boolean
 }
 
 /**
@@ -65,7 +71,9 @@ export function Drawer({
   secondAction,
   onClose,
   closeLabel = 'Закрыть',
+  closeOn = true,
 }: DrawerProps) {
+  const showClose = closeOn && Boolean(onClose)
   /*
    * Разделители показывают, что содержимое ушло под обрез, — значит считать их
    * должна сама шторка: экран не знает ни высоты окна, ни того, куда докрутили.
@@ -129,7 +137,7 @@ export function Drawer({
         <BaseDrawer.Backdrop className="w-drawer__backdrop" />
         <BaseDrawer.Viewport className="w-drawer__viewport">
           <BaseDrawer.Popup className="w-drawer">
-            {title || caption || onClose ? (
+            {title || caption || showClose ? (
               /*
                * Шапка стоит строкой: слева заголовок с подписью, справа крестик —
                * правка кита 14.09.2026, до неё крестика у шторки не было вовсе.
@@ -145,7 +153,7 @@ export function Drawer({
                     </BaseDrawer.Description>
                   ) : null}
                 </div>
-                {onClose ? (
+                {showClose ? (
                   <Button
                     view="flat-secondary"
                     size="m"
