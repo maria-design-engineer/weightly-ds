@@ -17,7 +17,13 @@
   align-items: flex-start;
   /* Промежуток между значком и содержимым — 8. */
   gap: var(--w-g-spacing-2);
-  padding: var(--w-g-spacing-4) var(--w-g-spacing-5);
+  /*
+   * Обводка в ките внутри: поля 16 и 20 считаются от внешнего края плашки. В CSS
+   * рамка стоит до полей, поэтому поля меньше на её толщину — иначе плашка выходила
+   * на 2 выше кадра. Расхождение с этапа 6 плана 02, правка с «ок» пользователя
+   * 03.11.2026.
+   */
+  padding: calc(var(--w-g-spacing-4) - 1px) calc(var(--w-g-spacing-5) - 1px);
   text-align: left;
   /*
    * Рамка стоит всегда и у заливки прозрачна: в мастере обводка 1 внутрь, и поля
@@ -94,11 +100,16 @@
  * Кнопки всегда под текстом: оси Layout в ките нет, проп убран приёмкой
  * релиза 0.1.0 — строка 4 этапа 15.
  */
+/*
+ * Промежуток между текстом и кнопками — 8, `g-spacing-2`, во всех 24 мастерах.
+ * Было 20 от служебного `.Content`; кит держал три числа сразу — 20, 8, 32.
+ * Решение пользователя 03.11.2026, профиль `ui-kit/components/alert.md`.
+ */
 .w-alert__content {
   display: flex;
   flex: 1;
   flex-direction: column;
-  gap: var(--w-g-spacing-5);
+  gap: var(--w-g-spacing-2);
   align-self: stretch;
   min-width: 0;
 }
@@ -166,8 +177,9 @@
  */
 .w-alert__close {
   position: absolute;
-  top: var(--w-g-spacing-4);
-  right: var(--w-g-spacing-5);
+  /* От края внутри рамки, поэтому на её толщину меньше — как поля плашки. */
+  top: calc(var(--w-g-spacing-4) - 1px);
+  right: calc(var(--w-g-spacing-5) - 1px);
   display: inline-flex;
   /* Высота как у рамки значка — 34: так их середины совпадают, а не только верх. */
   height: 34px;

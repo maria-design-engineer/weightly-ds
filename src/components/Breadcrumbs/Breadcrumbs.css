@@ -35,6 +35,15 @@
   text-decoration: none;
 }
 
+/*
+ * Фокус с клавиатуры — кольцо `Line/Focus`. Внутрь звена: строка обрезает всё,
+ * что за её краем, и наружное кольцо срезалось бы сверху и снизу.
+ */
+.w-breadcrumbs__link:focus-visible {
+  outline: var(--w-focus-ring-width) solid var(--w-focus-ring-color);
+  outline-offset: -2px;
+}
+
 /* Разделитель — `chevron-right` 10 × 10. */
 .w-breadcrumbs__separator {
   display: inline-flex;

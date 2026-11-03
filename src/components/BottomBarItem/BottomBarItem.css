@@ -66,6 +66,15 @@
 
 .w-bottom-bar-item_state_active { color: var(--w-branding-base-brand); }
 
+/*
+ * Фокус с клавиатуры — оранжевое кольцо `Line/Focus`, как у кнопок. Без правила
+ * вставала синяя обводка браузера. Находка пользователя на кабинете 03.11.2026.
+ */
+.w-bottom-bar-item:focus-visible {
+  outline: var(--w-focus-ring-width) solid var(--w-focus-ring-color);
+  outline-offset: 1px;
+}
+
 /* Нажатие видно сдвигом внутрь — то же правило отклика, что у кнопок. */
 .w-bottom-bar-item:active {
   transform: scale(0.96);

@@ -1,6 +1,7 @@
 import type { MouseEvent, ReactNode } from 'react'
 
 import type { BottomBarItemDevise, BottomBarItemState } from './constants'
+import '../focus.css'
 import './BottomBarItem.css'
 
 export type BottomBarItemProps = {

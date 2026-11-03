@@ -4,6 +4,7 @@ import { Fragment, useLayoutEffect, useRef, useState } from 'react'
 import { ChevronRight } from '@gravity-ui/icons'
 
 import { Icon } from '../Icon/Icon'
+import '../focus.css'
 import './Breadcrumbs.css'
 
 export type BreadcrumbsItem = {
