@@ -33,6 +33,13 @@ export type SetPanelProps = {
   maxButton?: ReactNode
   /** Барабан веса. В ките он горизонтальный, в рамке с растворением по краям. */
   wheel?: ReactNode
+  /**
+   * Ошибка веса в колонках — барабан встаёт полем `Product / weight-field`
+   * State=Error: обводка `Line/Danger`, строка ошибки под ним, фон панели.
+   * Кадр «6г · Прохождение · подход · Поднимаю не прошло», правка 03.11.2026.
+   * Не передали — барабан голый, как в мастере `set-panel-columns`.
+   */
+  wheelError?: ReactNode
   /** Заголовок блока подъёмов. */
   liftsTitle?: ReactNode
   /** Счётчики подъёмов — `Product / lift-counters`. */
@@ -59,6 +66,7 @@ export function SetPanel({
   caption,
   maxButton,
   wheel,
+  wheelError,
   liftsTitle,
   lifts,
   emptyTitle,
@@ -113,7 +121,20 @@ export function SetPanel({
             {maxButton}
             {caption}
           </span>
-          <div className="w-set-panel__wheel-column">{wheel}</div>
+          {wheelError ? (
+            /*
+             * Обводка — на обёртке, а не на самом барабане: барабан гасится маской
+             * по краям, и маска растворила бы рамку вместе с лентой.
+             */
+            <div className="w-set-panel__wheel-field">
+              <div className="w-set-panel__wheel-box">
+                <div className="w-set-panel__wheel-column">{wheel}</div>
+              </div>
+              <span className="w-set-panel__wheel-error">{wheelError}</span>
+            </div>
+          ) : (
+            <div className="w-set-panel__wheel-column">{wheel}</div>
+          )}
         </div>
 
         <div className="w-set-panel__column w-set-panel__column_lifts">

@@ -36,6 +36,8 @@ type PanelArgs = {
   caption?: boolean
   /** Отметок больше пяти — для истории с прокруткой ряда. */
   manySets?: boolean
+  /** Ошибка веса в колонках — `Product / weight-field` State=Error, кадр «6г». */
+  wheelError?: boolean
 }
 
 function markersOf({ sets = 1, manySets }: PanelArgs) {
@@ -71,6 +73,7 @@ const meta = {
     maxButton: { name: 'Max button', control: 'boolean' },
     caption: { name: 'Caption', control: 'boolean' },
     manySets: { table: { disable: true } },
+    wheelError: { name: 'Wheel error', control: 'boolean', if: { arg: 'view', eq: 'columns' } },
   },
   args: {
     view: 'panel',
@@ -79,6 +82,7 @@ const meta = {
     lifts: 2,
     maxButton: false,
     caption: true,
+    wheelError: false,
   },
   render: (args: PanelArgs) => (
     <SetPanel
@@ -97,6 +101,7 @@ const meta = {
           ariaLabel="Вес подхода"
         />
       }
+      wheelError={args.wheelError && args.view === 'columns' ? 'Поднять ноль нельзя. Внеси максимум' : undefined}
       liftsTitle="Подъёмы"
       lifts={args.view === 'columns' ? <>{liftsOf(args)}</> : <LiftCounters>{liftsOf(args)}</LiftCounters>}
       emptyTitle="Подходов пока нет"
@@ -131,6 +136,15 @@ export const Columns: Story = { args: { view: 'columns', sets: 5, lifts: 4 } }
 /** Те же колонки, когда максимум не внесён: вместо подписи кнопка «Максимум». */
 export const ColumnsNoMax: Story = {
   args: { view: 'columns', caption: false, maxButton: true },
+}
+
+/**
+ * Колонки с ошибкой веса — кадр «6г · Прохождение · подход · Поднимаю не прошло»:
+ * «Поднимаю» на нуле не прошло, барабан встал полем с обводкой `Line/Danger`
+ * и строкой ошибки под ним. Заливки у поля нет — под ним фон панели.
+ */
+export const ColumnsWheelError: Story = {
+  args: { view: 'columns', band: 'lime', caption: false, maxButton: true, wheelError: true },
 }
 
 /** Пустое состояние: интенсивность не задана, подходов нет. */

@@ -1252,6 +1252,34 @@ function Organisms() {
               }
             />
           </Item>
+          <Item label="columns · wheelError" width={360}>
+            <SetPanel
+              view="columns"
+              band="lime"
+              title="Подход"
+              liftsTitle="Подъёмы"
+              markers={<SetMarker state="current" content="1" />}
+              onAddSet={() => {}}
+              maxButton={
+                <Button
+                  view="flat-danger"
+                  size="xs"
+                  startIcon={<Icon data={Plus} />}
+                  content="Максимум"
+                />
+              }
+              wheel={
+                <WeightWheel
+                  direction="vertical"
+                  values={WHEEL_VALUES}
+                  selected={43}
+                  ariaLabel="Вес подхода"
+                />
+              }
+              wheelError="Поднять ноль нельзя. Внеси максимум"
+              lifts={<LiftCounter content={2} />}
+            />
+          </Item>
           <Item label="empty" width={360}>
             <SetPanel
               view="empty"

@@ -229,6 +229,36 @@
   mask-image: linear-gradient(to bottom, transparent 0, #000 34%, #000 66%, transparent 100%);
 }
 
+/*
+ * Барабан с ошибкой — `Product / weight-field` State=Error внутри колонки, кадр
+ * «6г»: обводка 1 `Line/Danger`, радиус XL, заливки нет — под ней фон панели;
+ * под полем строка Text/Body 3 на Text/Danger, промежуток 4. Обводка в ките
+ * внутренняя: `border-box` держит размер поля тем же.
+ */
+.w-set-panel__wheel-field {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: var(--w-g-spacing-1);
+  width: 100%;
+  min-height: 0;
+}
+
+.w-set-panel__wheel-box {
+  box-sizing: border-box;
+  display: flex;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+  border: 1px solid var(--w-line-danger);
+  border-radius: var(--w-xl-radius);
+}
+
+.w-set-panel__wheel-error {
+  font: var(--w-style-text-body-3);
+  color: var(--w-text-danger);
+}
+
 /* Заголовки блоков и подпись процента стоят по середине панели. */
 .w-set-panel__title {
   text-align: center;
