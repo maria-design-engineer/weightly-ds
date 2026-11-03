@@ -1,8 +1,12 @@
+import { useState } from 'react'
+
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
 import { Cell, Row } from '../story-layout'
 import { CoachSideBar } from './CoachSideBar'
+import type { CoachSideBarSection } from './constants'
 import { COACH_SIDE_BAR_SECTIONS } from './constants'
+import { COACH_SIDE_BAR_ITEMS } from './defaults'
 
 const meta = {
   title: 'Product components/CoachSideBar',
@@ -32,4 +36,26 @@ export const States: Story = {
       ))}
     </Row>
   ),
+}
+
+/**
+ * Переключение пунктов: по ним можно кликать. Плашка у текущего пункта вырастает из
+ * середины, значок и подпись перекрашиваются плавно — так же, как в продукте. На
+ * странице `States` пункты стоят неподвижно, и движения там не видно — просьба
+ * пользователя 03.11.2026.
+ */
+function SwitchingDemo(args: React.ComponentProps<typeof CoachSideBar>) {
+  const [active, setActive] = useState<CoachSideBarSection>('profile')
+  return (
+    <CoachSideBar
+      {...args}
+      active={active}
+      items={COACH_SIDE_BAR_ITEMS.map((item) => ({ ...item, onClick: () => setActive(item.id) }))}
+    />
+  )
+}
+
+export const Switching: Story = {
+  parameters: { controls: { disable: true } },
+  render: (args) => <SwitchingDemo {...args} />,
 }
