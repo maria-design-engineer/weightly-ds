@@ -11,6 +11,13 @@
   inset: 0;
   z-index: 100;
   background: var(--w-effect-shadow);
+  /* Затемнение проявляется и гаснет за 150 мс — стикер `2066:703`. */
+  transition: opacity 150ms ease-out;
+}
+
+.w-modal__backdrop[data-starting-style],
+.w-modal__backdrop[data-ending-style] {
+  opacity: 0;
 }
 
 /* Окно стоит по центру окна браузера — кадр `2`, плита 640 на 1280 по центру. */
@@ -42,7 +49,34 @@
   pointer-events: auto;
 }
 
-/* Движения нет: в ките у окна его нет — `build-vite-ds`, «Состояния и движение». */
+/*
+ * Движение — стикер «🎬 motion · окно поверх страницы» `2066:703`, UI Designer
+ * 04.11.2026, приёмка 18а. Появление 200 мс, ease-out: окно растёт с 98 % размера
+ * и из прозрачности; растёт из своего центра, а окно стоит по центру экрана —
+ * к кнопке оно не привязано. Закрытие 150 мс, ease-out, только в прозрачность.
+ */
+.w-modal {
+  transition:
+    opacity 200ms ease-out,
+    transform 200ms ease-out;
+}
+
+.w-modal[data-starting-style] {
+  opacity: 0;
+  transform: scale(0.98);
+}
+
+.w-modal[data-ending-style] {
+  opacity: 0;
+  transition: opacity 150ms ease-out;
+}
+
+/* «Уменьшить движение»: размер не меняется, остаётся только прозрачность. */
+@media (prefers-reduced-motion: reduce) {
+  .w-modal[data-starting-style] {
+    transform: none;
+  }
+}
 
 .w-modal:focus-visible {
   outline: var(--w-focus-ring-width) solid var(--w-focus-ring-color);
