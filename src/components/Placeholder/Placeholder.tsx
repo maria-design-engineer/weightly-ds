@@ -38,7 +38,11 @@ export function Placeholder({ picture, title, caption, button1, button2, button3
   return (
     <div className="w-placeholder">
       {picture ? (
-        <div className="w-placeholder__illustration">
+        /*
+          Значок декоративный: рядом заголовок, он говорит то же словами. Рамка
+          «Доступность · список атлетов» `1974:500`, решение пользователя 04.11.2026.
+        */
+        <div className="w-placeholder__illustration" aria-hidden="true">
           <Picture type={picture} />
         </div>
       ) : null}
