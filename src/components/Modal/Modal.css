@@ -11,13 +11,17 @@
   inset: 0;
   z-index: 100;
   background: var(--w-effect-shadow);
-  /* Затемнение проявляется и гаснет за 150 мс — стикер `2066:703`. */
-  transition: opacity 150ms ease-out;
+  /* Затемнение темнеет за 200 мс, светлеет за 200 мс — замер образца, ниже. */
+  transition: opacity 200ms ease-out;
 }
 
 .w-modal__backdrop[data-starting-style],
 .w-modal__backdrop[data-ending-style] {
   opacity: 0;
+}
+
+.w-modal__backdrop[data-ending-style] {
+  transition-timing-function: ease-in;
 }
 
 /* Окно стоит по центру окна браузера — кадр `2`, плита 640 на 1280 по центру. */
@@ -50,30 +54,38 @@
 }
 
 /*
- * Движение — стикер «🎬 motion · окно поверх страницы» `2066:703`, UI Designer
- * 04.11.2026, приёмка 18а. Появление 200 мс, ease-out: окно растёт с 98 % размера
- * и из прозрачности; растёт из своего центра, а окно стоит по центру экрана —
- * к кнопке оно не привязано. Закрытие 150 мс, ease-out, только в прозрачность.
+ * Движение — по образцу https://motion.dev/examples/react-modal, решение пользователя
+ * 04.11.2026: числа стикера `2066:703` — 200 мс, 98 %, закрытие 150 мс одной
+ * прозрачностью — давали рывок на закрытии. Числа сняты покадрово с записи образца
+ * `stage.mp4`, 60 кадров в секунду; исходник закрыт Motion+.
+ *
+ * Появление: окно ждёт, пока затемнение почти встало, — 150 мс; дальше 400 мс:
+ * прозрачность растёт ровно, размер — с 90 % и с сильным замедлением к концу.
+ * Закрытие — обратный путь за 250 мс: окно гаснет ровно и уменьшается до 90 % с разгоном.
+ * Растёт из своего центра, а окно стоит по центру экрана: к кнопке не привязано.
  */
 .w-modal {
   transition:
-    opacity 200ms ease-out,
-    transform 200ms ease-out;
+    opacity 400ms linear 150ms,
+    transform 400ms cubic-bezier(0.33, 1, 0.68, 1) 150ms;
 }
 
-.w-modal[data-starting-style] {
+.w-modal[data-starting-style],
+.w-modal[data-ending-style] {
   opacity: 0;
-  transform: scale(0.98);
+  transform: scale(0.9);
 }
 
 .w-modal[data-ending-style] {
-  opacity: 0;
-  transition: opacity 150ms ease-out;
+  transition:
+    opacity 250ms linear,
+    transform 250ms cubic-bezier(0.32, 0, 0.67, 0);
 }
 
 /* «Уменьшить движение»: размер не меняется, остаётся только прозрачность. */
 @media (prefers-reduced-motion: reduce) {
-  .w-modal[data-starting-style] {
+  .w-modal[data-starting-style],
+  .w-modal[data-ending-style] {
     transform: none;
   }
 }
