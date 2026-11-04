@@ -1,12 +1,12 @@
 /*
  * Product / card-header — набор `51673:42222`, четыре мастера по оси Size, обход
- * 03.11.2026. Столбик с промежутком 8 — `g-spacing-2`: строка заголовка и пояснение.
+ * 03.11.2026. Столбик: строка заголовка и пояснение. Промежуток между ними свой
+ * у каждого размера — 0, 2, 4, 8, — он стоит у модификаторов размера ниже.
  * Ширина — по месту.
  */
 .w-card-header {
   display: flex;
   flex-direction: column;
-  gap: var(--w-g-spacing-2);
   min-width: 0;
 }
 
@@ -69,6 +69,7 @@
 .w-card-header_size_caption-1 {
   --w-card-header-title-height: 22px;
   --w-card-header-icon: 12px;
+  gap: var(--w-g-spacing-0);
 }
 
 .w-card-header_size_caption-1 .w-card-header__title {
@@ -92,6 +93,7 @@
 .w-card-header_size_subheader-2 {
   --w-card-header-title-height: 22px;
   --w-card-header-icon: 16px;
+  gap: var(--w-g-spacing-0-5);
 }
 
 .w-card-header_size_subheader-2 .w-card-header__title {
@@ -130,6 +132,7 @@
 .w-card-header_size_header-2 {
   --w-card-header-title-height: 32px;
   --w-card-header-icon: 16px;
+  gap: var(--w-g-spacing-1);
 }
 
 .w-card-header_size_header-2 .w-card-header__label {
@@ -139,6 +142,7 @@
 .w-card-header_size_header-1 {
   --w-card-header-title-height: 36px;
   --w-card-header-icon: 20px;
+  gap: var(--w-g-spacing-2);
 }
 
 .w-card-header_size_header-1 .w-card-header__label {
