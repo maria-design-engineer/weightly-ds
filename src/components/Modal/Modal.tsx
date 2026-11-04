@@ -1,4 +1,4 @@
-import type { ReactNode, RefObject } from 'react'
+import type { CSSProperties, ReactNode, RefObject } from 'react'
 
 import { Dialog } from '@base-ui/react/dialog'
 
@@ -46,6 +46,11 @@ export type ModalProps = {
    * до чего доходит Tab, — в окне это крестик. Форме нужно первое поле.
    */
   initialFocus?: RefObject<HTMLElement | null>
+  /**
+   * Ширина окна в пикселях. Её задаёт экран под свой кадр; не задана — 640, как мастер
+   * `Product / modal`. Решение пользователя 04.11.2026.
+   */
+  width?: number
 }
 
 /**
@@ -73,6 +78,7 @@ export function Modal({
   action3,
   action4,
   initialFocus,
+  width,
 }: ModalProps) {
   const showClose = closeOn && Boolean(onOpenChange)
   const left = action1 || action2
@@ -83,7 +89,11 @@ export function Modal({
       <Dialog.Portal>
         <Dialog.Backdrop className="w-modal__backdrop" />
         <Dialog.Viewport className="w-modal__viewport">
-          <Dialog.Popup className="w-modal" initialFocus={initialFocus}>
+          <Dialog.Popup
+            className="w-modal"
+            initialFocus={initialFocus}
+            style={width === undefined ? undefined : ({ '--w-modal-width': `${width}px` } as CSSProperties)}
+          >
             {title || showClose ? (
               <div className="w-modal__head">
                 {title ? (

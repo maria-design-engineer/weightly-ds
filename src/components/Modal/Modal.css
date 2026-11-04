@@ -24,7 +24,11 @@
   transition-timing-function: ease-in;
 }
 
-/* Окно стоит по центру окна браузера — кадр `2`, плита 640 на 1280 по центру. */
+/*
+ * Окно стоит по центру. Центр сдвигается переменной `--w-modal-offset-start`: экран с
+ * боковым меню сдвигает его на ширину меню, и окно встаёт по центру полотна, а не
+ * окна браузера, — кадры среза 4. Не объявлена — сдвига нет.
+ */
 .w-modal__viewport {
   position: fixed;
   inset: 0;
@@ -33,6 +37,7 @@
   align-items: center;
   justify-content: center;
   padding: var(--w-g-spacing-6);
+  padding-inline-start: calc(var(--w-g-spacing-6) + var(--w-modal-offset-start, 0px));
   pointer-events: none;
 }
 
@@ -41,8 +46,12 @@
   display: flex;
   flex-direction: column;
   gap: var(--w-g-spacing-6);
-  /* 640 числом: ступени 640 в шкале нет — профиль `modal.md`, «Что задано не токеном». */
-  width: 640px;
+  /*
+   * Ширину задаёт экран пропом `width`; не задал — 640, как мастер. Ступени 640 в шкале
+   * нет — профиль `modal.md`, «Что задано не токеном». Решение пользователя 04.11.2026:
+   * ширина окна — дело экрана, `ds` из-за неё не меняется.
+   */
+  width: var(--w-modal-width, 640px);
   max-width: 100%;
   /* Предел высоты 80 % окна — решение пользователя 03.11.2026, профиль. */
   max-height: 80dvh;

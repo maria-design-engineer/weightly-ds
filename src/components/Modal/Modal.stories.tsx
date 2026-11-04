@@ -55,6 +55,7 @@ const meta = {
     action3: hidden,
     action4: hidden,
     initialFocus: hidden,
+    width: hidden,
   },
   /* Все выключатели мастера включены по умолчанию — профиль `modal.md`. */
   args: {
