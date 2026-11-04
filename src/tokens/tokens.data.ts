@@ -8,6 +8,7 @@ export type ValueToken = { kit: string; name: string; value: string }
 
 export const COLOR_TOKENS: ColorToken[] = [
   { kit: 'Branding/Base Background', name: '--w-branding-base-background', values: ['#ffffff', '#221d22', '#ffffff', '#121112'] },
+  { kit: 'Branding/Base Background Secondary', name: '--w-branding-base-background-secondary', values: ['#fafafa', '#262226', '#fafafa', '#2d282d'] },
   { kit: 'Branding/Base Brand', name: '--w-branding-base-brand', values: ['#fc5f2b', '#fc5f2b', '#fc5f2b', '#fc5f2b'] },
   { kit: 'Branding/Base Brand Hover', name: '--w-branding-base-brand-hover', values: ['#e6582a', '#fd7f55', '#e6582a', '#fd7f55'] },
   { kit: 'Branding/Base Selection', name: '--w-branding-base-selection', values: ['rgba(252, 95, 43, 0.1)', 'rgba(252, 95, 43, 0.15)', 'rgba(252, 95, 43, 0.15)', 'rgba(252, 95, 43, 0.15)'] },

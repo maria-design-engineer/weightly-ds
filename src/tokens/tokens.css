@@ -147,9 +147,10 @@
   --w-2xl-radius: 20px;
 }
 
-/* Цвета — коллекция Color Styles, режим Light, 144 переменные */
+/* Цвета — коллекция Color Styles, режим Light, 145 переменных */
 :root, [data-theme="light"] {
   --w-branding-base-background: #ffffff;
+  --w-branding-base-background-secondary: #fafafa;
   --w-branding-base-brand: #fc5f2b;
   --w-branding-base-brand-hover: #e6582a;
   --w-branding-base-selection: rgba(252, 95, 43, 0.1);
@@ -307,9 +308,10 @@
   --w-accent-pink-15: rgba(244, 37, 199, 0.15);
 }
 
-/* Цвета — коллекция Color Styles, режим Dark, 144 переменные */
+/* Цвета — коллекция Color Styles, режим Dark, 145 переменных */
 [data-theme="dark"] {
   --w-branding-base-background: #221d22;
+  --w-branding-base-background-secondary: #262226;
   --w-branding-base-brand: #fc5f2b;
   --w-branding-base-brand-hover: #fd7f55;
   --w-branding-base-selection: rgba(252, 95, 43, 0.15);
@@ -465,9 +467,10 @@
   --w-accent-pink-15: rgba(247, 110, 218, 0.15);
 }
 
-/* Цвета — коллекция Color Styles, режим Light HC, 144 переменные */
+/* Цвета — коллекция Color Styles, режим Light HC, 145 переменных */
 [data-theme="light-hc"] {
   --w-branding-base-background: #ffffff;
+  --w-branding-base-background-secondary: #fafafa;
   --w-branding-base-brand: #fc5f2b;
   --w-branding-base-brand-hover: #e6582a;
   --w-branding-base-selection: rgba(252, 95, 43, 0.15);
@@ -623,9 +626,10 @@
   --w-accent-pink-15: rgba(244, 37, 199, 0.15);
 }
 
-/* Цвета — коллекция Color Styles, режим Dark HC, 144 переменные */
+/* Цвета — коллекция Color Styles, режим Dark HC, 145 переменных */
 [data-theme="dark-hc"] {
   --w-branding-base-background: #121112;
+  --w-branding-base-background-secondary: #2d282d;
   --w-branding-base-brand: #fc5f2b;
   --w-branding-base-brand-hover: #fd7f55;
   --w-branding-base-selection: rgba(252, 95, 43, 0.15);

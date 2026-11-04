@@ -1,0 +1,97 @@
+/*
+ * Product / modal — мастер `51719:36605`, обход 04.11.2026. Плита 640: поля 24,
+ * промежуток между частями 24, радиус 20, заливка `Base Float/Float`, тень
+ * `card-shadow/card (new)`. Высота по содержимому, предел — 80 % окна.
+ * Затемнение — `Product / paranja`, `Type=info`: `Effect/Shadow`, кадр `2` среза 4.
+ */
+
+/* Слой тот же, что у шторки и паранджи: окно лежит поверх прибитых частей экрана. */
+.w-modal__backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: var(--w-effect-shadow);
+}
+
+/* Окно стоит по центру окна браузера — кадр `2`, плита 640 на 1280 по центру. */
+.w-modal__viewport {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--w-g-spacing-6);
+  pointer-events: none;
+}
+
+.w-modal {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: var(--w-g-spacing-6);
+  /* 640 числом: ступени 640 в шкале нет — профиль `modal.md`, «Что задано не токеном». */
+  width: 640px;
+  max-width: 100%;
+  /* Предел высоты 80 % окна — решение пользователя 03.11.2026, профиль. */
+  max-height: 80dvh;
+  padding: var(--w-g-spacing-6);
+  border-radius: var(--w-2xl-radius);
+  background: var(--w-base-float-float-bg);
+  box-shadow: var(--w-card-shadow-card-new);
+  pointer-events: auto;
+}
+
+/* Движения нет: в ките у окна его нет — `build-vite-ds`, «Состояния и движение». */
+
+.w-modal:focus-visible {
+  outline: var(--w-focus-ring-width) solid var(--w-focus-ring-color);
+  outline-offset: 2px;
+}
+
+/* Шапка — ряд: шапка раздела тянется, крестик справа; промежуток 12 — `g-spacing-3`. */
+.w-modal__head {
+  display: flex;
+  flex: none;
+  align-items: flex-start;
+  justify-content: flex-end;
+  gap: var(--w-g-spacing-3);
+}
+
+.w-modal__heading {
+  flex: 1;
+  min-width: 0;
+}
+
+/* `fixSlot` стоит на месте: прокрутка живёт ниже, во втором слоте. */
+.w-modal__fix-slot {
+  flex: none;
+}
+
+/*
+ * Второй слот забирает остаток высоты и прокручивается: шапка, первый слот
+ * и ряд действий остаются на виду. Поля 3 и такие же отрицательные отступы —
+ * место под кольцо фокуса: прокрутка режет всё, что вылезло за край, — приём шторки.
+ */
+.w-modal__content {
+  min-height: 0;
+  padding: 3px;
+  margin: -3px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+/* Ряд действий во всю ширину, слоты по краям, кнопки через 8 — `g-spacing-2`. */
+.w-modal__actions {
+  display: flex;
+  flex: none;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--w-g-spacing-2);
+}
+
+.w-modal__actions-side {
+  display: flex;
+  align-items: center;
+  gap: var(--w-g-spacing-2);
+}

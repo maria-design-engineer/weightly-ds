@@ -109,6 +109,34 @@
   color: var(--w-text-primary);
 }
 
+/*
+ * `State=Hover, Devise=Desktop` — мастер `51751:34036`, заведён 04.11.2026: значок
+ * и подпись `Base/Brand`, заливки нет. В ките это значение оси, в коде — поведение
+ * браузера, как у кнопки. Только там, где есть мышь: на телефоне `:hover` залипает
+ * после касания. У мобильного пункта наведения в ките нет.
+ */
+@media (hover: hover) {
+  .w-bottom-bar-item_devise_desktop.w-bottom-bar-item_state_inactive:hover {
+    color: var(--w-branding-base-brand);
+  }
+}
+
+/*
+ * `State=Focus, Devise=Desktop` — мастер `51753:36108`: обводка 2 `Line/Focus`,
+ * радиус 16. Правило фокуса выше, `:focus-visible`, оно у пункта с 0.5.2.
+ *
+ * Карточки витрины: наведение и фокус показываются без курсора и без Tab —
+ * `build-vite-ds`, «Витрина». В продукт классы не едут: их ставит только история.
+ */
+.w-bottom-bar-item-hover-demo .w-bottom-bar-item_devise_desktop.w-bottom-bar-item_state_inactive {
+  color: var(--w-branding-base-brand);
+}
+
+.w-bottom-bar-item-focus-demo .w-bottom-bar-item {
+  outline: var(--w-focus-ring-width) solid var(--w-focus-ring-color);
+  outline-offset: 1px;
+}
+
 .w-bottom-bar-item__icon {
   display: inline-flex;
   width: 20px;

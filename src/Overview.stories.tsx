@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react'
 
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import { ChevronDown, ChevronRight, CircleInfo, Person, Play, Plus } from '@gravity-ui/icons'
+import { ChevronDown, ChevronRight, CircleInfo, Person, Play, Plus, Xmark } from '@gravity-ui/icons'
 
 import { Alert } from './components/Alert/Alert'
 import { ALERT_CORNERS, ALERT_THEMES, ALERT_VIEWS } from './components/Alert/constants'
@@ -22,7 +22,9 @@ import { BOTTOM_BAR_SECTIONS } from './components/BottomBar/constants'
 import { BottomBarItem } from './components/BottomBarItem/BottomBarItem'
 import { BOTTOM_BAR_ITEM_DEVISES, BOTTOM_BAR_ITEM_STATES } from './components/BottomBarItem/constants'
 import { Breadcrumbs } from './components/Breadcrumbs/Breadcrumbs'
-import { ErrorState } from './components/Error/Error'
+import { Placeholder } from './components/Placeholder/Placeholder'
+/* Плита окна на обзорной странице стоит на классах компонента — нужны его стили. */
+import './components/Modal/Modal.css'
 import { ProfileHeader } from './components/ProfileHeader/ProfileHeader'
 import { SegmentedSwitch } from './components/SegmentedSwitch/SegmentedSwitch'
 import { SEGMENTED_SWITCH_SIZES } from './components/SegmentedSwitch/constants'
@@ -797,7 +799,7 @@ function Molecules() {
     <Layer title="Молекулы — 21 компонент">
       <Component kit="Product / bottom-bar-item" code="BottomBarItem">
         {BOTTOM_BAR_ITEM_DEVISES.map((devise) => (
-          <Axis key={devise} name={`State · 2 · Devise=${devise}`}>
+          <Axis key={devise} name={`State · ${devise === 'desktop' ? 4 : 2} · Devise=${devise}`}>
             {BOTTOM_BAR_ITEM_STATES.map((state) => (
               <Item key={state} label={state}>
                 <BottomBarItem
@@ -808,6 +810,21 @@ function Molecules() {
                 />
               </Item>
             ))}
+            {/* Hover и Focus есть только у Desktop: карточки красят пункт теми же токенами. */}
+            {devise === 'desktop'
+              ? (['hover', 'focus'] as const).map((state) => (
+                  <Item key={state} label={state}>
+                    <span className={`w-bottom-bar-item-${state}-demo`}>
+                      <BottomBarItem
+                        state="inactive"
+                        devise="desktop"
+                        label="Тренировки"
+                        icon={<Icon data={Play} size={20} />}
+                      />
+                    </span>
+                  </Item>
+                ))
+              : null}
           </Axis>
         ))}
       </Component>
@@ -823,15 +840,29 @@ function Molecules() {
         </Axis>
       </Component>
 
-      <Component kit="Error" code="ErrorState">
-        <Axis name="Picture">
+      <Component kit="Placeholder" code="Placeholder">
+        <Axis name="Осей нет · тип значка">
           {PICTURE_TYPES.map((picture) => (
-            <Item key={picture} label={picture} width={300}>
-              <ErrorState
+            <Item key={picture} label={picture} width={360}>
+              <Placeholder
                 picture={picture}
                 title="Заголовок"
-                message="Текст сообщения в одну-две строки"
-                action={<Button view="normal-contrast" size="m" content="Действие" />}
+                caption="Текст сообщения в одну-две строки"
+                button1={<Button view="normal-contrast" size="l" content="Действие" />}
+              />
+            </Item>
+          ))}
+        </Axis>
+        <Axis name="button-1 · button-2 · button-3">
+          {[360, 656].map((width) => (
+            <Item key={width} label={`ширина ${width}`} width={width}>
+              <Placeholder
+                picture="empty-badge"
+                title="Заголовок"
+                caption="Текст сообщения в одну-две строки"
+                button1={<Button view="normal-contrast" size="l" content="Первое действие" />}
+                button2={<Button view="flat-secondary" size="l" content="Второе действие" />}
+                button3={<Button view="flat-secondary" size="l" content="Третье действие" />}
               />
             </Item>
           ))}
@@ -1109,7 +1140,7 @@ function WorkoutCardSample() {
 
 function Organisms() {
   return (
-    <Layer title="Организмы — 10 компонентов">
+    <Layer title="Организмы — 11 компонентов">
       <Component kit="Product / bottom-bar" code="BottomBar">
         <Axis name="Active · 3">
           {BOTTOM_BAR_SECTIONS.map((section) => (
@@ -1301,6 +1332,14 @@ function Organisms() {
         </Axis>
       </Component>
 
+      <Component kit="Product / modal" code="Modal">
+        <Axis name="Осей нет">
+          <Item label="окно открывается в своей истории" width={640}>
+            <ModalSample />
+          </Item>
+        </Axis>
+      </Component>
+
       <Component kit="Product / drawer" code="Drawer">
         <Axis name="Actions · 2">
           <Item label="шторка открывается в своей истории" width={360}>
@@ -1358,6 +1397,60 @@ function DrawerSample() {
         <Button view="primary" size="xl" content="Сохранить" />
         <Button view="secondary" size="xl" content="Отмена" />
       </div>
+    </div>
+  )
+}
+
+/**
+ * Окно уходит в портал и ложится поверх экрана, поэтому на обзорной странице
+ * показана его плита — теми же классами, что у компонента: размеры и цвета
+ * те же, а поведение проверяется в своей истории.
+ */
+function ModalSample() {
+  return (
+    <div className="w-modal">
+      <div className="w-modal__head">
+        <div className="w-modal__heading">
+          <CardHeader size="header-2" title="Заголовок окна" description="Пояснение под заголовком" />
+        </div>
+        <Button view="flat-secondary" size="m" startIcon={<Icon data={Xmark} />} ariaLabel="Закрыть" />
+      </div>
+      <div className="w-modal__fix-slot">
+        <OverviewSlot>Fix slot</OverviewSlot>
+      </div>
+      <div className="w-modal__content">
+        <OverviewSlot>Slot</OverviewSlot>
+      </div>
+      <div className="w-modal__actions">
+        <div className="w-modal__actions-side">
+          <Button view="flat-secondary" size="l" content="Сохранить" />
+          <Button view="flat-secondary" size="l" content="Сохранить" />
+        </div>
+        <div className="w-modal__actions-side">
+          <Button view="flat-secondary" size="l" content="Сохранить" />
+          <Button view="primary" size="l" content="Сохранить" />
+        </div>
+      </div>
+    </div>
+  )
+}
+
+/** Заглушка слота: в ките на её месте `.Product / drawer-slot`. */
+function OverviewSlot({ children }: { children: ReactNode }) {
+  return (
+    <div
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        minHeight: 80,
+        borderRadius: 'var(--w-2xl-radius)',
+        background: 'var(--w-base-generic)',
+        font: 'var(--w-style-text-body-3)',
+        color: 'var(--w-text-primary)',
+      }}
+    >
+      {children}
     </div>
   )
 }

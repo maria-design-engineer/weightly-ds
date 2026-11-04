@@ -29,8 +29,12 @@ type Story = StoryObj<typeof meta>
 export const Playground: Story = {}
 
 /**
- * Оси State и Devise — четыре мастера набора `49064:26938`. Desktop — пункт бокового
+ * Оси State и Devise — шесть мастеров набора `49064:26938`. Desktop — пункт бокового
  * меню кабинета: выше, неактивный цветом `Text/Primary`.
+ *
+ * `Hover` и `Focus` есть только у Desktop. В ките это значения оси, в коде —
+ * поведение браузера: карточки ниже красят пункт теми же токенами, курсор и Tab
+ * не нужны. Живой пункт рядом наводится мышью и ловит фокус с клавиатуры.
  */
 export const States: Story = {
   parameters: { controls: { disable: true } },
@@ -43,6 +47,20 @@ export const States: Story = {
               <BottomBarItem {...args} state={state} devise={devise} />
             </Cell>
           ))}
+          {devise === 'desktop' ? (
+            <>
+              <Cell label="hover · desktop" width={120}>
+                <span className="w-bottom-bar-item-hover-demo">
+                  <BottomBarItem {...args} state="inactive" devise="desktop" />
+                </span>
+              </Cell>
+              <Cell label="focus · desktop" width={120}>
+                <span className="w-bottom-bar-item-focus-demo">
+                  <BottomBarItem {...args} state="inactive" devise="desktop" />
+                </span>
+              </Cell>
+            </>
+          ) : null}
         </Row>
       ))}
     </div>

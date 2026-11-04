@@ -184,8 +184,8 @@ export type { ExerciseCardState, ExerciseCardType, ExerciseCardView } from './co
 
 export { Icon } from './components/Icon/Icon'
 
-export { ErrorState } from './components/Error/Error'
-export type { ErrorStateProps } from './components/Error/Error'
+export { Placeholder } from './components/Placeholder/Placeholder'
+export type { PlaceholderProps } from './components/Placeholder/Placeholder'
 export { Picture } from './components/Picture/Picture'
 export type { PictureProps } from './components/Picture/Picture'
 export { PICTURE_TYPES } from './components/Picture/constants'
@@ -245,6 +245,9 @@ export { Paranja } from './components/Paranja/Paranja'
 export type { ParanjaProps } from './components/Paranja/Paranja'
 export { PARANJA_TYPES } from './components/Paranja/constants'
 export type { ParanjaType } from './components/Paranja/constants'
+
+export { Modal } from './components/Modal/Modal'
+export type { ModalProps } from './components/Modal/Modal'
 
 export { BlockTabs } from './components/BlockTabs/BlockTabs'
 export type { BlockTabsProps } from './components/BlockTabs/BlockTabs'
