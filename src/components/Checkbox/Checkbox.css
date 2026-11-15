@@ -24,7 +24,8 @@
   border: 1px solid var(--w-line-generic-accent);
   border-radius: 4px;
   background: transparent;
-  color: var(--w-text-light-primary);
+  /* Знак — `Text/Inverted Primary`: белый в светлых режимах, чёрный в тёмных. Правка кита 15.11.2026, этап 31. */
+  color: var(--w-text-inverted-primary);
   cursor: pointer;
 }
 

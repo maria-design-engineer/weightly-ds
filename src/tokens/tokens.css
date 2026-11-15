@@ -260,8 +260,8 @@
   --w-line-generic: rgba(0, 0, 0, 0.1);
   --w-line-generic-hover: rgba(0, 0, 0, 0.15);
   --w-line-generic-active: rgba(0, 0, 0, 0.3);
-  --w-line-generic-accent: rgba(0, 0, 0, 0.15);
-  --w-line-generic-accent-hover: rgba(0, 0, 0, 0.3);
+  --w-line-generic-accent: rgba(0, 0, 0, 0.45);
+  --w-line-generic-accent-hover: rgba(0, 0, 0, 0.6);
   --w-line-generic-solid: #e6e6e6;
   --w-line-misc: rgba(107, 132, 153, 0.8);
   --w-line-info: rgba(54, 151, 241, 0.8);
@@ -421,8 +421,8 @@
   --w-line-generic: rgba(255, 255, 255, 0.15);
   --w-line-generic-hover: rgba(255, 255, 255, 0.25);
   --w-line-generic-active: rgba(255, 255, 255, 0.3);
-  --w-line-generic-accent: rgba(255, 255, 255, 0.15);
-  --w-line-generic-accent-hover: rgba(255, 255, 255, 0.3);
+  --w-line-generic-accent: rgba(255, 255, 255, 0.35);
+  --w-line-generic-accent-hover: rgba(255, 255, 255, 0.5);
   --w-line-generic-solid: #433f43;
   --w-line-misc: rgba(96, 128, 156, 0.8);
   --w-line-info: rgba(54, 151, 241, 0.8);
@@ -580,7 +580,7 @@
   --w-line-generic: rgba(0, 0, 0, 0.2);
   --w-line-generic-hover: rgba(0, 0, 0, 0.4);
   --w-line-generic-active: rgba(0, 0, 0, 0.7);
-  --w-line-generic-accent: rgba(0, 0, 0, 0.3);
+  --w-line-generic-accent: rgba(0, 0, 0, 0.55);
   --w-line-generic-accent-hover: rgba(0, 0, 0, 0.7);
   --w-line-generic-solid: #cccccc;
   --w-line-misc: rgba(107, 132, 153, 0.8);
@@ -739,7 +739,7 @@
   --w-line-generic: rgba(255, 255, 255, 0.15);
   --w-line-generic-hover: rgba(255, 255, 255, 0.25);
   --w-line-generic-active: rgba(255, 255, 255, 0.6);
-  --w-line-generic-accent: rgba(255, 255, 255, 0.35);
+  --w-line-generic-accent: rgba(255, 255, 255, 0.45);
   --w-line-generic-accent-hover: rgba(255, 255, 255, 0.8);
   --w-line-generic-solid: #433f43;
   --w-line-misc: #60809c;
