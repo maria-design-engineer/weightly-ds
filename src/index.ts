@@ -268,6 +268,11 @@ export type { DeleteZoneProps } from './components/DeleteZone/DeleteZone'
 export { DELETE_ZONE_STATES } from './components/DeleteZone/constants'
 export type { DeleteZoneState } from './components/DeleteZone/constants'
 
+export { Checkbox } from './components/Checkbox/Checkbox'
+export type { CheckboxProps } from './components/Checkbox/Checkbox'
+export { CHECKBOX_SIZES } from './components/Checkbox/constants'
+export type { CheckboxSize } from './components/Checkbox/constants'
+
 export { Switch } from './components/Switch/Switch'
 export type { SwitchProps } from './components/Switch/Switch'
 export { SWITCH_SIZES } from './components/Switch/constants'

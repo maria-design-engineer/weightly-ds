@@ -1,0 +1,147 @@
+/*
+ * Checkbox — профиль `ui-kit/components/checkbox.md`, набор `53103:9376`, страница
+ * `Checkbox 🅱`. Значения сверены с китом 15.11.2026.
+ *
+ * Коробка `M` 14, `L` 17, `XL` 24; радиус 4, 4, 6; промежуток до подписи 5, 7, 7.
+ * Радиусы и промежутки в ките вписаны числом — переменных под них нет, профиль,
+ * «Что задано не токеном».
+ */
+.w-checkbox {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.w-checkbox__box {
+  box-sizing: border-box;
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  border: 1px solid var(--w-line-generic-accent);
+  border-radius: 4px;
+  background: transparent;
+  color: var(--w-text-light-primary);
+  cursor: pointer;
+}
+
+/* У `M` и `L` коробка ниже верха подписи на 1,5 — распорка `Top padding` в ките. */
+.w-checkbox > .w-checkbox__box {
+  margin-top: 1.5px;
+}
+
+/*
+ * `State=Hover` — обводка `Line/Generic Accent Hover`, только у пустой коробки.
+ * Только там, где есть мышь: на телефоне `:hover` залипает после касания.
+ */
+@media (hover: hover) {
+  .w-checkbox__box:hover {
+    border-color: var(--w-line-generic-accent-hover);
+  }
+}
+
+/* Отметка и черта: заливка брендом, обводки нет; наведение вида не меняет. */
+.w-checkbox__box[data-checked],
+.w-checkbox__box[data-indeterminate] {
+  border-color: transparent;
+  background: var(--w-branding-base-brand);
+}
+
+/* Фокус с клавиатуры — кольцо, как у кнопки. В ките его нет, убирать нельзя. */
+.w-checkbox__box:focus-visible {
+  outline: var(--w-focus-ring-width) solid var(--w-focus-ring-color);
+  outline-offset: 1px;
+}
+
+/* Отключённая без отметки — заливка вместо обводки. */
+.w-checkbox__box[data-disabled] {
+  border-color: transparent;
+  background: var(--w-base-generic-accent-disabled);
+  cursor: default;
+}
+
+/* Отключённая с отметкой или чертой — коробка с прозрачностью 0,5, как в ките. */
+.w-checkbox__box[data-disabled][data-checked],
+.w-checkbox__box[data-disabled][data-indeterminate] {
+  background: var(--w-branding-base-brand);
+  opacity: 0.5;
+}
+
+.w-checkbox__mark {
+  display: flex;
+}
+
+.w-checkbox__brick {
+  display: block;
+  background: currentColor;
+}
+
+.w-checkbox__label {
+  font: var(--w-style-text-body-3);
+  color: var(--w-text-primary);
+}
+
+.w-checkbox_size_l {
+  gap: 7px;
+}
+
+.w-checkbox__box_size_l {
+  width: 17px;
+  height: 17px;
+}
+
+.w-checkbox_size_l .w-checkbox__label {
+  font: var(--w-style-text-body-2);
+}
+
+/* У `XL` коробка выше строки подписи: ряд выровнен по центру, распорки нет. */
+.w-checkbox_size_xl {
+  align-items: center;
+  gap: 7px;
+}
+
+.w-checkbox__box_size_xl {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+}
+
+.w-checkbox_size_xl > .w-checkbox__box {
+  margin-top: 0;
+}
+
+.w-checkbox_size_xl .w-checkbox__label {
+  font: var(--w-style-text-body-2);
+}
+
+/*
+ * Карточки витрины: наведение и фокус показываются без курсора и без Tab —
+ * `build-vite-ds`, «Витрина». В продукт классы не едут: их ставит только история.
+ * Стоят выше отметки и отключённого — те перекрывают наведение, как в ките.
+ */
+.w-checkbox-hover-demo .w-checkbox__box {
+  border-color: var(--w-line-generic-accent-hover);
+}
+
+.w-checkbox-focus-demo .w-checkbox__box {
+  outline: var(--w-focus-ring-width) solid var(--w-focus-ring-color);
+  outline-offset: 1px;
+}
+
+.w-checkbox-hover-demo .w-checkbox__box[data-checked],
+.w-checkbox-hover-demo .w-checkbox__box[data-indeterminate],
+.w-checkbox-hover-demo .w-checkbox__box[data-disabled] {
+  border-color: transparent;
+}
+
+/* Отключённое: подпись с прозрачностью 0,6, как в ките. */
+.w-checkbox_disabled {
+  cursor: default;
+}
+
+.w-checkbox_disabled .w-checkbox__label {
+  opacity: 0.6;
+}

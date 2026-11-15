@@ -28,6 +28,8 @@ import './components/Modal/Modal.css'
 import { ProfileHeader } from './components/ProfileHeader/ProfileHeader'
 import { SegmentedSwitch } from './components/SegmentedSwitch/SegmentedSwitch'
 import { SEGMENTED_SWITCH_SIZES } from './components/SegmentedSwitch/constants'
+import { Checkbox } from './components/Checkbox/Checkbox'
+import { CHECKBOX_SIZES } from './components/Checkbox/constants'
 import { Switch } from './components/Switch/Switch'
 import { SWITCH_SIZES } from './components/Switch/constants'
 import { CardHeader } from './components/CardHeader/CardHeader'
@@ -498,6 +500,41 @@ function Base() {
             </div>
           </Item>
         </Axis>
+      </Component>
+
+      <Component kit="Checkbox" code="Checkbox">
+        {CHECKBOX_SIZES.map((size) => (
+          <Axis key={size} name={`State · Checked · Size=${size}`}>
+            <Item label="off">
+              <Checkbox size={size} contentText="Подпись" />
+            </Item>
+            <Item label="on">
+              <Checkbox size={size} defaultChecked contentText="Подпись" />
+            </Item>
+            <Item label="indeterminate">
+              <Checkbox size={size} indeterminate contentText="Подпись" />
+            </Item>
+            <Item label="hover">
+              <span className="w-checkbox-hover-demo">
+                <Checkbox size={size} contentText="Подпись" />
+              </span>
+            </Item>
+            <Item label="focus">
+              <span className="w-checkbox-focus-demo">
+                <Checkbox size={size} contentText="Подпись" />
+              </span>
+            </Item>
+            <Item label="disabled · off">
+              <Checkbox size={size} disabled contentText="Подпись" />
+            </Item>
+            <Item label="disabled · on">
+              <Checkbox size={size} disabled defaultChecked contentText="Подпись" />
+            </Item>
+            <Item label="disabled · indeterminate">
+              <Checkbox size={size} disabled indeterminate contentText="Подпись" />
+            </Item>
+          </Axis>
+        ))}
       </Component>
 
       <Component kit="Switch" code="Switch">
