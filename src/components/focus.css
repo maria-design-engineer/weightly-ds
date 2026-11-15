@@ -7,3 +7,13 @@
   --w-focus-ring-color: var(--w-line-focus);
   --w-focus-ring-width: 2px;
 }
+
+/*
+ * Кольцо для компонента, у которого своего правила фокуса нет: класс `w-focus`
+ * ставится на нажимаемый элемент. Без правила `Switch` показывал кольцо браузера —
+ * находка этапа 30.
+ */
+.w-focus:focus-visible {
+  outline: var(--w-focus-ring-width) solid var(--w-focus-ring-color);
+  outline-offset: 1px;
+}
