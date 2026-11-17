@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react'
 
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import { ChevronDown, ChevronRight, CircleInfo, Person, Play, Plus, Xmark } from '@gravity-ui/icons'
+import { ChevronDown, ChevronRight, CircleInfo, FolderOpen, Person, Play, Plus, Xmark } from '@gravity-ui/icons'
 
 import { Alert } from './components/Alert/Alert'
 import { ALERT_CORNERS, ALERT_THEMES, ALERT_VIEWS } from './components/Alert/constants'
@@ -23,6 +23,7 @@ import { BottomBarItem } from './components/BottomBarItem/BottomBarItem'
 import { BOTTOM_BAR_ITEM_DEVISES, BOTTOM_BAR_ITEM_STATES } from './components/BottomBarItem/constants'
 import { Breadcrumbs } from './components/Breadcrumbs/Breadcrumbs'
 import { Placeholder } from './components/Placeholder/Placeholder'
+import { PLACEHOLDER_SIZES } from './components/Placeholder/constants'
 /* Плита окна на обзорной странице стоит на классах компонента — нужны его стили. */
 import './components/Modal/Modal.css'
 import { ProfileHeader } from './components/ProfileHeader/ProfileHeader'
@@ -878,7 +879,31 @@ function Molecules() {
       </Component>
 
       <Component kit="Placeholder" code="Placeholder">
-        <Axis name="Осей нет · тип значка">
+        <Axis name="Size">
+          {PLACEHOLDER_SIZES.map((size) => (
+            <Item key={size} label={size} width={360}>
+              <Placeholder
+                size={size}
+                picture="empty-badge"
+                title="Заголовок"
+                caption="Текст сообщения в одну-две строки"
+                button1={<Button view="normal-contrast" content="Действие" />}
+                button2={<Button view="flat-secondary" content="Второе" />}
+              />
+            </Item>
+          ))}
+        </Axis>
+        <Axis name="Тип значка · phone с подменой">
+          <Item label="phone · folder-open" width={360}>
+            <Placeholder
+              picture="phone"
+              pictureIcon={FolderOpen}
+              title="Заголовок"
+              caption="Текст сообщения в одну-две строки"
+            />
+          </Item>
+        </Axis>
+        <Axis name="Тип значка">
           {PICTURE_TYPES.map((picture) => (
             <Item key={picture} label={picture} width={360}>
               <Placeholder

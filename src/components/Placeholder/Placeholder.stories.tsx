@@ -9,9 +9,10 @@ import { PICTURE_TYPES } from '../Picture/constants'
 import type { PictureType } from '../Picture/constants'
 import type { PlaceholderProps } from './Placeholder'
 import { Placeholder } from './Placeholder'
+import { PLACEHOLDER_SIZES } from './constants'
 
 /**
- * Витрина повторяет свойства мастера `Placeholder` тем же порядком: `icon`,
+ * Витрина повторяет свойства мастера `Placeholder` тем же порядком: `Size`, `icon`,
  * `caption`, `button-1`, `button-2`, `button-3`; тип значка — подмена `Product / picture`.
  *
  * В коде булевых нет: часть показывается, когда для неё передано содержимое.
@@ -33,6 +34,7 @@ const meta = {
   title: 'Components/Placeholder',
   parameters: { controls: { sort: 'none' } },
   argTypes: {
+    size: { control: 'inline-radio', options: PLACEHOLDER_SIZES, name: 'Size' },
     icon: { control: 'boolean', name: 'icon' },
     captionOn: { control: 'boolean', name: 'caption' },
     'button-1': { control: 'boolean', name: 'button-1' },
@@ -42,6 +44,7 @@ const meta = {
     title: { control: 'text', name: 'Title' },
     caption: { control: 'text', name: 'Caption' },
     picture: hidden,
+    pictureIcon: hidden,
     button1: hidden,
     button2: hidden,
     button3: hidden,
@@ -49,6 +52,7 @@ const meta = {
   },
   /* По умолчанию включены `icon`, `caption` и `button-1` — профиль `placeholder.md`. */
   args: {
+    size: 'l',
     icon: true,
     captionOn: true,
     'button-1': true,
@@ -72,6 +76,7 @@ function Demo({ icon, type, captionOn, width = 360, ...args }: DemoArgs) {
   return (
     <div style={{ width }}>
       <Placeholder
+        size={args.size}
         picture={icon ? type : undefined}
         title={args.title}
         caption={captionOn ? args.caption : undefined}
@@ -118,6 +123,22 @@ export const Icons: Story = {
       <Cell label="caption выключен" width={360}>
         <Demo {...args} captionOn={false} />
       </Cell>
+    </Row>
+  ),
+}
+
+/** Ось Size — кнопки `l` 42 и `m` 34; остальное в вариантах совпадает. */
+export const SizeAxis: Story = {
+  name: 'Size',
+  parameters: { controls: { disable: true } },
+  args: { 'button-2': true },
+  render: (args) => (
+    <Row>
+      {PLACEHOLDER_SIZES.map((size) => (
+        <Cell key={size} label={size} width={360}>
+          <Demo {...args} size={size} />
+        </Cell>
+      ))}
     </Row>
   ),
 }

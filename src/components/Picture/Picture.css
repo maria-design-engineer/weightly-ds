@@ -1,8 +1,7 @@
 /*
- * Product / picture. Снято обходом мастеров кита 09.09.2026, знаки пересняты
- * выгрузкой 18.09.2026: круг 45 × 45, заливка Base/Selection — брендовый
- * оранжевый 15%, знак нарисован внутри компонента обводкой 2 на Branding/Base Brand.
- * Поля у круга нет: рисунок живёт в своём поле 45 × 45, как в мастере.
+ * Product / picture — профиль `ui-kit/product-components/picture.md`, правка кита 17.11.2026:
+ * круг 45 × 45, поля 8, радиус 100, внутри иконка 29 × 29; `Type=Phone` — 42 × 42 с иконкой 26.
+ * Заливка `Branding/Base Selection`, иконка `Branding/Base Brand`.
  */
 .w-picture {
   display: inline-flex;
@@ -11,12 +10,24 @@
   box-sizing: border-box;
   width: 45px;
   height: 45px;
+  padding: var(--w-g-spacing-2);
   border-radius: 50%;
   background: var(--w-branding-base-selection);
   color: var(--w-branding-base-brand);
 }
 
-.w-picture__drawing {
-  width: 100%;
-  height: 100%;
+.w-picture__icon {
+  flex: none;
+  width: 29px;
+  height: 29px;
+}
+
+.w-picture_type_phone {
+  width: 42px;
+  height: 42px;
+}
+
+.w-picture_type_phone .w-picture__icon {
+  width: 26px;
+  height: 26px;
 }

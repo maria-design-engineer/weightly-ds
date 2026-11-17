@@ -186,8 +186,10 @@ export { Icon } from './components/Icon/Icon'
 
 export { Placeholder } from './components/Placeholder/Placeholder'
 export type { PlaceholderProps } from './components/Placeholder/Placeholder'
+export { PLACEHOLDER_SIZES } from './components/Placeholder/constants'
+export type { PlaceholderSize } from './components/Placeholder/constants'
 export { Picture } from './components/Picture/Picture'
-export type { PictureProps } from './components/Picture/Picture'
+export type { PictureIcon, PictureProps } from './components/Picture/Picture'
 export { PICTURE_TYPES } from './components/Picture/constants'
 export type { PictureType } from './components/Picture/constants'
 
