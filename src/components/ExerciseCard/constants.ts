@@ -7,8 +7,12 @@ export const EXERCISE_CARD_TYPES = ['plan', 'task', 'running'] as const
  */
 export const EXERCISE_CARD_VIEWS = ['collapsed', 'expanded'] as const
 
-/** Ось State кита — 2 значения: обычная карточка и та, которую тянут. */
-export const EXERCISE_CARD_STATES = ['default', 'drag'] as const
+/**
+ * Ось State кита — 5 значений: default · drag · error · hover · hover-error. В коде три:
+ * `hover` и `hover-error` — наведение браузера и фокус с клавиатуры внутри карточки,
+ * пропа у них нет, как у `Hover` тумблера. Профиль `exercise-card.md`, правка 17.11.2026.
+ */
+export const EXERCISE_CARD_STATES = ['default', 'drag', 'error'] as const
 
 export type ExerciseCardType = (typeof EXERCISE_CARD_TYPES)[number]
 export type ExerciseCardView = (typeof EXERCISE_CARD_VIEWS)[number]

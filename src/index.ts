@@ -177,6 +177,12 @@ export type { CoachCommentBand, CoachCommentState } from './components/CoachComm
 export { StepCell } from './components/StepCell/StepCell'
 export type { StepCellProps } from './components/StepCell/StepCell'
 
+export { CardActions } from './components/CardActions/CardActions'
+export type { CardActionsProps } from './components/CardActions/CardActions'
+
+export { InlineRename } from './components/InlineRename/InlineRename'
+export type { InlineRenameProps } from './components/InlineRename/InlineRename'
+
 export { ExerciseCard } from './components/ExerciseCard/ExerciseCard'
 export type { ExerciseCardProps } from './components/ExerciseCard/ExerciseCard'
 export { EXERCISE_CARD_STATES, EXERCISE_CARD_TYPES, EXERCISE_CARD_VIEWS } from './components/ExerciseCard/constants'

@@ -12,6 +12,7 @@ import { StepCell } from '../StepCell/StepCell'
 import { Cell, Row } from '../story-layout'
 import { ExerciseCard, type ExerciseCardProps } from './ExerciseCard'
 import { ExerciseBullets } from '../ExerciseBullets/ExerciseBullets'
+import { CardActions } from '../CardActions/CardActions'
 import { EXERCISE_CARD_STATES, EXERCISE_CARD_TYPES, EXERCISE_CARD_VIEWS } from './constants'
 
 /*
@@ -296,4 +297,32 @@ export const Drag: Story = {
       ))}
     </Row>
   ),
+}
+
+/**
+ * Настольная карточка плана — `State=default`, `error`, `hover`, `hover-error`, правка кита
+ * 17.11.2026. Наведение показано карточкой, без курсора: тень и панель `CardActions` в углу.
+ * В продукте панель видна при наведении и при фокусе с клавиатуры внутри карточки.
+ */
+export const Desktop: Story = {
+  decorators: [COLUMN],
+  parameters: { controls: { disable: true } },
+  render: (args) => {
+    const actions = <CardActions editLabel="Правка" removeLabel="Удаление" dragLabel="Перетаскивание" />
+    const card = (state: 'default' | 'error') => (
+      <ExerciseCard {...args} type="plan" state={state} content={TITLE_BY_TYPE.task} steps={STEPS_BY_TYPE.plan} onHint={() => {}} actions={actions} />
+    )
+    return (
+      <Row>
+        <Cell label="default" width={328}>{card('default')}</Cell>
+        <Cell label="error" width={328}>{card('error')}</Cell>
+        <Cell label="hover" width={328}>
+          <div className="w-exercise-card-hover-demo">{card('default')}</div>
+        </Cell>
+        <Cell label="hover-error" width={328}>
+          <div className="w-exercise-card-hover-demo">{card('error')}</div>
+        </Cell>
+      </Row>
+    )
+  },
 }

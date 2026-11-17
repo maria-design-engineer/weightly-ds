@@ -398,3 +398,82 @@
 .w-exercise-card__steps > * {
   flex: none;
 }
+
+/*
+ * State=error — упражнение не распозналось, правка кита 17.11.2026, профиль `exercise-card.md`:
+ * заливок две — снизу непрозрачный `Base Float/Float BG` цветом фона, сверху
+ * `Base Semantic/Danger Light` 15 % картинкой; обводка 1 `Line/Danger`. Одной полупрозрачной
+ * заливки мало: карточка просвечивала, и тень была видна внутри неё. Название и значок
+ * подсказки — `Text/Danger`.
+ */
+.w-exercise-card_state_error {
+  background-color: var(--w-base-float-float-bg);
+  background-image: linear-gradient(var(--w-base-semantic-danger-light), var(--w-base-semantic-danger-light));
+  box-shadow: inset 0 0 0 1px var(--w-line-danger);
+}
+
+.w-exercise-card_state_error .w-exercise-card__title,
+.w-exercise-card_state_error .w-exercise-card__hint {
+  color: var(--w-text-danger);
+}
+
+/*
+ * State=hover и State=hover-error — настольная карточка плана: тень
+ * `card-shadow/card-light (new)` и панель `Product / card-actions` у правого верхнего
+ * угла, 8 от края. В коде это наведение мышью и фокус с клавиатуры внутри карточки —
+ * решение пользователя 17.11.2026. Только у карточки, которой передали панель.
+ */
+.w-exercise-card_actionable {
+  position: relative;
+}
+
+.w-exercise-card__actions {
+  position: absolute;
+  top: var(--w-g-spacing-2);
+  right: var(--w-g-spacing-2);
+  z-index: 1;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.w-exercise-card_actionable:focus-within {
+  box-shadow: var(--w-card-shadow-card-light-new);
+}
+
+.w-exercise-card_actionable.w-exercise-card_state_error:focus-within {
+  box-shadow: inset 0 0 0 1px var(--w-line-danger), var(--w-card-shadow-card-light-new);
+}
+
+.w-exercise-card_actionable:focus-within .w-exercise-card__actions {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+@media (hover: hover) {
+  .w-exercise-card_actionable:hover {
+    box-shadow: var(--w-card-shadow-card-light-new);
+  }
+
+  .w-exercise-card_actionable.w-exercise-card_state_error:hover {
+    box-shadow: inset 0 0 0 1px var(--w-line-danger), var(--w-card-shadow-card-light-new);
+  }
+
+  .w-exercise-card_actionable:hover .w-exercise-card__actions {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+/* Карточки витрины: наведение без курсора — `build-vite-ds`, «Витрина». В продукт класс не едет. */
+.w-exercise-card-hover-demo .w-exercise-card_actionable {
+  box-shadow: var(--w-card-shadow-card-light-new);
+}
+
+.w-exercise-card-hover-demo .w-exercise-card_actionable.w-exercise-card_state_error {
+  box-shadow: inset 0 0 0 1px var(--w-line-danger), var(--w-card-shadow-card-light-new);
+}
+
+.w-exercise-card-hover-demo .w-exercise-card__actions {
+  opacity: 1;
+  pointer-events: auto;
+}

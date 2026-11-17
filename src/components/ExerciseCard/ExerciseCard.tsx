@@ -19,7 +19,7 @@ export type ExerciseCardProps = {
   type?: ExerciseCardType
   /** Figma View — размер набора у списка движений. Заведена релизом 2. */
   view?: ExerciseCardView
-  /** Figma State — обычная карточка или та, которую тянут. */
+  /** Figma State — обычная, та, которую тянут, или с ошибкой: упражнение не распозналось. */
   state?: ExerciseCardState
   /** Figma Text, Single title — название упражнения одной строкой. */
   content?: ReactNode
@@ -58,6 +58,13 @@ export type ExerciseCardProps = {
   /** Подписи кнопки для чтения с экрана: свёрнутая карточка и развёрнутая. */
   expandLabel?: string
   collapseLabel?: string
+  /**
+   * Панель действий `CardActions` у правого верхнего угла — настольная карточка плана,
+   * `State=hover` и `State=hover-error`. Видна при наведении и когда фокус с клавиатуры
+   * внутри карточки — решение пользователя 17.11.2026, WCAG 2.2, 2.1.1. Передана —
+   * карточка получает и тень наведения.
+   */
+  actions?: ReactNode
 }
 
 /**
@@ -79,6 +86,7 @@ export function ExerciseCard({
   onExpand,
   expandLabel,
   collapseLabel,
+  actions,
 }: ExerciseCardProps) {
   const cardRef = useRef<HTMLDivElement>(null)
   const headRef = useRef<HTMLDivElement>(null)
@@ -222,7 +230,7 @@ export function ExerciseCard({
   return (
     <div
       ref={cardRef}
-      className={`w-exercise-card w-exercise-card_type_${type} w-exercise-card_view_${view} w-exercise-card_state_${state}${type === 'task' && clipped && !expanded ? ' w-exercise-card_clipped' : ''}`}
+      className={`w-exercise-card w-exercise-card_type_${type} w-exercise-card_view_${view} w-exercise-card_state_${state}${type === 'task' && clipped && !expanded ? ' w-exercise-card_clipped' : ''}${actions ? ' w-exercise-card_actionable' : ''}`}
     >
       <div className="w-exercise-card__info">
         {type === 'task' ? (
@@ -304,6 +312,7 @@ export function ExerciseCard({
           {steps}
         </div>
       ) : null}
+      {actions ? <div className="w-exercise-card__actions">{actions}</div> : null}
     </div>
   )
 }

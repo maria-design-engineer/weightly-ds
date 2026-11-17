@@ -1,0 +1,21 @@
+/*
+ * Product / card-actions — профиль `ui-kit/product-components/card-actions.md`, мастер
+ * снят обходом 17.11.2026: 88 × 32, поля 2, промежуток 2, радиус 10; подложка
+ * `Branding/Base Background` непрозрачная, обводка 1 `Line/Generic`, тень
+ * `card-shadow/card-light (new)`. Кнопки `S` 26 × 26, иконки 12, цвет `Text/Secondary`.
+ */
+.w-card-actions {
+  box-sizing: border-box;
+  display: inline-flex;
+  gap: var(--w-g-spacing-0-5);
+  padding: var(--w-g-spacing-0-5);
+  border: 1px solid var(--w-line-generic);
+  border-radius: var(--w-m-radius);
+  background: var(--w-branding-base-background);
+  box-shadow: var(--w-card-shadow-card-light-new);
+}
+
+.w-card-actions__grip {
+  cursor: grab;
+  touch-action: none;
+}

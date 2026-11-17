@@ -51,6 +51,8 @@ import { DropdownMenu } from './components/DropdownMenu/DropdownMenu'
 import { DROPDOWN_MENU_SIZES } from './components/DropdownMenu/constants'
 import { Divider } from './components/Divider/Divider'
 import { ExerciseCard } from './components/ExerciseCard/ExerciseCard'
+import { CardActions } from './components/CardActions/CardActions'
+import { InlineRename } from './components/InlineRename/InlineRename'
 import { EXERCISE_CARD_TYPES } from './components/ExerciseCard/constants'
 import { ExerciseRow } from './components/ExerciseRow/ExerciseRow'
 import { Field } from './components/Field/Field'
@@ -1125,6 +1127,54 @@ function Molecules() {
               />
             </Item>
           ))}
+        </Axis>
+      </Component>
+
+      <Component kit="Product / exercise-card · Desktop" code="ExerciseCard">
+        <Axis name="State · default · error · hover · hover-error">
+          {(['default', 'error'] as const).flatMap((state) => [false, true].map((hover) => (
+            <Item key={`${state}-${hover}`} label={hover ? (state === 'error' ? 'hover-error' : 'hover') : state} width={328}>
+              <div className={hover ? 'w-exercise-card-hover-demo' : undefined}>
+                <ExerciseCard
+                  type="plan"
+                  state={state}
+                  content="Рывок классический"
+                  steps={plainSteps('plan')}
+                  onHint={() => {}}
+                  actions={<CardActions editLabel="Правка" removeLabel="Удаление" dragLabel="Перетаскивание" />}
+                />
+              </div>
+            </Item>
+          )))}
+        </Axis>
+      </Component>
+
+      <Component kit="Product / card-actions" code="CardActions">
+        <Axis name="Правка · Удаление · Перетаскивание">
+          <Item label="все три">
+            <CardActions editLabel="Правка" removeLabel="Удаление" dragLabel="Перетаскивание" />
+          </Item>
+        </Axis>
+      </Component>
+
+      <Component kit="Product / inline-rename" code="InlineRename">
+        {/* Правка названия при появлении забирает фокус — в каталоге она неподвижна: `inert`. */}
+        <Axis name="Осей нет · состояния поля и кнопок">
+          <Item label="обычное" width={428}>
+            <div inert>
+              <InlineRename value="Неделя 3 · день 1" onValueChange={() => {}} onSave={() => {}} onCancel={() => {}} />
+            </div>
+          </Item>
+          <Item label="пустое" width={428}>
+            <div inert>
+              <InlineRename value="" onValueChange={() => {}} onSave={() => {}} onCancel={() => {}} />
+            </div>
+          </Item>
+          <Item label="ошибка" width={428}>
+            <div inert>
+              <InlineRename value="Неделя 3 · день 1" errorMessage="Текст ошибки под полем" onValueChange={() => {}} onSave={() => {}} onCancel={() => {}} />
+            </div>
+          </Item>
         </Axis>
       </Component>
 
