@@ -7,8 +7,11 @@ export const INTENSITY_CHIP_SIZES = ['s', 'l'] as const
  */
 export const INTENSITY_CHIP_STATES = ['default', 'active', 'done'] as const
 
-/** Ось Band кита — 3 значения: neutral до 70 процентов, lime с 70, pink с 90. */
-export const INTENSITY_CHIP_BANDS = ['neutral', 'lime', 'pink'] as const
+/**
+ * Ось Band кита — 4 значения: neutral до 70 процентов, lime с 70, pink с 90; error — зона
+ * не распозналась, «Разбор файла» тренера, кадр `4а`. `error` добавлен релизом 0.14.0.
+ */
+export const INTENSITY_CHIP_BANDS = ['neutral', 'lime', 'pink', 'error'] as const
 
 export type IntensityChipSize = (typeof INTENSITY_CHIP_SIZES)[number]
 export type IntensityChipState = (typeof INTENSITY_CHIP_STATES)[number]

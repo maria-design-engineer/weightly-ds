@@ -3,6 +3,7 @@
  * решение пользователя 03.09.2026. Снято обходом двенадцати мастеров Figma:
  * S 52 × 46, поля 4/8, промежуток 2; L 60 × 58, поля 8/12, промежуток 2; радиус 12.
  * Пересснято 03.09.2026 после правки кита: высоты и боковые поля другие.
+ * Релиз 0.14.0, по мастерам кита 18.11.2026: S — 44 в высоту, число `Header/Subheader 3`.
  * Band задаёт заливку и цвет числа, State добавляет кольцо Base/Brand.
  */
 /*
@@ -40,14 +41,14 @@ button.w-set-marker {
 
 .w-intensity-chip_size_s {
   min-width: 52px;
-  min-height: 46px;
+  min-height: 44px;
   gap: var(--w-g-spacing-0-5);
   padding: var(--w-g-spacing-1) var(--w-g-spacing-2);
 }
 
-/* Кегль числа зависит от размера: S — Header/Subheader 2, L — Header/Subheader 3. */
+/* Кегль числа зависит от размера: S — Header/Subheader 3, L — Header/Subheader 1. До 0.14.0 у S был Subheader 2. */
 .w-intensity-chip_size_s .w-intensity-chip__value {
-  font: var(--w-style-header-subheader-2);
+  font: var(--w-style-header-subheader-3);
 }
 
 .w-intensity-chip_size_l {
@@ -118,3 +119,14 @@ button.w-set-marker {
   box-shadow: 0 0 0 1px var(--w-accent-pink-15);
 }
 .w-intensity-chip_band_pink .w-intensity-chip__value { color: var(--w-accent-pink-text); }
+
+/*
+ * `Band=error` — зона не распозналась: заливка `Base Semantic/Danger Light`, обводка `Text/Danger`,
+ * число и подпись `Text/Danger`. Мастера `Size=S` и `Size=L, State=Default, Band=error`, релиз 0.14.0.
+ */
+.w-intensity-chip_band_error {
+  background: var(--w-base-semantic-danger-light);
+  box-shadow: 0 0 0 1px var(--w-text-danger);
+}
+.w-intensity-chip_band_error .w-intensity-chip__value,
+.w-intensity-chip_band_error .w-intensity-chip__caption { color: var(--w-text-danger); }

@@ -404,7 +404,7 @@
  * заливок две — снизу непрозрачный `Base Float/Float BG` цветом фона, сверху
  * `Base Semantic/Danger Light` 15 % картинкой; обводка 1 `Line/Danger`. Одной полупрозрачной
  * заливки мало: карточка просвечивала, и тень была видна внутри неё. Название и значок
- * подсказки — `Text/Danger`.
+ * подсказки — `Text/Danger`. Движения списком — тоже `Text/Danger`, как в мастере: релиз 0.14.0.
  */
 .w-exercise-card_state_error {
   background-color: var(--w-base-float-float-bg);
@@ -413,7 +413,8 @@
 }
 
 .w-exercise-card_state_error .w-exercise-card__title,
-.w-exercise-card_state_error .w-exercise-card__hint {
+.w-exercise-card_state_error .w-exercise-card__hint,
+.w-exercise-card_state_error .w-exercise-bullets__text {
   color: var(--w-text-danger);
 }
 

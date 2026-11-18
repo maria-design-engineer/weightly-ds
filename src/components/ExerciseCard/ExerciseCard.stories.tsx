@@ -322,6 +322,20 @@ export const Desktop: Story = {
         <Cell label="hover-error" width={328}>
           <div className="w-exercise-card-hover-demo">{card('error')}</div>
         </Cell>
+        {/* Связка не распозналась — движения и плитка красные, релиз 0.14.0, кадр `4а` «Разбора файла». */}
+        <Cell label="error · связка" width={328}>
+          <ExerciseCard
+            {...args}
+            type="plan"
+            state="error"
+            bullets={[
+              <ExerciseBullets key="1" view="expanded" content="Тяга рывковая · с подставки" />,
+              <ExerciseBullets key="2" view="expanded" content="Тяга рывковая · с подставки · с середины бедра" />,
+            ]}
+            steps={[<IntensityChip key="1" size="s" band="error" content="по ощущению" caption="-- × |--|" />]}
+            actions={actions}
+          />
+        </Cell>
       </Row>
     )
   },
