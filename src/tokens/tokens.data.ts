@@ -183,6 +183,11 @@ export const RADIUS_TOKENS: ValueToken[] = [
   { kit: 'L radius', name: '--w-l-radius', value: '12px' },
   { kit: 'XL radius', name: '--w-xl-radius', value: '16px' },
   { kit: '2XL radius', name: '--w-2xl-radius', value: '20px' },
+  /* Подстроечные — вложенной вещи под радиус родителя; профиль `ui-kit/tokens.md`, «Радиусы». */
+  { kit: '2 inset radius', name: '--w-2-inset-radius', value: '2px' },
+  { kit: '4 inset radius', name: '--w-4-inset-radius', value: '4px' },
+  { kit: '14 inset radius', name: '--w-14-inset-radius', value: '14px' },
+  { kit: '18 inset radius', name: '--w-18-inset-radius', value: '18px' },
 ]
 
 export const FAMILY_TOKENS: ValueToken[] = [

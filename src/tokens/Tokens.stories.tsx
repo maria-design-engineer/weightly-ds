@@ -191,10 +191,10 @@ export const Spacings: Story = {
   ),
 }
 
-/** 6 радиусов. Квадрат скруглён своим значением. */
+/** 10 радиусов: 6 базовых и 4 подстроечных `inset`. Квадрат скруглён своим значением. */
 export const Radii: Story = {
   render: () => (
-    <Page title="Радиусы — 6 токенов, один режим">
+    <Page title="Радиусы — 10 токенов, один режим">
       <ValueRows
         tokens={RADIUS_TOKENS}
         sample={(token) => (
