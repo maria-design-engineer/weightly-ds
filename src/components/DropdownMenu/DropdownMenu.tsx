@@ -76,7 +76,7 @@ export function DropdownMenu({ size = 'xl', items, onClose, ariaLabel }: Dropdow
           <button
             key={item.id}
             type="button"
-            className="w-dropdown-menu__item"
+            className={`w-dropdown-menu__item${item.danger ? ' w-dropdown-menu__item_danger' : ''}`}
             role="menuitem"
             disabled={item.disabled}
             onClick={() => {

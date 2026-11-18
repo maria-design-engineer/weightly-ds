@@ -25,6 +25,13 @@ const GROUPED: DropdownMenuItem[] = [
   { id: 'delete', content: 'Удалить упражнение', disabled: true },
 ]
 
+/* Меню строки шаблона: последний пункт — опасный, `Type=Danger`. */
+const DANGER: DropdownMenuItem[] = [
+  { id: 'plan', content: 'Добавить в план' },
+  { id: 'rename', content: 'Переименовать' },
+  { id: 'delete', content: 'Удалить', danger: true },
+]
+
 /*
  * Десять пунктов — столько строк нарисовано у мастера кита. Потолка у кода нет:
  * строк столько, сколько пришло в `items`.
@@ -53,6 +60,9 @@ export const Basic: Story = { render: (args) => <DropdownMenu {...args} items={B
 
 /** Состав `Type=With icons`: значок слева от подписи. */
 export const WithIcons: Story = { render: (args) => <DropdownMenu {...args} items={WITH_ICONS} /> }
+
+/** Строка `Type=Danger`: опасное действие, подпись красная. Меню строки шаблона, кадр `2`. */
+export const Danger: Story = { render: (args) => <DropdownMenu {...args} items={DANGER} /> }
 
 /** Состав `Type=Grouped`: группы отбиты разделителем; последняя строка отключена. */
 export const Grouped: Story = { render: (args) => <DropdownMenu {...args} items={GROUPED} /> }

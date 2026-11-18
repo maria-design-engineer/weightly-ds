@@ -132,6 +132,20 @@
  */
 .w-button_selected { background: var(--w-branding-base-selection); color: var(--w-text-inverted-primary); }
 
+/*
+ * `View=Outlined-success, State=Selected` — своя заливка: `Base Semantic/Positive Light`
+ * 15 %, обводки нет, текст и значок `Text/Positive Heavy`. Так кнопка показывает,
+ * что дело сделано: «Скопировать промт» на «Новом шаблоне», узел `2664:50191`.
+ * Наведение и нажатие заливку не меняют. Релиз 0.12.0, решение пользователя 18.11.2026.
+ */
+.w-button_view_outlined-success.w-button_selected,
+.w-button_view_outlined-success.w-button_selected:hover:not([data-disabled]),
+.w-button_view_outlined-success.w-button_selected:active:not([data-disabled]) {
+  border-color: transparent;
+  background: var(--w-base-semantic-positive-light);
+  color: var(--w-text-positive-heavy);
+}
+
 /* State=Disabled — нажатие не принимает, в обход клавиатурой не попадает. */
 .w-button[data-disabled] { color: var(--w-text-hint); cursor: default; }
 .w-button_view_primary-brand[data-disabled],

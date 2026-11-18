@@ -23,6 +23,11 @@ export type DropdownMenuItem =
       icon?: ReactNode
       /** Figma State=Disabled — пункт виден, но не нажимается. */
       disabled?: boolean
+      /**
+       * Figma `List-item` `Type=Danger` — опасное действие, удаление: подпись `Text/Danger`.
+       * Подложки состояний те же, что у обычного пункта. Профиль `ui-kit/components/list.md`.
+       */
+      danger?: boolean
       /** Нажали пункт. Не передан — пункт стоит и ничего не делает. */
       onPick?: () => void
     }

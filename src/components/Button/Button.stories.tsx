@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 
-import { Plus } from '@gravity-ui/icons'
+import { CheckDouble, Plus } from '@gravity-ui/icons'
 
 import { Icon } from '../Icon/Icon'
 import { Cell, Row } from '../story-layout'
@@ -93,6 +93,27 @@ export const States: Story = {
       </Cell>
       <Cell label="Loading">
         <Button {...args} loading content="Кнопка" />
+      </Cell>
+    </Row>
+  ),
+}
+
+/**
+ * `View=Outlined-success, State=Selected` — у этой пары своя заливка, светло-зелёная,
+ * без обводки. Так на «Новом шаблоне» кнопка копирования показывает, что промт скопирован.
+ */
+export const SuccessSelected: Story = {
+  args: { view: 'outlined-success' },
+  render: (args) => (
+    <Row>
+      <Cell label="Default">
+        <Button {...args} content="Кнопка" />
+      </Cell>
+      <Cell label="Selected">
+        <Button {...args} selected content="Кнопка" />
+      </Cell>
+      <Cell label="Selected · Icon only · s">
+        <Button {...args} selected size="s" content={undefined} ariaLabel="Промт скопирован" startIcon={<Icon data={CheckDouble} size={12} />} />
       </Cell>
     </Row>
   ),
