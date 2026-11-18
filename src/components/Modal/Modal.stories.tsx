@@ -108,7 +108,7 @@ function ModalDemo({
   const [open, setOpen] = useState(true)
   const close = () => setOpen(false)
   const button = (on: boolean | undefined, view: 'primary' | 'flat-secondary') =>
-    actions && on ? <Button view={view} size="l" content="Сохранить" onClick={close} /> : undefined
+    actions && on ? <Button view={view} size="m" content="Сохранить" onClick={close} /> : undefined
 
   return (
     <div style={{ height: '100vh', padding: 24 }}>

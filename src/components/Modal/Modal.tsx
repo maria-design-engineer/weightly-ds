@@ -39,7 +39,7 @@ export type ModalProps = {
   action2?: ReactNode
   /** Figma `action-3` — первая кнопка правого слота. */
   action3?: ReactNode
-  /** Figma `action-4` — крайняя правая, главная кнопка окна: вид `Primary`, размер `L`. */
+  /** Figma `action-4` — крайняя правая, главная кнопка окна: вид `Primary`, размер `M` — правка мастера 18.11.2026, было `L`. */
   action4?: ReactNode
   /**
    * Куда встаёт фокус, когда окно открылось. По умолчанию Base UI берёт первое,

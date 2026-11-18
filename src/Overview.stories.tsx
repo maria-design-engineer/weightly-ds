@@ -1535,12 +1535,12 @@ function ModalSample() {
       </div>
       <div className="w-modal__actions">
         <div className="w-modal__actions-side">
-          <Button view="flat-secondary" size="l" content="Сохранить" />
-          <Button view="flat-secondary" size="l" content="Сохранить" />
+          <Button view="flat-secondary" size="m" content="Сохранить" />
+          <Button view="flat-secondary" size="m" content="Сохранить" />
         </div>
         <div className="w-modal__actions-side">
-          <Button view="flat-secondary" size="l" content="Сохранить" />
-          <Button view="primary" size="l" content="Сохранить" />
+          <Button view="flat-secondary" size="m" content="Сохранить" />
+          <Button view="primary" size="m" content="Сохранить" />
         </div>
       </div>
     </div>
