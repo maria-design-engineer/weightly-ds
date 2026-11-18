@@ -31,12 +31,17 @@
 }
 
 /*
- * У выбранной кнопки наведения и нажатия нет — решение пользователя 18.11.2026. Своя заливка
- * наведения вставала сразу, а белая подложка доезжала под неё за 260 мс: серое обгоняло белое.
+ * Наведения и нажатия у кнопок переключателя нет — ни у выбранной, ни у остальных: решение
+ * пользователя 18.11.2026. Заливка наведения вставала сразу, а белая подложка доезжала под
+ * неё за 260 мс: серое обгоняло белое. Цвет подписи при наведении тоже не меняется.
  */
-.w-segmented-switch > .w-button_view_raised:hover:not([data-disabled]),
-.w-segmented-switch > .w-button_view_raised:active:not([data-disabled]) {
+.w-segmented-switch > .w-button:hover:not([data-disabled]),
+.w-segmented-switch > .w-button:active:not([data-disabled]) {
   background: none;
+}
+
+.w-segmented-switch > .w-button_view_flat-secondary:hover:not([data-disabled]) {
+  color: var(--w-text-secondary);
 }
 
 /*
