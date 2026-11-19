@@ -1,0 +1,48 @@
+/*
+ * Combobox — `Product / select-open` кита с набором текста, релиз 0.16.0. Рамка, размеры, список
+ * и строки — от `Select` (`Select.css`); здесь только поле ввода внутри кнопки.
+ */
+
+/* Поле с набором — курсор текста, а не руки; State=Active — то же кольцо `Line/Focus`, что у `Select`. */
+.w-combobox__group {
+  cursor: text;
+}
+
+.w-select_view_normal .w-combobox__group:focus-within {
+  outline: 2px solid var(--w-line-focus);
+  outline-offset: 1px;
+  background: transparent;
+}
+
+.w-combobox__input {
+  flex: 1;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  outline: none;
+}
+
+.w-combobox__input::placeholder {
+  color: var(--w-text-hint);
+}
+
+/* Шеврон — кнопка открытия списка без своего вида: значок `Select`. */
+.w-combobox__trigger {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.w-combobox__trigger:focus-visible {
+  outline: var(--w-focus-ring-width) solid var(--w-focus-ring-color);
+  outline-offset: 1px;
+}
+
+/* Строка списка — обёртка пункта и линии перед пунктом-действием; своего вида у неё нет. */
+.w-combobox__row {
+  display: contents;
+}

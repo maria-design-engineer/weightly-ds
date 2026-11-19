@@ -46,6 +46,8 @@ export { Select } from './components/Select/Select'
 export type { SelectProps } from './components/Select/Select'
 export { SELECT_SIZES, SELECT_VIEWS } from './components/Select/constants'
 export type { SelectItem, SelectSize, SelectView } from './components/Select/constants'
+export { Combobox } from './components/Combobox/Combobox'
+export type { ComboboxProps } from './components/Combobox/Combobox'
 
 export { Label } from './components/Label/Label'
 export type { LabelProps } from './components/Label/Label'
