@@ -6,7 +6,7 @@ import { Plus } from '@gravity-ui/icons'
 
 import { Icon } from '../Icon/Icon'
 import { Cell, Row } from '../story-layout'
-import { Combobox } from './Combobox'
+import { Combobox, type ComboboxProps } from './Combobox'
 
 const MOVEMENTS = [
   { value: '1', label: 'Приседания со штангой' },
@@ -30,7 +30,11 @@ type Story = StoryObj<typeof meta>
  * «+ Добавить новое движение». Нажмите в поле и наберите «тяга».
  */
 export const Movement: Story = {
-  render: (args) => {
+  render: (args) => <MovementDemo {...args} />,
+}
+
+function MovementDemo(args: ComboboxProps) {
+  {
     const [value, setValue] = useState<string | null>(null)
     const [picked, setPicked] = useState('')
     return (
@@ -55,5 +59,5 @@ export const Movement: Story = {
         </Cell>
       </Row>
     )
-  },
+  }
 }
