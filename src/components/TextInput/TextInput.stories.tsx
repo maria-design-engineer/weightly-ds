@@ -149,3 +149,20 @@ export const States: Story = {
     </Row>
   ),
 }
+
+/**
+ * `Additional` — подпись справа внутри поля, релиз 0.15.0. Ячейка зоны в окне правки упражнения
+ * тренера, кадр `4г`: «%» у процента; не число — «Error inline», треугольник следом за подписью.
+ */
+export const Additional: Story = {
+  render: (args) => (
+    <Row>
+      <Cell label="Additional" width={110}>
+        <TextInput {...args} size="m" defaultValue="75" additional="%" ariaLabel="Зона" />
+      </Cell>
+      <Cell label="Additional · Error inline" width={110}>
+        <TextInput {...args} size="m" defaultValue="10RM" additional="%" errorMessage="Не число" errorPlacement="inline" ariaLabel="Зона" />
+      </Cell>
+    </Row>
+  ),
+}

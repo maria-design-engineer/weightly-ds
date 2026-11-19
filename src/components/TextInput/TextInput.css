@@ -109,6 +109,22 @@
   box-shadow: inset 0 -1px 0 0 var(--w-line-danger);
 }
 
+/* Figma `Additional` — подпись справа внутри поля, `Text/Caption 1` цветом `Text/Secondary`, поля 6. Релиз 0.15.0. */
+.w-text-input__additional {
+  flex: none;
+  padding: 0 6px;
+  font: var(--w-style-text-caption-1);
+  color: var(--w-text-secondary);
+  white-space: nowrap;
+  /* В мастере от текста до подписи 12 — поле 6 у текста и 6 у подписи; промежуток поля — 8. */
+  margin-left: -2px;
+}
+
+/* От подписи до значка ошибки в мастере 8 — поле подписи 6 и промежуток 2. */
+.w-text-input__additional + .w-text-input__error-icon {
+  margin-left: -6px;
+}
+
 .w-text-input__error-icon {
   display: inline-flex;
   flex: none;

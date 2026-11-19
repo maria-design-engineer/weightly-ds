@@ -2,7 +2,7 @@ import type { ReactNode } from 'react'
 
 import { Field } from '@base-ui/react/field'
 import { Input } from '@base-ui/react/input'
-import { CircleExclamation } from '@gravity-ui/icons'
+import { TriangleExclamation } from '@gravity-ui/icons'
 
 import { useFieldLabelId } from '../Field/context'
 import { Icon } from '../Icon/Icon'
@@ -33,6 +33,11 @@ export type TextInputProps = {
   errorPlacement?: 'inline' | 'outline'
   /** Figma Start icon */
   startIcon?: ReactNode
+  /**
+   * Figma `Additional` и `↳ Additional text` — подпись справа внутри поля: единица, «%» в ячейке
+   * зоны, кадр `4г` «Разбора файла». `Text/Caption 1` цветом `Text/Secondary`, поля 6. Релиз 0.15.0.
+   */
+  additional?: ReactNode
   /**
    * Figma Clear icon — значок у правого края поля, внутри рамки; в мастере `xmark`.
    * Релиз кита 4 от 07.10.2026 заменил здесь кнопку значком: кнопка стояла на
@@ -124,6 +129,7 @@ export function TextInput({
   errorMessage,
   errorPlacement = 'outline',
   startIcon,
+  additional,
   clearIcon,
   icon1,
   icon2,
@@ -171,9 +177,11 @@ export function TextInput({
           aria-label={fieldLabelId ? undefined : ariaLabel}
           aria-labelledby={fieldLabelId}
         />
+        {additional ? <span className="w-text-input__additional">{additional}</span> : null}
+        {/* Figma `Error icon` — треугольник `triangle-exclamation`, как в мастере; до 0.15.0 стоял круг. */}
         {invalid && errorPlacement === 'inline' ? (
           <span className="w-text-input__error-icon">
-            <Icon data={CircleExclamation} size={16} />
+            <Icon data={TriangleExclamation} size={16} />
           </span>
         ) : null}
         <IconSlot icon={clearIcon} onClick={onClearIconClick} label={clearIconLabel} />
